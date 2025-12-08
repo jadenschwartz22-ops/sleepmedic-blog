@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SleepMedic Blog - Evidence-Based Sleep Science for Shift Workers</title>
+  <meta name="description" content="Practical, science-backed sleep advice for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest." />
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://sleepmedic.co/blog/">
+  <meta name="robots" content="index,follow" />
+  <meta name="keywords" content="sleep science, shift work, circadian rhythm, sleep medicine, evidence-based sleep, first responders" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SleepMedic Blog" />
+  <meta property="og:description" content="Evidence-based sleep science for shift workers and busy humans" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/blog/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="_shared-styles.css">
+
+  <style>
+    /* Blog-specific styles */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #16a085, #3498db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: #b0b0b0;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+
+    .filter-btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      background: rgba(22,160,133,0.1);
+      color: #16a085;
+      font-weight: 600;
+      font-size: 14px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      background: rgba(22,160,133,0.2);
+      border-color: #16a085;
+    }
+
+    .filter-btn.active {
+      background: #16a085;
+      color: #05080c;
+      border-color: #16a085;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    .post-card {
+      background: #16213e;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(22,160,133,0.2);
+      border-color: #16a085;
+    }
+
+    .post-card-content {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-category {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .category-science { background: rgba(52,152,219,0.2); color: #3498db; }
+    .category-practical { background: rgba(22,160,133,0.2); color: #16a085; }
+    .category-stories { background: rgba(155,89,182,0.2); color: #9b59b6; }
+
+    .post-card h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      flex: 1;
+    }
+
+    .post-card h2 a {
+      color: #e0e0e0;
+      text-decoration: none;
+    }
+
+    .post-card h2 a:hover {
+      color: #16a085;
+    }
+
+    .post-excerpt {
+      color: #b0b0b0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #808080;
+      font-size: 0.85rem;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .newsletter-section {
+      background: linear-gradient(135deg, #16a085, #3498db);
+      border-radius: 16px;
+      padding: 48px 32px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .newsletter-section h2 {
+      color: #05080c;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .newsletter-section p {
+      color: rgba(5,8,12,0.8);
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+
+    .no-posts {
+      text-align: center;
+      padding: 80px 20px;
+      color: #808080;
+    }
+
+    @media (max-width: 768px) {
+      .posts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 60px 20px 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero -->
+  <div class="hero">
+    <div class="wrap">
+      <h1>SleepMedic</h1>
+      <p>Evidence-based sleep science for shift workers, first responders, and busy humans.</p>
+
+      <!-- RSS Link -->
+      <a href="feed.xml" style="color: #16a085; font-size: 0.9rem; text-decoration: underline;">Subscribe via RSS</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="wrap" style="max-width: 1200px; padding: 48px 20px;">
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-category="all">All Posts</button>
+        <button class="filter-btn" data-category="science">Sleep Science</button>
+        <button class="filter-btn" data-category="practical">Practical Guides</button>
+        <button class="filter-btn" data-category="stories">Stories & Insights</button>
+      </div>
+
+      <!-- Posts Grid -->
+      <div class="posts-grid" id="posts-grid">
+        <!-- Posts will be dynamically inserted here -->
+        <div class="no-posts">
+          <h2>No posts yet</h2>
+          <p>Check back soon for evidence-based sleep science content!</p>
+        </div>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="newsletter-section">
+        <h2>Never Miss a Post</h2>
+        <p>Get evidence-based sleep science delivered to your inbox. Weekly.</p>
+
+        <!-- Follow.it form will go here after setup -->
+        <div id="newsletter-form">
+          <p style="color: rgba(5,8,12,0.6); font-size: 0.9rem;">Newsletter signup coming soon!</p>
+        </div>
+
+        <p style="font-size: 0.85rem; color: rgba(5,8,12,0.6); margin-top: 16px;">
+          Or subscribe via <a href="feed.xml" style="color: #05080c; text-decoration: underline;">RSS feed</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #0a0a0a; padding: 40px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="wrap">
+      <p style="color: #808080; font-size: 0.9rem;">
+        © 2025 SleepMedic. Evidence-based sleep science for shift workers.
+      </p>
+      <p style="color: #606060; font-size: 0.8rem; margin-top: 8px;">
+        <a href="/" style="color: #16a085; text-decoration: none;">Home</a> ·
+        <a href="feed.xml" style="color: #16a085; text-decoration: none;">RSS</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Posts data (will be auto-generated by script)
+    const posts = [];
+
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const postsGrid = document.getElementById('posts-grid');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter posts
+        const category = btn.dataset.category;
+        renderPosts(category);
+      });
+    });
+
+    function renderPosts(category = 'all') {
+      if (posts.length === 0) {
+        postsGrid.innerHTML = `
+          <div class="no-posts">
+            <h2>No posts yet</h2>
+            <p>Check back soon for evidence-based sleep science content!</p>
+          </div>
+        `;
+        return;
+      }
+
+      const filtered = category === 'all'
+        ? posts
+        : posts.filter(p => p.category === category);
+
+      if (filtered.length === 0) {
+        postsGrid.innerHTML = `
+          <div class="no-posts">
+            <h2>No posts in this category</h2>
+            <p>Try another filter!</p>
+          </div>
+        `;
+        return;
+      }
+
+      postsGrid.innerHTML = filtered.map(post => `
+        <article class="post-card" data-category="${post.category}">
+          <div class="post-card-content">
+            <span class="post-category category-${post.category}">${post.categoryLabel}</span>
+            <h2><a href="posts/${post.slug}.html">${post.title}</a></h2>
+            <p class="post-excerpt">${post.excerpt}</p>
+            <div class="post-meta">
+              <time datetime="${post.date}">${post.dateFormatted}</time>
+              <span>•</span>
+              <span>${post.readTime} min read</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Initial render
+    renderPosts();
+  </script>
+</body>
+</html>
