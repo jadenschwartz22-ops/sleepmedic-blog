@@ -33,8 +33,8 @@
     .hero {
       position: relative;
       text-align: center;
-      padding: 100px 20px 80px;
-      background: linear-gradient(180deg, rgba(15, 13, 30, 0.5) 0%, transparent 100%);
+      padding: 120px 20px 100px;
+      background: linear-gradient(180deg, rgba(5, 10, 18, 0.6) 0%, transparent 100%);
       border-bottom: none;
       overflow: hidden;
     }
@@ -81,60 +81,61 @@
       font-size: 1.15rem;
       color: var(--muted);
       max-width: 560px;
-      margin: 0 auto 36px;
+      margin: 0 auto 48px;
       position: relative;
       z-index: 1;
       font-weight: 400;
-      opacity: 0.9;
+      opacity: 0.85;
+      line-height: 1.8;
     }
 
     /* Soft, Rounded Filters */
     .filters {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 48px;
+      margin-bottom: 64px;
     }
 
     .filter-btn {
-      padding: 14px 28px;
+      padding: 16px 32px;
       border-radius: var(--radius-pill);
       background: var(--panel);
-      color: var(--lavender);
+      color: var(--periwinkle);
       font-weight: 500;
       font-size: 15px;
       border: none;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       backdrop-filter: blur(20px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     .filter-btn:hover {
-      background: rgba(74, 107, 168, 0.25);
+      background: rgba(45, 74, 106, 0.3);
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 24px rgba(74, 107, 168, 0.3);
+      box-shadow: 0 8px 24px rgba(45, 74, 106, 0.35);
     }
 
     .filter-btn.active {
-      background: linear-gradient(135deg, var(--lavender), var(--lilac));
-      color: var(--bg);
-      box-shadow: 0 4px 16px rgba(195, 177, 225, 0.4);
+      background: linear-gradient(135deg, var(--midnight-blue), var(--periwinkle));
+      color: var(--ink);
+      box-shadow: 0 4px 16px rgba(45, 74, 106, 0.5);
     }
 
     .posts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 32px;
-      margin-bottom: 80px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 40px;
+      margin-bottom: 100px;
     }
 
     .post-card {
       background: var(--panel);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid rgba(74, 107, 168, 0.2);
+      border: 1px solid rgba(45, 74, 106, 0.15);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
@@ -143,13 +144,13 @@
 
     .post-card:hover {
       transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 20px 60px rgba(74, 107, 168, 0.35);
-      border-color: var(--deep-purple);
-      background: rgba(15, 13, 30, 0.95);
+      box-shadow: 0 24px 72px rgba(45, 74, 106, 0.4);
+      border-color: var(--periwinkle);
+      background: rgba(5, 10, 18, 0.95);
     }
 
     .post-card-content {
-      padding: 24px;
+      padding: 32px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -157,91 +158,97 @@
 
     .post-category {
       display: inline-block;
-      padding: 6px 16px;
+      padding: 8px 18px;
       border-radius: var(--radius-pill);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
     }
 
-    .category-science { background: rgba(122,157,232,0.2); color: var(--periwinkle); }
-    .category-tools { background: rgba(168,155,209,0.2); color: var(--lavender); }
-    .category-timing { background: rgba(184,168,232,0.2); color: var(--lilac); }
-    .category-special { background: rgba(91,122,184,0.2); color: var(--midnight-blue); }
+    .category-science { background: rgba(45,74,106,0.25); color: var(--periwinkle); }
+    .category-tools { background: rgba(74,91,120,0.25); color: var(--lavender); }
+    .category-timing { background: rgba(77,90,122,0.25); color: var(--lilac); }
+    .category-special { background: rgba(30,58,82,0.25); color: var(--midnight-blue); }
 
     .post-card h2 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      line-height: 1.3;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.4;
       flex: 1;
     }
 
     .post-card h2 a {
-      color: #e0e0e0;
+      color: var(--ink);
       text-decoration: none;
     }
 
     .post-card h2 a:hover {
-      color: #16a085;
+      color: var(--periwinkle);
     }
 
     .post-excerpt {
-      color: #b0b0b0;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 20px;
     }
 
     .post-meta {
       display: flex;
       align-items: center;
       gap: 12px;
-      color: #808080;
+      color: rgba(90, 107, 122, 0.7);
       font-size: 0.85rem;
       margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+      border-top: 1px solid rgba(90, 107, 122, 0.08);
     }
 
     .newsletter-section {
       background: linear-gradient(135deg, var(--deep-purple), var(--midnight-blue), var(--periwinkle));
       border-radius: var(--radius-lg);
-      padding: 56px 40px;
+      padding: 64px 48px;
       text-align: center;
-      margin-bottom: 60px;
-      box-shadow: 0 12px 40px rgba(74, 107, 168, 0.35);
+      margin-bottom: 80px;
+      box-shadow: 0 16px 48px rgba(45, 74, 106, 0.4);
     }
 
     .newsletter-section h2 {
-      color: var(--bg);
+      color: var(--ink);
       font-size: 2rem;
       font-weight: 600;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
 
     .newsletter-section p {
-      color: rgba(26,20,40,0.75);
+      color: rgba(212, 220, 232, 0.8);
       font-size: 1.1rem;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       font-weight: 400;
+      line-height: 1.7;
     }
 
     .no-posts {
       text-align: center;
-      padding: 80px 20px;
-      color: #808080;
+      padding: 100px 20px;
+      color: var(--muted);
     }
 
     @media (max-width: 768px) {
       .posts-grid {
         grid-template-columns: 1fr;
+        gap: 32px;
       }
 
       .hero {
-        padding: 60px 20px 40px;
+        padding: 80px 20px 60px;
+      }
+
+      .newsletter-section {
+        padding: 48px 32px;
       }
     }
   </style>
@@ -254,13 +261,13 @@
       <p>Evidence-based sleep science for shift workers, first responders, and busy humans.</p>
 
       <!-- RSS Link -->
-      <a href="feed.xml" style="color: #16a085; font-size: 0.9rem; text-decoration: underline;">Subscribe via RSS</a>
+      <a href="feed.xml" style="color: var(--periwinkle); font-size: 0.9rem; text-decoration: underline;">Subscribe via RSS</a>
     </div>
   </div>
 
   <!-- Main Content -->
   <main>
-    <div class="wrap" style="max-width: 1200px; padding: 48px 20px;">
+    <div class="wrap" style="max-width: 1280px; padding: 64px 32px;">
       <!-- Filters -->
       <div class="filters">
         <button class="filter-btn active" data-category="all">All Posts</button>
@@ -286,25 +293,25 @@
 
         <!-- Follow.it form will go here after setup -->
         <div id="newsletter-form">
-          <p style="color: rgba(5,8,12,0.6); font-size: 0.9rem;">Newsletter signup coming soon!</p>
+          <p style="color: rgba(212, 220, 232, 0.7); font-size: 0.9rem;">Newsletter signup coming soon!</p>
         </div>
 
-        <p style="font-size: 0.85rem; color: rgba(5,8,12,0.6); margin-top: 16px;">
-          Or subscribe via <a href="feed.xml" style="color: #05080c; text-decoration: underline;">RSS feed</a>
+        <p style="font-size: 0.85rem; color: rgba(212, 220, 232, 0.65); margin-top: 20px;">
+          Or subscribe via <a href="feed.xml" style="color: var(--ink); text-decoration: underline;">RSS feed</a>
         </p>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer style="background: #0a0a0a; padding: 40px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+  <footer style="background: rgba(2, 3, 8, 0.95); padding: 48px 20px; text-align: center; border-top: 1px solid rgba(90, 107, 122, 0.08);">
     <div class="wrap">
-      <p style="color: #808080; font-size: 0.9rem;">
+      <p style="color: var(--muted); font-size: 0.9rem;">
         © 2025 SleepMedic. Evidence-based sleep science for shift workers.
       </p>
-      <p style="color: #606060; font-size: 0.8rem; margin-top: 8px;">
-        <a href="/" style="color: #16a085; text-decoration: none;">Home</a> ·
-        <a href="feed.xml" style="color: #16a085; text-decoration: none;">RSS</a>
+      <p style="color: rgba(90, 107, 122, 0.6); font-size: 0.8rem; margin-top: 12px;">
+        <a href="/" style="color: var(--periwinkle); text-decoration: none;">Home</a> ·
+        <a href="feed.xml" style="color: var(--periwinkle); text-decoration: none;">RSS</a>
       </p>
     </div>
   </footer>
