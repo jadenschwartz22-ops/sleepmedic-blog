@@ -5,7 +5,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Dec 2025 01:03:18 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 09 Dec 2025 19:33:58 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -13,6 +13,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Myth-Busting Sleep Timing: What Shift Workers Need to Know</title>
+      <link>https://sleepmedic.co/blog/posts/2025-12-09-myth-busting-sleep-timing-what-shift-workers-need-to-know.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-12-09-myth-busting-sleep-timing-what-shift-workers-need-to-know.html</guid>
+      <description>Explore common myths about sleep timing for shift workers and learn evidence-based strategies to protect your rest.</description>
+      <pubDate>Tue, 09 Dec 2025 00:00:00 GMT</pubDate>
+      <category>Timing</category>
+    </item>
+  
     <item>
       <title>Cultural Sleep Practices You Can Use for Better Rest</title>
       <link>https://sleepmedic.co/blog/posts/2025-10-23-cultural-sleep-practices.html</link>
