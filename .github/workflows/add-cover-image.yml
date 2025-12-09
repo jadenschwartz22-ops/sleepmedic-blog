@@ -1,0 +1,118 @@
+name: Add Cover Image and Publish
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  add-image-and-publish:
+    # Only run when comment contains "use image" on an issue with label "select-cover-image"
+    if: |
+      github.event.issue.labels &&
+      contains(github.event.issue.labels.*.name, 'select-cover-image') &&
+      contains(github.event.comment.body, 'use image')
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.issue.head_ref }}
+
+      - name: Parse image selection
+        id: parse
+        run: |
+          # Extract image number from comment (e.g., "use image 2")
+          COMMENT="${{ github.event.comment.body }}"
+          IMAGE_NUM=$(echo "$COMMENT" | grep -oP 'use image \K\d+' || echo "1")
+          echo "image_number=$IMAGE_NUM" >> $GITHUB_OUTPUT
+          echo "Selected image: #$IMAGE_NUM"
+
+      - name: Download selected image
+        id: download
+        env:
+          IMAGE_NUM: ${{ steps.parse.outputs.image_number }}
+        run: |
+          # Get image URL from issue body
+          IMAGE_URL=$(echo "${{ github.event.issue.body }}" | grep -A1 "Image $IMAGE_NUM:" | grep "Download:" | sed 's/.*Download: //' | sed 's/).*//')
+
+          if [ -z "$IMAGE_URL" ]; then
+            echo "❌ Could not find image URL"
+            exit 1
+          fi
+
+          echo "Downloading: $IMAGE_URL"
+
+          # Download image
+          curl -L "$IMAGE_URL" -o blog/cover-temp.jpg
+
+          # Get post filename from issue
+          POST_FILE=$(echo "${{ github.event.issue.body }}" | grep "Post file:" | sed 's/.*`\(.*\)`.*/\1/')
+          echo "post_file=$POST_FILE" >> $GITHUB_OUTPUT
+
+          # Get attribution from issue
+          PHOTOGRAPHER=$(echo "${{ github.event.issue.body }}" | grep -A1 "Image $IMAGE_NUM:" | grep "by" | sed 's/.*by \(.*\) on.*/\1/')
+          UNSPLASH_URL=$(echo "${{ github.event.issue.body }}" | grep -A1 "Image $IMAGE_NUM:" | grep "Unsplash" | sed 's/.*(\(.*\)).*/\1/')
+
+          echo "photographer=$PHOTOGRAPHER" >> $GITHUB_OUTPUT
+          echo "unsplash_url=$UNSPLASH_URL" >> $GITHUB_OUTPUT
+
+      - name: Add image to blog post
+        run: |
+          POST_FILE="${{ steps.download.outputs.post_file }}"
+          PHOTOGRAPHER="${{ steps.download.outputs.photographer }}"
+          UNSPLASH_URL="${{ steps.download.outputs.unsplash_url }}"
+
+          # Move cover image to final location
+          POST_SLUG=$(basename "$POST_FILE" .html)
+          mv blog/cover-temp.jpg "blog/posts/images/${POST_SLUG}-cover.jpg"
+
+          # Insert cover image HTML after post header
+          sed -i '/<div class="post-content">/i \
+      <div style="margin-bottom: 40px;">\
+        <img src="images/'"${POST_SLUG}"'-cover.jpg" alt="Cover image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;">\
+        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;">Photo by <a href="'"${UNSPLASH_URL}"'" style="color: var(--periwinkle);">'"${PHOTOGRAPHER}"'</a> on Unsplash</p>\
+      </div>' "$POST_FILE"
+
+          echo "✅ Cover image added to $POST_FILE"
+
+      - name: Commit and merge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .
+          git commit -m "Add cover image and publish post"
+          git push
+
+          # Get PR number from issue
+          PR_NUM=$(echo "${{ github.event.issue.body }}" | grep "PR #" | sed 's/.*PR #\([0-9]*\).*/\1/')
+
+          # Merge PR
+          gh pr merge "$PR_NUM" --squash --auto
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Close issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            });
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '✅ Cover image added and post published! 🎉\n\nYour blog post is now live at: https://jadenschwartz22-ops.github.io/sleepmedic-blog/blog/'
+            });
