@@ -1,23 +1,23 @@
 /* SleepMedic Blog - Peaceful Starry Night Theme */
 
 :root {
-  /* Warm Starry Night - Cozy Blues & Warm Accents */
-  --bg: #1a1d28;  /* Warm deep blue-gray */
-  --bg-light: #222530;  /* Warm dark blue */
-  --panel: rgba(34, 37, 48, 0.75);  /* Warm translucent panels */
-  --ink: #f0ebe8;  /* Warm white with peach tint */
-  --muted: #b8a89b;  /* Warm muted tan */
-  --line: rgba(184, 168, 155, 0.15);
+  /* Gentle Warm Night - Soft & Soothing */
+  --bg: #24262e;  /* Lighter warm blue-gray */
+  --bg-light: #2c2e38;  /* Gentle dark blue */
+  --panel: rgba(44, 46, 56, 0.65);  /* Softer translucent panels */
+  --ink: #f5f0ec;  /* Softer warm white */
+  --muted: #c8beb5;  /* Gentle warm beige */
+  --line: rgba(200, 190, 181, 0.12);
 
-  /* Warm Night Accents - Cozy Blues with Golden & Peachy Touches */
-  --lavender: #c8b5a8;  /* Warm lavender-tan */
-  --periwinkle: #9fb5d6;  /* Warm periwinkle */
-  --lilac: #d6c8b5;  /* Warm peachy-lilac */
-  --midnight-blue: #7f95b8;  /* Warm midnight blue */
-  --deep-purple: #b8a895;  /* Warm taupe-purple */
-  --moon: #fef9e6;  /* Warm golden moon glow */
-  --star: #fffef8;  /* Warm white stars */
-  --star-glow: rgba(254, 249, 230, 0.7);  /* Warm golden star glow */
+  /* Gentle Warm Accents - Very Soft & Calming */
+  --lavender: #d6cbc0;  /* Very soft warm lavender */
+  --periwinkle: #b8c8e0;  /* Gentle warm periwinkle */
+  --lilac: #e0d6cb;  /* Very soft peachy-lilac */
+  --midnight-blue: #9fb0c8;  /* Gentle warm blue */
+  --deep-purple: #c8beb0;  /* Very soft warm taupe */
+  --moon: #fef9ea;  /* Gentle golden glow */
+  --star: #fffef8;  /* Soft warm white stars */
+  --star-glow: rgba(254, 249, 234, 0.6);  /* Gentle warm star glow */
 
   /* Very Rounded - Duolingo style */
   --radius: 24px;
@@ -36,11 +36,11 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
   background-image:
-    /* Warm night glows - golden & peachy blues */
-    radial-gradient(circle at 15% 30%, rgba(214, 200, 181, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 85% 70%, rgba(159, 181, 214, 0.07) 0%, transparent 55%),
-    radial-gradient(circle at 50% 90%, rgba(200, 181, 168, 0.06) 0%, transparent 60%),
-    radial-gradient(circle at 30% 80%, rgba(184, 168, 149, 0.05) 0%, transparent 45%);
+    /* Gentle warm glows - very soft golden & peachy tones */
+    radial-gradient(circle at 15% 30%, rgba(224, 214, 203, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(184, 200, 224, 0.05) 0%, transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(214, 203, 190, 0.045) 0%, transparent 60%),
+    radial-gradient(circle at 30% 80%, rgba(200, 190, 177, 0.04) 0%, transparent 45%);
   color: var(--ink);
   line-height: 2;
   -webkit-font-smoothing: antialiased;

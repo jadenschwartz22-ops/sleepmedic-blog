@@ -34,7 +34,7 @@
       position: relative;
       text-align: center;
       padding: 120px 20px 100px;
-      background: linear-gradient(180deg, rgba(26, 32, 48, 0.5) 0%, transparent 100%);
+      background: linear-gradient(180deg, rgba(44, 46, 56, 0.4) 0%, transparent 100%);
       border-bottom: none;
       overflow: hidden;
     }
@@ -144,9 +144,9 @@
 
     .post-card:hover {
       transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 24px 72px rgba(125, 159, 214, 0.35);
+      box-shadow: 0 24px 72px rgba(184, 200, 224, 0.3);
       border-color: var(--periwinkle);
-      background: rgba(26, 32, 48, 0.9);
+      background: rgba(44, 46, 56, 0.85);
     }
 
     .post-card-content {
@@ -178,15 +178,7 @@
       margin-bottom: 16px;
       line-height: 1.4;
       flex: 1;
-    }
-
-    .post-card h2 a {
       color: var(--ink);
-      text-decoration: none;
-    }
-
-    .post-card h2 a:hover {
-      color: var(--periwinkle);
     }
 
     .post-excerpt {
@@ -304,12 +296,12 @@
   </main>
 
   <!-- Footer -->
-  <footer style="background: rgba(21, 26, 36, 0.95); padding: 48px 20px; text-align: center; border-top: 1px solid rgba(139, 149, 168, 0.12);">
+  <footer style="background: rgba(36, 38, 46, 0.95); padding: 48px 20px; text-align: center; border-top: 1px solid rgba(200, 190, 181, 0.1);">
     <div class="wrap">
       <p style="color: var(--muted); font-size: 0.9rem;">
         © 2025 SleepMedic. Evidence-based sleep science for shift workers.
       </p>
-      <p style="color: rgba(139, 149, 168, 0.7); font-size: 0.8rem; margin-top: 12px;">
+      <p style="color: rgba(200, 190, 181, 0.7); font-size: 0.8rem; margin-top: 12px;">
         <a href="/" style="color: var(--periwinkle); text-decoration: none;">Home</a> ·
         <a href="feed.xml" style="color: var(--periwinkle); text-decoration: none;">RSS</a>
       </p>
@@ -393,18 +385,20 @@
       }
 
       postsGrid.innerHTML = filtered.map(post => `
-        <article class="post-card" data-category="${post.category}">
-          <div class="post-card-content">
-            <span class="post-category category-${post.category}">${post.categoryLabel}</span>
-            <h2><a href="posts/${post.slug}.html">${post.title}</a></h2>
-            <p class="post-excerpt">${post.excerpt}</p>
-            <div class="post-meta">
-              <time datetime="${post.date}">${post.dateFormatted}</time>
-              <span>•</span>
-              <span>${post.readTime} min read</span>
+        <a href="posts/${post.slug}.html" style="text-decoration: none; color: inherit;">
+          <article class="post-card" data-category="${post.category}">
+            <div class="post-card-content">
+              <span class="post-category category-${post.category}">${post.categoryLabel}</span>
+              <h2>${post.title}</h2>
+              <p class="post-excerpt">${post.excerpt}</p>
+              <div class="post-meta">
+                <time datetime="${post.date}">${post.dateFormatted}</time>
+                <span>•</span>
+                <span>${post.readTime} min read</span>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </a>
       `).join('');
     }
 
