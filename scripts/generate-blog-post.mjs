@@ -219,7 +219,7 @@ Return ONLY the JSON object, no other text.`;
     console.log(chalk.green('✅ Content generated successfully\n'));
     console.log(chalk.bold(`   Title: ${content.title}`));
     console.log(`   Word count: ~${content.content_html.split(/\s+/).length}`);
-    console.log(`   Image idea: ${content.image_idea}\n`));
+    console.log(`   Image idea: ${content.image_idea}\n`);
 
     return content;
   } catch (error) {
