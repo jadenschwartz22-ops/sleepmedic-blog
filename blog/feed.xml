@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SleepMedic Blog</title>
+    <link>https://sleepmedic.co/blog/</link>
+    <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2025 01:03:18 GMT</lastBuildDate>
+    <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://sleepmedic.co/logo-256.png</url>
+      <title>SleepMedic</title>
+      <link>https://sleepmedic.co/blog/</link>
+    </image>
+
+    <item>
+      <title>Cultural Sleep Practices You Can Use for Better Rest</title>
+      <link>https://sleepmedic.co/blog/posts/2025-10-23-cultural-sleep-practices.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-10-23-cultural-sleep-practices.html</guid>
+      <description>Explore sleep enhancement techniques from around the world—from Spanish siestas to Japanese inemuri—and how shift workers can adopt them for better rest.</description>
+      <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
+      <category>Tools &amp; Tips</category>
+    </item>
+  
+    <item>
+      <title>Sleep Like a Warrior: Ancient Wisdom and Modern Practice</title>
+      <link>https://sleepmedic.co/blog/posts/2025-10-16-sleep-like-a-warrior.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-10-16-sleep-like-a-warrior.html</guid>
+      <description>Learn how ancient warriors approached rest with intention and resilience. Four core principles for modern shift workers seeking better sleep.</description>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
+      <category>Special Topics</category>
+    </item>
+  
+    <item>
+      <title>Shift Workers: How to Get Sleep Like Your Life Depends on It</title>
+      <link>https://sleepmedic.co/blog/posts/2025-07-10-shift-workers-wake-up-consistency.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-07-10-shift-workers-wake-up-consistency.html</guid>
+      <description>The one most important tool for shift workers to fix sleep for good: wake up at the same time every day. A 7-day challenge that actually works.</description>
+      <pubDate>Thu, 10 Jul 2025 00:00:00 GMT</pubDate>
+      <category>Sleep Timing</category>
+    </item>
+  
+  </channel>
+</rss>
