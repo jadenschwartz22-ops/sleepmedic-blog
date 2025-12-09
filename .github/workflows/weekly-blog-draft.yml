@@ -38,23 +38,14 @@ jobs:
         run: |
           node scripts/generate-blog-post.mjs
 
-          TITLE=$(jq -r '.title' tmp/post-metadata.json)
-          FILENAME=$(jq -r '.filename' tmp/post-metadata.json)
-          TOPIC=$(jq -r '.topic' tmp/post-metadata.json)
-          TAG=$(jq -r '.tag' tmp/post-metadata.json)
-          IMAGE_IDEA=$(jq -r '.imageIdea' tmp/post-metadata.json | tr '\n' ' ')
-
-          echo "title=$TITLE" >> $GITHUB_OUTPUT
-          echo "filename=$FILENAME" >> $GITHUB_OUTPUT
-          echo "topic=$TOPIC" >> $GITHUB_OUTPUT
-          echo "tag=$TAG" >> $GITHUB_OUTPUT
-          echo "image_idea=$IMAGE_IDEA" >> $GITHUB_OUTPUT
+          jq -r '.title' tmp/post-metadata.json | xargs -I {} echo "title={}" >> $GITHUB_OUTPUT
+          jq -r '.filename' tmp/post-metadata.json | xargs -I {} echo "filename={}" >> $GITHUB_OUTPUT
+          jq -r '.topic' tmp/post-metadata.json | xargs -I {} echo "topic={}" >> $GITHUB_OUTPUT
+          jq -r '.tag' tmp/post-metadata.json | xargs -I {} echo "tag={}" >> $GITHUB_OUTPUT
+          jq -r '.imageIdea' tmp/post-metadata.json | tr '\n' ' ' | xargs -I {} echo "image_idea={}" >> $GITHUB_OUTPUT
 
       - name: Generate RSS feed
-        run: |
-          echo "📡 Generating RSS feed..."
-          node scripts/generate-rss-feed.mjs
-          echo "✅ RSS feed updated"
+        run: node scripts/generate-rss-feed.mjs
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
