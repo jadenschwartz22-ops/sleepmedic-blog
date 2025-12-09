@@ -1,23 +1,23 @@
 /* SleepMedic Blog - Peaceful Starry Night Theme */
 
 :root {
-  /* Gentle Warm Night - Soft & Soothing */
-  --bg: #24262e;  /* Lighter warm blue-gray */
-  --bg-light: #2c2e38;  /* Gentle dark blue */
-  --panel: rgba(44, 46, 56, 0.65);  /* Softer translucent panels */
-  --ink: #f5f0ec;  /* Softer warm white */
-  --muted: #c8beb5;  /* Gentle warm beige */
-  --line: rgba(200, 190, 181, 0.12);
+  /* Peaceful Dream - Very Gentle & Soothing */
+  --bg: #2e3038;  /* Much lighter, softer blue-gray */
+  --bg-light: #363840;  /* Gentle medium blue */
+  --panel: rgba(54, 56, 64, 0.5);  /* Very soft translucent panels */
+  --ink: #f8f5f2;  /* Very light warm white */
+  --muted: #d8cfc6;  /* Very light warm beige */
+  --line: rgba(216, 207, 198, 0.1);
 
-  /* Gentle Warm Accents - Very Soft & Calming */
-  --lavender: #d6cbc0;  /* Very soft warm lavender */
-  --periwinkle: #b8c8e0;  /* Gentle warm periwinkle */
-  --lilac: #e0d6cb;  /* Very soft peachy-lilac */
-  --midnight-blue: #9fb0c8;  /* Gentle warm blue */
-  --deep-purple: #c8beb0;  /* Very soft warm taupe */
-  --moon: #fef9ea;  /* Gentle golden glow */
-  --star: #fffef8;  /* Soft warm white stars */
-  --star-glow: rgba(254, 249, 234, 0.6);  /* Gentle warm star glow */
+  /* Peaceful Pastels - Extremely Soft & Dreamy */
+  --lavender: #e8ddd5;  /* Extremely soft warm lavender */
+  --periwinkle: #d6e0f0;  /* Very light periwinkle */
+  --lilac: #f0e8dd;  /* Extremely soft peachy-cream */
+  --midnight-blue: #c8d6e8;  /* Very light warm blue */
+  --deep-purple: #e0d8d0;  /* Extremely soft warm beige */
+  --moon: #fffcf5;  /* Very gentle warm glow */
+  --star: #fffefa;  /* Very soft warm white stars */
+  --star-glow: rgba(255, 252, 245, 0.5);  /* Very gentle star glow */
 
   /* Very Rounded - Duolingo style */
   --radius: 24px;
@@ -36,11 +36,11 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
   background-image:
-    /* Gentle warm glows - very soft golden & peachy tones */
-    radial-gradient(circle at 15% 30%, rgba(224, 214, 203, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 85% 70%, rgba(184, 200, 224, 0.05) 0%, transparent 55%),
-    radial-gradient(circle at 50% 90%, rgba(214, 203, 190, 0.045) 0%, transparent 60%),
-    radial-gradient(circle at 30% 80%, rgba(200, 190, 177, 0.04) 0%, transparent 45%);
+    /* Peaceful dreamy glows - extremely soft & subtle */
+    radial-gradient(circle at 15% 30%, rgba(240, 232, 221, 0.04) 0%, transparent 55%),
+    radial-gradient(circle at 85% 70%, rgba(214, 224, 240, 0.035) 0%, transparent 60%),
+    radial-gradient(circle at 50% 90%, rgba(232, 221, 207, 0.03) 0%, transparent 65%),
+    radial-gradient(circle at 30% 80%, rgba(224, 216, 203, 0.025) 0%, transparent 50%);
   color: var(--ink);
   line-height: 2;
   -webkit-font-smoothing: antialiased;
