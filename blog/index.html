@@ -29,31 +29,61 @@
   <link rel="stylesheet" href="_shared-styles.css">
 
   <style>
-    /* Blog-specific styles */
+    /* Peaceful Hero with Moon */
     .hero {
+      position: relative;
       text-align: center;
-      padding: 80px 20px 60px;
-      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding: 100px 20px 80px;
+      background: linear-gradient(180deg, rgba(27, 40, 56, 0.4) 0%, rgba(11, 25, 41, 0.2) 100%);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 10%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, var(--moon) 0%, rgba(255, 244, 224, 0.6) 40%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
     }
 
     .hero h1 {
       font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 900;
+      font-weight: 700;
       margin-bottom: 16px;
-      background: linear-gradient(135deg, #16a085, #3498db);
+      background: linear-gradient(135deg, var(--moon), var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      position: relative;
+      z-index: 1;
     }
 
     .hero p {
-      font-size: 1.25rem;
-      color: #b0b0b0;
+      font-size: 1.2rem;
+      color: var(--muted);
       max-width: 600px;
       margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
     }
 
+    /* Soft, Rounded Filters */
     .filters {
       display: flex;
       gap: 12px;
@@ -63,20 +93,23 @@
     }
 
     .filter-btn {
-      padding: 10px 20px;
-      border-radius: 24px;
-      background: rgba(22,160,133,0.1);
-      color: #16a085;
+      padding: 12px 24px;
+      border-radius: var(--radius-lg);
+      background: rgba(123, 167, 188, 0.1);
+      color: var(--primary);
       font-weight: 600;
       font-size: 14px;
       border: 2px solid transparent;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
     .filter-btn:hover {
-      background: rgba(22,160,133,0.2);
-      border-color: #16a085;
+      background: rgba(123, 167, 188, 0.2);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(123, 167, 188, 0.2);
     }
 
     .filter-btn.active {
