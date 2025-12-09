@@ -1,22 +1,23 @@
 /* SleepMedic Blog - Peaceful Starry Night Theme */
 
 :root {
-  /* Dreamy Lavender Lullaby Palette */
-  --bg: #1a1428;  /* Deep dreamy purple-blue */
-  --bg-light: #2a2440;  /* Lighter background */
-  --panel: rgba(42, 36, 64, 0.6);  /* Translucent panels */
-  --ink: #e8e4f3;  /* Very soft white with purple tint */
-  --muted: #b5a7c9;  /* Soft lavender gray */
-  --line: rgba(181, 167, 201, 0.15);
+  /* Deep Night Sky - Darker Blues & Purples */
+  --bg: #0d0b1e;  /* Very deep midnight purple */
+  --bg-light: #1a1633;  /* Deep night blue */
+  --panel: rgba(26, 22, 51, 0.7);  /* Deep translucent panels */
+  --ink: #e8e4f3;  /* Soft white with purple tint */
+  --muted: #9b8fb8;  /* Muted purple-gray */
+  --line: rgba(155, 143, 184, 0.15);
 
-  /* Soft Pastel Accents - Headspace inspired */
-  --lavender: #c3b1e1;  /* Soft lavender */
-  --periwinkle: #a8c7f5;  /* Pale blue */
-  --lilac: #d4c5f9;  /* Light lilac */
-  --powder-blue: #b8d4f1;  /* Powder blue */
-  --moon: #fff9e6;  /* Gentle moon glow */
+  /* Rich Night Accents - Deeper tones */
+  --lavender: #a89bd1;  /* Deep lavender */
+  --periwinkle: #7a9de8;  /* Rich periwinkle */
+  --lilac: #b8a8e8;  /* Deep lilac */
+  --midnight-blue: #5b7ab8;  /* Midnight blue */
+  --deep-purple: #8872c4;  /* Deep purple */
+  --moon: #fef6d8;  /* Warm moon glow */
   --star: #ffffff;  /* Pure white stars */
-  --star-glow: rgba(255, 249, 230, 0.8);  /* Star glow */
+  --star-glow: rgba(254, 246, 216, 0.7);  /* Warm star glow */
 
   /* Very Rounded - Duolingo style */
   --radius: 24px;
@@ -35,11 +36,11 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
   background-image:
-    /* Soft dreamy glows */
-    radial-gradient(circle at 15% 30%, rgba(195, 177, 225, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 70%, rgba(168, 199, 245, 0.06) 0%, transparent 45%),
-    radial-gradient(circle at 50% 90%, rgba(212, 197, 249, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 30% 80%, rgba(184, 212, 241, 0.04) 0%, transparent 35%);
+    /* Deep night glows */
+    radial-gradient(circle at 15% 30%, rgba(136, 114, 196, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(122, 157, 232, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(184, 168, 232, 0.06) 0%, transparent 55%),
+    radial-gradient(circle at 30% 80%, rgba(91, 122, 184, 0.05) 0%, transparent 40%);
   color: var(--ink);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
