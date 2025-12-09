@@ -29,28 +29,30 @@
   <link rel="stylesheet" href="_shared-styles.css">
 
   <style>
-    /* Peaceful Hero with Moon */
+    /* Dreamy Hero with Glowing Moon */
     .hero {
       position: relative;
       text-align: center;
       padding: 100px 20px 80px;
-      background: linear-gradient(180deg, rgba(27, 40, 56, 0.4) 0%, rgba(11, 25, 41, 0.2) 100%);
-      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(42, 36, 64, 0.3) 0%, transparent 100%);
+      border-bottom: none;
       overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
-      top: 20px;
-      right: 10%;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, var(--moon) 0%, rgba(255, 244, 224, 0.6) 40%, transparent 70%);
+      top: 30px;
+      right: 12%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, var(--moon) 0%, rgba(255, 249, 230, 0.4) 30%, rgba(255, 249, 230, 0.1) 60%, transparent 80%);
       border-radius: 50%;
-      opacity: 0.8;
-      animation: float 20s ease-in-out infinite;
+      opacity: 0.9;
+      animation: float 25s ease-in-out infinite;
       pointer-events: none;
+      filter: blur(1px);
+      box-shadow: 0 0 60px rgba(255, 249, 230, 0.3);
     }
 
     @keyframes float {
@@ -64,23 +66,26 @@
 
     .hero h1 {
       font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 700;
-      margin-bottom: 16px;
-      background: linear-gradient(135deg, var(--moon), var(--primary));
+      font-weight: 600;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--lavender), var(--lilac), var(--periwinkle));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       position: relative;
       z-index: 1;
+      letter-spacing: -0.02em;
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto 32px;
+      max-width: 560px;
+      margin: 0 auto 36px;
       position: relative;
       z-index: 1;
+      font-weight: 400;
+      opacity: 0.9;
     }
 
     /* Soft, Rounded Filters */
@@ -93,29 +98,29 @@
     }
 
     .filter-btn {
-      padding: 12px 24px;
-      border-radius: var(--radius-lg);
-      background: rgba(155, 184, 211, 0.12);
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 14px;
-      border: 2px solid transparent;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      background: var(--panel);
+      color: var(--lavender);
+      font-weight: 500;
+      font-size: 15px;
+      border: none;
       cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .filter-btn:hover {
-      background: rgba(184, 161, 214, 0.2);
-      border-color: var(--secondary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(184, 161, 214, 0.25);
+      background: rgba(195, 177, 225, 0.15);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(195, 177, 225, 0.2);
     }
 
     .filter-btn.active {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--lavender), var(--lilac));
       color: var(--bg);
-      border-color: var(--secondary);
+      box-shadow: 0 4px 16px rgba(195, 177, 225, 0.4);
     }
 
     .posts-grid {
@@ -127,18 +132,20 @@
 
     .post-card {
       background: var(--panel);
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--line);
-      transition: all 0.3s;
+      border: 1px solid rgba(195, 177, 225, 0.1);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
+      backdrop-filter: blur(20px);
     }
 
     .post-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(184, 161, 214, 0.25);
-      border-color: var(--secondary);
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 60px rgba(195, 177, 225, 0.2);
+      border-color: var(--lavender);
+      background: rgba(42, 36, 64, 0.8);
     }
 
     .post-card-content {
@@ -150,19 +157,19 @@
 
     .post-category {
       display: inline-block;
-      padding: 4px 12px;
-      border-radius: 6px;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
     }
 
-    .category-science { background: rgba(155,184,211,0.2); color: var(--primary); }
-    .category-tools { background: rgba(184,161,214,0.2); color: var(--secondary); }
-    .category-timing { background: rgba(139,157,195,0.2); color: var(--accent); }
-    .category-special { background: rgba(107,91,149,0.2); color: var(--deep-purple); }
+    .category-science { background: rgba(168,199,245,0.15); color: var(--periwinkle); }
+    .category-tools { background: rgba(195,177,225,0.15); color: var(--lavender); }
+    .category-timing { background: rgba(212,197,249,0.15); color: var(--lilac); }
+    .category-special { background: rgba(184,212,241,0.15); color: var(--powder-blue); }
 
     .post-card h2 {
       font-size: 1.35rem;
@@ -200,24 +207,26 @@
     }
 
     .newsletter-section {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      background: linear-gradient(135deg, var(--lavender), var(--lilac), var(--periwinkle));
       border-radius: var(--radius-lg);
-      padding: 48px 32px;
+      padding: 56px 40px;
       text-align: center;
       margin-bottom: 60px;
+      box-shadow: 0 12px 40px rgba(195, 177, 225, 0.25);
     }
 
     .newsletter-section h2 {
       color: var(--bg);
       font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
     }
 
     .newsletter-section p {
-      color: rgba(11,25,41,0.8);
+      color: rgba(26,20,40,0.75);
       font-size: 1.1rem;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      font-weight: 400;
     }
 
     .no-posts {

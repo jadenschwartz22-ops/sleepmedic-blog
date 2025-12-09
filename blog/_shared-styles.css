@@ -1,26 +1,28 @@
 /* SleepMedic Blog - Peaceful Starry Night Theme */
 
 :root {
-  /* Peaceful Night Sky Colors */
-  --bg: #0B1929;  /* Deep midnight blue */
-  --bg-gradient: linear-gradient(180deg, #0B1929 0%, #1B2838 100%);
-  --panel: #1E2F3F;  /* Soft slate blue */
-  --ink: #E8F4F8;  /* Soft white (easier on eyes) */
-  --muted: #A8C5DA;  /* Muted sky blue */
-  --line: rgba(168, 197, 218, 0.15);
+  /* Dreamy Lavender Lullaby Palette */
+  --bg: #1a1428;  /* Deep dreamy purple-blue */
+  --bg-light: #2a2440;  /* Lighter background */
+  --panel: rgba(42, 36, 64, 0.6);  /* Translucent panels */
+  --ink: #e8e4f3;  /* Very soft white with purple tint */
+  --muted: #b5a7c9;  /* Soft lavender gray */
+  --line: rgba(181, 167, 201, 0.15);
 
-  /* Night Sky Purple & Blue Colors */
-  --primary: #9BB8D3;  /* Soft periwinkle blue */
-  --secondary: #B8A1D6;  /* Gentle lavender */
-  --accent: #8B9DC3;  /* Dusty blue */
-  --deep-purple: #6B5B95;  /* Deep purple accent */
-  --moon: #FFF4E0;  /* Warm moon glow */
-  --star: #E8F4F8;  /* Star white */
+  /* Soft Pastel Accents - Headspace inspired */
+  --lavender: #c3b1e1;  /* Soft lavender */
+  --periwinkle: #a8c7f5;  /* Pale blue */
+  --lilac: #d4c5f9;  /* Light lilac */
+  --powder-blue: #b8d4f1;  /* Powder blue */
+  --moon: #fff9e6;  /* Gentle moon glow */
+  --star: #ffffff;  /* Pure white stars */
+  --star-glow: rgba(255, 249, 230, 0.8);  /* Star glow */
 
-  /* Soft Shapes */
-  --radius: 20px;
-  --radius-sm: 12px;
-  --radius-lg: 28px;
+  /* Very Rounded - Duolingo style */
+  --radius: 24px;
+  --radius-sm: 16px;
+  --radius-lg: 40px;
+  --radius-pill: 999px;
 }
 
 * {
@@ -33,16 +35,18 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(155, 184, 211, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(184, 161, 214, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 20%, rgba(107, 91, 149, 0.06) 0%, transparent 60%);
+    /* Soft dreamy glows */
+    radial-gradient(circle at 15% 30%, rgba(195, 177, 225, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(168, 199, 245, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(212, 197, 249, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(184, 212, 241, 0.04) 0%, transparent 35%);
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dense Starry Background - Way More Stars! */
+/* Gentle Dreamy Stars with Soft Glow */
 body::before {
   content: '';
   position: fixed;
@@ -51,57 +55,52 @@ body::before {
   right: 0;
   bottom: 0;
   background-image:
-    /* Large bright stars */
-    radial-gradient(2px 2px at 20% 30%, var(--star), transparent),
-    radial-gradient(2px 2px at 60% 70%, var(--star), transparent),
-    radial-gradient(2px 2px at 90% 60%, var(--star), transparent),
-    radial-gradient(2px 2px at 15% 85%, var(--star), transparent),
-    radial-gradient(2px 2px at 75% 25%, var(--star), transparent),
-    radial-gradient(2px 2px at 45% 15%, var(--star), transparent),
-    radial-gradient(2px 2px at 85% 45%, var(--star), transparent),
+    /* Glowing stars with halos */
+    radial-gradient(circle 3px at 18% 22%, var(--star-glow), transparent 3px),
+    radial-gradient(circle 2px at 18% 22%, var(--star), transparent 2px),
 
-    /* Medium stars */
-    radial-gradient(1.5px 1.5px at 33% 80%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 70% 40%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 25% 60%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 55% 90%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 95% 20%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 40% 45%, var(--star), transparent),
-    radial-gradient(1.5px 1.5px at 80% 75%, var(--star), transparent),
+    radial-gradient(circle 3px at 72% 15%, var(--star-glow), transparent 3px),
+    radial-gradient(circle 2px at 72% 15%, var(--star), transparent 2px),
 
-    /* Small stars scattered everywhere */
-    radial-gradient(1px 1px at 50% 50%, var(--star), transparent),
-    radial-gradient(1px 1px at 80% 10%, var(--star), transparent),
-    radial-gradient(1px 1px at 15% 90%, var(--star), transparent),
-    radial-gradient(1px 1px at 35% 25%, var(--star), transparent),
-    radial-gradient(1px 1px at 65% 55%, var(--star), transparent),
-    radial-gradient(1px 1px at 10% 40%, var(--star), transparent),
-    radial-gradient(1px 1px at 92% 85%, var(--star), transparent),
-    radial-gradient(1px 1px at 48% 72%, var(--star), transparent),
-    radial-gradient(1px 1px at 22% 18%, var(--star), transparent),
-    radial-gradient(1px 1px at 78% 92%, var(--star), transparent),
-    radial-gradient(1px 1px at 5% 65%, var(--star), transparent),
-    radial-gradient(1px 1px at 88% 35%, var(--star), transparent),
-    radial-gradient(1px 1px at 42% 8%, var(--star), transparent),
-    radial-gradient(1px 1px at 68% 62%, var(--star), transparent),
-    radial-gradient(1px 1px at 12% 52%, var(--star), transparent),
-    radial-gradient(1px 1px at 97% 48%, var(--star), transparent);
-  background-size: 200% 200%;
-  background-position: 0% 0%;
-  animation: twinkle 120s ease-in-out infinite;
+    radial-gradient(circle 4px at 45% 35%, var(--star-glow), transparent 4px),
+    radial-gradient(circle 2.5px at 45% 35%, var(--star), transparent 2.5px),
+
+    radial-gradient(circle 3px at 85% 48%, var(--star-glow), transparent 3px),
+    radial-gradient(circle 2px at 85% 48%, var(--star), transparent 2px),
+
+    radial-gradient(circle 3px at 12% 65%, var(--star-glow), transparent 3px),
+    radial-gradient(circle 2px at 12% 65%, var(--star), transparent 2px),
+
+    radial-gradient(circle 4px at 58% 72%, var(--star-glow), transparent 4px),
+    radial-gradient(circle 2.5px at 58% 72%, var(--star), transparent 2.5px),
+
+    radial-gradient(circle 3px at 92% 82%, var(--star-glow), transparent 3px),
+    radial-gradient(circle 2px at 92% 82%, var(--star), transparent 2px),
+
+    /* Smaller twinkling stars */
+    radial-gradient(circle 2px at 28% 42%, var(--star-glow), transparent 2px),
+    radial-gradient(circle 1px at 28% 42%, var(--star), transparent 1px),
+
+    radial-gradient(circle 2px at 66% 58%, var(--star-glow), transparent 2px),
+    radial-gradient(circle 1px at 66% 58%, var(--star), transparent 1px),
+
+    radial-gradient(circle 2px at 35% 88%, var(--star-glow), transparent 2px),
+    radial-gradient(circle 1px at 35% 88%, var(--star), transparent 1px),
+
+    radial-gradient(circle 2px at 78% 28%, var(--star-glow), transparent 2px),
+    radial-gradient(circle 1px at 78% 28%, var(--star), transparent 1px);
+  animation: gentle-twinkle 8s ease-in-out infinite;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.7;
   z-index: 0;
 }
 
-@keyframes twinkle {
+@keyframes gentle-twinkle {
   0%, 100% {
-    opacity: 0.3;
-    background-position: 0% 0%;
+    opacity: 0.5;
   }
   50% {
-    opacity: 0.5;
-    background-position: 100% 100%;
+    opacity: 0.8;
   }
 }
 
