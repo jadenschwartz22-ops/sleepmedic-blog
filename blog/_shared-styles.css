@@ -1,23 +1,23 @@
 /* SleepMedic Blog - Peaceful Starry Night Theme */
 
 :root {
-  /* Gentle Twilight - Soft Blues & Purples */
-  --bg: #1a1828;  /* Soft deep purple-blue */
-  --bg-light: #221f30;  /* Gentle dark purple */
-  --panel: rgba(34, 31, 48, 0.75);  /* Soft translucent purple panels */
-  --ink: #e8e4f3;  /* Soft white with gentle purple tint */
-  --muted: #9b8fb8;  /* Gentle muted purple */
-  --line: rgba(155, 143, 184, 0.15);
+  /* Gentle Night - Balanced Blues with Subtle Purple Hints */
+  --bg: #151a24;  /* Soft deep blue-gray */
+  --bg-light: #1a2030;  /* Gentle dark blue */
+  --panel: rgba(26, 32, 48, 0.75);  /* Soft translucent blue panels */
+  --ink: #e6eaf0;  /* Clean white with subtle blue tint */
+  --muted: #8b95a8;  /* Gentle muted blue-gray */
+  --line: rgba(139, 149, 168, 0.15);
 
-  /* Gentle Night Accents - Soft Blues & Purples */
-  --lavender: #a89bd1;  /* Soft lavender */
-  --periwinkle: #8fa8d6;  /* Gentle periwinkle blue */
-  --lilac: #b8a8e8;  /* Soft lilac */
-  --midnight-blue: #6a7fb8;  /* Gentle midnight blue */
-  --deep-purple: #9488c4;  /* Soft deep purple */
-  --moon: #fef9e6;  /* Warm gentle moon glow */
+  /* Gentle Night Accents - Mostly Blues with Subtle Purple Touches */
+  --lavender: #9ba8c8;  /* Soft blue-lavender (more blue) */
+  --periwinkle: #7d9fd6;  /* Gentle periwinkle blue */
+  --lilac: #a8b5d6;  /* Soft blue-lilac (more blue) */
+  --midnight-blue: #5a7fb8;  /* Gentle midnight blue */
+  --deep-purple: #7a88b8;  /* Soft blue-purple (more blue) */
+  --moon: #f0f4f8;  /* Cool gentle moon glow */
   --star: #ffffff;  /* Pure white stars */
-  --star-glow: rgba(254, 249, 230, 0.65);  /* Warm gentle star glow */
+  --star-glow: rgba(240, 244, 248, 0.65);  /* Cool gentle star glow */
 
   /* Very Rounded - Duolingo style */
   --radius: 24px;
@@ -36,11 +36,11 @@ body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--bg);
   background-image:
-    /* Gentle twilight glows - soft purples & blues */
-    radial-gradient(circle at 15% 30%, rgba(168, 155, 209, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 85% 70%, rgba(143, 168, 214, 0.07) 0%, transparent 55%),
-    radial-gradient(circle at 50% 90%, rgba(184, 168, 232, 0.06) 0%, transparent 60%),
-    radial-gradient(circle at 30% 80%, rgba(106, 127, 184, 0.05) 0%, transparent 45%);
+    /* Gentle night glows - mostly blues with subtle variety */
+    radial-gradient(circle at 15% 30%, rgba(125, 159, 214, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(90, 127, 184, 0.07) 0%, transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(168, 181, 214, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 30% 80%, rgba(122, 136, 184, 0.05) 0%, transparent 45%);
   color: var(--ink);
   line-height: 2;
   -webkit-font-smoothing: antialiased;
