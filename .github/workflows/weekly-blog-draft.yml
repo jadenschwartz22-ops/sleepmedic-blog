@@ -44,15 +44,11 @@ jobs:
           TAG=$(jq -r '.tag' tmp/post-metadata.json)
           IMAGE_IDEA=$(jq -r '.imageIdea' tmp/post-metadata.json | tr '\n' ' ')
 
-          {
-            echo "title=$TITLE"
-            echo "filename=$FILENAME"
-            echo "topic=$TOPIC"
-            echo "tag=$TAG"
-            echo "image_idea<<EOF"
-            echo "$IMAGE_IDEA"
-            echo EOF
-          } >> $GITHUB_OUTPUT
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          echo "topic=$TOPIC" >> $GITHUB_OUTPUT
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "image_idea=$IMAGE_IDEA" >> $GITHUB_OUTPUT
 
       - name: Generate RSS feed
         run: |
