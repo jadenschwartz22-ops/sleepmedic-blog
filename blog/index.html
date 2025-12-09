@@ -95,7 +95,7 @@
     .filter-btn {
       padding: 12px 24px;
       border-radius: var(--radius-lg);
-      background: rgba(123, 167, 188, 0.1);
+      background: rgba(155, 184, 211, 0.12);
       color: var(--primary);
       font-weight: 600;
       font-size: 14px;
@@ -106,16 +106,16 @@
     }
 
     .filter-btn:hover {
-      background: rgba(123, 167, 188, 0.2);
-      border-color: var(--primary);
+      background: rgba(184, 161, 214, 0.2);
+      border-color: var(--secondary);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(123, 167, 188, 0.2);
+      box-shadow: 0 4px 12px rgba(184, 161, 214, 0.25);
     }
 
     .filter-btn.active {
-      background: #16a085;
-      color: #05080c;
-      border-color: #16a085;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--bg);
+      border-color: var(--secondary);
     }
 
     .posts-grid {
@@ -126,10 +126,10 @@
     }
 
     .post-card {
-      background: #16213e;
-      border-radius: 12px;
+      background: var(--panel);
+      border-radius: var(--radius);
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--line);
       transition: all 0.3s;
       display: flex;
       flex-direction: column;
@@ -137,8 +137,8 @@
 
     .post-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(22,160,133,0.2);
-      border-color: #16a085;
+      box-shadow: 0 12px 32px rgba(184, 161, 214, 0.25);
+      border-color: var(--secondary);
     }
 
     .post-card-content {
@@ -159,9 +159,10 @@
       margin-bottom: 12px;
     }
 
-    .category-science { background: rgba(52,152,219,0.2); color: #3498db; }
-    .category-practical { background: rgba(22,160,133,0.2); color: #16a085; }
-    .category-stories { background: rgba(155,89,182,0.2); color: #9b59b6; }
+    .category-science { background: rgba(155,184,211,0.2); color: var(--primary); }
+    .category-tools { background: rgba(184,161,214,0.2); color: var(--secondary); }
+    .category-timing { background: rgba(139,157,195,0.2); color: var(--accent); }
+    .category-special { background: rgba(107,91,149,0.2); color: var(--deep-purple); }
 
     .post-card h2 {
       font-size: 1.35rem;
@@ -199,22 +200,22 @@
     }
 
     .newsletter-section {
-      background: linear-gradient(135deg, #16a085, #3498db);
-      border-radius: 16px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: var(--radius-lg);
       padding: 48px 32px;
       text-align: center;
       margin-bottom: 60px;
     }
 
     .newsletter-section h2 {
-      color: #05080c;
+      color: var(--bg);
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 12px;
     }
 
     .newsletter-section p {
-      color: rgba(5,8,12,0.8);
+      color: rgba(11,25,41,0.8);
       font-size: 1.1rem;
       margin-bottom: 24px;
     }
@@ -255,8 +256,9 @@
       <div class="filters">
         <button class="filter-btn active" data-category="all">All Posts</button>
         <button class="filter-btn" data-category="science">Sleep Science</button>
-        <button class="filter-btn" data-category="practical">Practical Guides</button>
-        <button class="filter-btn" data-category="stories">Stories & Insights</button>
+        <button class="filter-btn" data-category="tools">Tools & Tips</button>
+        <button class="filter-btn" data-category="timing">Sleep Timing</button>
+        <button class="filter-btn" data-category="special">Special Topics</button>
       </div>
 
       <!-- Posts Grid -->
