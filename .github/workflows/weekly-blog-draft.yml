@@ -53,11 +53,7 @@ jobs:
         env:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
           IMAGE_IDEA: ${{ steps.generate.outputs.image_idea }}
-        run: |
-          node scripts/fetch-unsplash-images.mjs
-          echo "options<<EOF" >> $GITHUB_OUTPUT
-          cat tmp/image-options.json >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+        run: node scripts/fetch-unsplash-images.mjs
 
       - name: Create Pull Request
         id: pr
@@ -117,12 +113,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const fs = require('fs');
             const title = '${{ steps.generate.outputs.title }}';
             const filename = '${{ steps.generate.outputs.filename }}';
             const topic = '${{ steps.generate.outputs.topic }}';
             const excerpt = `${{ steps.generate.outputs.excerpt }}`;
             const prNumber = '${{ steps.pr.outputs.pull-request-number }}';
-            const imageOptions = JSON.parse(`${{ steps.images.outputs.options }}`);
+            const imageOptions = JSON.parse(fs.readFileSync('tmp/image-options.json', 'utf8'));
 
             let body = `## Select Cover Image for: ${title}\n\n`;
             body += `**Topic:** ${topic}\n`;
