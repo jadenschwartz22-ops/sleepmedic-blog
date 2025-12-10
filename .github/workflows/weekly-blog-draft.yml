@@ -121,13 +121,16 @@ jobs:
             const prNumber = '${{ steps.pr.outputs.pull-request-number }}';
             const imageOptions = JSON.parse(fs.readFileSync('tmp/image-options.json', 'utf8'));
 
+            const branchName = '${{ steps.pr.outputs.pull-request-head-sha }}' ? 'blog-draft-${{ github.run_number }}' : 'main';
+
             let body = `## Select Cover Image for: ${title}\n\n`;
-            body += `**Topic:** ${topic}\n`;
-            body += `**Post file:** \`blog/posts/${filename}\`\n`;
-            body += `**PR #${prNumber}**\n\n`;
+            body += `**Topic:** ${topic}\n\n`;
+            body += `### Quick Actions\n\n`;
+            body += `- 📝 [Edit Post Text](https://github.com/${{ github.repository }}/edit/blog-draft-${{ github.run_number }}/blog/posts/${filename})\n`;
+            body += `- 👀 [Read Full Post](https://github.com/${{ github.repository }}/pull/${prNumber}/files)\n`;
+            body += `- 🔗 [View PR #${prNumber}](https://github.com/${{ github.repository }}/pull/${prNumber})\n\n`;
             body += `### Blog Post Preview\n\n`;
             body += `${excerpt}\n\n`;
-            body += `[Read full post in PR](https://github.com/${{ github.repository }}/pull/${prNumber})\n\n`;
             body += `---\n\n`;
             body += `### Choose Your Cover Image\n\n`;
             body += `Comment \`use image [1-5]\` to select and publish.\n\n`;
