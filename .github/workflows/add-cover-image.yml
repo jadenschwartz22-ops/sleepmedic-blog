@@ -23,6 +23,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Get PR info
         id: pr_info
         env:
@@ -96,6 +104,9 @@ jobs:
       </div>' "$POST_FILE"
 
           echo "✅ Cover image added to $POST_FILE"
+
+      - name: Update posts index
+        run: node scripts/generate-posts-index.mjs
 
       - name: Commit and merge
         run: |
