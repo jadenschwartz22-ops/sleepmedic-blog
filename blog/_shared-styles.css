@@ -1,25 +1,26 @@
-/* SleepMedic Blog - Gentle Space + Duolingo Vibes */
+/* SleepMedic Blog - Deep Space Dreams + Duolingo */
 
 :root {
-  /* Gentle Space Colors - Soothing & Calm */
-  --space-bg: #1a1f35;  /* Soft deep blue */
-  --space-card: #252b45;  /* Gentle card blue */
-  --space-lighter: #2d3554;  /* Lighter hover state */
+  /* Deep Space Colors */
+  --space-bg: #0a0e1a;  /* Deep space black */
+  --space-card: #1a1f35;  /* Floating card blue */
+  --space-lighter: #252b45;  /* Hover state */
 
-  /* Gentle Accent Colors - Relaxing */
-  --purple-soft: #b4a7d6;  /* Gentle lavender */
-  --blue-calm: #7fb7e8;  /* Calming sky blue */
-  --green-soft: #95d5b2;  /* Soft sage green */
-  --pink-gentle: #eab3c7;  /* Gentle pink */
+  /* Cosmic Accent Colors - Vibrant but soothing */
+  --purple-glow: #a78bfa;  /* Bright purple */
+  --blue-glow: #60a5fa;  /* Bright blue */
+  --green-glow: #34d399;  /* Bright emerald */
+  --pink-glow: #f472b6;  /* Bright pink */
+  --cyan-glow: #22d3ee;  /* Bright cyan */
 
   /* Text */
   --text-bright: #ffffff;
   --text-main: #e8ecf1;
-  --text-muted: #a0a8c0;
+  --text-muted: #94a3b8;
 
   /* UI */
-  --border: rgba(180, 167, 214, 0.15);
-  --shadow: rgba(0, 0, 0, 0.2);
+  --border: rgba(167, 139, 250, 0.2);
+  --shadow: rgba(0, 0, 0, 0.4);
 
   /* Duolingo-style Rounded */
   --radius: 20px;
@@ -42,9 +43,10 @@ body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
 }
 
-/* Gentle dreamy space background */
+/* Colorful Space Nebulas - floating gently */
 body::before {
   content: '';
   position: fixed;
@@ -53,15 +55,29 @@ body::before {
   right: 0;
   bottom: 0;
   background:
-    /* Soft dreamy glows */
-    radial-gradient(ellipse 800px 600px at 15% 20%, rgba(180, 167, 214, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse 700px 700px at 85% 80%, rgba(127, 183, 232, 0.06) 0%, transparent 55%),
-    radial-gradient(ellipse 600px 500px at 50% 50%, rgba(149, 213, 178, 0.04) 0%, transparent 50%);
+    /* Vibrant nebula clouds */
+    radial-gradient(ellipse 1000px 800px at 10% 15%, rgba(167, 139, 250, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 900px 900px at 90% 85%, rgba(96, 165, 250, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 800px 600px at 50% 50%, rgba(52, 211, 153, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 700px 700px at 75% 25%, rgba(244, 114, 182, 0.1) 0%, transparent 55%);
   pointer-events: none;
   z-index: 0;
+  animation: nebula-float 30s ease-in-out infinite;
 }
 
-/* Gentle twinkling stars - not too many */
+@keyframes nebula-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.95);
+  }
+}
+
+/* LOTS of twinkling stars */
 body::after {
   content: '';
   position: fixed;
@@ -70,37 +86,105 @@ body::after {
   right: 0;
   bottom: 0;
   background-image:
-    /* Soft glowing stars */
-    radial-gradient(circle 3px at 18% 25%, rgba(180, 167, 214, 0.6), transparent 3px),
-    radial-gradient(circle 1.5px at 18% 25%, var(--purple-soft), transparent 1.5px),
+    /* Bright stars scattered everywhere */
+    radial-gradient(circle 2px at 8% 12%, rgba(167, 139, 250, 0.9), transparent 2px),
+    radial-gradient(circle 1px at 8% 12%, white, transparent 1px),
 
-    radial-gradient(circle 3px at 78% 22%, rgba(127, 183, 232, 0.5), transparent 3px),
-    radial-gradient(circle 1.5px at 78% 22%, var(--blue-calm), transparent 1.5px),
+    radial-gradient(circle 2px at 15% 25%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 15% 25%, white, transparent 1px),
 
-    radial-gradient(circle 2.5px at 45% 55%, rgba(149, 213, 178, 0.5), transparent 2.5px),
-    radial-gradient(circle 1.5px at 45% 55%, var(--green-soft), transparent 1.5px),
+    radial-gradient(circle 1.5px at 22% 8%, rgba(52, 211, 153, 0.8), transparent 1.5px),
+    radial-gradient(circle 1px at 22% 8%, white, transparent 1px),
 
-    radial-gradient(circle 2.5px at 88% 75%, rgba(234, 179, 199, 0.4), transparent 2.5px),
-    radial-gradient(circle 1.5px at 88% 75%, var(--pink-gentle), transparent 1.5px),
+    radial-gradient(circle 2px at 35% 18%, rgba(244, 114, 182, 0.7), transparent 2px),
+    radial-gradient(circle 1px at 35% 18%, white, transparent 1px),
 
-    radial-gradient(circle 2.5px at 12% 70%, rgba(180, 167, 214, 0.4), transparent 2.5px),
-    radial-gradient(circle 1.5px at 12% 70%, var(--purple-soft), transparent 1.5px),
+    radial-gradient(circle 1.5px at 42% 32%, rgba(167, 139, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 42% 32%, white, transparent 1px),
 
-    radial-gradient(circle 2px at 32% 38%, rgba(127, 183, 232, 0.35), transparent 2px),
-    radial-gradient(circle 1px at 32% 38%, var(--blue-calm), transparent 1px),
+    radial-gradient(circle 2px at 55% 15%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 55% 15%, white, transparent 1px),
 
-    radial-gradient(circle 2px at 65% 82%, rgba(149, 213, 178, 0.35), transparent 2px),
-    radial-gradient(circle 1px at 65% 82%, var(--green-soft), transparent 1px);
+    radial-gradient(circle 1.5px at 62% 28%, rgba(34, 211, 238, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 62% 28%, white, transparent 1px),
 
-  animation: gentle-twinkle 5s ease-in-out infinite;
+    radial-gradient(circle 2px at 70% 10%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 70% 10%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 78% 22%, rgba(52, 211, 153, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 78% 22%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 85% 35%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 85% 35%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 92% 18%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 92% 18%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 12% 45%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 12% 45%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 25% 52%, rgba(96, 165, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 25% 52%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 38% 48%, rgba(52, 211, 153, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 38% 48%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 48% 55%, rgba(34, 211, 238, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 48% 55%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 58% 42%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 58% 42%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 68% 58%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 68% 58%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 75% 48%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 75% 48%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 88% 52%, rgba(52, 211, 153, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 88% 52%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 18% 68%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 18% 68%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 28% 72%, rgba(96, 165, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 28% 72%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 42% 75%, rgba(52, 211, 153, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 42% 75%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 52% 65%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 52% 65%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 65% 78%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 65% 78%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 72% 85%, rgba(96, 165, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 72% 85%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 82% 72%, rgba(34, 211, 238, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 82% 72%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 92% 88%, rgba(52, 211, 153, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 92% 88%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 5% 90%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 5% 90%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 32% 92%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 32% 92%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 50% 88%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 50% 88%, white, transparent 1px);
+
+  animation: starfield-twinkle 8s ease-in-out infinite;
   pointer-events: none;
-  opacity: 0.7;
   z-index: 0;
 }
 
-@keyframes gentle-twinkle {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.8; }
+@keyframes starfield-twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
 .wrap {
@@ -123,13 +207,13 @@ h1 {
 }
 
 a {
-  color: var(--blue-calm);
+  color: var(--blue-glow);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--purple-soft);
+  color: var(--purple-glow);
 }
 
 /* Header - Welcoming & Friendly */
@@ -140,19 +224,19 @@ header {
 
 header h1 {
   margin-bottom: 16px;
-  background: linear-gradient(135deg, var(--blue-calm), var(--purple-soft));
+  background: linear-gradient(135deg, var(--blue-glow), var(--purple-glow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gentle-glow 4s ease-in-out infinite;
+  animation: cosmic-glow 4s ease-in-out infinite;
 }
 
-@keyframes gentle-glow {
+@keyframes cosmic-glow {
   0%, 100% {
-    filter: drop-shadow(0 0 15px rgba(180, 167, 214, 0.2));
+    filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 25px rgba(127, 183, 232, 0.25));
+    filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.4));
   }
 }
 
@@ -167,20 +251,20 @@ header p {
 header a {
   display: inline-block;
   padding: 12px 28px;
-  background: rgba(180, 167, 214, 0.12);
-  border: 2px solid rgba(180, 167, 214, 0.25);
+  background: rgba(167, 139, 250, 0.15);
+  border: 2px solid rgba(167, 139, 250, 0.3);
   border-radius: var(--radius-xl);
-  color: var(--purple-soft);
+  color: var(--purple-glow);
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
 header a:hover {
-  background: rgba(180, 167, 214, 0.2);
-  border-color: var(--purple-soft);
+  background: rgba(167, 139, 250, 0.25);
+  border-color: var(--purple-glow);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(180, 167, 214, 0.15);
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
 }
 
 /* Category Filter - Duolingo Style Pills */
@@ -195,7 +279,7 @@ header a:hover {
 
 .filter button {
   padding: 10px 24px;
-  background: rgba(45, 53, 84, 0.6);
+  background: rgba(26, 31, 53, 0.8);
   border: 2px solid transparent;
   border-radius: var(--radius-xl);
   color: var(--text-muted);
@@ -207,16 +291,16 @@ header a:hover {
 }
 
 .filter button:hover {
-  background: rgba(180, 167, 214, 0.15);
+  background: rgba(167, 139, 250, 0.2);
   color: var(--text-bright);
   transform: translateY(-2px);
 }
 
 .filter button.active {
-  background: linear-gradient(135deg, rgba(180, 167, 214, 0.25), rgba(127, 183, 232, 0.25));
-  border-color: var(--purple-soft);
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(96, 165, 250, 0.25));
+  border-color: var(--purple-glow);
   color: var(--text-bright);
-  box-shadow: 0 4px 15px rgba(180, 167, 214, 0.2);
+  box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
 }
 
 /* Posts Grid */
@@ -251,7 +335,7 @@ header a:hover {
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(135deg, var(--purple-soft), var(--blue-calm), var(--green-soft));
+  background: linear-gradient(135deg, var(--purple-glow), var(--blue-glow), var(--green-glow));
   border-radius: var(--radius-lg);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -259,7 +343,7 @@ header a:hover {
 }
 
 .post:hover::before {
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .post:hover {
@@ -271,10 +355,10 @@ header a:hover {
 .post .tag {
   display: inline-block;
   padding: 6px 14px;
-  background: linear-gradient(135deg, rgba(180, 167, 214, 0.2), rgba(127, 183, 232, 0.15));
-  border: 1.5px solid rgba(180, 167, 214, 0.3);
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(96, 165, 250, 0.2));
+  border: 1.5px solid rgba(167, 139, 250, 0.35);
   border-radius: var(--radius-xl);
-  color: var(--purple-soft);
+  color: var(--purple-glow);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -295,7 +379,7 @@ header a:hover {
 }
 
 .post h2 a:hover {
-  background: linear-gradient(135deg, var(--blue-calm), var(--purple-soft));
+  background: linear-gradient(135deg, var(--blue-glow), var(--purple-glow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -326,7 +410,7 @@ header a:hover {
 
 .post-header h1 {
   margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--blue-calm), var(--purple-soft), var(--green-soft));
+  background: linear-gradient(135deg, var(--blue-glow), var(--purple-glow), var(--green-glow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -368,16 +452,16 @@ header a:hover {
 }
 
 .post-content a {
-  color: var(--blue-calm);
+  color: var(--blue-glow);
   text-decoration: underline;
-  text-decoration-color: rgba(127, 183, 232, 0.3);
+  text-decoration-color: rgba(96, 165, 250, 0.3);
   text-underline-offset: 3px;
   transition: all 0.3s ease;
 }
 
 .post-content a:hover {
-  color: var(--purple-soft);
-  text-decoration-color: var(--purple-soft);
+  color: var(--purple-glow);
+  text-decoration-color: var(--purple-glow);
 }
 
 .post-content ul, .post-content ol {
@@ -391,21 +475,21 @@ header a:hover {
 }
 
 .post-content blockquote {
-  border-left: 4px solid var(--purple-soft);
+  border-left: 4px solid var(--purple-glow);
   padding: 20px 24px;
   margin: 28px 0;
-  background: rgba(180, 167, 214, 0.08);
+  background: rgba(167, 139, 250, 0.1);
   border-radius: var(--radius-sm);
   color: var(--text-muted);
   font-style: italic;
 }
 
 .post-content code {
-  background: rgba(180, 167, 214, 0.15);
+  background: rgba(167, 139, 250, 0.18);
   padding: 3px 8px;
   border-radius: 6px;
   font-size: 0.9em;
-  color: var(--purple-soft);
+  color: var(--purple-glow);
   font-family: 'SF Mono', Monaco, monospace;
 }
 
@@ -447,12 +531,12 @@ footer p {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--purple-soft), var(--blue-calm));
+  background: linear-gradient(180deg, var(--purple-glow), var(--blue-glow));
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--blue-calm), var(--green-soft));
+  background: linear-gradient(180deg, var(--blue-glow), var(--cyan-glow));
 }
 
 /* Utility */
