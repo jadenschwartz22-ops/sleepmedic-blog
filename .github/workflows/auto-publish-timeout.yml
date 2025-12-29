@@ -64,27 +64,33 @@ jobs:
         env:
           ISSUE_NUMBER: ${{ steps.find_issues.outputs.issue_number }}
           ISSUE_BODY: ${{ steps.find_issues.outputs.issue_body }}
+          ISSUE_TITLE: ${{ steps.find_issues.outputs.issue_title }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
 
-          # Random image selection (1-5)
-          IMAGE_NUM=$((1 + RANDOM % 5))
-          echo "🎲 Auto-selected random image: #$IMAGE_NUM"
-          echo "image_number=$IMAGE_NUM" >> $GITHUB_OUTPUT
+          # Extract post title from issue title (format: "Select Cover Image: POST TITLE")
+          POST_TITLE=$(echo "$ISSUE_TITLE" | sed 's/Select Cover Image: //')
+          echo "📝 Post title: $POST_TITLE"
 
-          # Extract image URL from markdown format: ![Image N](URL)
-          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A1 "#### Image $IMAGE_NUM:" | grep "!\[Image" | sed 's/.*(\(https:\/\/images\.unsplash\.com[^)]*\)).*/\1/')
+          # Generate search keywords from post title (convert to lowercase, remove common words, extract key terms)
+          SEARCH_KEYWORDS=$(echo "$POST_TITLE" | tr '[:upper:]' '[:lower:]' |
+            sed 's/[^a-z ]//g' |
+            sed -E 's/\b(the|a|an|and|or|but|in|on|at|to|for|of|with|by|from|what|how|when|where|why|you|your|can|use|need|know|guide|tips)\b//g' |
+            tr -s ' ' |
+            sed 's/^ //;s/ $//' |
+            tr ' ' ',')
 
-          if [ -z "$IMAGE_URL" ]; then
-            echo "❌ Could not find image URL for image $IMAGE_NUM"
-            exit 1
-          fi
+          # Add "sleep" keyword for context
+          SEARCH_KEYWORDS="sleep,${SEARCH_KEYWORDS},health"
 
-          # Get high quality version by modifying URL parameters
-          IMAGE_URL=$(echo "$IMAGE_URL" | sed 's/w=400/w=1200/')
+          echo "🔍 Search keywords: $SEARCH_KEYWORDS"
 
-          echo "📥 Downloading: $IMAGE_URL"
+          # Use Unsplash Source API to get relevant image based on topic
+          IMAGE_URL="https://source.unsplash.com/1200x800/?${SEARCH_KEYWORDS}"
+
+          echo "📥 Downloading topic-relevant image from Unsplash"
+          echo "🎯 Using keywords: $SEARCH_KEYWORDS"
 
           # Extract post filename from Edit link
           POST_FILENAME=$(echo "$ISSUE_BODY" | grep "Edit Post Text" | sed 's/.*\/\([^\/]*\.html\).*/\1/')
@@ -117,13 +123,11 @@ jobs:
           git fetch origin "$BRANCH_NAME"
           git checkout "$BRANCH_NAME"
 
-          # Extract photographer (format: by [Name])
-          PHOTOGRAPHER=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "by \[" | sed 's/.*by \[\([^\]]*\)\].*/\1/')
+          # Auto-generated image from search, use generic attribution
+          PHOTOGRAPHER="Unsplash Contributors"
+          UNSPLASH_URL="https://unsplash.com/?utm_source=sleepmedic_blog&utm_medium=referral"
 
-          # Extract Unsplash URL (format: [Unsplash](URL))
-          UNSPLASH_URL=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "Unsplash\](" | sed 's/.*\[Unsplash\](\([^)]*\)).*/\1/')
-
-          echo "📸 Photo by: $PHOTOGRAPHER"
+          echo "📸 Photo by: $PHOTOGRAPHER (auto-selected based on topic)"
           echo "🔗 Unsplash: $UNSPLASH_URL"
 
           # Download image
@@ -194,7 +198,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ steps.find_issues.outputs.issue_number }},
-              body: '⏰ **Auto-Published (24h Timeout)**\n\nNo image selection received within 24 hours.\n\nRandomly selected image #${{ steps.publish.outputs.image_number }} and published your blog post! 🎉\n\nYour blog post is now live at: https://sleepmedic.co/blog/'
+              body: '⏰ **Auto-Published (24h Timeout)**\n\nNo image selection received within 24 hours.\n\nAutomatically selected a topic-relevant image and published your blog post! 🎉\n\nYour blog post is now live at: https://sleepmedic.co/blog/'
             });
 
             await github.rest.issues.update({
