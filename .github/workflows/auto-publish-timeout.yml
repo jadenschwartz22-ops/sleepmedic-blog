@@ -73,13 +73,16 @@ jobs:
           echo "🎲 Auto-selected random image: #$IMAGE_NUM"
           echo "image_number=$IMAGE_NUM" >> $GITHUB_OUTPUT
 
-          # Extract image URL (format: [Download: URL])
-          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "Download:" | grep -o 'https://[^]]*')
+          # Extract image URL from markdown format: ![Image N](URL)
+          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A1 "#### Image $IMAGE_NUM:" | grep "!\[Image" | sed 's/.*(\(https:\/\/images\.unsplash\.com[^)]*\)).*/\1/')
 
           if [ -z "$IMAGE_URL" ]; then
-            echo "❌ Could not find download URL for image $IMAGE_NUM"
+            echo "❌ Could not find image URL for image $IMAGE_NUM"
             exit 1
           fi
+
+          # Get high quality version by modifying URL parameters
+          IMAGE_URL=$(echo "$IMAGE_URL" | sed 's/w=400/w=1200/')
 
           echo "📥 Downloading: $IMAGE_URL"
 
