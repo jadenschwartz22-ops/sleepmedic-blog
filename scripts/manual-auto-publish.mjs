@@ -127,7 +127,13 @@ async function autoPublishIssue(issueNumber) {
   await execAsync('git config user.email "github-actions[bot]@users.noreply.github.com"');
   await execAsync('git add .');
   await execAsync(`git commit -m "Auto-publish: Add random cover image #${imageNum} (manual trigger)"`);
-  await execAsync('git push');
+
+  // Update with main branch
+  console.log('🔄 Syncing with main...');
+  await execAsync('git fetch origin main');
+  await execAsync('git rebase origin/main');
+
+  await execAsync('git push --force-with-lease');
 
   // Merge PR
   console.log('🔀 Merging PR...');
