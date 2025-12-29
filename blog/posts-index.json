@@ -30,7 +30,7 @@
     "readTime": 4,
     "category": "science",
     "categoryLabel": "Science",
-    "coverImage": null
+    "coverImage": "posts/images/2025-10-23-cultural-sleep-practices-cover.jpg"
   },
   {
     "title": "Sleep Like a Warrior: Ancient Wisdom and Modern Practice",
@@ -41,7 +41,7 @@
     "readTime": 3,
     "category": "science",
     "categoryLabel": "Science",
-    "coverImage": null
+    "coverImage": "posts/images/2025-10-16-sleep-like-a-warrior-cover.jpg"
   },
   {
     "title": "Shift Workers: How to Get Sleep Like Your Life Depends on It. Because It Does.",
@@ -52,6 +52,6 @@
     "readTime": 5,
     "category": "science",
     "categoryLabel": "Science",
-    "coverImage": null
+    "coverImage": "posts/images/2025-07-10-shift-workers-wake-up-consistency-cover.jpg"
   }
 ]
