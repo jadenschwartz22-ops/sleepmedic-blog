@@ -131,7 +131,7 @@ async function autoPublishIssue(issueNumber) {
 
   // Merge PR
   console.log('🔀 Merging PR...');
-  await execAsync(`gh pr merge ${prNumber} --squash --auto`);
+  await execAsync(`gh pr merge ${prNumber} --squash`);
 
   // Close issue
   console.log('✅ Closing issue...');
