@@ -2,9 +2,13 @@ name: Auto-Publish Blog Post (Timeout)
 
 on:
   schedule:
-    # Every day at 10:00 AM Mountain Time (17:00 UTC)
-    - cron: "0 17 * * *"
+    # Every 6 hours to catch old issues quickly
+    - cron: "0 */6 * * *"
   workflow_dispatch: {}
+  # Temporary: also run on push to catch waiting issues
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -20,6 +24,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Find open image selection issues
         id: find_issues
@@ -41,117 +47,137 @@ jobs:
 
             if (oldIssues.length === 0) {
               core.info('No issues older than 24 hours found');
-              return null;
+              core.setOutput('has_issues', 'false');
+              return;
             }
 
             const issue = oldIssues[0]; // Process first old issue
+            core.info(`Found old issue #${issue.number}: ${issue.title}`);
+            core.setOutput('has_issues', 'true');
             core.setOutput('issue_number', issue.number);
             core.setOutput('issue_body', issue.body);
             core.setOutput('issue_title', issue.title);
-            return issue.number;
 
-      - name: Auto-select random image
-        if: steps.find_issues.outputs.issue_number
-        id: select
-        run: |
-          # Generate random number between 1-5
-          IMAGE_NUM=$((1 + RANDOM % 5))
-          echo "image_number=$IMAGE_NUM" >> $GITHUB_OUTPUT
-          echo "🎲 Auto-selected random image: #$IMAGE_NUM"
-
-      - name: Download selected image
-        if: steps.find_issues.outputs.issue_number
-        id: download
+      - name: Parse issue and auto-publish
+        if: steps.find_issues.outputs.has_issues == 'true'
+        id: publish
         env:
-          IMAGE_NUM: ${{ steps.select.outputs.image_number }}
+          ISSUE_NUMBER: ${{ steps.find_issues.outputs.issue_number }}
           ISSUE_BODY: ${{ steps.find_issues.outputs.issue_body }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Get image URL from issue body
-          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A1 "Image $IMAGE_NUM:" | grep "Download:" | sed 's/.*Download: //' | sed 's/).*//')
+          set -e
+
+          # Random image selection (1-5)
+          IMAGE_NUM=$((1 + RANDOM % 5))
+          echo "🎲 Auto-selected random image: #$IMAGE_NUM"
+          echo "image_number=$IMAGE_NUM" >> $GITHUB_OUTPUT
+
+          # Extract image URL (format: [Download: URL])
+          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "Download:" | sed 's/.*\[Download: \(https:\/\/[^\]]*\)\].*/\1/')
 
           if [ -z "$IMAGE_URL" ]; then
-            echo "❌ Could not find image URL"
+            echo "❌ Could not find download URL for image $IMAGE_NUM"
             exit 1
           fi
 
-          echo "Downloading: $IMAGE_URL"
+          echo "📥 Downloading: $IMAGE_URL"
+
+          # Extract post filename from Edit link
+          POST_FILENAME=$(echo "$ISSUE_BODY" | grep "Edit Post Text" | sed 's/.*\/\([^\/]*\.html\).*/\1/')
+
+          if [ -z "$POST_FILENAME" ]; then
+            echo "❌ Could not find post filename"
+            exit 1
+          fi
+
+          POST_FILE="blog/posts/$POST_FILENAME"
+          echo "📝 Post file: $POST_FILE"
+          echo "post_file=$POST_FILE" >> $GITHUB_OUTPUT
+
+          # Extract PR number
+          PR_NUM=$(echo "$ISSUE_BODY" | grep -o "View PR #[0-9]*" | sed 's/View PR #//')
+
+          if [ -z "$PR_NUM" ]; then
+            echo "❌ Could not find PR number"
+            exit 1
+          fi
+
+          echo "🔗 PR #$PR_NUM"
+          echo "pr_number=$PR_NUM" >> $GITHUB_OUTPUT
+
+          # Get PR branch
+          BRANCH_NAME=$(gh pr view "$PR_NUM" --json headRefName -q .headRefName)
+          echo "🌿 Branch: $BRANCH_NAME"
+
+          # Checkout PR branch
+          git fetch origin "$BRANCH_NAME"
+          git checkout "$BRANCH_NAME"
+
+          # Extract photographer (format: by [Name])
+          PHOTOGRAPHER=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "by \[" | sed 's/.*by \[\([^\]]*\)\].*/\1/')
+
+          # Extract Unsplash URL (format: [Unsplash](URL))
+          UNSPLASH_URL=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "Unsplash\](" | sed 's/.*\[Unsplash\](\([^)]*\)).*/\1/')
+
+          echo "📸 Photo by: $PHOTOGRAPHER"
+          echo "🔗 Unsplash: $UNSPLASH_URL"
 
           # Download image
           curl -L "$IMAGE_URL" -o blog/cover-temp.jpg
 
-          # Get post filename from issue
-          POST_FILE=$(echo "$ISSUE_BODY" | grep "Post file:" | sed 's/.*`\(.*\)`.*/\1/')
-          echo "post_file=$POST_FILE" >> $GITHUB_OUTPUT
-
-          # Get attribution from issue
-          PHOTOGRAPHER=$(echo "$ISSUE_BODY" | grep -A1 "Image $IMAGE_NUM:" | grep "by" | sed 's/.*by \(.*\) on.*/\1/')
-          UNSPLASH_URL=$(echo "$ISSUE_BODY" | grep -A1 "Image $IMAGE_NUM:" | grep "Unsplash" | sed 's/.*(\(.*\)).*/\1/')
-
-          echo "photographer=$PHOTOGRAPHER" >> $GITHUB_OUTPUT
-          echo "unsplash_url=$UNSPLASH_URL" >> $GITHUB_OUTPUT
-
-      - name: Get PR branch
-        if: steps.find_issues.outputs.issue_number
-        id: pr_info
-        env:
-          ISSUE_BODY: ${{ steps.find_issues.outputs.issue_body }}
-        run: |
-          # Get PR number from issue
-          PR_NUM=$(echo "$ISSUE_BODY" | grep "PR #" | sed 's/.*PR #\([0-9]*\).*/\1/')
-          echo "pr_number=$PR_NUM" >> $GITHUB_OUTPUT
-
-          # Get PR branch name
-          BRANCH_NAME=$(gh pr view "$PR_NUM" --json headRefName -q .headRefName)
-          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Checkout PR branch
-        if: steps.find_issues.outputs.issue_number
-        run: |
-          git fetch origin ${{ steps.pr_info.outputs.branch_name }}
-          git checkout ${{ steps.pr_info.outputs.branch_name }}
-
-      - name: Add image to blog post
-        if: steps.find_issues.outputs.issue_number
-        run: |
-          POST_FILE="${{ steps.download.outputs.post_file }}"
-          PHOTOGRAPHER="${{ steps.download.outputs.photographer }}"
-          UNSPLASH_URL="${{ steps.download.outputs.unsplash_url }}"
-
-          # Move cover image to final location
+          # Move to final location
           POST_SLUG=$(basename "$POST_FILE" .html)
+          mkdir -p blog/posts/images
           mv blog/cover-temp.jpg "blog/posts/images/${POST_SLUG}-cover.jpg"
 
-          # Insert cover image HTML after post header
-          sed -i '/<div class="post-content">/i \
-      <div style="margin-bottom: 40px;">\
-        <img src="images/'"${POST_SLUG}"'-cover.jpg" alt="Cover image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;">\
-        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;">Photo by <a href="'"${UNSPLASH_URL}"'" style="color: var(--periwinkle);">'"${PHOTOGRAPHER}"'</a> on Unsplash</p>\
-      </div>' "$POST_FILE"
+          # Add cover image to post
+          cat > /tmp/cover-html << EOF
+      <div style="margin-bottom: 40px;">
+        <img src="images/${POST_SLUG}-cover.jpg" alt="Cover image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;">
+        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;">Photo by <a href="${UNSPLASH_URL}" style="color: var(--periwinkle);">${PHOTOGRAPHER}</a> on Unsplash</p>
+      </div>
+          EOF
 
-          echo "✅ Cover image added to $POST_FILE"
+          # Insert cover image into post
+          awk '/<div class="post-content">/ && !done {system("cat /tmp/cover-html"); done=1} 1' "$POST_FILE" > /tmp/post-updated.html
+          mv /tmp/post-updated.html "$POST_FILE"
 
-      - name: Commit and merge
-        if: steps.find_issues.outputs.issue_number
-        run: |
+          echo "✅ Cover image added to post"
+
+          # Commit changes
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           git add .
-          git commit -m "Auto-publish: Add random cover image (timeout)"
-          git push
+          git commit -m "Auto-publish: Add cover image #$IMAGE_NUM (timeout after 24h)"
 
-          # Merge PR
-          gh pr merge "${{ steps.pr_info.outputs.pr_number }}" --squash --auto
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Sync with main and push
+          git fetch origin main
+          git rebase origin/main || {
+            echo "Rebase conflict, trying merge instead"
+            git rebase --abort
+            git merge origin/main -m "Merge main into branch before auto-publish"
+          }
 
-      - name: Close issue with timeout message
-        if: steps.find_issues.outputs.issue_number
+          git push --force-with-lease origin "$BRANCH_NAME"
+
+          # Merge PR (without --auto flag)
+          gh pr merge "$PR_NUM" --squash --body "Auto-merged after 24h timeout"
+
+          echo "✅ PR merged successfully"
+
+      - name: Close issue with success message
+        if: steps.find_issues.outputs.has_issues == 'true' && steps.publish.outcome == 'success'
         uses: actions/github-script@v7
         with:
           script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ steps.find_issues.outputs.issue_number }},
+              body: '⏰ **Auto-Published (24h Timeout)**\n\nNo image selection received within 24 hours.\n\nRandomly selected image #${{ steps.publish.outputs.image_number }} and published your blog post! 🎉\n\nYour blog post is now live at: https://sleepmedic.co/blog/'
+            });
+
             await github.rest.issues.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -159,9 +185,14 @@ jobs:
               state: 'closed'
             });
 
+      - name: Cleanup on failure
+        if: failure() && steps.find_issues.outputs.has_issues == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ steps.find_issues.outputs.issue_number }},
-              body: '⏰ **Auto-Published (Timeout)**\n\nNo image selection received within 24 hours.\n\nRandomly selected image #${{ steps.select.outputs.image_number }} and published your blog post! 🎉\n\nYour blog post is now live at: https://jadenschwartz22-ops.github.io/sleepmedic-blog/blog/'
+              body: '❌ **Auto-Publish Failed**\n\nThere was an error auto-publishing this post. Please select an image manually or check the workflow logs.\n\n[View workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})'
             });
