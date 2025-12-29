@@ -74,7 +74,7 @@ jobs:
           echo "image_number=$IMAGE_NUM" >> $GITHUB_OUTPUT
 
           # Extract image URL (format: [Download: URL])
-          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "Download:" | sed 's/.*\[Download: \(https:\/\/[^\]]*\)\].*/\1/')
+          IMAGE_URL=$(echo "$ISSUE_BODY" | grep -A3 "#### Image $IMAGE_NUM:" | grep "Download:" | grep -o 'https://[^]]*')
 
           if [ -z "$IMAGE_URL" ]; then
             echo "❌ Could not find download URL for image $IMAGE_NUM"
