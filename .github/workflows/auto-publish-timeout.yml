@@ -131,16 +131,17 @@ jobs:
           mkdir -p blog/posts/images
           mv blog/cover-temp.jpg "blog/posts/images/${POST_SLUG}-cover.jpg"
 
-          # Add cover image to post
-          cat > /tmp/cover-html << EOF
-      <div style="margin-bottom: 40px;">
-        <img src="images/${POST_SLUG}-cover.jpg" alt="Cover image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;">
-        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;">Photo by <a href="${UNSPLASH_URL}" style="color: var(--periwinkle);">${PHOTOGRAPHER}</a> on Unsplash</p>
-      </div>
-          EOF
-
-          # Insert cover image into post
-          awk '/<div class="post-content">/ && !done {system("cat /tmp/cover-html"); done=1} 1' "$POST_FILE" > /tmp/post-updated.html
+          # Add cover image to post using awk
+          awk -v img="images/${POST_SLUG}-cover.jpg" -v photo="$PHOTOGRAPHER" -v url="$UNSPLASH_URL" '
+            /<div class="post-content">/ && !done {
+              print "      <div style=\"margin-bottom: 40px;\">"
+              print "        <img src=\"" img "\" alt=\"Cover image\" style=\"width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;\">"
+              print "        <p style=\"text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;\">Photo by <a href=\"" url "\" style=\"color: var(--periwinkle);\">" photo "</a> on Unsplash</p>"
+              print "      </div>"
+              done=1
+            }
+            { print }
+          ' "$POST_FILE" > /tmp/post-updated.html
           mv /tmp/post-updated.html "$POST_FILE"
 
           echo "✅ Cover image added to post"
