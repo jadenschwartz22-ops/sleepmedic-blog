@@ -162,10 +162,25 @@ jobs:
 
           git push --force-with-lease origin "$BRANCH_NAME"
 
-          # Merge PR (without --auto flag)
-          gh pr merge "$PR_NUM" --squash --body "Auto-merged after 24h timeout"
+          # Wait for GitHub to update merge status
+          echo "⏳ Waiting for GitHub to update PR status..."
+          sleep 5
 
-          echo "✅ PR merged successfully"
+          # Merge PR with retry
+          for i in 1 2 3; do
+            if gh pr merge "$PR_NUM" --squash --body "Auto-merged after 24h timeout"; then
+              echo "✅ PR merged successfully"
+              break
+            else
+              if [ $i -lt 3 ]; then
+                echo "⚠️  Merge attempt $i failed, retrying in 5s..."
+                sleep 5
+              else
+                echo "❌ Failed to merge after 3 attempts"
+                exit 1
+              fi
+            fi
+          done
 
       - name: Close issue with success message
         if: steps.find_issues.outputs.has_issues == 'true' && steps.publish.outcome == 'success'
