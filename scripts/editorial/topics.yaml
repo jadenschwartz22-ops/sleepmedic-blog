@@ -7,32 +7,40 @@ buckets:
   - name: Why sleep matters (science)
     tag: Science
     topics:
-      - Why do we sleep?
-      - Does sleep store memories?
-      - Long-term effects of poor sleep
-      - Sleep and energy levels
-      - Sleep for recovery/athletes
-      - Sleep and hormones
-      - Sleep and mood/happiness
-      - Sleep and longevity
-      - Sleep, appetite & weight
-      - Sex differences in sleep
-      - Sleep in history/culture/myth
+      - Why do we sleep? Evolutionary perspectives
+      - Memory consolidation during REM vs deep sleep
+      - Long-term effects of poor sleep on specific organs
+      - Mitochondrial function and cellular energy during sleep
+      - Sleep for muscle protein synthesis and athletic recovery
+      - Testosterone, growth hormone, and cortisol rhythms
+      - Sleep and neurotransmitter balance (serotonin, dopamine, GABA)
+      - Telomeres, cellular aging, and sleep quality
+      - Leptin, ghrelin, and metabolic regulation during sleep
+      - Menstrual cycle effects on sleep architecture
+      - Ancient warrior sleep practices and biphasic patterns
+      - Sleep in different cultures: Siesta, Inemuri, and beyond
+      - The science of dreams and lucid dreaming
+      - Chronotypes: Are you really a night owl?
+      - Sleep spindles and what they reveal about your brain
 
   - name: How to sleep better / tools
     tag: Tools
     topics:
-      - Nighttime habits that help sleep
-      - Daytime habits that set up sleep
-      - Phones at night: realistic ways to reduce impact
-      - Feeding/fasting windows & sleep
-      - Light & sound: minimize disruption
-      - Exercise timing for sleep
-      - Wake at the same time (anchor wake)
-      - Go to bed at the same time
-      - Sleeping with a partner: common fixes
-      - Staying asleep through the night
-      - Falling asleep faster
+      - Military sleep technique: 2-minute method from WWII
+      - Box breathing and 4-7-8 technique for sleep onset
+      - Non-sleep deep rest (NSDR) and Yoga Nidra protocols
+      - Cold exposure timing for better sleep (not what you think)
+      - The 10-3-2-1 sleep protocol explained
+      - Magnesium types: Glycinate vs Threonate vs Citrate
+      - L-theanine, GABA, and Ashwagandha: Evidence review
+      - Pink noise vs white noise vs brown noise
+      - Mouth taping: Science and safety considerations
+      - Progressive muscle relaxation: The Jacobson technique
+      - Cognitive shuffling to quiet racing thoughts
+      - The 90-minute ultradian rhythm hack
+      - Body temperature manipulation for deeper sleep
+      - Acupressure points for sleep (Shenmen, Anmian)
+      - Weighted blankets: Pressure therapy explained
 
   - name: When/where to sleep
     tag: Timing
@@ -48,11 +56,18 @@ buckets:
   - name: Special considerations
     tag: Special
     topics:
-      - Shift work: protect what matters
-      - Pregnancy
-      - Menopause
-      - Menstrual phase changes
-      - Adjust your schedule without chaos
-      - Travel & jet lag
-      - Stabilize a shaky schedule
-      - Protect/prioritize sleep with rituals
+      - Forward vs backward rotating shifts: Circadian optimization
+      - Sleep during follicular vs luteal phase: Hormone hacks
+      - Perimenopause night sweats: Thermoregulation strategies
+      - Pregnancy insomnia: Position, progesterone, and solutions
+      - The firefighter paradox: Sleep between calls
+      - Military field sleep: Lessons from special forces
+      - ICU nurse recovery: The 3-day reset protocol
+      - Polyphasic sleep for new parents: Is it safe?
+      - ADHD and revenge bedtime procrastination
+      - Trauma-informed sleep practices for first responders
+      - The Danish winter sleep method
+      - Japanese forest bathing for better sleep
+      - Scandinavian fresh air sleeping for babies
+      - Sleep in extreme environments: Polar research
+      - Altitude and sleep: Mountain medicine insights

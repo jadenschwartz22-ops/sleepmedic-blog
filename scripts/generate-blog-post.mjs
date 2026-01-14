@@ -171,6 +171,13 @@ Voice: warm, direct, science-forward, with a pinch of playful/philosophical. Sho
 
 ${guidelines}
 
+CRITICAL - BE SPECIFIC AND UNIQUE:
+- If the topic is "Sleep Like a Warrior" - focus on ACTUAL warrior practices, military sleep techniques, historical warrior sleep patterns
+- If about menstruation - focus on hormonal fluctuations, progesterone/estrogen effects, cycle-specific strategies
+- If about cold exposure - focus on brown fat activation, norepinephrine, specific protocols
+- AVOID generic advice everyone knows (dark room, consistent schedule, avoid caffeine)
+- Find the UNIQUE angle that makes this topic special
+
 This week's template format: **${templateFormat}**
 
 Write a **non-rigid blog post** (~700–1,000 words). Include:
@@ -187,6 +194,7 @@ Return ONLY valid JSON:
   "title": "6–10 words; concrete benefit or curiosity; no emojis",
   "excerpt": "140–160 character summary",
   "content_html": "Full HTML content (use <h2>, <h3>, <p>, <ul>, <li>, <strong>, <a> tags, <blockquote> for quotes)",
+  "citations": "Array of {claim, source, year, url} - MUST include specific URLs to actual studies/data pages, NOT generic homepages",
   "keywords": "comma-separated keywords for SEO",
   "image_idea": "Specific 3-5 word Unsplash search terms like: 'bedroom night sleep', 'alarm clock time', 'coffee morning wake', 'night shift worker', 'peaceful rest meditation' - be literal and specific for photo search"
 }`;
