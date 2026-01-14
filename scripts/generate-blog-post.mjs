@@ -7,6 +7,7 @@ import OpenAI from 'openai';
 import fs from 'fs/promises';
 import yaml from 'yaml';
 import chalk from 'chalk';
+import { checkForDuplicate } from './check-duplicate-titles.mjs';
 
 // Initialize OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -220,6 +221,39 @@ Return ONLY the JSON object, no other text.`;
     console.log(chalk.bold(`   Title: ${content.title}`));
     console.log(`   Word count: ~${content.content_html.split(/\s+/).length}`);
     console.log(`   Image idea: ${content.image_idea}\n`);
+
+    // Check for duplicate titles
+    const duplicateCheck = checkForDuplicate(content.title);
+    if (duplicateCheck.isDuplicate) {
+      console.log(chalk.yellow('⚠️  Title is too similar to existing post, regenerating...\n'));
+      // Add existing titles to prompt to avoid them
+      const avoidTitles = duplicateCheck.existingTitles.join('\n- ');
+      const retryPrompt = userPrompt + `\n\nIMPORTANT: Avoid these existing titles (make yours distinctly different):\n- ${avoidTitles}`;
+
+      // Retry with modified prompt
+      const retryCompletion = await openai.chat.completions.create({
+        model: MODEL,
+        temperature: 0.75, // Higher temperature for more variety
+        max_tokens: 4096,
+        response_format: { type: 'json_object' },
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: retryPrompt }
+        ]
+      });
+
+      const retryContent = JSON.parse(retryCompletion.choices[0].message.content);
+
+      // Check again
+      const secondCheck = checkForDuplicate(retryContent.title);
+      if (secondCheck.isDuplicate) {
+        console.log(chalk.red('❌ Still duplicate after retry, using anyway but with warning'));
+        console.log(chalk.yellow('⚠️  Manual review recommended to avoid confusion'));
+      }
+
+      console.log(chalk.green('✅ New unique title generated: ' + retryContent.title));
+      return retryContent;
+    }
 
     return content;
   } catch (error) {
