@@ -8,6 +8,8 @@ import fs from 'fs/promises';
 import yaml from 'yaml';
 import chalk from 'chalk';
 import { checkForDuplicate } from './check-duplicate-titles.mjs';
+import ContentMemory from './content-memory-system.mjs';
+import ContentValidator from './advanced-content-validator.mjs';
 
 // Initialize OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -222,38 +224,63 @@ Return ONLY the JSON object, no other text.`;
     console.log(`   Word count: ~${content.content_html.split(/\s+/).length}`);
     console.log(`   Image idea: ${content.image_idea}\n`);
 
-    // Check for duplicate titles
-    const duplicateCheck = checkForDuplicate(content.title);
-    if (duplicateCheck.isDuplicate) {
-      console.log(chalk.yellow('⚠️  Title is too similar to existing post, regenerating...\n'));
-      // Add existing titles to prompt to avoid them
-      const avoidTitles = duplicateCheck.existingTitles.join('\n- ');
-      const retryPrompt = userPrompt + `\n\nIMPORTANT: Avoid these existing titles (make yours distinctly different):\n- ${avoidTitles}`;
+    // Initialize memory and validator
+    const memory = new ContentMemory();
+    const validator = new ContentValidator();
 
-      // Retry with modified prompt
+    // Check for duplicate titles using advanced memory system
+    const noveltyCheck = memory.checkTitleNovelty(content.title);
+
+    if (!noveltyCheck.novel || noveltyCheck.noveltyScore < 70) {
+      console.log(chalk.yellow(`⚠️  Title lacks novelty (score: ${noveltyCheck.noveltyScore}/100)`));
+
+      // Get novel suggestions
+      const suggestions = memory.generateNovelTitleSuggestions(topicInfo.topic);
+      console.log(chalk.cyan('📝 Generating more creative title...'));
+
+      // Add guidance to avoid repetition
+      const avoidanceGuidance = `
+CRITICAL: Create a COMPLETELY NOVEL title that:
+1. Uses fresh vocabulary we haven't used: ${memory.getFreshVocabulary().slice(0, 5).join(', ')}
+2. Avoids these overused patterns: ${memory.memory.titlePatterns.slice(-5).map(p => p.pattern).join(', ')}
+3. Does NOT repeat these phrases: ${Array.from(memory.memory.phrases || []).slice(-10).join(', ')}
+
+Suggested novel approaches:
+${suggestions.map(s => `- ${s.title}`).join('\n')}`;
+
+      const retryPrompt = userPrompt + '\n\n' + avoidanceGuidance;
+
+      // Retry with creativity boost
       const retryCompletion = await openai.chat.completions.create({
         model: MODEL,
-        temperature: 0.75, // Higher temperature for more variety
+        temperature: 0.85, // Higher for more creativity
         max_tokens: 4096,
         response_format: { type: 'json_object' },
         messages: [
-          { role: 'system', content: systemPrompt },
+          { role: 'system', content: systemPrompt + '\n\nBe EXTREMELY creative and avoid ANY form of repetition.' },
           { role: 'user', content: retryPrompt }
         ]
       });
 
       const retryContent = JSON.parse(retryCompletion.choices[0].message.content);
 
-      // Check again
-      const secondCheck = checkForDuplicate(retryContent.title);
-      if (secondCheck.isDuplicate) {
-        console.log(chalk.red('❌ Still duplicate after retry, using anyway but with warning'));
-        console.log(chalk.yellow('⚠️  Manual review recommended to avoid confusion'));
+      // Validate the new title
+      const secondCheck = memory.checkTitleNovelty(retryContent.title);
+      if (secondCheck.noveltyScore < 50) {
+        console.log(chalk.red(`❌ Still not novel enough (score: ${secondCheck.noveltyScore}/100)`));
+        // Use one of the generated suggestions instead
+        if (suggestions.length > 0) {
+          retryContent.title = suggestions[0].title;
+          console.log(chalk.green(`✅ Using suggested title: ${retryContent.title}`));
+        }
+      } else {
+        console.log(chalk.green(`✅ Novel title generated (score: ${secondCheck.noveltyScore}/100): ${retryContent.title}`));
       }
 
-      console.log(chalk.green('✅ New unique title generated: ' + retryContent.title));
       return retryContent;
     }
+
+    console.log(chalk.green(`✅ Title novelty score: ${noveltyCheck.noveltyScore}/100`));
 
     return content;
   } catch (error) {

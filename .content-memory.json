@@ -1,0 +1,735 @@
+{
+  "version": "2.0",
+  "posts": [
+    {
+      "id": "dafe77256844bf92",
+      "date": "2025-07-10",
+      "title": "Shift Workers: How to Get Sleep Like Your Life Depends on It. Because It Does.",
+      "titleFingerprint": "815ed85ab27fb9a0",
+      "excerpt": "The one most important tool for shift workers to fix sleep for good: wake up at the same time every day. A 7-day challenge that actually works.",
+      "keywords": {
+        "shift": 2,
+        "workers": 2,
+        "sleep": 2,
+        "like": 1,
+        "life": 1,
+        "depends": 1,
+        "because": 1,
+        "does": 1,
+        "most": 1,
+        "important": 1,
+        "tool": 1,
+        "good": 1,
+        "wake": 1,
+        "same": 1,
+        "time": 1,
+        "every": 1,
+        "7day": 1,
+        "challenge": 1,
+        "that": 1,
+        "actually": 1,
+        "works": 1
+      },
+      "imageId": "2025-07-10-shift-workers-wake-up-consistency.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1267
+    },
+    {
+      "id": "3db650fabbe11250",
+      "date": "2025-10-16",
+      "title": "Sleep Like a Warrior: Ancient Wisdom and Modern Practice",
+      "titleFingerprint": "37967759399f7a98",
+      "excerpt": "Learn how ancient warriors approached rest with intention and resilience. Four core principles for modern shift workers seeking better sleep.",
+      "keywords": {
+        "sleep": 2,
+        "like": 1,
+        "warrior": 1,
+        "ancient": 2,
+        "wisdom": 1,
+        "modern": 2,
+        "practice": 1,
+        "learn": 1,
+        "warriors": 1,
+        "approached": 1,
+        "rest": 1,
+        "intention": 1,
+        "resilience": 1,
+        "four": 1,
+        "core": 1,
+        "principles": 1,
+        "shift": 1,
+        "workers": 1,
+        "seeking": 1,
+        "better": 1
+      },
+      "imageId": "2025-10-16-sleep-like-a-warrior.html",
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 601
+    },
+    {
+      "id": "5efeaf80c3c24cfc",
+      "date": "2025-10-23",
+      "title": "Cultural Sleep Practices You Can Use for Better Rest",
+      "titleFingerprint": "a30a97b753868ee2",
+      "excerpt": "Explore sleep enhancement techniques from around the world - from Spanish siestas to Japanese inemuri - and how shift workers can adopt them for better rest.",
+      "keywords": {
+        "cultural": 1,
+        "sleep": 2,
+        "practices": 1,
+        "better": 2,
+        "rest": 2,
+        "explore": 1,
+        "enhancement": 1,
+        "techniques": 1,
+        "around": 1,
+        "world": 1,
+        "spanish": 1,
+        "siestas": 1,
+        "japanese": 1,
+        "inemuri": 1,
+        "shift": 1,
+        "workers": 1,
+        "adopt": 1,
+        "them": 1
+      },
+      "imageId": "2025-10-23-cultural-sleep-practices.html",
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 635
+    },
+    {
+      "id": "2834afc05305af43",
+      "date": "2025-12-09",
+      "title": "Myth-Busting Sleep Timing: What Shift Workers Need to Know",
+      "titleFingerprint": "09f5c811f7d2c815",
+      "excerpt": "Explore common myths about sleep timing for shift workers and learn evidence-based strategies to protect your rest.",
+      "keywords": {
+        "mythbusting": 1,
+        "sleep": 2,
+        "timing": 2,
+        "shift": 2,
+        "workers": 2,
+        "explore": 1,
+        "common": 1,
+        "myths": 1,
+        "learn": 1,
+        "evidencebased": 1,
+        "strategies": 1,
+        "protect": 1,
+        "rest": 1
+      },
+      "imageId": "2025-12-09-myth-busting-sleep-timing-what-shift-workers-need-to-know.html",
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        }
+      ],
+      "wordCount": 900
+    },
+    {
+      "id": "6c92534db509eb97",
+      "date": "2025-12-10",
+      "title": "Myth-Busting Sleep for Shift Workers: What You Need to Know",
+      "titleFingerprint": "f8e630753b1b256b",
+      "excerpt": "Discover the truths about sleep for shift workers. Learn how to protect your sleep against circadian disruption with evidence-based tactics.",
+      "keywords": {
+        "mythbusting": 1,
+        "sleep": 3,
+        "shift": 2,
+        "workers": 2,
+        "discover": 1,
+        "truths": 1,
+        "learn": 1,
+        "protect": 1,
+        "against": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "evidencebased": 1,
+        "tactics": 1
+      },
+      "imageId": "2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know.html",
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 871
+    },
+    {
+      "id": "e1202f003e356c66",
+      "date": "2025-12-15",
+      "title": "Adjust Your Schedule Without Chaos: A Shift Work Guide",
+      "titleFingerprint": "430ce6ee73fd0591",
+      "excerpt": "Learn how to manage circadian disruption and protect your sleep as a shift worker with evidence-based tactics.",
+      "keywords": {
+        "adjust": 1,
+        "schedule": 1,
+        "without": 1,
+        "chaos": 1,
+        "shift": 2,
+        "work": 1,
+        "guide": 1,
+        "learn": 1,
+        "manage": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "protect": 1,
+        "sleep": 1,
+        "worker": 1,
+        "evidencebased": 1,
+        "tactics": 1
+      },
+      "imageId": "2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 866
+    },
+    {
+      "id": "28e883cb1e8e4af7",
+      "date": "2025-12-22",
+      "title": "Long-Term Effects of Poor Sleep: What Shift Workers Need to Know",
+      "titleFingerprint": "59a1c3eb9ac575aa",
+      "excerpt": "Discover the long-term effects of poor sleep and how shift workers can protect their health with evidence-based strategies.",
+      "keywords": {
+        "longterm": 2,
+        "effects": 2,
+        "poor": 2,
+        "sleep": 2,
+        "shift": 2,
+        "workers": 2,
+        "discover": 1,
+        "protect": 1,
+        "their": 1,
+        "health": 1,
+        "evidencebased": 1,
+        "strategies": 1
+      },
+      "imageId": "2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 779
+    },
+    {
+      "id": "58ac811856f61100",
+      "date": "2025-12-29",
+      "title": "Nighttime Habits That Help Sleep for Shift Workers",
+      "titleFingerprint": "cf9db60526323f71",
+      "excerpt": "Discover evidence-based nighttime habits to enhance sleep for shift workers and busy humans. Protect your rest amidst circadian disruption.",
+      "keywords": {
+        "nighttime": 2,
+        "habits": 2,
+        "that": 1,
+        "help": 1,
+        "sleep": 2,
+        "shift": 2,
+        "workers": 2,
+        "discover": 1,
+        "evidencebased": 1,
+        "enhance": 1,
+        "busy": 1,
+        "humans": 1,
+        "protect": 1,
+        "rest": 1,
+        "amidst": 1,
+        "circadian": 1,
+        "disruption": 1
+      },
+      "imageId": "2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers.html",
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 876
+    },
+    {
+      "id": "890fc921b41d5dea",
+      "date": "2026-01-12",
+      "title": "Protecting Sleep as a Shift Worker: Evidence-Based Tactics",
+      "titleFingerprint": "fc0d12ccb1c8f34f",
+      "excerpt": "Shift work can disrupt sleep and health. Learn evidence-based strategies to protect your sleep and manage circadian disruption effectively.",
+      "keywords": {
+        "protecting": 1,
+        "sleep": 3,
+        "shift": 2,
+        "worker": 1,
+        "evidencebased": 2,
+        "tactics": 1,
+        "work": 1,
+        "disrupt": 1,
+        "health": 1,
+        "learn": 1,
+        "strategies": 1,
+        "protect": 1,
+        "manage": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "effectively": 1
+      },
+      "imageId": "2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html",
+      "contentThemes": [
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 899
+    }
+  ],
+  "images": [
+    {
+      "id": "2025-07-10-shift-workers-wake-up-consistency.html",
+      "usedIn": "dafe77256844bf92",
+      "date": "2025-07-10"
+    },
+    {
+      "id": "2025-10-16-sleep-like-a-warrior.html",
+      "usedIn": "3db650fabbe11250",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "2025-10-23-cultural-sleep-practices.html",
+      "usedIn": "5efeaf80c3c24cfc",
+      "date": "2025-10-23"
+    },
+    {
+      "id": "2025-12-09-myth-busting-sleep-timing-what-shift-workers-need-to-know.html",
+      "usedIn": "2834afc05305af43",
+      "date": "2025-12-09"
+    },
+    {
+      "id": "2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know.html",
+      "usedIn": "6c92534db509eb97",
+      "date": "2025-12-10"
+    },
+    {
+      "id": "2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html",
+      "usedIn": "e1202f003e356c66",
+      "date": "2025-12-15"
+    },
+    {
+      "id": "2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know.html",
+      "usedIn": "28e883cb1e8e4af7",
+      "date": "2025-12-22"
+    },
+    {
+      "id": "2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers.html",
+      "usedIn": "58ac811856f61100",
+      "date": "2025-12-29"
+    },
+    {
+      "id": "2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html",
+      "usedIn": "890fc921b41d5dea",
+      "date": "2026-01-12"
+    }
+  ],
+  "topics": [
+    {
+      "topic": "Shift Workers",
+      "usedIn": "dafe77256844bf92",
+      "date": "2025-07-10"
+    },
+    {
+      "topic": "Sleep Like a Warrior",
+      "usedIn": "3db650fabbe11250",
+      "date": "2025-10-16"
+    },
+    {
+      "topic": "Cultural Sleep Practices You Can Use for Better Rest",
+      "usedIn": "5efeaf80c3c24cfc",
+      "date": "2025-10-23"
+    },
+    {
+      "topic": "Myth",
+      "usedIn": "2834afc05305af43",
+      "date": "2025-12-09"
+    },
+    {
+      "topic": "Myth",
+      "usedIn": "6c92534db509eb97",
+      "date": "2025-12-10"
+    },
+    {
+      "topic": "Adjust Your Schedule Without Chaos",
+      "usedIn": "e1202f003e356c66",
+      "date": "2025-12-15"
+    },
+    {
+      "topic": "Long",
+      "usedIn": "28e883cb1e8e4af7",
+      "date": "2025-12-22"
+    },
+    {
+      "topic": "Nighttime Habits That Help Sleep for Shift Workers",
+      "usedIn": "58ac811856f61100",
+      "date": "2025-12-29"
+    },
+    {
+      "topic": "Protecting Sleep as a Shift Worker",
+      "usedIn": "890fc921b41d5dea",
+      "date": "2026-01-12"
+    }
+  ],
+  "phrases": [
+    "shift workers how",
+    "workers how to",
+    "to get sleep",
+    "get sleep like",
+    "sleep like your",
+    "like your life",
+    "your life depends",
+    "life depends on",
+    "depends on it",
+    "on it because",
+    "it because it",
+    "because it does",
+    "shift workers how to",
+    "workers how to get",
+    "how to get sleep",
+    "to get sleep like",
+    "get sleep like your",
+    "sleep like your life",
+    "like your life depends",
+    "your life depends on",
+    "life depends on it",
+    "depends on it because",
+    "on it because it",
+    "it because it does",
+    "shift workers how to get",
+    "workers how to get sleep",
+    "how to get sleep like",
+    "to get sleep like your",
+    "get sleep like your life",
+    "sleep like your life depends",
+    "like your life depends on",
+    "your life depends on it",
+    "life depends on it because",
+    "depends on it because it",
+    "on it because it does",
+    "sleep like a",
+    "like a warrior",
+    "a warrior ancient",
+    "warrior ancient wisdom",
+    "ancient wisdom and",
+    "wisdom and modern",
+    "and modern practice",
+    "sleep like a warrior",
+    "like a warrior ancient",
+    "a warrior ancient wisdom",
+    "warrior ancient wisdom and",
+    "ancient wisdom and modern",
+    "wisdom and modern practice",
+    "sleep like a warrior ancient",
+    "like a warrior ancient wisdom",
+    "a warrior ancient wisdom and",
+    "warrior ancient wisdom and modern",
+    "ancient wisdom and modern practice",
+    "cultural sleep practices",
+    "sleep practices you",
+    "practices you can",
+    "use for better",
+    "for better rest",
+    "cultural sleep practices you",
+    "sleep practices you can",
+    "practices you can use",
+    "can use for better",
+    "use for better rest",
+    "cultural sleep practices you can",
+    "sleep practices you can use",
+    "practices you can use for",
+    "you can use for better",
+    "can use for better rest",
+    "mythbusting sleep timing",
+    "sleep timing what",
+    "timing what shift",
+    "what shift workers",
+    "shift workers need",
+    "workers need to",
+    "need to know",
+    "mythbusting sleep timing what",
+    "sleep timing what shift",
+    "timing what shift workers",
+    "what shift workers need",
+    "shift workers need to",
+    "workers need to know",
+    "mythbusting sleep timing what shift",
+    "sleep timing what shift workers",
+    "timing what shift workers need",
+    "what shift workers need to",
+    "shift workers need to know",
+    "mythbusting sleep for",
+    "sleep for shift",
+    "for shift workers",
+    "shift workers what",
+    "workers what you",
+    "what you need",
+    "you need to",
+    "mythbusting sleep for shift",
+    "sleep for shift workers",
+    "for shift workers what",
+    "shift workers what you",
+    "workers what you need",
+    "what you need to",
+    "you need to know",
+    "mythbusting sleep for shift workers",
+    "sleep for shift workers what",
+    "for shift workers what you",
+    "shift workers what you need",
+    "workers what you need to",
+    "what you need to know",
+    "adjust your schedule",
+    "your schedule without",
+    "schedule without chaos",
+    "without chaos a",
+    "chaos a shift",
+    "a shift work",
+    "shift work guide",
+    "adjust your schedule without",
+    "your schedule without chaos",
+    "schedule without chaos a",
+    "without chaos a shift",
+    "chaos a shift work",
+    "a shift work guide",
+    "adjust your schedule without chaos",
+    "your schedule without chaos a",
+    "schedule without chaos a shift",
+    "without chaos a shift work",
+    "chaos a shift work guide",
+    "longterm effects of",
+    "effects of poor",
+    "of poor sleep",
+    "poor sleep what",
+    "sleep what shift",
+    "longterm effects of poor",
+    "effects of poor sleep",
+    "of poor sleep what",
+    "poor sleep what shift",
+    "sleep what shift workers",
+    "longterm effects of poor sleep",
+    "effects of poor sleep what",
+    "of poor sleep what shift",
+    "poor sleep what shift workers",
+    "sleep what shift workers need",
+    "nighttime habits that",
+    "habits that help",
+    "that help sleep",
+    "help sleep for",
+    "nighttime habits that help",
+    "habits that help sleep",
+    "that help sleep for",
+    "help sleep for shift",
+    "nighttime habits that help sleep",
+    "habits that help sleep for",
+    "that help sleep for shift",
+    "help sleep for shift workers",
+    "protecting sleep as",
+    "sleep as a",
+    "as a shift",
+    "a shift worker",
+    "shift worker evidencebased",
+    "worker evidencebased tactics",
+    "protecting sleep as a",
+    "sleep as a shift",
+    "as a shift worker",
+    "a shift worker evidencebased",
+    "shift worker evidencebased tactics",
+    "protecting sleep as a shift",
+    "sleep as a shift worker",
+    "as a shift worker evidencebased",
+    "a shift worker evidencebased tactics"
+  ],
+  "titlePatterns": [
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Shift Workers: How to Get Sleep Like Your Life Depends on It. Because It Does.",
+      "date": "2025-07-10"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Sleep Like a Warrior: Ancient Wisdom and Modern Practice",
+      "date": "2025-10-16"
+    },
+    {
+      "pattern": "Cultural [SLEEP] Practices You Can Use for Better [SLEEP]",
+      "example": "Cultural Sleep Practices You Can Use for Better Rest",
+      "date": "2025-10-23"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Myth-Busting Sleep Timing: What Shift Workers Need to Know",
+      "date": "2025-12-09"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Myth-Busting Sleep for Shift Workers: What You Need to Know",
+      "date": "2025-12-10"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Adjust Your Schedule Without Chaos: A Shift Work Guide",
+      "date": "2025-12-15"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Long-Term Effects of Poor Sleep: What Shift Workers Need to Know",
+      "date": "2025-12-22"
+    },
+    {
+      "pattern": "Nighttime Habits That Help [SLEEP] for Shift [AUDIENCE]",
+      "example": "Nighttime Habits That Help Sleep for Shift Workers",
+      "date": "2025-12-29"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Protecting Sleep as a Shift Worker: Evidence-Based Tactics",
+      "date": "2026-01-12"
+    }
+  ],
+  "contentThemes": [],
+  "lastUpdated": "2026-01-14T18:43:53.949Z"
+}
