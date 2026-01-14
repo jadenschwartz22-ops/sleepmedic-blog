@@ -51,7 +51,14 @@ jobs:
         env:
           IMAGE_IDEA: ${{ steps.generate.outputs.image_idea }}
         run: |
-          # Fetch images from Unsplash
+          # Fetch images from Unsplash with enhanced search
+          echo "🔍 Searching for: $IMAGE_IDEA"
+
+          # If no image idea, use safe defaults
+          if [ -z "$IMAGE_IDEA" ]; then
+            IMAGE_IDEA="sleep bedroom night rest peaceful"
+          fi
+
           node scripts/fetch-unsplash-images.mjs
 
           # Select the first (most relevant) image automatically

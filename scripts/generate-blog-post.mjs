@@ -186,7 +186,7 @@ Return ONLY valid JSON:
   "excerpt": "140–160 character summary",
   "content_html": "Full HTML content (use <h2>, <h3>, <p>, <ul>, <li>, <strong>, <a> tags, <blockquote> for quotes)",
   "keywords": "comma-separated keywords for SEO",
-  "image_idea": "One-line conceptual cover image idea (no stock photos)"
+  "image_idea": "Specific 3-5 word Unsplash search terms like: 'bedroom night sleep', 'alarm clock time', 'coffee morning wake', 'night shift worker', 'peaceful rest meditation' - be literal and specific for photo search"
 }`;
 
   const userPrompt = `Topic: "${topicInfo.topic}"
