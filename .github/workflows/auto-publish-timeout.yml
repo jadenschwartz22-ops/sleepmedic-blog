@@ -27,6 +27,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Find open image selection issues
         id: find_issues
         uses: actions/github-script@v7
@@ -152,6 +160,11 @@ jobs:
           mv /tmp/post-updated.html "$POST_FILE"
 
           echo "✅ Cover image added to post"
+
+          # Regenerate posts index and RSS
+          echo "📝 Regenerating posts index and RSS feed"
+          node scripts/generate-posts-index.mjs
+          node scripts/generate-rss-feed.mjs
 
           # Commit changes
           git config user.name "github-actions[bot]"

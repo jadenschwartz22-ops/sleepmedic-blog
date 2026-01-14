@@ -99,6 +99,9 @@ jobs:
       - name: Generate RSS feed
         run: node scripts/generate-rss-feed.mjs
 
+      - name: Generate posts index
+        run: node scripts/generate-posts-index.mjs
+
       - name: Create Pull Request
         id: pr
         uses: peter-evans/create-pull-request@v5

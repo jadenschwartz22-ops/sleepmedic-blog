@@ -48,6 +48,9 @@ jobs:
       - name: Generate RSS feed
         run: node scripts/generate-rss-feed.mjs
 
+      - name: Generate posts index
+        run: node scripts/generate-posts-index.mjs
+
       - name: Fetch Unsplash images
         id: images
         env:
