@@ -7,6 +7,7 @@
     "blog:generate": "node scripts/generate-blog-post.mjs",
     "blog:rss": "node scripts/generate-rss-feed.mjs",
     "blog:full": "npm run blog:generate && npm run blog:rss",
+    "blog:setup": "node scripts/setup-email-analytics.mjs",
     "migrate:ghost": "node scripts/migrate-ghost-posts.mjs"
   },
   "keywords": [

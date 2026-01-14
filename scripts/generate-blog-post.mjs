@@ -10,6 +10,7 @@ import chalk from 'chalk';
 import { checkForDuplicate } from './check-duplicate-titles.mjs';
 import ContentMemory from './content-memory-system.mjs';
 import ContentValidator from './advanced-content-validator.mjs';
+import SmartImageSelector from './smart-image-selector.mjs';
 
 // Initialize OpenAI
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
@@ -163,6 +164,9 @@ async function generateContent(topicInfo, guidelines) {
   const week = getWeekNumber();
   const templateFormat = getTemplateFormat(week);
 
+  // Initialize smart image selector
+  const imageSelector = new SmartImageSelector();
+
   console.log(chalk.cyan(`🤖 Generating with GPT-4o-mini (${MODEL})...`));
   console.log(chalk.gray(`   Template: ${templateFormat}\n`));
 
@@ -199,11 +203,20 @@ Return ONLY valid JSON:
   "image_idea": "Specific 3-5 word Unsplash search terms like: 'bedroom night sleep', 'alarm clock time', 'coffee morning wake', 'night shift worker', 'peaceful rest meditation' - be literal and specific for photo search"
 }`;
 
+  // Generate smart image suggestions for this topic
+  const imagePrompt = imageSelector.generateImagePrompt(topicInfo.topic, topicInfo.tag);
+
   const userPrompt = `Topic: "${topicInfo.topic}"
 Bucket: "${topicInfo.bucketName}"
 Tag: ${topicInfo.tag}
 
 Focus on life as a shift worker - how to protect sleep, manage circadian disruption, evidence-based tactics, real-world application.
+
+SMART IMAGE SELECTION:
+For the image_idea field, use one of these highly relevant search terms:
+- Primary: ${imagePrompt.primary}
+- Alternatives: ${imagePrompt.alternatives.join(', ')}
+These are specifically chosen to match the topic content.
 
 Make it:
 - Science-forward with mechanisms explained
