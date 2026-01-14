@@ -29,67 +29,43 @@
   <link rel="stylesheet" href="_shared-styles.css">
 
   <style>
-    /* Deep Night Hero with Glowing Moon */
+    /* Space Hero - No Moon, Pure Stars */
     .hero {
       position: relative;
       text-align: center;
       padding: 120px 20px 100px;
-      background: linear-gradient(180deg, rgba(54, 56, 64, 0.3) 0%, transparent 100%);
+      background: transparent;
       border-bottom: none;
       overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 30px;
-      right: 12%;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, var(--moon) 0%, rgba(255, 249, 230, 0.4) 30%, rgba(255, 249, 230, 0.1) 60%, transparent 80%);
-      border-radius: 50%;
-      opacity: 0.9;
-      animation: float 25s ease-in-out infinite;
-      pointer-events: none;
-      filter: blur(1px);
-      box-shadow: 0 0 60px rgba(255, 249, 230, 0.3);
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-15px);
-      }
     }
 
     .hero h1 {
       font-size: clamp(2.5rem, 5vw, 3.5rem);
       font-weight: 600;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--lavender), var(--lilac), var(--periwinkle));
+      background: linear-gradient(135deg, var(--purple-glow), var(--blue-glow), var(--cyan-glow));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       position: relative;
       z-index: 1;
       letter-spacing: -0.02em;
+      filter: drop-shadow(0 0 30px rgba(167, 139, 250, 0.4));
     }
 
     .hero p {
       font-size: 1.15rem;
-      color: var(--muted);
+      color: var(--text-muted);
       max-width: 560px;
       margin: 0 auto 48px;
       position: relative;
       z-index: 1;
       font-weight: 400;
-      opacity: 0.85;
+      opacity: 0.9;
       line-height: 1.8;
     }
 
-    /* Soft, Rounded Filters */
+    /* Cosmic Rounded Filters */
     .filters {
       display: flex;
       gap: 16px;
@@ -100,28 +76,30 @@
 
     .filter-btn {
       padding: 16px 32px;
-      border-radius: var(--radius-pill);
-      background: var(--panel);
-      color: var(--periwinkle);
-      font-weight: 500;
+      border-radius: var(--radius-xl);
+      background: rgba(26, 31, 53, 0.8);
+      color: var(--text-muted);
+      font-weight: 600;
       font-size: 15px;
-      border: none;
+      border: 2px solid transparent;
       cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       backdrop-filter: blur(20px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .filter-btn:hover {
-      background: rgba(214, 224, 240, 0.15);
+      background: rgba(167, 139, 250, 0.2);
+      color: var(--text-bright);
       transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 4px 16px rgba(214, 224, 240, 0.2);
+      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.3);
     }
 
     .filter-btn.active {
-      background: linear-gradient(135deg, var(--periwinkle), var(--midnight-blue));
-      color: #2e3038;
-      box-shadow: 0 2px 12px rgba(214, 224, 240, 0.25);
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(96, 165, 250, 0.25));
+      border-color: var(--purple-glow);
+      color: var(--text-bright);
+      box-shadow: 0 4px 15px rgba(167, 139, 250, 0.4);
     }
 
     .posts-grid {
@@ -132,21 +110,48 @@
     }
 
     .post-card {
-      background: var(--panel);
+      background: var(--space-card);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid rgba(214, 224, 240, 0.12);
+      border: 2px solid var(--border);
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, var(--purple-glow), var(--blue-glow), var(--green-glow));
+      border-radius: var(--radius-lg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .post-card:hover::before {
+      opacity: 0.4;
     }
 
     .post-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(214, 224, 240, 0.15);
-      border-color: var(--periwinkle);
-      background: rgba(54, 56, 64, 0.6);
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+      background: var(--space-lighter);
+    }
+
+    .post-card-image {
+      width: 100%;
+      height: 240px;
+      background-size: cover;
+      background-position: center;
+      background-color: rgba(26, 31, 53, 0.5);
+      border-bottom: 2px solid rgba(167, 139, 250, 0.2);
     }
 
     .post-card-content {
@@ -159,18 +164,34 @@
     .post-category {
       display: inline-block;
       padding: 8px 18px;
-      border-radius: var(--radius-pill);
+      border-radius: var(--radius-xl);
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 20px;
     }
 
-    .category-science { background: rgba(214,224,240,0.2); color: #7a90b0; }
-    .category-tools { background: rgba(232,221,213,0.2); color: #a8988b; }
-    .category-timing { background: rgba(240,232,221,0.2); color: #b0a898; }
-    .category-special { background: rgba(200,214,232,0.2); color: #8fa4b8; }
+    .category-science {
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(96, 165, 250, 0.2));
+      border: 1.5px solid rgba(167, 139, 250, 0.35);
+      color: var(--purple-glow);
+    }
+    .category-tools {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.25), rgba(34, 211, 238, 0.2));
+      border: 1.5px solid rgba(52, 211, 153, 0.35);
+      color: var(--green-glow);
+    }
+    .category-timing {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 0.25), rgba(34, 211, 238, 0.2));
+      border: 1.5px solid rgba(96, 165, 250, 0.35);
+      color: var(--blue-glow);
+    }
+    .category-special {
+      background: linear-gradient(135deg, rgba(244, 114, 182, 0.25), rgba(167, 139, 250, 0.2));
+      border: 1.5px solid rgba(244, 114, 182, 0.35);
+      color: var(--pink-glow);
+    }
 
     .post-card h2 {
       font-size: 1.4rem;
@@ -178,11 +199,11 @@
       margin-bottom: 16px;
       line-height: 1.4;
       flex: 1;
-      color: var(--ink);
+      color: var(--text-bright);
     }
 
     .post-excerpt {
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 0.98rem;
       line-height: 1.75;
       margin-bottom: 20px;
@@ -192,35 +213,43 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      color: rgba(90, 107, 122, 0.7);
+      color: rgba(148, 163, 184, 0.7);
       font-size: 0.85rem;
       margin-top: auto;
       padding-top: 20px;
-      border-top: 1px solid rgba(90, 107, 122, 0.08);
+      border-top: 1px solid rgba(167, 139, 250, 0.15);
     }
 
     .newsletter-section {
-      background: linear-gradient(135deg, var(--midnight-blue), var(--periwinkle), var(--lilac));
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.15), rgba(96, 165, 250, 0.12));
+      border: 2px solid rgba(167, 139, 250, 0.25);
       border-radius: var(--radius-lg);
       padding: 64px 48px;
       text-align: center;
       margin-bottom: 80px;
-      box-shadow: 0 8px 32px rgba(214, 224, 240, 0.2);
+      box-shadow: 0 8px 32px rgba(167, 139, 250, 0.2);
+      backdrop-filter: blur(20px);
     }
 
     .newsletter-section h2 {
-      color: var(--ink);
+      color: var(--text-bright);
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--purple-glow), var(--blue-glow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.3));
     }
 
     .newsletter-section p {
-      color: rgba(212, 220, 232, 0.8);
+      color: var(--text-bright);
       font-size: 1.1rem;
       margin-bottom: 32px;
       font-weight: 400;
       line-height: 1.7;
+      opacity: 1;
     }
 
     .no-posts {
@@ -285,11 +314,11 @@
 
         <!-- Follow.it form will go here after setup -->
         <div id="newsletter-form">
-          <p style="color: rgba(212, 220, 232, 0.7); font-size: 0.9rem;">Newsletter signup coming soon!</p>
+          <p style="color: var(--text-bright); font-size: 0.9rem; opacity: 0.95;">Newsletter signup coming soon!</p>
         </div>
 
-        <p style="font-size: 0.85rem; color: rgba(212, 220, 232, 0.65); margin-top: 20px;">
-          Or subscribe via <a href="feed.xml" style="color: var(--ink); text-decoration: underline;">RSS feed</a>
+        <p style="font-size: 0.85rem; color: var(--text-bright); opacity: 0.9; margin-top: 20px;">
+          Or subscribe via <a href="feed.xml" style="color: var(--cyan-glow); text-decoration: underline;">RSS feed</a>
         </p>
       </div>
     </div>
@@ -309,61 +338,30 @@
   </footer>
 
   <script>
-    // Posts data (will be auto-generated by script)
-    const posts = [
-  {
-    "title": "Myth-Busting Sleep for Shift Workers: What You Need to Know",
-    "excerpt": "Discover the truths about sleep for shift workers. Learn how to protect your sleep against circadian disruption with evidence-based tactics.",
-    "slug": "2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know",
-    "date": "2025-12-10",
-    "dateFormatted": "December 9, 2025",
-    "category": "timing",
-    "categoryLabel": "Timing",
-    "readTime": 3
-  },
-  {
-    "title": "Cultural Sleep Practices You Can Use for Better Rest",
-    "slug": "2025-10-23-cultural-sleep-practices",
-    "excerpt": "Explore sleep enhancement techniques from around the world—from Spanish siestas to Japanese inemuri—and how shift workers can adopt them for better rest.",
-    "date": "2025-10-23",
-    "dateFormatted": "October 23, 2025",
-    "readTime": 4,
-    "category": "tools",
-    "categoryLabel": "Tools & Tips"
-  },
-  {
-    "title": "Sleep Like a Warrior: Ancient Wisdom and Modern Practice",
-    "slug": "2025-10-16-sleep-like-a-warrior",
-    "excerpt": "Learn how ancient warriors approached rest with intention and resilience. Four core principles for modern shift workers seeking better sleep.",
-    "date": "2025-10-16",
-    "dateFormatted": "October 16, 2025",
-    "readTime": 3,
-    "category": "special",
-    "categoryLabel": "Special Topics"
-  },
-  {
-    "title": "Shift Workers: How to Get Sleep Like Your Life Depends on It",
-    "slug": "2025-07-10-shift-workers-wake-up-consistency",
-    "excerpt": "The one most important tool for shift workers to fix sleep for good: wake up at the same time every day. A 7-day challenge that actually works.",
-    "date": "2025-07-10",
-    "dateFormatted": "July 10, 2025",
-    "readTime": 5,
-    "category": "timing",
-    "categoryLabel": "Sleep Timing"
-  }
-];
-
-    // Filter functionality
+    let posts = [];
     const filterBtns = document.querySelectorAll('.filter-btn');
     const postsGrid = document.getElementById('posts-grid');
 
+    async function loadPosts() {
+      try {
+        const response = await fetch('posts-index.json');
+        posts = await response.json();
+        renderPosts();
+      } catch (error) {
+        console.error('Failed to load posts:', error);
+        postsGrid.innerHTML = `
+          <div class="no-posts">
+            <h2>Failed to load posts</h2>
+            <p>Please try refreshing the page.</p>
+          </div>
+        `;
+      }
+    }
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update active state
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
-        // Filter posts
         const category = btn.dataset.category;
         renderPosts(category);
       });
@@ -394,26 +392,32 @@
         return;
       }
 
-      postsGrid.innerHTML = filtered.map(post => `
-        <a href="posts/${post.slug}.html" style="text-decoration: none; color: inherit;">
-          <article class="post-card" data-category="${post.category}">
-            <div class="post-card-content">
-              <span class="post-category category-${post.category}">${post.categoryLabel}</span>
-              <h2>${post.title}</h2>
-              <p class="post-excerpt">${post.excerpt}</p>
-              <div class="post-meta">
-                <time datetime="${post.date}">${post.dateFormatted}</time>
-                <span>•</span>
-                <span>${post.readTime} min read</span>
+      postsGrid.innerHTML = filtered.map(post => {
+        const coverImageHtml = post.coverImage
+          ? `<div class="post-card-image" style="background-image: url('${post.coverImage}');"></div>`
+          : '';
+
+        return `
+          <a href="posts/${post.slug}.html" style="text-decoration: none; color: inherit;">
+            <article class="post-card" data-category="${post.category}">
+              ${coverImageHtml}
+              <div class="post-card-content">
+                <span class="post-category category-${post.category}">${post.categoryLabel}</span>
+                <h2>${post.title}</h2>
+                <p class="post-excerpt">${post.excerpt}</p>
+                <div class="post-meta">
+                  <time datetime="${post.date}">${post.dateFormatted}</time>
+                  <span>•</span>
+                  <span>${post.readTime} min read</span>
+                </div>
               </div>
-            </div>
-          </article>
-        </a>
-      `).join('');
+            </article>
+          </a>
+        `;
+      }).join('');
     }
 
-    // Initial render
-    renderPosts();
+    loadPosts();
   </script>
 </body>
 </html>
