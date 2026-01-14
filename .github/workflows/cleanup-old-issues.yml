@@ -1,0 +1,98 @@
+name: Cleanup Old Issues
+
+on:
+  schedule:
+    # Run daily at 2 AM MT (9 AM UTC)
+    - cron: "0 9 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close old auto-published issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+            // Get all open issues with auto-published label
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'auto-published',
+              per_page: 100
+            });
+
+            let closedCount = 0;
+
+            for (const issue of issues) {
+              const createdAt = new Date(issue.created_at);
+
+              if (createdAt < sevenDaysAgo) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed'
+                });
+
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: '🕐 Auto-closed after 7 days'
+                });
+
+                console.log(`Closed issue #${issue.number}: ${issue.title}`);
+                closedCount++;
+              }
+            }
+
+            console.log(`✅ Closed ${closedCount} old issues`);
+
+      - name: Close old image selection issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000);
+
+            // Get all open issues with select-cover-image label
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'select-cover-image',
+              per_page: 100
+            });
+
+            let closedCount = 0;
+
+            for (const issue of issues) {
+              const createdAt = new Date(issue.created_at);
+
+              if (createdAt < twoDaysAgo) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed'
+                });
+
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: '🕐 Auto-closed: This issue is outdated. The post should have been auto-published by now.'
+                });
+
+                console.log(`Closed image selection issue #${issue.number}: ${issue.title}`);
+                closedCount++;
+              }
+            }
+
+            console.log(`✅ Closed ${closedCount} old image selection issues`);
