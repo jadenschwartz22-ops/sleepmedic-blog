@@ -157,7 +157,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Auto-publish: Add cover image #$IMAGE_NUM (timeout after 24h)"
+          git commit -m "Auto-publish: Add cover image (timeout after 24h)"
 
           # Sync with main and push
           git fetch origin main
