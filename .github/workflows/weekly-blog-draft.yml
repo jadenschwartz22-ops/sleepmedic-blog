@@ -42,12 +42,21 @@ jobs:
           jq -r '.filename' tmp/post-metadata.json | xargs -I {} echo "filename={}" >> $GITHUB_OUTPUT
           jq -r '.topic' tmp/post-metadata.json | xargs -I {} echo "topic={}" >> $GITHUB_OUTPUT
           jq -r '.tag' tmp/post-metadata.json | xargs -I {} echo "tag={}" >> $GITHUB_OUTPUT
+          jq -r '.excerpt' tmp/post-metadata.json | xargs -I {} echo "excerpt={}" >> $GITHUB_OUTPUT
           jq -r '.imageIdea' tmp/post-metadata.json | tr '\n' ' ' | xargs -I {} echo "image_idea={}" >> $GITHUB_OUTPUT
 
       - name: Generate RSS feed
         run: node scripts/generate-rss-feed.mjs
 
+      - name: Fetch Unsplash images
+        id: images
+        env:
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          IMAGE_IDEA: ${{ steps.generate.outputs.image_idea }}
+        run: node scripts/fetch-unsplash-images.mjs
+
       - name: Create Pull Request
+        id: pr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -99,35 +108,53 @@ jobs:
           assignees: jadenschwartz22-ops
           delete-branch: true
 
-      - name: Create notification issue
+      - name: Create cover image selection issue
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const fs = require('fs');
             const title = '${{ steps.generate.outputs.title }}';
             const filename = '${{ steps.generate.outputs.filename }}';
             const topic = '${{ steps.generate.outputs.topic }}';
+            const excerpt = `${{ steps.generate.outputs.excerpt }}`;
+            const prNumber = '${{ steps.pr.outputs.pull-request-number }}';
+            const imageOptions = JSON.parse(fs.readFileSync('tmp/image-options.json', 'utf8'));
 
-            const issueTitle = `Draft Ready: ${title}`;
-            const body = `Your weekly SleepMedic blog draft is ready for review!
+            const branchName = '${{ steps.pr.outputs.pull-request-head-sha }}' ? 'blog-draft-${{ github.run_number }}' : 'main';
 
-            **Topic:** ${topic}
-            **File:** \`blog/posts/${filename}\`
+            let body = `## Select Cover Image for: ${title}\n\n`;
+            body += `**Topic:** ${topic}\n\n`;
+            body += `### Quick Actions\n\n`;
+            body += `- 📝 [Edit Post Text](https://github.com/${{ github.repository }}/edit/blog-draft-${{ github.run_number }}/blog/posts/${filename})\n`;
+            body += `- 👀 [Read Full Post](https://github.com/${{ github.repository }}/pull/${prNumber}/files)\n`;
+            body += `- 🔗 [View PR #${prNumber}](https://github.com/${{ github.repository }}/pull/${prNumber})\n\n`;
+            body += `### Blog Post Preview\n\n`;
+            body += `${excerpt}\n\n`;
+            body += `---\n\n`;
+            body += `### Choose Your Cover Image\n\n`;
+            body += `Comment \`use image [1-5]\` to select and publish.\n\n`;
 
-            📋 **Action Required:** Review the pull request and merge when ready.
+            imageOptions.forEach((img, i) => {
+              body += `#### Image ${i + 1}:\n`;
+              body += `![Image ${i + 1}](${img.urls.small})\n`;
+              body += `by [${img.user.name}](${img.user.links.html}) on [Unsplash](${img.links.html})\n`;
+              body += `[Download: ${img.urls.download}]\n\n`;
+            });
 
-            The post will automatically deploy to sleepmedic.co/blog and trigger email notifications via Follow.it.`;
+            body += `---\n\n`;
+            body += `⏰ If no selection is made within 24 hours, a random image will be selected automatically.`;
 
             const resp = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: issueTitle.slice(0, 255),
+              title: `Select Cover Image: ${title}`,
               body,
               assignees: ['jadenschwartz22-ops'],
-              labels: ['weekly-draft', 'blog']
+              labels: ['select-cover-image', 'blog']
             });
 
-            core.info(`Created issue #${resp.data.number}`);
+            core.info(`Created image selection issue #${resp.data.number}`);
 
       - name: Cleanup
         if: always()

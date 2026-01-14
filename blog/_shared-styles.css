@@ -1,29 +1,32 @@
-/* SleepMedic Blog - Peaceful Starry Night Theme */
+/* SleepMedic Blog - Deep Space Dreams + Duolingo */
 
 :root {
-  /* Peaceful Dream - Very Gentle & Soothing */
-  --bg: #2e3038;  /* Much lighter, softer blue-gray */
-  --bg-light: #363840;  /* Gentle medium blue */
-  --panel: rgba(54, 56, 64, 0.5);  /* Very soft translucent panels */
-  --ink: #f8f5f2;  /* Very light warm white */
-  --muted: #d8cfc6;  /* Very light warm beige */
-  --line: rgba(216, 207, 198, 0.1);
+  /* Deep Space Colors */
+  --space-bg: #0a0e1a;  /* Deep space black */
+  --space-card: #1a1f35;  /* Floating card blue */
+  --space-lighter: #252b45;  /* Hover state */
 
-  /* Peaceful Pastels - Extremely Soft & Dreamy */
-  --lavender: #e8ddd5;  /* Extremely soft warm lavender */
-  --periwinkle: #d6e0f0;  /* Very light periwinkle */
-  --lilac: #f0e8dd;  /* Extremely soft peachy-cream */
-  --midnight-blue: #c8d6e8;  /* Very light warm blue */
-  --deep-purple: #e0d8d0;  /* Extremely soft warm beige */
-  --moon: #fffcf5;  /* Very gentle warm glow */
-  --star: #fffefa;  /* Very soft warm white stars */
-  --star-glow: rgba(255, 252, 245, 0.5);  /* Very gentle star glow */
+  /* Cosmic Accent Colors - Vibrant but soothing */
+  --purple-glow: #a78bfa;  /* Bright purple */
+  --blue-glow: #60a5fa;  /* Bright blue */
+  --green-glow: #34d399;  /* Bright emerald */
+  --pink-glow: #f472b6;  /* Bright pink */
+  --cyan-glow: #22d3ee;  /* Bright cyan */
 
-  /* Very Rounded - Duolingo style */
-  --radius: 24px;
-  --radius-sm: 16px;
-  --radius-lg: 40px;
-  --radius-pill: 999px;
+  /* Text */
+  --text-bright: #ffffff;
+  --text-main: #e8ecf1;
+  --text-muted: #94a3b8;
+
+  /* UI */
+  --border: rgba(167, 139, 250, 0.2);
+  --shadow: rgba(0, 0, 0, 0.4);
+
+  /* Duolingo-style Rounded */
+  --radius: 20px;
+  --radius-sm: 12px;
+  --radius-lg: 28px;
+  --radius-xl: 40px;
 }
 
 * {
@@ -33,21 +36,17 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: var(--bg);
-  background-image:
-    /* Peaceful dreamy glows - extremely soft & subtle */
-    radial-gradient(circle at 15% 30%, rgba(240, 232, 221, 0.04) 0%, transparent 55%),
-    radial-gradient(circle at 85% 70%, rgba(214, 224, 240, 0.035) 0%, transparent 60%),
-    radial-gradient(circle at 50% 90%, rgba(232, 221, 207, 0.03) 0%, transparent 65%),
-    radial-gradient(circle at 30% 80%, rgba(224, 216, 203, 0.025) 0%, transparent 50%);
-  color: var(--ink);
-  line-height: 2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Nunito', sans-serif;
+  background: var(--space-bg);
+  color: var(--text-main);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Gentle Dreamy Stars with Soft Glow */
+/* MEGA VIBRANT Space Nebulas - floating and pulsing */
 body::before {
   content: '';
   position: fixed;
@@ -55,85 +54,501 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image:
-    /* Glowing stars with halos */
-    radial-gradient(circle 3px at 18% 22%, var(--star-glow), transparent 3px),
-    radial-gradient(circle 2px at 18% 22%, var(--star), transparent 2px),
-
-    radial-gradient(circle 3px at 72% 15%, var(--star-glow), transparent 3px),
-    radial-gradient(circle 2px at 72% 15%, var(--star), transparent 2px),
-
-    radial-gradient(circle 4px at 45% 35%, var(--star-glow), transparent 4px),
-    radial-gradient(circle 2.5px at 45% 35%, var(--star), transparent 2.5px),
-
-    radial-gradient(circle 3px at 85% 48%, var(--star-glow), transparent 3px),
-    radial-gradient(circle 2px at 85% 48%, var(--star), transparent 2px),
-
-    radial-gradient(circle 3px at 12% 65%, var(--star-glow), transparent 3px),
-    radial-gradient(circle 2px at 12% 65%, var(--star), transparent 2px),
-
-    radial-gradient(circle 4px at 58% 72%, var(--star-glow), transparent 4px),
-    radial-gradient(circle 2.5px at 58% 72%, var(--star), transparent 2.5px),
-
-    radial-gradient(circle 3px at 92% 82%, var(--star-glow), transparent 3px),
-    radial-gradient(circle 2px at 92% 82%, var(--star), transparent 2px),
-
-    /* Smaller twinkling stars */
-    radial-gradient(circle 2px at 28% 42%, var(--star-glow), transparent 2px),
-    radial-gradient(circle 1px at 28% 42%, var(--star), transparent 1px),
-
-    radial-gradient(circle 2px at 66% 58%, var(--star-glow), transparent 2px),
-    radial-gradient(circle 1px at 66% 58%, var(--star), transparent 1px),
-
-    radial-gradient(circle 2px at 35% 88%, var(--star-glow), transparent 2px),
-    radial-gradient(circle 1px at 35% 88%, var(--star), transparent 1px),
-
-    radial-gradient(circle 2px at 78% 28%, var(--star-glow), transparent 2px),
-    radial-gradient(circle 1px at 78% 28%, var(--star), transparent 1px);
-  animation: gentle-twinkle 8s ease-in-out infinite;
+  background:
+    /* SUPER vibrant nebula clouds - much brighter */
+    radial-gradient(ellipse 1200px 900px at 10% 15%, rgba(167, 139, 250, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 1000px 1000px at 90% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 900px 700px at 50% 50%, rgba(52, 211, 153, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 800px 800px at 75% 25%, rgba(244, 114, 182, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 700px 600px at 30% 70%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
   pointer-events: none;
-  opacity: 0.7;
+  z-index: 0;
+  animation: nebula-float 30s ease-in-out infinite, nebula-pulse 15s ease-in-out infinite;
+}
+
+@keyframes nebula-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+  66% {
+    transform: translate(-30px, 40px) scale(0.92);
+  }
+}
+
+@keyframes nebula-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.3);
+  }
+}
+
+/* LOTS of twinkling stars */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    /* Bright stars scattered everywhere */
+    radial-gradient(circle 2px at 8% 12%, rgba(167, 139, 250, 0.9), transparent 2px),
+    radial-gradient(circle 1px at 8% 12%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 15% 25%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 15% 25%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 22% 8%, rgba(52, 211, 153, 0.8), transparent 1.5px),
+    radial-gradient(circle 1px at 22% 8%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 35% 18%, rgba(244, 114, 182, 0.7), transparent 2px),
+    radial-gradient(circle 1px at 35% 18%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 42% 32%, rgba(167, 139, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 42% 32%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 55% 15%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 55% 15%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 62% 28%, rgba(34, 211, 238, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 62% 28%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 70% 10%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 70% 10%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 78% 22%, rgba(52, 211, 153, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 78% 22%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 85% 35%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 85% 35%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 92% 18%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 92% 18%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 12% 45%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 12% 45%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 25% 52%, rgba(96, 165, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 25% 52%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 38% 48%, rgba(52, 211, 153, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 38% 48%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 48% 55%, rgba(34, 211, 238, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 48% 55%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 58% 42%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 58% 42%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 68% 58%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 68% 58%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 75% 48%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 75% 48%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 88% 52%, rgba(52, 211, 153, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 88% 52%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 18% 68%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 18% 68%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 28% 72%, rgba(96, 165, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 28% 72%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 42% 75%, rgba(52, 211, 153, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 42% 75%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 52% 65%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 52% 65%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 65% 78%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 65% 78%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 72% 85%, rgba(96, 165, 250, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 72% 85%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 82% 72%, rgba(34, 211, 238, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 82% 72%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 92% 88%, rgba(52, 211, 153, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 92% 88%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 5% 90%, rgba(167, 139, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 5% 90%, white, transparent 1px),
+
+    radial-gradient(circle 1.5px at 32% 92%, rgba(244, 114, 182, 0.7), transparent 1.5px),
+    radial-gradient(circle 1px at 32% 92%, white, transparent 1px),
+
+    radial-gradient(circle 2px at 50% 88%, rgba(96, 165, 250, 0.8), transparent 2px),
+    radial-gradient(circle 1px at 50% 88%, white, transparent 1px);
+
+  animation: starfield-twinkle 8s ease-in-out infinite;
+  pointer-events: none;
   z-index: 0;
 }
 
-@keyframes gentle-twinkle {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
+@keyframes starfield-twinkle {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
 .wrap {
-  max-width: 1400px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
   position: relative;
   z-index: 1;
 }
 
+/* Typography - Friendly & Readable */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-bright);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4vw, 3.75rem);
+}
+
 a {
-  color: var(--primary);
+  color: var(--blue-glow);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--secondary);
-  transform: translateY(-1px);
+  color: var(--purple-glow);
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Header - Welcoming & Friendly */
+header {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--blue-glow), var(--purple-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: cosmic-glow 4s ease-in-out infinite;
+}
+
+@keyframes cosmic-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.4));
+  }
+}
+
+header p {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+header a {
+  display: inline-block;
+  padding: 12px 28px;
+  background: rgba(167, 139, 250, 0.15);
+  border: 2px solid rgba(167, 139, 250, 0.3);
+  border-radius: var(--radius-xl);
+  color: var(--purple-glow);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+header a:hover {
+  background: rgba(167, 139, 250, 0.25);
+  border-color: var(--purple-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.3);
+}
+
+/* Category Filter - Duolingo Style Pills */
+.filter {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0 60px;
+  padding: 0 24px;
+}
+
+.filter button {
+  padding: 10px 24px;
+  background: rgba(26, 31, 53, 0.8);
+  border: 2px solid transparent;
+  border-radius: var(--radius-xl);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filter button:hover {
+  background: rgba(167, 139, 250, 0.2);
+  color: var(--text-bright);
+  transform: translateY(-2px);
+}
+
+.filter button.active {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.3), rgba(96, 165, 250, 0.25));
+  border-color: var(--purple-glow);
+  color: var(--text-bright);
+  box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+}
+
+/* Posts Grid */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 28px;
+  padding: 0 24px 80px;
+}
+
+@media (max-width: 768px) {
+  .posts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Post Card - Duolingo-Rounded & Gentle */
+.post {
+  background: var(--space-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.post::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, var(--purple-glow), var(--blue-glow), var(--green-glow));
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.post:hover::before {
+  opacity: 0.4;
+}
+
+.post:hover {
+  background: var(--space-lighter);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 32px var(--shadow);
+}
+
+.post .tag {
+  display: inline-block;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(96, 165, 250, 0.2));
+  border: 1.5px solid rgba(167, 139, 250, 0.35);
+  border-radius: var(--radius-xl);
+  color: var(--purple-glow);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 14px;
+}
+
+.post h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
   font-weight: 700;
   line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: var(--ink);
 }
 
-/* Smooth Transitions */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+.post h2 a {
+  color: var(--text-bright);
+  transition: all 0.3s ease;
+}
+
+.post h2 a:hover {
+  background: linear-gradient(135deg, var(--blue-glow), var(--purple-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.post .excerpt {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.post .meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.825rem;
+  color: rgba(160, 168, 192, 0.7);
+}
+
+/* Individual Post Page */
+.post-header {
+  padding: 80px 0 40px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-header h1 {
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--blue-glow), var(--purple-glow), var(--green-glow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.post-header .meta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.post-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.post-content h2 {
+  margin-top: 48px;
+  margin-bottom: 20px;
+  font-size: 1.875rem;
+  color: var(--text-bright);
+}
+
+.post-content h3 {
+  margin-top: 40px;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  color: var(--text-bright);
+}
+
+.post-content p {
+  margin-bottom: 20px;
+  color: var(--text-muted);
+}
+
+.post-content a {
+  color: var(--blue-glow);
+  text-decoration: underline;
+  text-decoration-color: rgba(96, 165, 250, 0.3);
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+.post-content a:hover {
+  color: var(--purple-glow);
+  text-decoration-color: var(--purple-glow);
+}
+
+.post-content ul, .post-content ol {
+  margin-bottom: 20px;
+  padding-left: 28px;
+  color: var(--text-muted);
+}
+
+.post-content li {
+  margin-bottom: 10px;
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--purple-glow);
+  padding: 20px 24px;
+  margin: 28px 0;
+  background: rgba(167, 139, 250, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.post-content code {
+  background: rgba(167, 139, 250, 0.18);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.9em;
+  color: var(--purple-glow);
+  font-family: 'SF Mono', Monaco, monospace;
+}
+
+.post-content pre {
+  background: var(--space-card);
+  padding: 20px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border: 2px solid var(--border);
+}
+
+.post-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-main);
+}
+
+/* Footer - Gentle */
+footer {
+  text-align: center;
+  padding: 48px 24px 40px;
+  color: rgba(160, 168, 192, 0.6);
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+footer p {
+  font-size: 0.875rem;
+}
+
+/* Scrollbar - Gentle Colors */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--purple-glow), var(--blue-glow));
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--blue-glow), var(--cyan-glow));
 }
 
 /* Utility */
