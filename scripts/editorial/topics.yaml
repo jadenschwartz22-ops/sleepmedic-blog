@@ -1,73 +1,117 @@
+# SleepMedic Blog Editorial Calendar
+# 6 buckets, ~12-15 topics each, rotated weekly by isoWeek % 6
+# Topics are phrased as search-intent keywords for SEO alignment
+
 core_tags:
-  - Shift Work
-  - Evidence-Based
+  - Science
   - Tools
+  - Troubleshooting
+  - Trending
+  - Shift Work
+  - Life Stages
 
 buckets:
-  - name: Why sleep matters (science)
+  - name: Sleep science & how it works
     tag: Science
     topics:
-      - Why do we sleep? Evolutionary perspectives
-      - Memory consolidation during REM vs deep sleep
-      - Long-term effects of poor sleep on specific organs
-      - Mitochondrial function and cellular energy during sleep
-      - Sleep for muscle protein synthesis and athletic recovery
-      - Testosterone, growth hormone, and cortisol rhythms
-      - Sleep and neurotransmitter balance (serotonin, dopamine, GABA)
-      - Telomeres, cellular aging, and sleep quality
-      - Leptin, ghrelin, and metabolic regulation during sleep
-      - Menstrual cycle effects on sleep architecture
-      - Ancient warrior sleep practices and biphasic patterns
-      - Sleep in different cultures: Siesta, Inemuri, and beyond
-      - The science of dreams and lucid dreaming
-      - Chronotypes: Are you really a night owl?
-      - Sleep spindles and what they reveal about your brain
+      - How much deep sleep do you actually need
+      - REM sleep vs deep sleep and which matters more
+      - What happens to your brain while you sleep
+      - Sleep cycles explained and the 90-minute myth
+      - Why do we dream and what dreams mean
+      - Chronotypes and whether you are really a night owl
+      - How sleep affects memory consolidation and learning
+      - Sleep and your immune system
+      - How sleep regulates metabolism and weight
+      - Testosterone, growth hormone, and cortisol during sleep
+      - How sleep cleans your brain through the glymphatic system
+      - The connection between sleep and heart disease
+      - Sleep deprivation effects on decision making and reaction time
+      - Circadian rhythm explained and why light matters
 
-  - name: How to sleep better / tools
+  - name: Sleep tools & techniques
     tag: Tools
     topics:
-      - Military sleep technique: 2-minute method from WWII
-      - Box breathing and 4-7-8 technique for sleep onset
+      - How to fall asleep in 5 minutes with evidence-ranked methods
+      - The military 2-minute sleep technique from WWII
+      - Box breathing and 4-7-8 technique for falling asleep
       - Non-sleep deep rest (NSDR) and Yoga Nidra protocols
-      - Cold exposure timing for better sleep (not what you think)
+      - Progressive muscle relaxation the Jacobson technique
+      - Cognitive shuffling to quiet racing thoughts at bedtime
+      - Cold exposure and body temperature for deeper sleep
       - The 10-3-2-1 sleep protocol explained
-      - Magnesium types: Glycinate vs Threonate vs Citrate
-      - L-theanine, GABA, and Ashwagandha: Evidence review
-      - Pink noise vs white noise vs brown noise
-      - Mouth taping: Science and safety considerations
-      - Progressive muscle relaxation: The Jacobson technique
-      - Cognitive shuffling to quiet racing thoughts
-      - The 90-minute ultradian rhythm hack
-      - Body temperature manipulation for deeper sleep
-      - Acupressure points for sleep (Shenmen, Anmian)
-      - Weighted blankets: Pressure therapy explained
+      - Pink noise vs white noise vs brown noise for sleep
+      - Weighted blankets and the science of pressure therapy
+      - The ideal bedroom setup for better sleep
+      - Mouth taping for sleep science and safety
+      - Sleep restriction therapy for chronic insomnia
+      - Acupressure points for sleep Shenmen and Anmian
+      - How to build a wind-down routine that works
 
-  - name: When/where to sleep
-    tag: Timing
+  - name: Sleep troubleshooting
+    tag: Troubleshooting
     topics:
-      - Are naps good (and how)?
-      - What time should I sleep/wake?
-      - Ideal sleep environment
-      - Cultural sleep practices worth stealing
-      - How much sleep is too much?
-      - Tracking sleep: tech + feelings
-      - How to know if you’re sleeping enough
+      - Why you can't sleep at night and what to do about it
+      - Why you keep waking up at 3am
+      - How to fix a destroyed sleep schedule
+      - Sunday night insomnia why it happens and how to beat it
+      - Sleep anxiety and why worrying about sleep makes it worse
+      - Revenge bedtime procrastination why you stay up too late
+      - Racing thoughts at bedtime evidence-based solutions
+      - Why you are tired but can't fall asleep
+      - How to stop hitting snooze every morning
+      - Jet lag recovery fast reset protocols
+      - Waking up tired after 8 hours why it happens
+      - How to know if you are getting enough sleep
+      - Why you sleep worse on Sunday nights
+      - Can't sleep after exercise and what to do
 
-  - name: Special considerations
-    tag: Special
+  - name: Trending sleep topics
+    tag: Trending
     topics:
-      - Forward vs backward rotating shifts: Circadian optimization
-      - Sleep during follicular vs luteal phase: Hormone hacks
-      - Perimenopause night sweats: Thermoregulation strategies
-      - Pregnancy insomnia: Position, progesterone, and solutions
-      - The firefighter paradox: Sleep between calls
-      - Military field sleep: Lessons from special forces
-      - ICU nurse recovery: The 3-day reset protocol
-      - Polyphasic sleep for new parents: Is it safe?
-      - ADHD and revenge bedtime procrastination
+      - Magnesium for sleep what the research actually says
+      - Sleepmaxxing explained the trend the science and the BS
+      - Sleepy girl mocktail does it actually work for sleep
+      - Melatonin dosage how much is too much
+      - Orthosomnia when your sleep tracker makes your sleep worse
+      - L-theanine GABA and ashwagandha evidence review for sleep
+      - Tart cherry juice for sleep does it work
+      - Magnesium glycinate vs threonate vs citrate for sleep
+      - Bed rotting mental health rest or unhealthy habit
+      - The cortisol awakening response and morning anxiety
+      - Sleep syncing aligning your sleep with your menstrual cycle
+      - Huberman sleep toolkit what actually works
+      - Is 6 hours of sleep really enough
+      - The best sleep trackers and whether you need one
+
+  - name: Shift worker & schedule sleep
+    tag: Shift Work
+    topics:
+      - How to sleep after a night shift
+      - Forward vs backward rotating shifts circadian optimization
+      - The firefighter paradox sleep between calls
+      - ICU nurse recovery the 3-day reset protocol
+      - 24-hour shift sleep strategy for EMS and fire
+      - Night shift meal timing for better sleep
+      - Protecting circadian rhythm during rotating shifts
+      - Strategic napping for shift workers
+      - Light management for night shift workers
+      - How shift work affects your long-term health
+      - Building sleep consistency with a chaotic schedule
+      - Night shift and weight gain the circadian connection
+
+  - name: Life stages & special populations
+    tag: Life Stages
+    topics:
+      - Sleep during pregnancy positions hormones and solutions
+      - Perimenopause night sweats and thermoregulation strategies
+      - Menstrual cycle effects on sleep architecture
+      - ADHD and sleep why your brain won't shut off
+      - Sleep for athletes recovery and performance optimization
+      - New parent sleep survival strategies
+      - Sleep changes after 40 what is normal and what isn't
       - Trauma-informed sleep practices for first responders
-      - The Danish winter sleep method
-      - Japanese forest bathing for better sleep
-      - Scandinavian fresh air sleeping for babies
-      - Sleep in extreme environments: Polar research
-      - Altitude and sleep: Mountain medicine insights
+      - Anxiety and insomnia breaking the cycle
+      - Couples sleep different schedules same bed
+      - Student sleep managing exams caffeine and all-nighters
+      - Sleep and aging what changes and what you can do

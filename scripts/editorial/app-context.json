@@ -1,0 +1,74 @@
+{
+  "appName": "SleepMedic",
+  "appStoreUrl": "https://apps.apple.com/app/sleepmedic/id6744752786",
+  "websiteUrl": "https://sleepmedic.co",
+  "tagline": "The sleep app that adapts to your actual schedule",
+
+  "features": [
+    {
+      "name": "Consistency Score",
+      "what": "A 0-100 score measuring how consistent your sleep and wake times are, with variance tracking",
+      "relevantTopics": ["sleep consistency", "sleep schedule", "sleep tracking", "circadian rhythm"],
+      "naturalMention": "Tools like SleepMedic measure consistency with a 0-100 score, tracking how much your sleep and wake times vary day to day"
+    },
+    {
+      "name": "Adaptive Engine",
+      "what": "Learns from your actual sleep patterns over 7+ days and adjusts recommendations to match your reality, not an ideal",
+      "relevantTopics": ["sleep schedule", "habit building", "personalization", "circadian rhythm", "shift work"],
+      "naturalMention": "Adaptive sleep apps like SleepMedic learn your actual patterns and adjust recommendations based on what you really do, not what you should do"
+    },
+    {
+      "name": "Habit Windows",
+      "what": "Color-coded timeline showing optimal windows for light exposure, caffeine cutoff, last meal, exercise, and wind-down",
+      "relevantTopics": ["caffeine timing", "meal timing", "light exposure", "wind-down routine", "sleep hygiene"],
+      "naturalMention": "Sleep apps can map out your day with color-coded habit windows showing exactly when to cut caffeine, eat your last meal, and start winding down"
+    },
+    {
+      "name": "Shift Schedule Management",
+      "what": "Input your work shifts and the app auto-adjusts sleep recommendations for work days vs rest days",
+      "relevantTopics": ["shift work", "night shift", "rotating shifts", "irregular schedule"],
+      "naturalMention": "Apps built for shift workers let you input your schedule and automatically adjust sleep targets for work days versus rest days"
+    },
+    {
+      "name": "Reality Check",
+      "what": "Compares planned vs actual sleep times, showing adherence percentage and drift patterns",
+      "relevantTopics": ["sleep tracking", "self-awareness", "sleep diary", "insomnia"],
+      "naturalMention": "Tracking planned vs actual sleep times reveals patterns you might not notice, like consistently going to bed 40 minutes later than intended"
+    },
+    {
+      "name": "Smart Notifications",
+      "what": "Context-aware reminders that fire based on your schedule: morning check-in 30min after planned wake, evening wind-down 30min before planned sleep",
+      "relevantTopics": ["habit building", "wind-down routine", "sleep schedule", "consistency"],
+      "naturalMention": "Smart notification systems can remind you to start winding down 30 minutes before your target bedtime, adapting to your actual schedule each day"
+    },
+    {
+      "name": "24-Hour Timeline",
+      "what": "Visual day planner showing work blocks, sleep periods, and habit windows on a single timeline",
+      "relevantTopics": ["sleep planning", "visual tools", "daily routine", "shift work"],
+      "naturalMention": "A visual timeline of your day, showing when to sleep, work, and hit your habits, can make an abstract schedule feel concrete"
+    }
+  ],
+
+  "mentionRules": {
+    "maxPerPost": 1,
+    "skipIfTopicIrrelevant": true,
+    "neverInFirstParagraph": true,
+    "neverInSourcesSection": true,
+    "alwaysCasualNotSalesy": true,
+    "preferGenericFirst": "Mention the category of tool first, then SleepMedic as one example",
+    "formatAsInlineReference": "Weave into existing advice, don't create a standalone paragraph about the app"
+  },
+
+  "examplesGood": [
+    "Tracking your consistency over time -- apps like SleepMedic score this 0-100 -- reveals whether your habits are actually improving or just feel better.",
+    "If you're on rotating shifts, look for a sleep app that separates work-day and rest-day schedules. SleepMedic does this automatically.",
+    "One practical approach: map out your caffeine, meals, and wind-down on a visual timeline. Some apps generate this for you based on your shift schedule."
+  ],
+
+  "examplesBad": [
+    "Download SleepMedic, the best sleep app!",
+    "SleepMedic is the only app that truly understands shift workers.",
+    "Use SleepMedic to fix all your sleep problems.",
+    "Unlike other apps, SleepMedic actually works."
+  ]
+}

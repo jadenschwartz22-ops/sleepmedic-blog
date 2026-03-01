@@ -16,9 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: America/Denver
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      OPENAI_MODEL: gpt-4o-mini
-      UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -34,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Generate blog post
+      - name: Generate blog post (multi-agent pipeline)
         id: generate
         run: |
           node scripts/generate-blog-post.mjs
@@ -44,64 +42,7 @@ jobs:
           jq -r '.topic' tmp/post-metadata.json | xargs -I {} echo "topic={}" >> $GITHUB_OUTPUT
           jq -r '.tag' tmp/post-metadata.json | xargs -I {} echo "tag={}" >> $GITHUB_OUTPUT
           jq -r '.excerpt' tmp/post-metadata.json | xargs -I {} echo "excerpt={}" >> $GITHUB_OUTPUT
-          jq -r '.imageIdea' tmp/post-metadata.json | tr '\n' ' ' | xargs -I {} echo "image_idea={}" >> $GITHUB_OUTPUT
-
-      - name: Fetch and select best Unsplash image
-        id: image
-        env:
-          IMAGE_IDEA: ${{ steps.generate.outputs.image_idea }}
-        run: |
-          # Fetch images from Unsplash with enhanced search
-          echo "🔍 Searching for: $IMAGE_IDEA"
-
-          # If no image idea, use safe defaults
-          if [ -z "$IMAGE_IDEA" ]; then
-            IMAGE_IDEA="sleep bedroom night rest peaceful"
-          fi
-
-          node scripts/fetch-unsplash-images.mjs
-
-          # Select the first (most relevant) image automatically
-          PHOTOGRAPHER=$(jq -r '.[]|select(.!=null)|.user.name' tmp/image-options.json | head -1)
-          PHOTOGRAPHER_URL=$(jq -r '.[]|select(.!=null)|.user.links.html' tmp/image-options.json | head -1)
-          IMAGE_URL=$(jq -r '.[]|select(.!=null)|.urls.regular' tmp/image-options.json | head -1)
-          DOWNLOAD_URL=$(jq -r '.[]|select(.!=null)|.links.download' tmp/image-options.json | head -1)
-
-          echo "photographer=$PHOTOGRAPHER" >> $GITHUB_OUTPUT
-          echo "photographer_url=$PHOTOGRAPHER_URL" >> $GITHUB_OUTPUT
-          echo "image_url=$IMAGE_URL" >> $GITHUB_OUTPUT
-          echo "download_url=$DOWNLOAD_URL" >> $GITHUB_OUTPUT
-
-          echo "📸 Auto-selected image by $PHOTOGRAPHER"
-
-      - name: Add cover image to post
-        run: |
-          POST_FILE="blog/posts/${{ steps.generate.outputs.filename }}"
-          POST_SLUG=$(basename "$POST_FILE" .html)
-
-          # Download the selected image
-          curl -L "${{ steps.image.outputs.image_url }}" -o blog/cover-temp.jpg
-
-          # Move to final location
-          mkdir -p blog/posts/images
-          mv blog/cover-temp.jpg "blog/posts/images/${POST_SLUG}-cover.jpg"
-
-          # Add cover image HTML to the post
-          awk -v img="images/${POST_SLUG}-cover.jpg" \
-              -v photo="${{ steps.image.outputs.photographer }}" \
-              -v url="${{ steps.image.outputs.photographer_url }}" '
-            /<div class="post-content">/ && !done {
-              print "      <div style=\"margin-bottom: 40px;\">"
-              print "        <img src=\"" img "\" alt=\"Cover image\" style=\"width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;\">"
-              print "        <p style=\"text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;\">Photo by <a href=\"" url "\" style=\"color: var(--periwinkle);\">" photo "</a> on Unsplash</p>"
-              print "      </div>"
-              done=1
-            }
-            { print }
-          ' "$POST_FILE" > /tmp/post-updated.html
-          mv /tmp/post-updated.html "$POST_FILE"
-
-          echo "✅ Cover image added to post automatically"
+          jq -r '.hasAiImage' tmp/post-metadata.json | xargs -I {} echo "has_image={}" >> $GITHUB_OUTPUT
 
       - name: Generate RSS feed
         run: node scripts/generate-rss-feed.mjs
@@ -115,41 +56,38 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "blog: Add ${{ steps.generate.outputs.filename }} (auto-published)"
-          title: "📝 Auto-Published: ${{ steps.generate.outputs.title }}"
+          title: "Auto-Published: ${{ steps.generate.outputs.title }}"
           body: |
-            ## 🤖 Fully Automated Blog Post
+            ## Automated Blog Post (Multi-Agent Pipeline)
 
             **Topic:** ${{ steps.generate.outputs.topic }}
             **Tag:** ${{ steps.generate.outputs.tag }}
             **Title:** ${{ steps.generate.outputs.title }}
             **File:** `blog/posts/${{ steps.generate.outputs.filename }}`
-
-            **Cover Image:** Auto-selected by ${{ steps.image.outputs.photographer }}
-
-            ---
-
-            ### ✅ Automated Quality Checks
-
-            This post was automatically:
-            - Generated with GPT-4o-mini
-            - Enhanced with a relevant Unsplash image
-            - Tagged and categorized appropriately
-            - Added to the RSS feed
+            **AI Cover Image:** ${{ steps.generate.outputs.has_image }}
 
             ---
 
-            ### 🚀 Auto-Merge Status
+            ### Pipeline Agents
+
+            1. **Planner** - Created outline and structure (Gemini 2.5 Flash)
+            2. **Section Writers** - One call per section for varied voice
+            3. **Editor** - Reviewed full draft, removed AI-isms
+            4. **Cross-Linker** - Added internal links to related posts
+            5. **Imagen 3** - Generated cover image
+
+            ---
+
+            ### Auto-Merge Status
 
             This PR will be automatically merged in 5 minutes if all checks pass.
-
             To stop auto-merge, comment `/hold` on this PR.
 
             ---
 
-            ### 🔗 Preview
+            ### Preview
 
-            After auto-merge, post will be live at:
-            `https://sleepmedic.co/blog/posts/${{ steps.generate.outputs.filename }}`
+            After merge: `https://sleepmedic.co/blog/posts/${{ steps.generate.outputs.filename }}`
 
           branch: auto-blog-${{ github.run_number }}
           base: main
@@ -158,7 +96,7 @@ jobs:
 
       - name: Wait for checks
         run: |
-          echo "⏳ Waiting 30 seconds for GitHub to process PR..."
+          echo "Waiting 30 seconds for GitHub to process PR..."
           sleep 30
 
       - name: Auto-merge PR
@@ -166,22 +104,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PR_NUMBER="${{ steps.pr.outputs.pull-request-number }}"
-
-          # Wait a bit more for PR to be ready
-          echo "⏳ Waiting for PR to be ready..."
+          echo "Waiting for PR to be ready..."
           sleep 10
 
-          # Enable auto-merge
           gh pr merge "$PR_NUMBER" --squash --auto --body "Auto-merged by weekly automation"
+          echo "PR #$PR_NUMBER set to auto-merge"
 
-          echo "✅ PR #$PR_NUMBER set to auto-merge"
-
-          # Try to merge immediately if possible
           sleep 5
           if gh pr merge "$PR_NUMBER" --squash --body "Auto-merged by weekly automation" 2>/dev/null; then
-            echo "✅ PR #$PR_NUMBER merged successfully"
+            echo "PR #$PR_NUMBER merged successfully"
           else
-            echo "📋 PR #$PR_NUMBER will auto-merge when checks complete"
+            echo "PR #$PR_NUMBER will auto-merge when checks complete"
           fi
 
       - name: Create summary issue
@@ -192,23 +125,24 @@ jobs:
             const title = '${{ steps.generate.outputs.title }}';
             const filename = '${{ steps.generate.outputs.filename }}';
             const prNumber = '${{ steps.pr.outputs.pull-request-number }}';
-            const photographer = '${{ steps.image.outputs.photographer }}';
+            const hasImage = '${{ steps.generate.outputs.has_image }}';
 
-            const body = `## ✅ Blog Auto-Published Successfully
+            const body = `## Blog Auto-Published Successfully
 
             **Title:** ${title}
             **File:** \`blog/posts/${filename}\`
             **PR:** #${prNumber}
-            **Cover Image:** By ${photographer} on Unsplash
+            **AI Cover Image:** ${hasImage === 'true' ? 'Yes (Imagen 3)' : 'No (generation unavailable)'}
+            **Pipeline:** Planner -> Section Writers -> Editor -> Cross-Linker -> Imagen 3
 
-            ### 🔗 Links
+            ### Links
 
             - [View PR](https://github.com/${{ github.repository }}/pull/${prNumber})
             - [Live Post](https://sleepmedic.co/blog/posts/${filename}) (available after merge)
 
-            ### 📅 Next Post
+            ### Next Post
 
-            The next blog post will be automatically generated and published next Monday at 9:00 AM MT.
+            Next blog post will be automatically generated and published next Monday at 9:00 AM MT.
 
             ---
 
@@ -217,7 +151,7 @@ jobs:
             const resp = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `✅ Auto-Published: ${title}`,
+              title: `Auto-Published: ${title}`,
               body,
               labels: ['blog', 'auto-published']
             });
@@ -228,4 +162,4 @@ jobs:
         if: always()
         run: |
           rm -rf tmp/
-          echo "✅ Cleanup complete"
+          echo "Cleanup complete"

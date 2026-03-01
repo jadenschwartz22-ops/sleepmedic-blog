@@ -19,7 +19,6 @@
   "author": "Jaden Schwartz",
   "license": "MIT",
   "dependencies": {
-    "openai": "^4.67.3",
     "yaml": "^2.6.1",
     "chalk": "^5.3.0"
   }

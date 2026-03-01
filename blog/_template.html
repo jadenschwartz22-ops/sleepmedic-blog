@@ -184,6 +184,56 @@
       margin-bottom: 24px;
     }
 
+    .app-cta {
+      background: rgba(22,160,133,0.06);
+      border: 1px solid rgba(22,160,133,0.15);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 48px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .app-cta-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .app-cta-text {
+      flex: 1;
+    }
+
+    .app-cta-text p {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .app-cta-text a {
+      display: inline-block;
+      padding: 8px 18px;
+      background: var(--primary);
+      color: #05080c;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .app-cta-text a:hover {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 480px) {
+      .app-cta {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
     .newsletter-cta {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: var(--radius);
@@ -223,6 +273,15 @@
       <!-- Post Content -->
       <div class="post-content">
         {{CONTENT}}
+      </div>
+
+      <!-- App CTA -->
+      <div class="app-cta">
+        <div class="app-cta-icon">🌙</div>
+        <div class="app-cta-text">
+          <p>SleepMedic adapts to your actual schedule — not a rigid ideal. Track consistency, get smart reminders, and see what's really working.</p>
+          <a href="https://apps.apple.com/app/sleepmedic/id6744752786">Download Free on iOS</a>
+        </div>
       </div>
 
       <!-- Newsletter CTA -->
