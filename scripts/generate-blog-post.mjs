@@ -158,7 +158,7 @@ async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 81
 // ── Image Generation (Gemini native, with retry) ─────
 
 async function generateImage(prompt, outputPath) {
-  const fullPrompt = `Generate a professional editorial blog cover photograph: ${prompt}. Warm natural tones, soft ambient lighting, atmospheric depth. No text overlay, no watermarks. If people appear, show them from behind, from the side, or at a distance -- never show a full face directly facing the camera. Landscape 16:9 composition. Photorealistic style. IMPORTANT: Do NOT default to generic bedroom or bed imagery. Show the real world -- workplaces, hallways, break rooms, outdoor scenes, hands on equipment, cityscapes at dawn, dimly lit fire stations, hospital corridors, coffee on a desk at 3am. Varied, specific, and editorial.`;
+  const fullPrompt = `Generate a professional editorial blog cover photograph: ${prompt}. Warm natural tones, soft ambient lighting, atmospheric depth. No text overlay, no watermarks. If people appear, show them from behind, from the side, or at a distance -- never show a full face directly facing the camera. Landscape 16:9 composition. Photorealistic style. IMPORTANT: Generate diverse, visually distinct editorial imagery. Could be: atmospheric landscapes (misty mountains at dawn, ocean at blue hour), science/biology visualizations (neurons firing, circadian rhythm diagrams rendered beautifully), lifestyle moments (morning coffee ritual, stretching at golden hour), workplace scenes (hospital corridor, fire station, cockpit), nature (forest canopy light, desert starscape, rain on glass), abstract light studies (light through blinds, neon reflections on wet pavement), macro photography (clock gears, condensation drops, plant tendrils), urban scenes at unusual hours (empty streets at 4am, city skyline at twilight). AVOID: generic bedrooms, beds, pillows, sleeping people. Each image should be visually surprising and distinct.`;
   const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${IMAGE_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
@@ -257,41 +257,90 @@ async function stage1_selectTopic() {
   const recent = (await loadRecentTopics()).map(t => t.topic);
   const week = getWeekNumber();
   const offset = Math.floor(Math.random() * 3);
+  const useOriginalTopic = Math.random() < 0.5;
 
-  let bucket = buckets[(week + offset) % buckets.length];
-  let idx = Math.floor((week + offset) / buckets.length) % bucket.topics.length;
-  let topic = bucket.topics[idx];
+  let topic, tag, bucketName;
 
-  for (let i = 0; i < 40 && recent.includes(topic); i++) {
-    idx = (idx + 1) % bucket.topics.length;
-    if (idx === 0) bucket = buckets[(buckets.indexOf(bucket) + 1) % buckets.length];
+  if (useOriginalTopic) {
+    // Generate an original topic via LLM -- not limited to predefined buckets
+    logDetail('Generating original topic (not from predefined list)...');
+    const bucketNames = buckets.map(b => `${b.name} (${b.tag})`).join(', ');
+    const recentList = recent.slice(-15).join('; ');
+
+    const generated = await gemini(
+      `You are the editorial director for SleepMedic, a sleep science blog.
+Your audience: anyone with sleep problems, with a core niche of shift workers.
+
+EXISTING TOPIC BUCKETS (for reference, not a constraint): ${bucketNames}
+RECENTLY COVERED (avoid overlap): ${recentList || 'none yet'}
+
+Generate a completely ORIGINAL blog topic that goes BEYOND the predefined buckets above.
+Consider:
+- Emerging sleep science research or findings from the last 1-2 years
+- Underserved questions people ask about sleep that lack authoritative answers online
+- Niche intersections (sleep + specific professions, sleep + mental health conditions, sleep + medications, sleep + age groups, sleep + seasons/travel/altitude)
+- What sleep-related questions have HIGH SEARCH INTEREST but FEW authoritative answers?
+- Topics trending in sleep medicine forums, Reddit r/sleep, or health Q&A sites
+
+The topic must be specific enough for a focused 800-1200 word article. Not a broad overview.
+
+Return JSON:
+{
+  "topic": "the specific topic (5-12 words)",
+  "tag": "closest category tag: shift-work | circadian | sleep-hygiene | conditions | supplements | tools",
+  "bucketName": "closest bucket name"
+}`,
+      { json: true, temp: 0.9, search: true }
+    );
+
+    topic = generated.topic;
+    tag = generated.tag || 'sleep-hygiene';
+    bucketName = generated.bucketName || 'General';
+    logDetail(`Original topic generated: "${topic}"`);
+  } else {
+    // Pick from predefined topic buckets
+    let bucket = buckets[(week + offset) % buckets.length];
+    let idx = Math.floor((week + offset) / buckets.length) % bucket.topics.length;
     topic = bucket.topics[idx];
+
+    for (let i = 0; i < 40 && recent.includes(topic); i++) {
+      idx = (idx + 1) % bucket.topics.length;
+      if (idx === 0) bucket = buckets[(buckets.indexOf(bucket) + 1) % buckets.length];
+      topic = bucket.topics[idx];
+    }
+
+    tag = bucket.tag;
+    bucketName = bucket.name;
+    logDetail(`Picked from bucket: "${bucketName}"`);
   }
 
-  // LLM generates a specific angle on the topic
+  // LLM generates a specific angle on the topic with SEO awareness
   const angleData = await gemini(
     `Topic: "${topic}"
-Category: ${bucket.name} (${bucket.tag})
+Category: ${bucketName} (${tag})
 
 Generate a specific, compelling angle for a blog post on this topic.
 Think: what's the one question someone would Google at 2am about this?
+Consider: what related search queries have high interest but few quality results?
 
 Return JSON:
 {
   "angle": "specific angle (1 sentence)",
   "audience_segment": "who this helps most (e.g., 'night shift nurses', 'anxious sleepers', 'new parents')",
   "emotional_hook": "the feeling or frustration that drives someone to search for this (1 sentence)",
-  "search_query": "what someone would actually type into Google"
+  "search_query": "what someone would actually type into Google",
+  "seo_gap": "a related question with high search interest but few authoritative answers"
 }`,
     { json: true, temp: 0.8 }
   );
 
   await saveTopicToHistory(topic);
 
-  const result = { topic, tag: bucket.tag, bucketName: bucket.name, ...angleData };
-  logDetail(`Topic: "${topic}" [${bucket.tag}]`);
+  const result = { topic, tag, bucketName, ...angleData };
+  logDetail(`Topic: "${topic}" [${tag}]`);
   logDetail(`Angle: ${angleData.angle}`);
   logDetail(`Audience: ${angleData.audience_segment}`);
+  if (angleData.seo_gap) logDetail(`SEO gap: ${angleData.seo_gap}`);
   return result;
 }
 
@@ -313,6 +362,9 @@ async function stage2_research(topicInfo) {
 Topic: "${topicInfo.topic}"
 Angle: ${topicInfo.angle}
 Target audience: ${topicInfo.audience_segment}
+${topicInfo.seo_gap ? `SEO gap to address: ${topicInfo.seo_gap}` : ''}
+
+Also research: What are people actively searching for related to "${topicInfo.topic}"? Find related queries with high search interest that this article should address.
 
 Return a JSON object with REAL, VERIFIABLE information. Keep values SHORT -- no long paragraphs.
 {
@@ -324,7 +376,8 @@ Return a JSON object with REAL, VERIFIABLE information. Keep values SHORT -- no 
   ],
   "surprising_fact": "one short counterintuitive fact",
   "mechanisms": ["mechanism 1", "mechanism 2"],
-  "practical_protocols": ["technique name with origin"]
+  "practical_protocols": ["technique name with origin"],
+  "seo_angles": ["related search query people actually type 1", "related search query 2", "related search query 3"]
 }
 
 RULES:
@@ -332,6 +385,7 @@ RULES:
 - 2-3 statistics with real numbers
 - Only include URLs you are confident are real
 - Mechanisms must be named physiological processes (circadian phase, homeostatic sleep drive, thermoregulation, etc.)
+- seo_angles: 2-4 real search queries people use related to this topic (think Google autocomplete, "People also ask", related searches)
 - Keep ALL string values under 150 characters to avoid truncation`;
 
   let research;
@@ -347,6 +401,7 @@ RULES:
 
   logDetail(`Found ${research.studies?.length || 0} studies, ${research.key_stats?.length || 0} stats`);
   logDetail(`Mechanisms: ${(research.mechanisms || []).join(', ')}`);
+  if (research.seo_angles?.length) logDetail(`SEO angles: ${research.seo_angles.join('; ')}`);
   return research;
 }
 
@@ -377,6 +432,8 @@ ANGLE: ${topicInfo.angle}
 AUDIENCE: ${topicInfo.audience_segment}
 EMOTIONAL HOOK: ${topicInfo.emotional_hook}
 SEARCH QUERY: ${topicInfo.search_query}
+${topicInfo.seo_gap ? `SEO GAP: ${topicInfo.seo_gap}` : ''}
+${research.seo_angles?.length ? `RELATED SEARCHES TO ADDRESS: ${research.seo_angles.join('; ')}` : ''}
 
 RESEARCH DATA (use this -- do not invent citations):
 ${researchSummary}
@@ -400,9 +457,9 @@ Return JSON:
       "tone_note": "e.g., 'open with tension', 'matter-of-fact', 'empathetic'"
     }
   ],
-  "imagePrompt": "specific atmospheric scene showing the WORLD of the reader, not a bed. Examples: nurse in scrubs walking a dim hospital corridor at shift change, firefighter boots by a bunk room door, coffee mug and stethoscope on a break room table at 4am, sunrise through an ambulance windshield, hands gripping a steering wheel on a dark highway. Show the environment, the work, the struggle -- not a pillow.",
+  "imagePrompt": "a visually distinct, editorial scene. Be creative and varied. Examples: misty mountain ridge at first light, neurons firing in a stylized brain cross-section, rain streaking down a kitchen window at dawn, a lone jogger on an empty bridge at blue hour, macro shot of an espresso surface, city skyline shifting from night to sunrise, a lab bench with a circadian rhythm chart, golden light filtering through forest canopy, hands wrapped around a thermos on a cold morning, neon pharmacy sign reflected in a rain puddle. Avoid: beds, bedrooms, pillows, generic sleeping scenes. Each post should look completely different.",
   "inline_image_after_section": 2,
-  "inline_image_prompt": "specific scene tied to this section -- workplace, tool, or environmental detail. NOT a bedroom.",
+  "inline_image_prompt": "a second editorial image tied to this section's content. Be visually creative -- nature, science, workplace, urban, or abstract. NOT a bedroom or bed.",
   "closingLine": "short grounded closing line"
 }
 
@@ -413,7 +470,8 @@ RULES:
 - Last section: protocol/checklist (3-7 items) + sources + disclaimer
 - Section headings: specific to THIS topic, never generic
 - inline_image_after_section: pick the section index where a visual would help most
-- Title must match what someone would search for. No clickbait.`,
+- Title must match what someone would search for. No clickbait.
+- If RELATED SEARCHES are provided, work at least 1-2 into section headings or content angles (these are real queries people type).`,
     { system, json: true, temp: 0.7 }
   );
 
