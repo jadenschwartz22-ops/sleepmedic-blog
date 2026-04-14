@@ -64,12 +64,15 @@ function logDetail(msg) { console.log(chalk.gray(`  ${msg}`)); }
 async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 8192, search = false } = {}) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${TEXT_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
+  // Gemini doesn't support JSON responseMimeType + google_search tool together
+  const useJsonMime = json && !search;
+
   const body = {
-    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    contents: [{ role: 'user', parts: [{ text: search && json ? prompt + '\n\nRespond with valid JSON only, no markdown fences.' : prompt }] }],
     generationConfig: {
       temperature: temp,
       maxOutputTokens: maxTokens,
-      ...(json && { responseMimeType: 'application/json' })
+      ...(useJsonMime && { responseMimeType: 'application/json' })
     }
   };
   if (system) body.system_instruction = { parts: [{ text: system }] };
