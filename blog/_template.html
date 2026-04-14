@@ -66,6 +66,9 @@
     gtag('config', 'G-5H4073EG26');
   </script>
 
+  <!-- GoatCounter -->
+  <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -385,6 +388,8 @@
           <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
           <span class="post-meta-sep">|</span>
           <span>{{READ_TIME}} min read</span>
+          <span class="post-meta-sep">|</span>
+          <span id="gc-views">-- views</span>
         </div>
       </article>
 
@@ -488,6 +493,19 @@
     })();
 
     // Newsletter is handled by Follow.it (no custom JS needed)
+
+    // GoatCounter view count
+    (async () => {
+      try {
+        const path = window.location.pathname;
+        const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
+        if (res.ok) {
+          const data = await res.json();
+          const el = document.getElementById('gc-views');
+          if (el && data.count) el.textContent = data.count.toLocaleString() + ' views';
+        }
+      } catch {}
+    })();
   </script>
 </body>
 </html>

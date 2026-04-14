@@ -27,6 +27,9 @@
     gtag('config', 'G-5H4073EG26');
   </script>
 
+  <!-- GoatCounter -->
+  <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -519,7 +522,7 @@
             <div class="cat">${first.categoryLabel}</div>
             <h2>${first.title}</h2>
             <p class="excerpt">${first.excerpt}</p>
-            <div class="meta">${first.dateFormatted} &middot; ${first.readTime} min read</div>
+            <div class="meta">${first.dateFormatted} &middot; ${first.readTime} min read &middot; <span class="gc-count" data-gc-path="/blog/posts/${first.slug}.html">--</span> views</div>
           </div>
         </a>
       `;
@@ -540,6 +543,7 @@
               <div class="card-meta">
                 <span>${post.dateFormatted}</span>
                 <span>${post.readTime} min read</span>
+                <span class="gc-count" data-gc-path="/blog/posts/${post.slug}.html">--</span>
               </div>
             </div>
           </a>
@@ -548,6 +552,24 @@
     }
 
     // Newsletter is handled by Follow.it (no custom JS needed)
+
+    // GoatCounter view counts
+    async function loadViewCounts() {
+      document.querySelectorAll('.gc-count').forEach(async (el) => {
+        try {
+          const path = el.dataset.gcPath;
+          const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
+          if (res.ok) {
+            const data = await res.json();
+            if (data.count) el.textContent = data.count.toLocaleString() + ' views';
+            else el.textContent = '';
+          } else { el.textContent = ''; }
+        } catch { el.textContent = ''; }
+      });
+    }
+
+    const _origRender = render;
+    render = function(cat) { _origRender(cat); setTimeout(loadViewCounts, 100); };
 
     loadPosts();
   </script>

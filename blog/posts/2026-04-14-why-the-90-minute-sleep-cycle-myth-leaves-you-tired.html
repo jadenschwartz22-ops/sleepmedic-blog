@@ -66,6 +66,8 @@
     gtag('js', new Date());
     gtag('config', 'G-5H4073EG26');
   </script>
+  <!-- GoatCounter -->
+  <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
   <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -386,6 +388,9 @@
           <time datetime="2026-04-14">April 13, 2026</time>
           <span class="post-meta-sep">|</span>
           <span>6 min read</span>
+        
+          <span class="post-meta-sep">|</span>
+          <span id="gc-views">-- views</span>
         </div>
       </article>
 
@@ -568,6 +573,19 @@ Forget chasing an ideal cycle length. Instead, focus on these foundational habit
         form.style.display = 'none';
       });
     }
+  
+    // GoatCounter view count
+    (async () => {
+      try {
+        const p = window.location.pathname;
+        const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(p) + '.json');
+        if (res.ok) {
+          const data = await res.json();
+          const el = document.getElementById('gc-views');
+          if (el && data.count) el.textContent = data.count.toLocaleString() + ' views';
+        }
+      } catch {}
+    })();
   </script>
 </body>
 </html>
