@@ -392,15 +392,22 @@
         {{CONTENT}}
       </div>
 
-      <!-- Newsletter CTA -->
+      <!-- Newsletter CTA (Follow.it) -->
       <div class="newsletter-cta">
         <h3>Weekly sleep science, no fluff</h3>
         <p>One email a week. Evidence-based advice for people who actually want to sleep better.</p>
-        <form class="newsletter-form" id="newsletter-form">
-          <input type="email" placeholder="you@email.com" required id="newsletter-email" />
-          <button type="submit">Subscribe</button>
-        </form>
-        <p class="newsletter-msg" id="newsletter-msg">You are in. Check your inbox.</p>
+        <div class="followit--follow-form-container" attr-a attr-b attr-c attr-d attr-e attr-f>
+          <form action="https://api.follow.it/subscription-form/bm0wRFJpeUhrc3VyNnRPK2w4VnZQRjFBMkU3UWx6cmFwMi8vZlFBdFpxdFljSlhFS2h2aVYyREhVeE1hRnlRMW1wR0lCZlMzREcxSkxMaVFyenNmZUY5MVFsaVFvY1dNRjBsOHg0d2RoN0dpRkQyVERQWVBPQXYyOThPQktOdkV8Z3R2QW1mT083bXVLeEttMEkzbTd5NUp0Y2Vhc3F3QVQ2Zk51ZTFQUms3Yz0=/8" method="post">
+            <div class="form-preview" style="background-color: transparent; border: none; box-shadow: none; padding: 0; margin: 0;">
+              <div class="preview-input-field" style="margin-top: 0;">
+                <input type="email" name="email" required placeholder="you@email.com" style="font-family: inherit; color: #fff; font-size: 14px; text-align: center; background-color: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; height: 44px; width: 100%; outline: none;" />
+              </div>
+              <div class="preview-submit-button" style="margin-top: 10px;">
+                <button type="submit" style="font-family: inherit; font-weight: 600; color: #fff; font-size: 15px; background: linear-gradient(135deg, #7c8cf5, #6dd5ed); border: none; border-radius: 6px; height: 44px; width: 100%; cursor: pointer;">Subscribe</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div class="app-cta">
@@ -480,24 +487,7 @@
       } catch {}
     })();
 
-    // Newsletter form (Resend API endpoint -- replace URL after setup)
-    const form = document.getElementById('newsletter-form');
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('newsletter-email').value;
-        try {
-          // Replace with your Resend audience endpoint or Pi webhook
-          await fetch('https://your-pi-or-api.sleepmedic.co/subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email })
-          });
-        } catch {}
-        document.getElementById('newsletter-msg').style.display = 'block';
-        form.style.display = 'none';
-      });
-    }
+    // Newsletter is handled by Follow.it (no custom JS needed)
   </script>
 </body>
 </html>
