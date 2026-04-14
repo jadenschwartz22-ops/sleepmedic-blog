@@ -2,8 +2,8 @@ name: Weekly Blog - Fully Automated
 
 on:
   schedule:
-    # Every Monday at 9:00 AM Mountain Time (16:00 UTC)
-    - cron: "0 16 * * 1"
+    # Monday and Thursday at 9:00 AM Mountain Time (16:00 UTC)
+    - cron: "0 16 * * 1,4"
   workflow_dispatch: {}
 
 permissions:
@@ -64,6 +64,9 @@ jobs:
 
       - name: Generate posts index
         run: node scripts/generate-posts-index.mjs
+
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.mjs
 
       - name: Commit topic history and content memory
         run: |
@@ -167,7 +170,7 @@ jobs:
               '',
               `Cover image: ${imageStatus} | PR: #${prNumber} | File: \`${filename}\``,
               '',
-              'Next post publishes next Monday at 9:00 AM MT.'
+              'Next post publishes Monday or Thursday at 9:00 AM MT.'
             ].join('\n');
 
             const resp = await github.rest.issues.create({
@@ -179,6 +182,20 @@ jobs:
             });
 
             core.info(`Created summary issue #${resp.data.number}`);
+
+      - name: Post to Twitter/X
+        if: success()
+        continue-on-error: true
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+          POST_TITLE: ${{ steps.generate.outputs.title }}
+          POST_FILENAME: ${{ steps.generate.outputs.filename }}
+          POST_EXCERPT: ${{ steps.generate.outputs.excerpt }}
+        run: |
+          node scripts/post-to-social.mjs
 
       - name: Trigger distribution (Pi service)
         if: success()

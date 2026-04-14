@@ -299,8 +299,9 @@ Return JSON:
     logDetail(`Original topic generated: "${topic}"`);
   } else {
     // Pick from predefined topic buckets
-    let bucket = buckets[(week + offset) % buckets.length];
-    let idx = Math.floor((week + offset) / buckets.length) % bucket.topics.length;
+    const execIndex = (await loadRecentTopics()).length;
+    let bucket = buckets[(execIndex + offset) % buckets.length];
+    let idx = Math.floor((execIndex + offset) / buckets.length) % bucket.topics.length;
     topic = bucket.topics[idx];
 
     for (let i = 0; i < 40 && recent.includes(topic); i++) {
@@ -346,8 +347,7 @@ Return JSON:
 
 function getTemplateFormat() {
   const formats = ['Story-First', 'Science-First', 'Myth-Busting', 'Field Manual', 'Q&A', 'History/Philosophy Lens'];
-  const offset = Math.floor(Math.random() * 2);
-  return formats[(getWeekNumber() + offset) % formats.length];
+  return formats[Math.floor(Math.random() * formats.length)];
 }
 
 // ════════════════════════════════════════════════════════
