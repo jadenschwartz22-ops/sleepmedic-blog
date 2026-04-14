@@ -12,6 +12,37 @@
 - Science-forward: name the mechanism, explain it plainly, then say what to do.
 - Every post should answer one clear question a person would actually Google.
 
+## Editorial Stance: Authoritative, Not Trend-Chasing
+- SleepMedic is a trusted expert, not a trend aggregator. We are the friend who actually reads the studies.
+- Viral trends (sleepy girl mocktail, sleepmaxxing, bed rotting) can be MENTIONED as cultural context but never the whole point.
+- The structure is always: "People are trying X. Here is what actually matters: Y. The hardest part about X is that it is unrealistic because Z."
+- We explain WHY trends catch on (they address a real frustration) and then redirect to what the evidence supports.
+- Never write a post that reads like "Decoding the Trend" or "Is X Worth the Hype?" -- that is low-brow content mill territory.
+- Instead: "The real mechanism behind why people feel better after X is Y. Here is how to get that benefit reliably."
+- We are thoughtful and substantive. If a fad has no science, we say so plainly and move on to what works.
+
+## Voice (with examples)
+
+Write like a sleep researcher explaining something to a friend over coffee. Not clinical. Not salesy. Just clear and helpful.
+
+**BAD (generic AI):**
+> In today's fast-paced world, getting quality sleep is more important than ever. Studies have shown that sleep plays a crucial role in our overall health and well-being. Let's dive into the science behind sleep and discover how you can optimize your rest for better performance.
+
+**GOOD (SleepMedic voice):**
+> Your body drops its core temperature by about 2 degrees Fahrenheit to initiate sleep. Fight that process -- with a hot room, late exercise, or alcohol -- and you're essentially telling your brain to stay alert. Here's how to work with your thermostat instead of against it.
+
+**BAD (hedge-heavy, vague):**
+> It's worth noting that many people may find that their sleep quality could potentially be improved by making certain adjustments to their evening routine. Research suggests that various factors might play a role in determining how well you sleep.
+
+**GOOD (direct, specific):**
+> Three things wreck your sleep before you ever touch the pillow: caffeine after 2pm, screens within 60 minutes of bed, and an inconsistent wake time. Fix those and most people see improvement within a week.
+
+**BAD (salesy, clickbait):**
+> Discover the ultimate game-changing sleep hack that will transform your nights forever! This revolutionary approach will supercharge your rest and unlock peak performance.
+
+**GOOD (grounded, helpful):**
+> The military's 2-minute sleep technique dates back to a 1981 Navy pre-flight school manual. It works because it systematically addresses the three things keeping you awake: muscle tension, visual processing, and recursive thought. Here's the exact protocol.
+
 ## Template Rotation (deterministic)
 Choose one format per post using `isoWeek % 6`:
 0. **Story-First** -- Lived moment, stakes, mechanism, protocol, reflective close.
@@ -57,10 +88,21 @@ Choose one format per post using `isoWeek % 6`:
 - **4-8 inline links** from the whitelist only: NAMS, NIH/NIA, AASM, ACOG, CDC, WHO, Cochrane, NICE.
 - Internal links to related existing posts where genuinely relevant (1-3 max).
 
+## Cover Image Guidelines
+- NEVER use generic bedroom, bed, or pillow imagery. Every sleep blog uses these. We are different.
+- Show the WORLD of the reader: hospital corridors, fire station bunk rooms, ambulance cabs at dawn, break rooms at 3am, hands on a steering wheel during a night commute, stethoscopes on tables, coffee cups in dim light.
+- People can appear but show them from behind, from the side, or at a distance. No direct front-facing faces (avoids obvious AI artifacts).
+- Inline images should relate to the specific section content -- a circadian rhythm diagram context, a workplace scene, equipment, cityscapes at different times of day.
+- Aim for editorial photojournalism style, not stock photo wellness style.
+
 ## Formatting
 - Title: 6-10 words. Concrete benefit or curiosity. No clickbait, no "Ultimate Guide."
 - Length: ~700-1,000 words.
 - End with: Checklist or Protocol, Sources, Brief disclaimer, Grounded closing line.
+
+## Section Headings
+- Never use generic headings: "Introduction", "Understanding X", "The Science Behind X", "Conclusion", "Final Thoughts", "Key Takeaways", "Wrapping Up"
+- Headings should be specific to the topic and tell the reader what they'll learn
 
 ## Tone
 - Direct, human, expert, practical. No corporate buzzwords. No "optimize" or "leverage."

@@ -352,7 +352,7 @@ export class CitationFormatter {
     const { claim, source, year, url, accessDate = new Date().toISOString().split('T')[0] } = data;
 
     if (!url || url === '#') {
-      console.warn('⚠️ Missing URL for citation:', claim);
+      console.warn('Missing URL for citation:', claim);
       return claim; // Return claim without link if no URL
     }
 

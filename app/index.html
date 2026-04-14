@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SleepMedic App - Sleep Tracking for Shift Workers</title>
+  <meta name="description" content="SleepMedic adapts to your actual sleep schedule. Track habits, get personalized coaching, and build better sleep -- especially if you work shifts." />
+
+  <link rel="canonical" href="https://sleepmedic.co/app/">
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="SleepMedic App" />
+  <meta property="og:description" content="Sleep tracking and coaching that adapts to your actual schedule. Built for shift workers." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/app/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --surface: #141416;
+      --surface-2: #1c1c1f;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text: #f5f5f5;
+      --text-2: #b0b0b8;
+      --text-3: #6b6b76;
+      --accent: #a78bfa;
+      --accent-2: #60a5fa;
+      --accent-dim: rgba(167,139,250,0.10);
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-2);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      max-width: 800px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 64px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 5px 14px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 20px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-3);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* Features */
+    .features-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+      margin-bottom: 20px;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 64px;
+    }
+    @media (max-width: 540px) {
+      .features { grid-template-columns: 1fr; }
+    }
+    .feature {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: border-color 0.2s;
+    }
+    .feature:hover { border-color: var(--border-hover); }
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+    }
+    .fi-purple { background: rgba(167,139,250,0.12); }
+    .fi-blue { background: rgba(96,165,250,0.12); }
+    .fi-green { background: rgba(52,211,153,0.12); }
+    .fi-pink { background: rgba(244,114,182,0.12); }
+    .feature h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .feature p {
+      font-size: 0.85rem;
+      color: var(--text-3);
+      line-height: 1.55;
+    }
+
+    /* How it works */
+    .how-section {
+      margin-bottom: 64px;
+    }
+    .how-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-text h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .step-text p {
+      font-size: 0.85rem;
+      color: var(--text-3);
+      line-height: 1.5;
+    }
+
+    /* Built for section */
+    .built-for {
+      margin-bottom: 64px;
+    }
+    .built-for h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .role {
+      padding: 8px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-2);
+    }
+
+    /* Notify */
+    .notify {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .notify h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .notify > p {
+      color: var(--text-3);
+      margin-bottom: 24px;
+      font-size: 0.9rem;
+    }
+    .email-form {
+      display: flex;
+      gap: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    @media (max-width: 480px) { .email-form { flex-direction: column; } }
+    .email-form input {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .email-form input:focus { border-color: var(--accent); }
+    .email-form input::placeholder { color: var(--text-3); }
+    .email-form button {
+      padding: 12px 24px;
+      background: var(--accent);
+      border: none;
+      border-radius: 10px;
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .email-form button:hover { opacity: 0.85; }
+    #form-msg {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: #34d399;
+    }
+
+    /* Blog link */
+    .blog-link-section {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .blog-link-section p {
+      color: var(--text-3);
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+    }
+    .blog-link-section a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(167,139,250,0.3);
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+    .blog-link-section a:hover { color: var(--accent-2); }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-3);
+      font-size: 0.78rem;
+    }
+    footer a { color: var(--text-3); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-brand">SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/app/">App</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <div class="badge">Coming Soon</div>
+      <h1>Sleep better.<br><span>Even on a crazy schedule.</span></h1>
+      <p class="subtitle">SleepMedic tracks your actual sleep, adapts to your real schedule, and coaches you toward better rest. No rigid rules. No guilt trips.</p>
+    </div>
+
+    <p class="features-label">What you get</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon fi-purple" style="font-weight:700;font-size:0.8rem;">AS</div>
+        <h3>Adaptive Scheduling</h3>
+        <p>Set your anchor times. The app learns when you actually sleep and adjusts recommendations as patterns emerge.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon fi-green" style="font-weight:700;font-size:0.8rem;">7H</div>
+        <h3>7 Habit Trackers</h3>
+        <p>Light exposure, caffeine, meals, movement, wind-down, naps, and anchor adherence. One-tap logging throughout the day.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon fi-blue" style="font-weight:700;font-size:0.8rem;">PD</div>
+        <h3>Pattern Detection</h3>
+        <p>After 7 days, SleepMedic spots your patterns and surfaces the specific changes that will actually make a difference.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon fi-pink" style="font-weight:700;font-size:0.8rem;">AI</div>
+        <h3>AI Coaching</h3>
+        <p>Get personalized sleep advice from an AI coach that knows your schedule, your habits, and what has (and hasn't) worked.</p>
+      </div>
+    </div>
+
+    <div class="how-section">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h3>Tell us your schedule</h3>
+            <p>Set your work pattern and ideal sleep anchors. Day shifts, nights, 24-hour rotations -- we handle it all.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h3>Track your day</h3>
+            <p>Log habits with a single tap. See your 24-hour timeline with work, sleep, and habit overlays in real time.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h3>Get smarter over time</h3>
+            <p>The app compares your planned vs actual sleep, scores your adherence, and auto-adjusts your plan as it learns.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="built-for">
+      <h2>Built for people who actually need it</h2>
+      <div class="roles">
+        <span class="role">EMTs &amp; Paramedics</span>
+        <span class="role">Nurses</span>
+        <span class="role">Firefighters</span>
+        <span class="role">Police Officers</span>
+        <span class="role">Doctors &amp; Residents</span>
+        <span class="role">Night Shift Workers</span>
+        <span class="role">Rotating Schedules</span>
+        <span class="role">New Parents</span>
+        <span class="role">Frequent Travelers</span>
+      </div>
+    </div>
+
+    <div class="notify">
+      <h2>Get notified at launch</h2>
+      <p>One email when the app hits the App Store. No spam.</p>
+      <form class="email-form" onsubmit="handleSubmit(event)">
+        <input type="email" placeholder="your@email.com" required id="email-input">
+        <button type="submit" id="submit-btn">Notify Me</button>
+      </form>
+      <p id="form-msg" style="display:none;"></p>
+    </div>
+
+    <div class="blog-link-section">
+      <p>While you wait, we publish weekly evidence-based sleep science.</p>
+      <a href="/blog/">Read the SleepMedic Blog &rarr;</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 SleepMedic</p>
+    <p style="margin-top:6px;">
+      <a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; <a href="/blog/feed.xml">RSS</a>
+    </p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      const msg = document.getElementById('form-msg');
+      const btn = document.getElementById('submit-btn');
+
+      const waitlist = JSON.parse(localStorage.getItem('sm-waitlist') || '[]');
+      if (!waitlist.includes(email)) {
+        waitlist.push(email);
+        localStorage.setItem('sm-waitlist', JSON.stringify(waitlist));
+      }
+
+      btn.textContent = 'Done';
+      btn.style.background = '#34d399';
+      msg.textContent = "We'll let you know when SleepMedic launches.";
+      msg.style.display = 'block';
+
+      setTimeout(() => {
+        btn.textContent = 'Notify Me';
+        btn.style.background = '';
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

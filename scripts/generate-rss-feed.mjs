@@ -15,7 +15,7 @@ async function extractPosts() {
   const postsMatch = indexHtml.match(/const posts = (\[[\s\S]*?\]);/);
 
   if (!postsMatch) {
-    console.log(chalk.yellow('⚠️  No posts found in blog/index.html'));
+    console.log(chalk.yellow('No posts found in blog/index.html'));
     return [];
   }
 
@@ -23,7 +23,7 @@ async function extractPosts() {
     const posts = JSON.parse(postsMatch[1]);
     return posts;
   } catch (error) {
-    console.error(chalk.red('❌ Failed to parse posts:', error.message));
+    console.error(chalk.red('Failed to parse posts:', error.message));
     return [];
   }
 }
@@ -81,14 +81,14 @@ function escapeXml(str) {
  * Main execution
  */
 async function main() {
-  console.log(chalk.bold.cyan('\n📡 RSS Feed Generator\n'));
+  console.log(chalk.bold.cyan('\nRSS Feed Generator\n'));
 
   try {
     // Extract posts
     const posts = await extractPosts();
 
     if (posts.length === 0) {
-      console.log(chalk.yellow('⚠️  No posts to include in feed'));
+      console.log(chalk.yellow('No posts to include in feed'));
       return;
     }
 
@@ -100,12 +100,12 @@ async function main() {
     // Write to file
     await fs.writeFile('blog/feed.xml', rssXml, 'utf8');
 
-    console.log(chalk.green('✅ RSS feed generated: blog/feed.xml'));
+    console.log(chalk.green('RSS feed generated: blog/feed.xml'));
     console.log(chalk.gray(`   Posts included: ${Math.min(posts.length, 20)}`));
     console.log(chalk.gray(`   Feed URL: https://sleepmedic.co/blog/feed.xml\n`));
 
   } catch (error) {
-    console.error(chalk.red('❌ RSS generation failed:', error.message));
+    console.error(chalk.red('RSS generation failed:', error.message));
     process.exit(1);
   }
 }

@@ -22,7 +22,7 @@ const rl = readline.createInterface({
 const question = (query) => new Promise((resolve) => rl.question(query, resolve));
 
 async function setupEmailSignup() {
-  console.log('\n📧 EMAIL SIGNUP CONFIGURATION');
+  console.log('\nEMAIL SIGNUP CONFIGURATION');
   console.log('================================\n');
 
   console.log('Choose your email service:');
@@ -35,7 +35,7 @@ async function setupEmailSignup() {
   let emailHTML = '';
 
   if (choice === '1') {
-    console.log('\n📝 Setting up Formspree...');
+    console.log('\nSetting up Formspree...');
     console.log('1. Go to https://formspree.io');
     console.log('2. Sign up for free account');
     console.log('3. Create a new form');
@@ -59,7 +59,7 @@ async function setupEmailSignup() {
 </div>`;
 
   } else if (choice === '2') {
-    console.log('\n📝 Setting up ConvertKit...');
+    console.log('\nSetting up ConvertKit...');
     console.log('1. Go to https://convertkit.com');
     console.log('2. Sign up for free account');
     console.log('3. Create a form');
@@ -78,7 +78,7 @@ async function setupEmailSignup() {
 }
 
 async function setupAnalytics() {
-  console.log('\n📊 ANALYTICS CONFIGURATION');
+  console.log('\nANALYTICS CONFIGURATION');
   console.log('================================\n');
 
   console.log('Choose your analytics service:');
@@ -92,7 +92,7 @@ async function setupAnalytics() {
   let analyticsHTML = '';
 
   if (choice === '1' || choice === '3') {
-    console.log('\n📝 Setting up Google Analytics...');
+    console.log('\nSetting up Google Analytics...');
     console.log('1. Go to https://analytics.google.com');
     console.log('2. Create a new GA4 property');
     console.log('3. Get your Measurement ID (starts with G-)\n');
@@ -121,7 +121,7 @@ async function setupAnalytics() {
   }
 
   if (choice === '2' || choice === '3') {
-    console.log('\n📝 Setting up Plausible...');
+    console.log('\nSetting up Plausible...');
     console.log('1. Go to https://plausible.io');
     console.log('2. Sign up and add your site');
     console.log('3. Your domain should be: sleepmedic.co\n');
@@ -137,7 +137,7 @@ async function setupAnalytics() {
 }
 
 async function updateFiles(emailHTML, analyticsHTML) {
-  console.log('\n🔧 UPDATING FILES...');
+  console.log('\nUPDATING FILES...');
   console.log('================================\n');
 
   // Update index.html
@@ -148,9 +148,9 @@ async function updateFiles(emailHTML, analyticsHTML) {
   if (analyticsHTML) {
     if (!indexContent.includes('gtag') && !indexContent.includes('plausible')) {
       indexContent = indexContent.replace('</head>', `${analyticsHTML}\n</head>`);
-      console.log('✅ Added analytics to index.html');
+      console.log('Added analytics to index.html');
     } else {
-      console.log('⚠️  Analytics already present in index.html');
+      console.log('Analytics already present in index.html');
     }
   }
 
@@ -159,9 +159,9 @@ async function updateFiles(emailHTML, analyticsHTML) {
     const placeholderPattern = /<p style="color: var\(--text-bright\)[^>]*>Newsletter signup coming soon!<\/p>/;
     if (indexContent.match(placeholderPattern)) {
       indexContent = indexContent.replace(placeholderPattern, emailHTML);
-      console.log('✅ Added email signup to index.html');
+      console.log('Added email signup to index.html');
     } else {
-      console.log('⚠️  Could not find newsletter placeholder in index.html');
+      console.log('Could not find newsletter placeholder in index.html');
     }
   }
 
@@ -175,7 +175,7 @@ async function updateFiles(emailHTML, analyticsHTML) {
     // Add analytics to template
     if (analyticsHTML && !templateContent.includes('gtag') && !templateContent.includes('plausible')) {
       templateContent = templateContent.replace('</head>', `${analyticsHTML}\n</head>`);
-      console.log('✅ Added analytics to template');
+      console.log('Added analytics to template');
     }
 
     // Add email signup footer to posts
@@ -191,7 +191,7 @@ async function updateFiles(emailHTML, analyticsHTML) {
   </div>`;
 
       templateContent = templateContent.replace('</article>', `${emailFooter}\n</article>`);
-      console.log('✅ Added email signup to post template');
+      console.log('Added email signup to post template');
     }
 
     fs.writeFileSync(templatePath, templateContent);
@@ -214,12 +214,12 @@ async function updateFiles(emailHTML, analyticsHTML) {
       }
     }
 
-    console.log(`✅ Updated ${posts.length} existing posts`);
+    console.log(`Updated ${posts.length} existing posts`);
   }
 }
 
 async function main() {
-  console.log('🌙 SleepMedic Blog - Email & Analytics Setup\n');
+  console.log('SleepMedic Blog - Email & Analytics Setup\n');
 
   try {
     const emailHTML = await setupEmailSignup();
@@ -228,14 +228,14 @@ async function main() {
     if (emailHTML || analyticsHTML) {
       await updateFiles(emailHTML, analyticsHTML);
 
-      console.log('\n✨ SETUP COMPLETE!');
+      console.log('\nSETUP COMPLETE!');
       console.log('================================\n');
 
       if (emailHTML) {
-        console.log('✅ Email signup configured');
+        console.log('Email signup configured');
       }
       if (analyticsHTML) {
-        console.log('✅ Analytics tracking configured');
+        console.log('Analytics tracking configured');
       }
 
       console.log('\nNext steps:');
@@ -246,10 +246,10 @@ async function main() {
       console.log('git commit -m "feat: add email signup and analytics"');
       console.log('git push');
     } else {
-      console.log('\n⚠️  No changes made. Run again when ready to configure.');
+      console.log('\nNo changes made. Run again when ready to configure.');
     }
   } catch (error) {
-    console.error('\n❌ Setup failed:', error.message);
+    console.error('\nSetup failed:', error.message);
   } finally {
     rl.close();
   }

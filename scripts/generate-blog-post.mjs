@@ -1,14 +1,17 @@
 /**
- * Multi-Agent SleepMedic Blog Generator
+ * SleepMedic Multi-Agent Blog Generator v2
  *
- * Pipeline:
- * 1. Topic Selection    - Rotates through editorial calendar
- * 2. Planner Agent      - Creates outline (title, sections, image prompt)
- * 3. Section Writers    - One Gemini call per section, builds on previous context
- * 4. Editor Agent       - Reviews full draft, removes AI-isms, polishes
- * 5. Cross-Linker Agent - Adds internal links to related existing posts
- * 6. Imagen 3           - Generates cover image
- * 7. HTML Builder       - Assembles final post from template
+ * 10-Stage Pipeline:
+ *  1. Topic Selector    - Rotation + LLM angle generation
+ *  2. Researcher        - Gemini grounded search for real studies/stats
+ *  3. Planner           - Structured outline with research refs
+ *  4. Section Writers   - One call per section, varied temperature
+ *  5. Assembler         - Programmatic join + inline image slot selection
+ *  6. Editor            - Polish, remove AI-isms, fix transitions
+ *  7. Humanizer         - Conversational pass, rhetorical Qs, micro-stories
+ *  8. Cross-Linker      - Internal links to related posts
+ *  9. Image Generation  - Cover + 1-2 inline images
+ * 10. HTML Builder      - Template assembly + metadata
  */
 
 import fs from 'fs/promises';
@@ -27,7 +30,7 @@ if (!GEMINI_API_KEY) {
 // ── Helpers ────────────────────────────────────────────
 
 function slugify(text) {
-  return text.toLowerCase().replace(/['"]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 80);
+  return text.toLowerCase().replace(/['"]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '').slice(0, 60);
 }
 
 function getWeekNumber() {
@@ -43,9 +46,22 @@ function stripCodeFences(text) {
   return text.replace(/^```(?:json|html|xml)?\s*\n?/m, '').replace(/\n?\s*```\s*$/m, '').trim();
 }
 
-// ── Gemini Text API ────────────────────────────────────
+function nowMT() {
+  return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Denver' }));
+}
+function dateISOmt() { return nowMT().toISOString().split('T')[0]; }
+function dateFormattedMT() {
+  return nowMT().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
 
-async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 8192 } = {}) {
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function log(stage, msg) { console.log(chalk.cyan(`[Stage ${stage}] `) + msg); }
+function logDetail(msg) { console.log(chalk.gray(`  ${msg}`)); }
+
+// ── Gemini Text API (with retry) ─────────────────────
+
+async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 8192, search = false } = {}) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${TEXT_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
   const body = {
@@ -56,200 +72,341 @@ async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 81
       ...(json && { responseMimeType: 'application/json' })
     }
   };
-
-  if (system) {
-    body.system_instruction = { parts: [{ text: system }] };
+  if (system) body.system_instruction = { parts: [{ text: system }] };
+  if (search) {
+    body.tools = [{ google_search: {} }];
   }
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Gemini ${res.status}: ${err.slice(0, 200)}`);
-  }
-
-  const data = await res.json();
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error('Empty Gemini response');
-
-  const cleaned = stripCodeFences(text);
-  return json ? JSON.parse(cleaned) : cleaned;
-}
-
-// ── Imagen 3 Image Generation ──────────────────────────
-
-async function generateImage(scenePrompt, outputPath) {
-  console.log(chalk.cyan('  Generating cover image with Imagen 3...'));
-
-  const prompt = `Professional editorial blog cover photograph: ${scenePrompt}. Warm natural tones, soft ambient lighting, atmospheric depth. No text overlay, no watermarks, no human faces. Landscape composition.`;
-
-  // Try multiple endpoint formats for compatibility
-  const attempts = [
-    {
-      url: `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${GEMINI_API_KEY}`,
-      body: { instances: [{ prompt }], parameters: { sampleCount: 1, aspectRatio: '16:9' } },
-      extract: d => d.predictions?.[0]?.bytesBase64Encoded
-    },
-    {
-      url: `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:generateImages?key=${GEMINI_API_KEY}`,
-      body: { prompt, config: { numberOfImages: 1, aspectRatio: '16:9', outputOptions: { mimeType: 'image/jpeg' } } },
-      extract: d => d.generatedImages?.[0]?.image?.imageBytes
-    },
-    {
-      url: `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${GEMINI_API_KEY}`,
-      body: { instances: [{ prompt }], parameters: { sampleCount: 1, aspectRatio: '16:9' } },
-      extract: d => d.predictions?.[0]?.bytesBase64Encoded
-    }
-  ];
-
-  for (const attempt of attempts) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const res = await fetch(attempt.url, {
+      const res = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(attempt.body)
+        body: JSON.stringify(body)
       });
 
-      if (!res.ok) continue;
+      if (res.status === 429 || res.status >= 500) {
+        const wait = attempt * 5000 + Math.random() * 2000;
+        console.warn(chalk.yellow(`  Gemini ${res.status}, retry ${attempt}/3 in ${(wait / 1000).toFixed(1)}s...`));
+        await sleep(wait);
+        continue;
+      }
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Gemini ${res.status}: ${err.slice(0, 300)}`);
+      }
 
       const data = await res.json();
-      const base64 = attempt.extract(data);
-      if (!base64) continue;
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error('Empty Gemini response');
 
-      await fs.mkdir('blog/posts/images', { recursive: true });
-      await fs.writeFile(outputPath, Buffer.from(base64, 'base64'));
-      console.log(chalk.green('  Cover image saved'));
-      return outputPath;
-    } catch {
-      continue;
+      const cleaned = stripCodeFences(text);
+      return json ? JSON.parse(cleaned) : cleaned;
+    } catch (err) {
+      if (attempt === 3) throw err;
+      const wait = attempt * 3000;
+      console.warn(chalk.yellow(`  Error: ${err.message}, retry ${attempt}/3...`));
+      await sleep(wait);
     }
   }
+}
 
-  console.warn(chalk.yellow('  Image generation unavailable, proceeding without cover image'));
+// ── Image Generation (Gemini native, with retry) ─────
+
+async function generateImage(prompt, outputPath) {
+  const fullPrompt = `Generate a professional editorial blog cover photograph: ${prompt}. Warm natural tones, soft ambient lighting, atmospheric depth. No text overlay, no watermarks. If people appear, show them from behind, from the side, or at a distance -- never show a full face directly facing the camera. Landscape 16:9 composition. Photorealistic style. IMPORTANT: Do NOT default to generic bedroom or bed imagery. Show the real world -- workplaces, hallways, break rooms, outdoor scenes, hands on equipment, cityscapes at dawn, dimly lit fire stations, hospital corridors, coffee on a desk at 3am. Varied, specific, and editorial.`;
+  const IMAGE_MODEL = process.env.GEMINI_IMAGE_MODEL || 'gemini-2.5-flash-image';
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${IMAGE_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: fullPrompt }] }],
+          generationConfig: { responseModalities: ['TEXT', 'IMAGE'], imageConfig: { aspectRatio: '16:9' } }
+        })
+      });
+
+      if (!res.ok) {
+        console.warn(chalk.yellow(`  Image API ${res.status}: ${(await res.text()).slice(0, 100)}`));
+        if (attempt < 2) { await sleep(3000); continue; }
+        return null;
+      }
+
+      const data = await res.json();
+      const imagePart = (data.candidates?.[0]?.content?.parts || []).find(p => p.inlineData?.mimeType?.startsWith('image/'));
+      if (!imagePart) {
+        console.warn(chalk.yellow('  No image in response'));
+        if (attempt < 2) { await sleep(2000); continue; }
+        return null;
+      }
+
+      await fs.mkdir('blog/posts/images', { recursive: true });
+      await fs.writeFile(outputPath, Buffer.from(imagePart.inlineData.data, 'base64'));
+      return outputPath;
+    } catch (err) {
+      console.warn(chalk.yellow(`  Image gen failed: ${err.message}`));
+      if (attempt < 2) { await sleep(2000); continue; }
+      return null;
+    }
+  }
   return null;
 }
 
-// ── Topic Selection ────────────────────────────────────
+// ── Banned phrases ───────────────────────────────────
+
+const BANNED_PHRASES = [
+  "Let's dive in", "dive deep", "dive into", "In conclusion", "To conclude",
+  "It's important to note", "It's worth noting", "It's worth mentioning",
+  "As we've seen", "As mentioned earlier", "In today's post", "In this article",
+  "Whether you're a", "Look no further", "game-changer", "game changer",
+  "navigate", "landscape", "robust", "leverage", "holistic approach",
+  "synergy", "optimize your", "hack your sleep", "hack your",
+  "Here's the thing", "The reality is", "At the end of the day",
+  "Studies have shown", "Research suggests", "Experts agree",
+  "In today's fast-paced world", "When it comes to", "It goes without saying",
+  "without further ado", "So without", "buckle up",
+  "Harnessing", "Harness the power", "Unlocking", "Unlock the",
+  "Discover how", "Discover the", "The Ultimate Guide", "Everything You Need",
+  "What You Need to Know", "game-changing", "life-changing",
+  "revolutionary", "Transform your", "Supercharge your",
+  "The surprising truth", "You won't believe", "Scientists say",
+  "A growing body of research", "Recent studies suggest",
+  "unpack", "unpacking", "Let's explore", "Let's take a look",
+  "In recent years", "Over the past decade",
+  "delve", "delving", "embark", "embarking", "foster",
+  "resonate", "resonating", "tapestry", "paradigm", "paradigm shift",
+  "myriad", "plethora", "comprehensive guide", "evidence-based guide",
+  "In the realm of", "In the world of", "beacon", "cornerstone",
+  "Furthermore", "Moreover", "Additionally", "Consequently"
+].map(p => p.toLowerCase());
+
+function bannedPhrasesBlock() {
+  return `BANNED PHRASES (rewrite or delete on sight):\n${BANNED_PHRASES.map(p => `"${p}"`).join(', ')}`;
+}
+
+// ── Topic History ────────────────────────────────────
+
+const TOPIC_HISTORY_PATH = '.topic-history.json';
 
 async function loadRecentTopics() {
-  try { return JSON.parse(await fs.readFile('tmp/recent-topics.json', 'utf8')); }
+  try { return JSON.parse(await fs.readFile(TOPIC_HISTORY_PATH, 'utf8')); }
   catch { return []; }
 }
 
 async function saveTopicToHistory(topic) {
-  try {
-    await fs.mkdir('tmp', { recursive: true });
-    let recent = await loadRecentTopics();
-    recent.push({ topic, generatedAt: new Date().toISOString() });
-    await fs.writeFile('tmp/recent-topics.json', JSON.stringify(recent.slice(-10), null, 2));
-  } catch {}
+  const recent = await loadRecentTopics();
+  recent.push({ topic, generatedAt: new Date().toISOString() });
+  await fs.writeFile(TOPIC_HISTORY_PATH, JSON.stringify(recent.slice(-30), null, 2));
 }
 
-async function selectTopic() {
+// ════════════════════════════════════════════════════════
+// STAGE 1: TOPIC SELECTOR
+// ════════════════════════════════════════════════════════
+
+async function stage1_selectTopic() {
+  log(1, 'Selecting topic and generating angle...');
+
   const { buckets } = yaml.parse(await fs.readFile('scripts/editorial/topics.yaml', 'utf8'));
   const recent = (await loadRecentTopics()).map(t => t.topic);
   const week = getWeekNumber();
+  const offset = Math.floor(Math.random() * 3);
 
-  let bucket = buckets[week % buckets.length];
-  let idx = Math.floor(week / buckets.length) % bucket.topics.length;
+  let bucket = buckets[(week + offset) % buckets.length];
+  let idx = Math.floor((week + offset) / buckets.length) % bucket.topics.length;
   let topic = bucket.topics[idx];
 
-  for (let i = 0; i < 20 && recent.includes(topic); i++) {
+  for (let i = 0; i < 40 && recent.includes(topic); i++) {
     idx = (idx + 1) % bucket.topics.length;
     if (idx === 0) bucket = buckets[(buckets.indexOf(bucket) + 1) % buckets.length];
     topic = bucket.topics[idx];
   }
 
-  console.log(chalk.bold(`Selected topic: "${topic}" [${bucket.tag}]\n`));
+  // LLM generates a specific angle on the topic
+  const angleData = await gemini(
+    `Topic: "${topic}"
+Category: ${bucket.name} (${bucket.tag})
+
+Generate a specific, compelling angle for a blog post on this topic.
+Think: what's the one question someone would Google at 2am about this?
+
+Return JSON:
+{
+  "angle": "specific angle (1 sentence)",
+  "audience_segment": "who this helps most (e.g., 'night shift nurses', 'anxious sleepers', 'new parents')",
+  "emotional_hook": "the feeling or frustration that drives someone to search for this (1 sentence)",
+  "search_query": "what someone would actually type into Google"
+}`,
+    { json: true, temp: 0.8 }
+  );
+
   await saveTopicToHistory(topic);
 
-  return { topic, tag: bucket.tag, bucketName: bucket.name };
+  const result = { topic, tag: bucket.tag, bucketName: bucket.name, ...angleData };
+  logDetail(`Topic: "${topic}" [${bucket.tag}]`);
+  logDetail(`Angle: ${angleData.angle}`);
+  logDetail(`Audience: ${angleData.audience_segment}`);
+  return result;
 }
 
 function getTemplateFormat() {
   const formats = ['Story-First', 'Science-First', 'Myth-Busting', 'Field Manual', 'Q&A', 'History/Philosophy Lens'];
-  return formats[getWeekNumber() % formats.length];
+  const offset = Math.floor(Math.random() * 2);
+  return formats[(getWeekNumber() + offset) % formats.length];
 }
 
-// ── Agent 1: Planner ───────────────────────────────────
+// ════════════════════════════════════════════════════════
+// STAGE 2: RESEARCHER (Gemini with Google Search grounding)
+// ════════════════════════════════════════════════════════
 
-async function planPost(topicInfo, guidelines) {
-  console.log(chalk.cyan('[Agent 1] Planning post structure...'));
+async function stage2_research(topicInfo) {
+  log(2, 'Researching topic with web search...');
 
+  const research = await gemini(
+    `Research the following sleep science topic thoroughly.
+
+Topic: "${topicInfo.topic}"
+Angle: ${topicInfo.angle}
+Target audience: ${topicInfo.audience_segment}
+
+Find and return JSON with REAL, VERIFIABLE information:
+{
+  "studies": [
+    {
+      "finding": "one-sentence summary of the finding",
+      "source": "organization or journal name",
+      "url": "real URL to CDC, NIH, PubMed, WHO, AASM, or Cochrane page",
+      "year": 2024,
+      "stat": "specific number if available (e.g., '42% reduction in sleep latency')"
+    }
+  ],
+  "key_stats": [
+    {
+      "stat": "specific statistic with number",
+      "source": "CDC/NIH/WHO/etc",
+      "url": "real URL"
+    }
+  ],
+  "surprising_fact": "one counterintuitive or lesser-known fact about this topic",
+  "mechanisms": ["named physiological mechanism 1", "mechanism 2"],
+  "practical_protocols": ["real technique or protocol name with origin"]
+}
+
+RULES:
+- 3-5 studies from trusted sources (CDC, NIH, PubMed, AASM, WHO, Cochrane, NHLBI)
+- 2-3 statistics with real numbers
+- Only include URLs you are confident are real
+- Mechanisms must be named physiological processes (circadian phase, homeostatic sleep drive, thermoregulation, etc.)
+- If a protocol exists (military sleep method, 4-7-8 breathing, etc.), name it with its origin`,
+    { json: true, temp: 0.3, search: true, maxTokens: 4096 }
+  );
+
+  logDetail(`Found ${research.studies?.length || 0} studies, ${research.key_stats?.length || 0} stats`);
+  logDetail(`Mechanisms: ${(research.mechanisms || []).join(', ')}`);
+  return research;
+}
+
+// ════════════════════════════════════════════════════════
+// STAGE 3: PLANNER
+// ════════════════════════════════════════════════════════
+
+async function stage3_plan(topicInfo, research, guidelines) {
+  log(3, 'Planning post structure...');
   const format = getTemplateFormat();
 
   const system = `You are a blog editor for SleepMedic, a sleep science publication.
-Primary audience: anyone struggling with sleep (insomnia, anxiety, bad habits, schedule chaos).
-Core niche: shift workers (EMTs, nurses, firefighters) who can't follow rigid sleep advice.
-Secondary: health optimizers, wearable users, parents, students, travelers.
-
-Write for the broadest relevant audience. Add shift-worker tips where they naturally fit, but don't force every post to be about shift work. If the topic IS shift-work specific, write directly for that audience.
+Primary audience: anyone struggling with sleep.
+Core niche: shift workers (EMTs, nurses, firefighters).
+Secondary: health optimizers, wearable users, parents, students.
 
 ${guidelines}
 
 This week's template format: ${format}`;
 
-  const prompt = `Plan a blog post on: "${topicInfo.topic}"
-Category: ${topicInfo.bucketName} (${topicInfo.tag})
+  const researchSummary = JSON.stringify(research, null, 2);
 
-The post should be ~700-1000 words total across all sections.
+  const outline = await gemini(
+    `Plan a blog post.
+
+TOPIC: "${topicInfo.topic}"
+ANGLE: ${topicInfo.angle}
+AUDIENCE: ${topicInfo.audience_segment}
+EMOTIONAL HOOK: ${topicInfo.emotional_hook}
+SEARCH QUERY: ${topicInfo.search_query}
+
+RESEARCH DATA (use this -- do not invent citations):
+${researchSummary}
+
+The post should be ~800-1200 words across all sections.
 
 Return JSON:
 {
-  "title": "6-10 words, specific and concrete. No AI cliches like 'Ultimate Guide' or 'Everything You Need'",
-  "excerpt": "140-160 char compelling summary",
-  "keywords": "comma-separated SEO keywords matching what people actually Google",
+  "title": "6-10 words, specific and concrete. Answers the search query.",
+  "excerpt": "140-160 char summary that makes someone click",
+  "keywords": "comma-separated SEO keywords",
+  "template_type": "${format}",
   "sections": [
     {
-      "heading": "Specific section heading",
-      "angle": "What this section covers and why it matters",
-      "keyPoints": ["specific point 1", "specific point 2"],
-      "mechanisms": ["named physiological mechanism if applicable"],
-      "targetWords": 150
+      "heading": "specific heading (never generic)",
+      "angle": "what this section covers and why",
+      "keyPoints": ["point 1", "point 2"],
+      "research_refs": [0, 1],
+      "mechanisms": ["named mechanism if relevant"],
+      "targetWords": 180,
+      "tone_note": "e.g., 'open with tension', 'matter-of-fact', 'empathetic'"
     }
   ],
-  "imagePrompt": "Specific atmospheric scene description for AI image generation. Example: 'dimly lit bedroom at 3am, phone glowing on nightstand, tangled sheets'. NOT generic stock photo language.",
-  "closingLine": "Short grounded closing line like 'Rest well. Rise ready.'"
+  "imagePrompt": "specific atmospheric scene showing the WORLD of the reader, not a bed. Examples: nurse in scrubs walking a dim hospital corridor at shift change, firefighter boots by a bunk room door, coffee mug and stethoscope on a break room table at 4am, sunrise through an ambulance windshield, hands gripping a steering wheel on a dark highway. Show the environment, the work, the struggle -- not a pillow.",
+  "inline_image_after_section": 2,
+  "inline_image_prompt": "specific scene tied to this section -- workplace, tool, or environmental detail. NOT a bedroom.",
+  "closingLine": "short grounded closing line"
 }
 
 RULES:
-- 4-6 sections including intro hook and closing protocol/checklist
-- First section: strong hook (scene, stat, or brief story), NOT a generic intro
-- Include at least one section with a decision tree, protocol, or checklist
-- Last section: sources (3-5 real URLs from CDC/NIH/AASM/WHO/Cochrane) + disclaimer
-- Image prompt: describe a specific scene, not generic wellness imagery
-- Title: be specific to THIS topic. Avoid "What You Need to Know" and "Evidence-Based" patterns
-- Write for the GENERAL audience unless the topic is specifically about shift work`;
+- 4-6 sections including intro hook and closing protocol
+- research_refs are indices into the studies array -- assign each study to a section
+- First section: strong hook (scene, stat, or story)
+- Last section: protocol/checklist (3-7 items) + sources + disclaimer
+- Section headings: specific to THIS topic, never generic
+- inline_image_after_section: pick the section index where a visual would help most
+- Title must match what someone would search for. No clickbait.`,
+    { system, json: true, temp: 0.7 }
+  );
 
-  return await gemini(prompt, { system, json: true, temp: 0.75 });
+  logDetail(`Title: "${outline.title}"`);
+  logDetail(`Sections: ${outline.sections.length}`);
+  logDetail(`Format: ${format}`);
+  return outline;
 }
 
-// ── Agent 2: Section Writers ───────────────────────────
+// ════════════════════════════════════════════════════════
+// STAGE 4: SECTION WRITERS
+// ════════════════════════════════════════════════════════
 
-async function writeSections(outline) {
-  console.log(chalk.cyan(`\n[Agent 2] Writing ${outline.sections.length} sections...`));
+async function stage4_writeSections(outline, research, guidelines) {
+  log(4, `Writing ${outline.sections.length} sections...`);
 
   const system = `You write for SleepMedic, a sleep science blog.
-Primary audience: anyone struggling with sleep (insomnia, anxiety, bad habits, schedule chaos).
-Core niche: shift workers (EMTs, nurses, firefighters) who can't follow rigid sleep advice.
-Secondary: health optimizers, wearable users, parents, students, travelers.
+Primary audience: anyone struggling with sleep.
+Core niche: shift workers (EMTs, nurses, firefighters).
 
-Voice: warm, direct, expert. Write like a sleep researcher who genuinely wants to help.
-Write for the broadest relevant audience. Add shift-worker angles where they naturally fit, but don't force it. If the topic IS shift-work specific, write directly for that audience.
+${guidelines}
 
-ANTI-AI RULES (critical):
-- NEVER use: "Let's dive in", "In conclusion", "It's important to note", "It's worth noting", "As we've seen", "Whether you're a", "game-changer", "navigate", "landscape", "robust", "leverage", "holistic", "unpack", "Here's the thing", "The reality is", "At the end of the day", "Studies have shown", "Research suggests", "Experts agree", "In today's fast-paced world"
-- Vary sentence length dramatically. Short punch. Then a longer observation with a specific detail or mechanism explained clearly.
-- Use "you" directly. Never "one should" or "it is recommended that"
-- Include specific numbers: temperatures in Fahrenheit, durations in minutes, percentages, doses
-- Use contractions naturally (don't, you'll, it's, can't)
-- No filler paragraphs. Every sentence earns its place.
-- Never start two consecutive paragraphs the same way
-- No summary sentences that repeat what you just said`;
+Voice: warm, direct, expert. Like a sleep researcher explaining to a friend over coffee.
+
+${bannedPhrasesBlock()}
+
+STYLE:
+- Vary sentence length dramatically. Short punch. Then longer with detail.
+- Use "you" directly. Never "one should."
+- Specific numbers: temps in F, durations in minutes, percentages.
+- Use contractions (don't, you'll, it's, can't).
+- No filler. Every sentence earns its place.
+- Never start two consecutive paragraphs the same way.
+- Name the mechanism, explain simply, give the actionable takeaway.`;
 
   const sections = [];
   let prevContext = '';
@@ -258,114 +415,188 @@ ANTI-AI RULES (critical):
     const section = outline.sections[i];
     const isFirst = i === 0;
     const isLast = i === outline.sections.length - 1;
-    const temp = isFirst ? 0.8 : isLast ? 0.5 : 0.65;
+    const temp = isFirst ? 0.85 : isLast ? 0.5 : 0.7;
+
+    // Build research context for this section
+    let researchContext = '';
+    if (section.research_refs?.length && research.studies) {
+      const refs = section.research_refs
+        .filter(idx => research.studies[idx])
+        .map(idx => research.studies[idx]);
+      if (refs.length) {
+        researchContext = `\nRESEARCH TO WEAVE IN (cite with inline links):\n${refs.map(r =>
+          `- ${r.finding} (${r.source}${r.year ? `, ${r.year}` : ''})${r.url ? ` [${r.url}]` : ''}${r.stat ? ` -- stat: ${r.stat}` : ''}`
+        ).join('\n')}`;
+      }
+    }
 
     let prompt = `Write the "${section.heading}" section for a blog post titled "${outline.title}".
 
 This section's job: ${section.angle}
 Key points: ${section.keyPoints.join('; ')}
-${section.mechanisms?.length ? `Mechanisms to name and explain: ${section.mechanisms.join(', ')}` : ''}
-Target: ~${section.targetWords || 150} words.`;
+${section.mechanisms?.length ? `Mechanisms: ${section.mechanisms.join(', ')}` : ''}
+Tone: ${section.tone_note || 'direct and helpful'}
+Target: ~${section.targetWords || 180} words.
+${researchContext}`;
 
     if (isFirst) {
-      prompt += `\n\nThis is the OPENING. Start with a strong hook: a scene, a striking number, or a two-sentence story. Jump right in. No generic intro like "Sleep is important" or "As shift workers, we all know..."`;
+      prompt += `\n\nOPENING SECTION. Start with a strong hook -- a scene, a striking number, or a two-sentence story. Jump in. No generic intros.`;
     }
 
     if (prevContext) {
-      prompt += `\n\nPrevious section ended with:\n"${prevContext}"\nContinue so it flows naturally.`;
+      prompt += `\n\nPrevious section ended with: "${prevContext}"\nFlow naturally from there.`;
     }
 
     if (isLast) {
-      prompt += `\n\nThis is the CLOSING section. Include:
-1. A compact protocol, checklist, or decision tree (3-7 actionable items)
-2. Sources section with 3-5 inline-linked citations (CDC, NIH, AASM, WHO, Cochrane) using real URLs
+      // Build sources from all research
+      const allSources = (research.studies || [])
+        .filter(s => s.url)
+        .map(s => `${s.source}${s.year ? ` (${s.year})` : ''}: ${s.url}`)
+        .slice(0, 5);
+
+      prompt += `\n\nCLOSING SECTION. Include:
+1. Compact protocol or checklist (3-7 actionable items, commands not suggestions)
+2. Sources section with these real links:\n${allSources.map(s => `   - ${s}`).join('\n')}
 3. One-line disclaimer: "This is not medical advice. Talk to your provider."
-4. End with: "${outline.closingLine || 'Rest well. Rise ready.'}"`;
+4. Close with: "${outline.closingLine || 'Rest well. Rise ready.'}"`;
     }
 
-    prompt += `\n\nReturn ONLY the HTML for this section. Tags: <h2>, <h3>, <p>, <ul>, <li>, <strong>, <a>, <blockquote>. No wrapper divs. No title. CRITICAL: Every paragraph of text MUST be wrapped in <p> tags. No bare text outside of tags.`;
+    prompt += `\n\nReturn ONLY HTML. Tags: <h2>, <h3>, <p>, <ul>, <li>, <strong>, <a>, <blockquote>. No wrapper divs. Every paragraph in <p> tags.`;
 
     const html = await gemini(prompt, { system, temp });
-    sections.push(html);
+    sections.push({ html, index: i });
 
-    // Extract tail for context continuity
     const plainText = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
     const words = plainText.split(' ');
     prevContext = words.slice(-40).join(' ');
 
-    console.log(chalk.gray(`  ${i + 1}/${outline.sections.length}: "${section.heading}" (${words.length} words)`));
+    logDetail(`${i + 1}/${outline.sections.length}: "${section.heading}" (${words.length} words)`);
   }
 
-  return sections.join('\n\n');
+  return sections;
 }
 
-// ── Agent 3: Editor ────────────────────────────────────
+// ════════════════════════════════════════════════════════
+// STAGE 5: ASSEMBLER (programmatic)
+// ════════════════════════════════════════════════════════
 
-async function editPost(rawHtml, outline) {
-  console.log(chalk.cyan('\n[Agent 3] Editing and polishing...'));
+function stage5_assemble(sections, outline) {
+  log(5, 'Assembling sections...');
+
+  const inlineSlot = outline.inline_image_after_section ?? Math.min(2, sections.length - 2);
+
+  let fullHtml = '';
+  let inlineImagePosition = null;
+
+  for (const { html, index } of sections) {
+    fullHtml += html + '\n\n';
+    if (index === inlineSlot) {
+      fullHtml += '<!-- INLINE_IMAGE_SLOT -->\n\n';
+      inlineImagePosition = fullHtml.indexOf('<!-- INLINE_IMAGE_SLOT -->');
+    }
+  }
+
+  const wordCount = fullHtml.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
+  logDetail(`Assembled ${wordCount} words, inline image after section ${inlineSlot}`);
+
+  return { fullHtml, inlineImageSlot: inlineSlot, inlineImagePrompt: outline.inline_image_prompt };
+}
+
+// ════════════════════════════════════════════════════════
+// STAGE 6: EDITOR
+// ════════════════════════════════════════════════════════
+
+async function stage6_edit(fullHtml, outline, guidelines) {
+  log(6, 'Editing and polishing...');
 
   const system = `You are a senior editor at SleepMedic. Polish this draft so it reads like a knowledgeable human wrote it, not AI.
 
-WHAT TO FIX:
-- Remove ANY phrase that sounds AI-generated (hedging, filler, generic transitions)
-- Ensure sections flow naturally (no abrupt topic jumps, no repetitive openings)
-- Vary paragraph length: some 1 sentence, some 3-4 sentences
-- Vary sentence structure throughout the piece
-- Opening hook must grab attention in the first line
-- All citations must have inline <a> links
-- Advice must be specific (exact temps, durations, protocols)
-- Fix any redundancy between sections
+${guidelines}
 
-BANNED PHRASES (rewrite or remove on sight):
-"Let's dive in", "In conclusion", "It's worth noting", "As we've seen",
-"In today's post", "Whether you're a", "Look no further", "game-changer",
-"dive deep", "unpack", "navigate the landscape", "robust", "leverage",
-"holistic approach", "synergy", "optimize your", "hack your sleep",
-"Here's the thing", "The reality is", "At the end of the day",
-"Studies have shown", "Research suggests", "Experts agree",
-"In today's fast-paced world", "When it comes to", "It goes without saying"
+WHAT TO FIX:
+- Remove ANY phrase that sounds AI-generated
+- Ensure sections flow naturally (no repetitive openings, no abrupt jumps)
+- Vary paragraph length: some 1 sentence, some 3-4
+- Opening hook must grab in the first line
+- All citations must have inline <a> links to real URLs
+- Advice must be specific (exact temps, durations, protocols)
+- Fix redundancy between sections
+- Remove any sentence that could appear in any blog post
+
+${bannedPhrasesBlock()}
 
 KEEP INTACT:
-- Specific mechanism names (circadian phase, homeostatic sleep drive, thermoregulation)
+- Specific mechanism names
 - Exact numbers and protocols
-- The warm, direct, expert tone
-- All citation links and source URLs
-- Section headings (h2/h3 tags)`;
+- Citation links and URLs
+- Section headings
+- The <!-- INLINE_IMAGE_SLOT --> comment (do not remove)`;
 
-  const prompt = `Polish this blog post draft. Title: "${outline.title}"
+  const result = await gemini(
+    `Polish this blog post. Title: "${outline.title}"\n\n${fullHtml}\n\nReturn ONLY the polished HTML body. Same tags. No title, no wrapper divs.`,
+    { system, temp: 0.4, maxTokens: 10000 }
+  );
 
-${rawHtml}
-
-Return ONLY the polished HTML body content. Same tag set: h2, h3, p, ul, li, strong, a, blockquote.
-Do NOT include the title, any wrapper divs, or meta commentary. Just the article body.
-CRITICAL: Every paragraph of text MUST be wrapped in <p> tags. No bare text outside of HTML tags.`;
-
-  return await gemini(prompt, { system, temp: 0.4, maxTokens: 8192 });
+  logDetail('Edit pass complete');
+  return result;
 }
 
-// ── Agent 4: Cross-Linker ──────────────────────────────
+// ════════════════════════════════════════════════════════
+// STAGE 7: HUMANIZER
+// ════════════════════════════════════════════════════════
 
-async function addCrossLinks(html, outline) {
-  console.log(chalk.cyan('\n[Agent 4] Adding internal links to related posts...'));
+async function stage7_humanize(html, outline, guidelines) {
+  log(7, 'Humanizing...');
+
+  const result = await gemini(
+    `You are a writing coach. This blog post is good but still reads slightly like AI wrote it. Make it sound like a real human expert.
+
+Title: "${outline.title}"
+
+${html}
+
+YOUR TASKS:
+1. Replace any remaining formal/stiff phrasing with conversational tone
+2. Add 1-2 rhetorical questions where they feel natural (not forced)
+3. If there's no concrete scene or micro-story in the opening, add one (2-3 sentences max)
+4. Vary paragraph lengths more aggressively -- some should be just 1 sentence
+5. Remove hedge words: "may", "might", "could potentially", "it is possible that"
+6. Replace passive voice with active where possible
+7. Make sure transitions between sections feel like natural thought progression, not "Next, let's discuss..."
+8. Keep all factual content, citations, protocols, and numbers exactly as they are
+9. Keep the <!-- INLINE_IMAGE_SLOT --> comment (do not remove)
+
+${bannedPhrasesBlock()}
+
+Return ONLY the improved HTML body. Same tag set. No meta commentary.`,
+    {
+      system: `You write for SleepMedic. Voice: warm, direct, expert. Like explaining to a smart friend. ${guidelines.slice(0, 500)}`,
+      temp: 0.6,
+      maxTokens: 10000
+    }
+  );
+
+  logDetail('Humanizer pass complete');
+  return result;
+}
+
+// ════════════════════════════════════════════════════════
+// STAGE 8: CROSS-LINKER
+// ════════════════════════════════════════════════════════
+
+async function stage8_crossLink(html, outline) {
+  log(8, 'Adding internal links...');
 
   let postsIndex;
-  try {
-    postsIndex = JSON.parse(await fs.readFile('blog/posts-index.json', 'utf8'));
-  } catch {
-    console.log(chalk.gray('  No posts index found, skipping'));
-    return html;
-  }
+  try { postsIndex = JSON.parse(await fs.readFile('blog/posts-index.json', 'utf8')); }
+  catch { logDetail('No posts index, skipping'); return html; }
 
-  if (!postsIndex.length) {
-    console.log(chalk.gray('  No existing posts to link to'));
-    return html;
-  }
+  if (!postsIndex.length) { logDetail('No existing posts'); return html; }
 
   const posts = postsIndex.map(p => `- "${p.title}" -> ../posts/${p.slug}.html\n  ${p.excerpt}`).join('\n');
 
-  const system = `You add internal links to SleepMedic blog posts. You receive a post and a list of existing posts. Find 1-3 natural places to link to related content.`;
-
-  const prompt = `Current post title: "${outline.title}"
+  const result = await gemini(
+    `Current post: "${outline.title}"
 
 EXISTING POSTS:
 ${posts}
@@ -373,34 +604,80 @@ ${posts}
 CURRENT POST HTML:
 ${html}
 
-Add 1-3 internal links where the current post discusses a topic covered in an existing post.
+Add 2-4 internal links where the current post discusses a topic covered in an existing post.
 
 RULES:
-- Only link where it genuinely adds value for the reader
-- Use natural anchor text (2-5 words), not the full title. Example: <a href="../posts/slug.html">our earlier post on wake consistency</a>
-- Don't link in the first paragraph (let the hook stand alone)
-- Don't link in the sources/citation list
-- Maximum 3 links total
-- If no good link fits exist, return the content EXACTLY as-is
-- Don't add new sentences just to create a link opportunity
-- Don't change any existing text beyond inserting the <a> tag
+- Only link where genuinely valuable
+- Natural anchor text (2-5 words), not full titles
+- Don't link in first paragraph or sources section
+- Maximum 4 links
+- If no good fit, return content EXACTLY unchanged
+- Don't add new sentences just to create links
+- Don't modify any existing text beyond inserting <a> tags
+- Keep the <!-- INLINE_IMAGE_SLOT --> comment
 
-Return the FULL HTML content with links inserted (or unchanged).`;
+Return the FULL HTML with links inserted.`,
+    { system: 'You add internal links to blog posts. Be precise and conservative.', temp: 0.3 }
+  );
 
-  return await gemini(prompt, { system, temp: 0.3 });
+  logDetail('Cross-linking complete');
+  return result;
 }
 
-// ── HTML Builder ───────────────────────────────────────
+// ════════════════════════════════════════════════════════
+// STAGE 9: IMAGE GENERATION
+// ════════════════════════════════════════════════════════
 
-async function createHtmlFile(content, topicInfo, outline, imagePath) {
+async function stage9_generateImages(outline, slug) {
+  log(9, 'Generating images...');
+
+  const imagesDir = 'blog/posts/images';
+  await fs.mkdir(imagesDir, { recursive: true });
+
+  // Cover image
+  const coverPath = `${imagesDir}/${slug}-cover.jpg`;
+  logDetail('Generating cover image...');
+  const coverResult = await generateImage(outline.imagePrompt, coverPath);
+  if (coverResult) logDetail('Cover image saved');
+  else logDetail('Cover image failed (post will still publish)');
+
+  // Inline image
+  let inlinePath = null;
+  if (outline.inline_image_prompt) {
+    const inlineOutputPath = `${imagesDir}/${slug}-inline-1.jpg`;
+    logDetail('Generating inline image...');
+    inlinePath = await generateImage(outline.inline_image_prompt, inlineOutputPath);
+    if (inlinePath) logDetail('Inline image saved');
+    else logDetail('Inline image failed (section will be text-only)');
+  }
+
+  return { coverPath: coverResult, inlinePath };
+}
+
+// ════════════════════════════════════════════════════════
+// STAGE 10: HTML BUILDER
+// ════════════════════════════════════════════════════════
+
+async function stage10_buildHtml(content, topicInfo, outline, images) {
+  log(10, 'Building HTML...');
+
   const template = await fs.readFile('blog/_template.html', 'utf8');
-
-  const now = new Date();
-  const dateISO = now.toISOString().split('T')[0];
-  const dateFormatted = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const dateISO = dateISOmt();
+  const dateFormatted = dateFormattedMT();
   const slug = `${dateISO}-${slugify(outline.title)}`;
-  const wordCount = content.replace(/<[^>]+>/g, '').split(/\s+/).length;
+  const wordCount = content.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
   const readTime = Math.ceil(wordCount / 200);
+
+  // Insert inline image at the slot
+  if (images.inlinePath) {
+    const relPath = `images/${slug}-inline-1.jpg`;
+    const imgHtml = `<figure style="margin: 32px 0;">
+        <img src="${relPath}" alt="Illustration for ${outline.title}" style="width: 100%; border-radius: 16px; max-height: 360px; object-fit: cover;" loading="lazy">
+      </figure>`;
+    content = content.replace('<!-- INLINE_IMAGE_SLOT -->', imgHtml);
+  } else {
+    content = content.replace('<!-- INLINE_IMAGE_SLOT -->', '');
+  }
 
   let html = template
     .replace(/\{\{TITLE\}\}/g, outline.title)
@@ -411,133 +688,122 @@ async function createHtmlFile(content, topicInfo, outline, imagePath) {
     .replace(/\{\{CATEGORY\}\}/g, topicInfo.tag)
     .replace(/\{\{KEYWORDS\}\}/g, outline.keywords)
     .replace(/\{\{READ_TIME\}\}/g, readTime)
+    .replace(/\{\{WORD_COUNT\}\}/g, wordCount)
     .replace(/\{\{CONTENT\}\}/g, content);
 
-  // Insert cover image before post-content div (same position as old Unsplash workflow)
-  if (imagePath) {
+  // Inject cover image
+  if (images.coverPath) {
     const imageRelPath = `images/${slug}-cover.jpg`;
+    const ogImageTag = `  <meta property="og:image" content="https://sleepmedic.co/blog/posts/images/${slug}-cover.jpg" />`;
+
+    if (!html.includes('og:image') && html.includes('og:url')) {
+      html = html.replace(/(<meta property="og:url"[^>]*>)/, `$1\n${ogImageTag}`);
+    }
+
     const coverHtml = `      <div style="margin-bottom: 40px;">
         <img src="${imageRelPath}" alt="Cover image for ${outline.title}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;" loading="lazy">
-        <p style="text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 8px;">Image by SleepMedic AI</p>
       </div>\n`;
     html = html.replace('<div class="post-content">', coverHtml + '      <div class="post-content">');
   }
 
   const filename = `${slug}.html`;
-  const filepath = `blog/posts/${filename}`;
-  await fs.writeFile(filepath, html, 'utf8');
+  await fs.writeFile(`blog/posts/${filename}`, html, 'utf8');
 
-  console.log(chalk.green(`\nCreated: ${filepath}`));
-  console.log(chalk.gray(`  ${wordCount} words, ${readTime} min read\n`));
+  logDetail(`Created: blog/posts/${filename}`);
+  logDetail(`${wordCount} words, ${readTime} min read`);
 
-  // Save metadata for CI/workflow
+  // Metadata for CI
   await fs.mkdir('tmp', { recursive: true });
   await fs.writeFile('tmp/post-metadata.json', JSON.stringify({
     title: outline.title,
     excerpt: outline.excerpt,
-    filename,
-    slug,
+    filename, slug,
     date: dateISO,
     topic: topicInfo.topic,
     tag: topicInfo.tag,
     readTime,
-    hasAiImage: !!imagePath
+    hasAiImage: !!images.coverPath,
+    hasInlineImage: !!images.inlinePath
   }, null, 2));
 
-  return { filename, slug, dateISO, readTime };
+  return { filename, slug, dateISO, readTime, wordCount };
 }
 
-// ── Update Blog Index ──────────────────────────────────
-
-async function updateBlogIndex(postMeta, outline, topicInfo) {
-  const indexPath = 'blog/index.html';
-  let indexHtml = await fs.readFile(indexPath, 'utf8');
-
-  const slug = postMeta.slug;
-  const newPost = {
-    title: outline.title,
-    excerpt: outline.excerpt,
-    slug,
-    date: postMeta.dateISO,
-    dateFormatted: new Date(postMeta.dateISO).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
-    category: topicInfo.tag.toLowerCase(),
-    categoryLabel: topicInfo.tag,
-    readTime: postMeta.readTime,
-    coverImage: `posts/images/${slug}-cover.jpg`
-  };
-
-  let postsArray = [];
-  const match = indexHtml.match(/const posts = \[([\s\S]*?)\];/);
-  if (match?.[1]?.trim()) {
-    try { postsArray = JSON.parse(`[${match[1]}]`); } catch {}
-  }
-
-  postsArray.unshift(newPost);
-  indexHtml = indexHtml.replace(/const posts = \[[\s\S]*?\];/, `const posts = ${JSON.stringify(postsArray, null, 2)};`);
-
-  await fs.writeFile(indexPath, indexHtml, 'utf8');
-  console.log(chalk.green('Updated blog/index.html\n'));
-}
-
-// ── Main Pipeline ──────────────────────────────────────
+// ════════════════════════════════════════════════════════
+// MAIN PIPELINE
+// ════════════════════════════════════════════════════════
 
 async function main() {
-  console.log(chalk.bold.cyan('\nSleepMedic Multi-Agent Blog Generator\n'));
+  console.log(chalk.bold.cyan('\nSleepMedic Blog Generator v2\n'));
   console.log(chalk.gray('='.repeat(50) + '\n'));
 
   try {
-    // 1. Select topic
-    const topicInfo = await selectTopic();
-
-    // 2. Load editorial guidelines
     const guidelines = await fs.readFile('scripts/editorial/style_guidelines.md', 'utf8');
+    const memory = new ContentMemory();
 
-    // 3. Agent 1: Plan the post
-    const outline = await planPost(topicInfo, guidelines);
-    console.log(chalk.bold(`  Title: ${outline.title}`));
-    console.log(chalk.gray(`  Sections: ${outline.sections.length}`));
-    console.log(chalk.gray(`  Image: ${outline.imagePrompt}\n`));
+    // Stage 1: Topic + Angle
+    const topicInfo = await stage1_selectTopic();
+
+    // Stage 2: Research
+    const research = await stage2_research(topicInfo);
+
+    // Stage 3: Plan
+    const outline = await stage3_plan(topicInfo, research, guidelines);
 
     // Novelty check
-    const memory = new ContentMemory();
     const novelty = memory.checkTitleNovelty(outline.title);
-
     if (novelty.noveltyScore < 20) {
-      console.log(chalk.yellow(`  Title novelty low (${novelty.noveltyScore}/100), retrying...`));
-      const retry = await planPost(topicInfo, guidelines);
+      logDetail(`Title novelty low (${novelty.noveltyScore}/100), retrying...`);
+      const retry = await stage3_plan(topicInfo, research, guidelines);
       const retryNovelty = memory.checkTitleNovelty(retry.title);
       if (retryNovelty.noveltyScore > novelty.noveltyScore) {
         Object.assign(outline, retry);
-        console.log(chalk.green(`  New title: "${outline.title}" (${retryNovelty.noveltyScore}/100)`));
+        logDetail(`New title: "${outline.title}" (${retryNovelty.noveltyScore}/100)`);
       }
     } else {
-      console.log(chalk.green(`  Novelty: ${novelty.noveltyScore}/100`));
+      logDetail(`Novelty: ${novelty.noveltyScore}/100`);
     }
 
-    // 4. Agent 2: Write each section
-    const rawContent = await writeSections(outline);
+    // Stage 4: Write sections
+    const sections = await stage4_writeSections(outline, research, guidelines);
 
-    // 5. Agent 3: Edit and polish
-    const polishedContent = await editPost(rawContent, outline);
+    // Stage 5: Assemble
+    const { fullHtml, inlineImagePrompt } = stage5_assemble(sections, outline);
 
-    // 6. Agent 4: Add cross-links to existing posts
-    const linkedContent = await addCrossLinks(polishedContent, outline);
+    // Stage 6: Edit
+    const edited = await stage6_edit(fullHtml, outline, guidelines);
 
-    // 7. Generate cover image with Imagen 3
-    const slug = `${new Date().toISOString().split('T')[0]}-${slugify(outline.title)}`;
-    const imagePath = `blog/posts/images/${slug}-cover.jpg`;
-    const imageResult = await generateImage(outline.imagePrompt, imagePath);
+    // Stage 7: Humanize
+    const humanized = await stage7_humanize(edited, outline, guidelines);
 
-    // 8. Build HTML file
-    const postMeta = await createHtmlFile(linkedContent, topicInfo, outline, imageResult);
+    // Stage 8: Cross-link
+    const linked = await stage8_crossLink(humanized, outline);
 
-    // 9. Update blog index
-    await updateBlogIndex(postMeta, outline, topicInfo);
+    // Stage 9: Images
+    const slug = `${dateISOmt()}-${slugify(outline.title)}`;
+    const images = await stage9_generateImages(outline, slug);
 
-    console.log(chalk.gray('='.repeat(50)));
+    // Stage 10: Build HTML
+    const postMeta = await stage10_buildHtml(linked, topicInfo, outline, images);
+
+    // Record to content memory
+    try {
+      memory.recordPost({
+        title: outline.title,
+        date: postMeta.dateISO,
+        excerpt: outline.excerpt,
+        content: linked.replace(/<[^>]+>/g, ' '),
+        topic: topicInfo.topic
+      });
+      logDetail('Recorded to content memory');
+    } catch (err) {
+      console.warn(chalk.yellow(`  Memory recording failed: ${err.message}`));
+    }
+
+    console.log(chalk.gray('\n' + '='.repeat(50)));
     console.log(chalk.bold.green('\nBlog post generated successfully!\n'));
-    console.log(chalk.gray('  File: blog/posts/' + postMeta.filename));
-    console.log(chalk.gray('  Next: npm run blog:rss\n'));
+    console.log(chalk.gray(`  File: blog/posts/${postMeta.filename}`));
+    console.log(chalk.gray(`  Next: npm run blog:rss\n`));
 
   } catch (error) {
     console.error(chalk.red('\nGeneration failed:', error.message));

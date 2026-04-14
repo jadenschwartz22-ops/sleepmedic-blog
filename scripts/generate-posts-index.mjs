@@ -4,7 +4,7 @@ import path from 'path';
 async function extractPostMetadata(filepath) {
   const html = await fs.readFile(filepath, 'utf8');
 
-  const titleMatch = html.match(/<h1>(.*?)<\/h1>/);
+  const titleMatch = html.match(/<h1[^>]*>(.*?)<\/h1>/);
   const excerptMatch = html.match(/<meta name="description" content="(.*?)"/);
   const dateMatch = html.match(/<time datetime="(.*?)">(.*?)<\/time>/);
   const categoryMatch = html.match(/<span class="post-category-badge">(.*?)<\/span>/);
@@ -29,7 +29,11 @@ async function extractPostMetadata(filepath) {
     'Timing': 'timing',
     'Sleep Timing': 'timing',
     'Special': 'special',
-    'Special Topics': 'special'
+    'Special Topics': 'special',
+    'Trending': 'trending',
+    'Shift Work': 'special',
+    'Life Stages': 'special',
+    'Troubleshooting': 'tools'
   };
 
   const categoryLabel = categoryMatch ? categoryMatch[1] : 'Science';
@@ -67,7 +71,7 @@ async function generatePostsIndex() {
   const indexPath = 'blog/posts-index.json';
   await fs.writeFile(indexPath, JSON.stringify(posts, null, 2));
 
-  console.log(`✅ Generated posts index with ${posts.length} posts`);
+  console.log(`Generated posts index with ${posts.length} posts`);
   console.log(`   Saved to: ${indexPath}`);
 }
 

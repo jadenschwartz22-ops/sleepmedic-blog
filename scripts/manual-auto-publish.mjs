@@ -15,7 +15,7 @@ import { promisify } from 'util';
 const execAsync = promisify(exec);
 
 async function findOldIssues() {
-  console.log('🔍 Finding open cover image selection issues...');
+  console.log('Finding open cover image selection issues...');
 
   const { stdout } = await execAsync(
     'gh issue list --label "select-cover-image" --state open --json number,title,createdAt'
@@ -49,7 +49,7 @@ async function getPRInfo(issueBody) {
 }
 
 async function autoPublishIssue(issueNumber) {
-  console.log(`\n📝 Processing issue #${issueNumber}...`);
+  console.log(`\nProcessing issue #${issueNumber}...`);
 
   // Get issue body
   const issueBody = await getIssueBody(issueNumber);
@@ -60,7 +60,7 @@ async function autoPublishIssue(issueNumber) {
 
   // Random image selection (1-5)
   const imageNum = Math.floor(Math.random() * 5) + 1;
-  console.log(`🎲 Randomly selected image #${imageNum}`);
+  console.log(`Randomly selected image #${imageNum}`);
 
   // Extract image URL from issue body
   const imageRegex = new RegExp(`Image ${imageNum}:[\\s\\S]*?\\[Download: (https://[^\\]]+)\\]`, 'i');
@@ -68,7 +68,7 @@ async function autoPublishIssue(issueNumber) {
   if (!imageMatch) throw new Error(`Could not find image #${imageNum} URL`);
 
   const imageUrl = imageMatch[1];
-  console.log(`📥 Downloading: ${imageUrl}`);
+  console.log(`Downloading: ${imageUrl}`);
 
   // Extract post filename from edit link
   const postFileMatch = issueBody.match(/Edit Post Text.*?\/([^/]+\.html)/);
@@ -90,12 +90,12 @@ async function autoPublishIssue(issueNumber) {
   const unsplashUrl = unsplashMatch[1];
 
   // Checkout PR branch
-  console.log(`📦 Checking out branch: ${headRefName}`);
+  console.log(`Checking out branch: ${headRefName}`);
   await execAsync(`git fetch origin ${headRefName}`);
   await execAsync(`git checkout ${headRefName}`);
 
   // Download image
-  console.log('📥 Downloading cover image...');
+  console.log('Downloading cover image...');
   await execAsync(`curl -L "${imageUrl}" -o blog/cover-temp.jpg`);
 
   // Add image to post
@@ -104,7 +104,7 @@ async function autoPublishIssue(issueNumber) {
 
   await execAsync(`mv blog/cover-temp.jpg "${finalImagePath}"`);
 
-  console.log('✏️  Adding cover image to post...');
+  console.log('Adding cover image to post...');
   const imageHtml = `
       <div style="margin-bottom: 40px;">
         <img src="images/${postSlug}-cover.jpg" alt="Cover image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;">
@@ -122,29 +122,29 @@ async function autoPublishIssue(issueNumber) {
   await execAsync(`cat > "${postFile}" << 'EOF'\n${updatedContent}\nEOF`);
 
   // Commit and push
-  console.log('💾 Committing changes...');
+  console.log('Committing changes...');
   await execAsync('git config user.name "github-actions[bot]"');
   await execAsync('git config user.email "github-actions[bot]@users.noreply.github.com"');
   await execAsync('git add .');
   await execAsync(`git commit -m "Auto-publish: Add random cover image #${imageNum} (manual trigger)"`);
 
   // Update with main branch
-  console.log('🔄 Syncing with main...');
+  console.log('Syncing with main...');
   await execAsync('git fetch origin main');
   await execAsync('git rebase origin/main');
 
   await execAsync('git push --force-with-lease');
 
   // Merge PR
-  console.log('🔀 Merging PR...');
+  console.log('Merging PR...');
   await execAsync(`gh pr merge ${prNumber} --squash`);
 
   // Close issue
-  console.log('✅ Closing issue...');
-  await execAsync(`gh issue close ${issueNumber} --comment "⏰ **Auto-Published (Manual Trigger)**\n\nNo image selection received within 24 hours.\n\nRandomly selected image #${imageNum} and published your blog post! 🎉"`);
+  console.log('Closing issue...');
+  await execAsync(`gh issue close ${issueNumber} --comment "**Auto-Published (Manual Trigger)**\n\nNo image selection received within 24 hours.\n\nRandomly selected image #${imageNum} and published your blog post!"`);
 
-  console.log(`\n✨ Successfully auto-published issue #${issueNumber}!`);
-  console.log(`📝 PR: ${prUrl}`);
+  console.log(`\nSuccessfully auto-published issue #${issueNumber}!`);
+  console.log(`PR: ${prUrl}`);
 }
 
 async function main() {
@@ -152,24 +152,24 @@ async function main() {
     const oldIssues = await findOldIssues();
 
     if (oldIssues.length === 0) {
-      console.log('✅ No issues to auto-publish');
+      console.log('No issues to auto-publish');
       return;
     }
 
     // Process first old issue
     const issue = oldIssues[0];
-    console.log(`\n🎯 Auto-publishing: ${issue.title}`);
+    console.log(`\nAuto-publishing: ${issue.title}`);
 
     await autoPublishIssue(issue.number);
 
-    console.log('\n✅ Done!');
+    console.log('\nDone!');
 
     if (oldIssues.length > 1) {
-      console.log(`\n💡 ${oldIssues.length - 1} more issue(s) remaining. Run again to process them.`);
+      console.log(`\n${oldIssues.length - 1} more issue(s) remaining. Run again to process them.`);
     }
 
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('Error:', error.message);
     process.exit(1);
   }
 }

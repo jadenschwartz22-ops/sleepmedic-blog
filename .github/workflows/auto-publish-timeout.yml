@@ -79,7 +79,7 @@ jobs:
 
           # Extract post title from issue title (format: "Select Cover Image: POST TITLE")
           POST_TITLE=$(echo "$ISSUE_TITLE" | sed 's/Select Cover Image: //')
-          echo "📝 Post title: $POST_TITLE"
+          echo "Post title: $POST_TITLE"
 
           # Generate search keywords from post title (convert to lowercase, remove common words, extract key terms)
           SEARCH_KEYWORDS=$(echo "$POST_TITLE" | tr '[:upper:]' '[:lower:]' |
@@ -92,40 +92,40 @@ jobs:
           # Add "sleep" keyword for context
           SEARCH_KEYWORDS="sleep,${SEARCH_KEYWORDS},health"
 
-          echo "🔍 Search keywords: $SEARCH_KEYWORDS"
+          echo "Search keywords: $SEARCH_KEYWORDS"
 
           # Use Unsplash Source API to get relevant image based on topic
           IMAGE_URL="https://source.unsplash.com/1200x800/?${SEARCH_KEYWORDS}"
 
-          echo "📥 Downloading topic-relevant image from Unsplash"
-          echo "🎯 Using keywords: $SEARCH_KEYWORDS"
+          echo "Downloading topic-relevant image from Unsplash"
+          echo "Using keywords: $SEARCH_KEYWORDS"
 
           # Extract post filename from Edit link
           POST_FILENAME=$(echo "$ISSUE_BODY" | grep "Edit Post Text" | sed 's/.*\/\([^\/]*\.html\).*/\1/')
 
           if [ -z "$POST_FILENAME" ]; then
-            echo "❌ Could not find post filename"
+            echo "ERROR: Could not find post filename"
             exit 1
           fi
 
           POST_FILE="blog/posts/$POST_FILENAME"
-          echo "📝 Post file: $POST_FILE"
+          echo "Post file: $POST_FILE"
           echo "post_file=$POST_FILE" >> $GITHUB_OUTPUT
 
           # Extract PR number
           PR_NUM=$(echo "$ISSUE_BODY" | grep -o "View PR #[0-9]*" | sed 's/View PR #//')
 
           if [ -z "$PR_NUM" ]; then
-            echo "❌ Could not find PR number"
+            echo "ERROR: Could not find PR number"
             exit 1
           fi
 
-          echo "🔗 PR #$PR_NUM"
+          echo "PR #$PR_NUM"
           echo "pr_number=$PR_NUM" >> $GITHUB_OUTPUT
 
           # Get PR branch
           BRANCH_NAME=$(gh pr view "$PR_NUM" --json headRefName -q .headRefName)
-          echo "🌿 Branch: $BRANCH_NAME"
+          echo "Branch: $BRANCH_NAME"
 
           # Checkout PR branch
           git fetch origin "$BRANCH_NAME"
@@ -135,8 +135,8 @@ jobs:
           PHOTOGRAPHER="Unsplash Contributors"
           UNSPLASH_URL="https://unsplash.com/?utm_source=sleepmedic_blog&utm_medium=referral"
 
-          echo "📸 Photo by: $PHOTOGRAPHER (auto-selected based on topic)"
-          echo "🔗 Unsplash: $UNSPLASH_URL"
+          echo "Photo by: $PHOTOGRAPHER (auto-selected based on topic)"
+          echo "Unsplash: $UNSPLASH_URL"
 
           # Download image
           curl -L "$IMAGE_URL" -o blog/cover-temp.jpg
@@ -159,10 +159,10 @@ jobs:
           ' "$POST_FILE" > /tmp/post-updated.html
           mv /tmp/post-updated.html "$POST_FILE"
 
-          echo "✅ Cover image added to post"
+          echo "Cover image added to post"
 
           # Regenerate posts index and RSS
-          echo "📝 Regenerating posts index and RSS feed"
+          echo "Regenerating posts index and RSS feed"
           node scripts/generate-posts-index.mjs
           node scripts/generate-rss-feed.mjs
 
@@ -183,20 +183,20 @@ jobs:
           git push --force-with-lease origin "$BRANCH_NAME"
 
           # Wait for GitHub to update merge status
-          echo "⏳ Waiting for GitHub to update PR status..."
+          echo "Waiting for GitHub to update PR status..."
           sleep 5
 
           # Merge PR with retry
           for i in 1 2 3; do
             if gh pr merge "$PR_NUM" --squash --body "Auto-merged after 24h timeout"; then
-              echo "✅ PR merged successfully"
+              echo "PR merged successfully"
               break
             else
               if [ $i -lt 3 ]; then
-                echo "⚠️  Merge attempt $i failed, retrying in 5s..."
+                echo "Merge attempt $i failed, retrying in 5s..."
                 sleep 5
               else
-                echo "❌ Failed to merge after 3 attempts"
+                echo "Failed to merge after 3 attempts"
                 exit 1
               fi
             fi
@@ -211,7 +211,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ steps.find_issues.outputs.issue_number }},
-              body: '⏰ **Auto-Published (24h Timeout)**\n\nNo image selection received within 24 hours.\n\nAutomatically selected a topic-relevant image and published your blog post! 🎉\n\nYour blog post is now live at: https://sleepmedic.co/blog/'
+              body: '**Auto-Published (24h Timeout)**\n\nNo image selection received within 24 hours.\n\nAutomatically selected a topic-relevant image and published your blog post!\n\nYour blog post is now live at: https://sleepmedic.co/blog/'
             });
 
             await github.rest.issues.update({
@@ -230,5 +230,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: ${{ steps.find_issues.outputs.issue_number }},
-              body: '❌ **Auto-Publish Failed**\n\nThere was an error auto-publishing this post. Please select an image manually or check the workflow logs.\n\n[View workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+              body: '**Auto-Publish Failed**\n\nThere was an error auto-publishing this post. Please select an image manually or check the workflow logs.\n\n[View workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})'
             });

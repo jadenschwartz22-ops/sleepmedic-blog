@@ -6,9 +6,9 @@
     "date": "2026-03-01",
     "dateFormatted": "February 28, 2026",
     "readTime": 6,
-    "category": "science",
+    "category": "trending",
     "categoryLabel": "Trending",
-    "coverImage": null
+    "coverImage": "posts/images/2026-03-01-sleepmaxxing-decoding-the-trend-science-and-actionable-steps-cover.jpg"
   },
   {
     "title": "Harnessing NSDR and Yoga Nidra for Better Sleep",
@@ -33,28 +33,6 @@
     "coverImage": "posts/images/2026-02-16-the-hidden-toll-how-poor-sleep-affects-your-vital-organs-cover.jpg"
   },
   {
-    "title": "Unseen Impact: How Poor Sleep Harms Your Body",
-    "slug": "2026-02-16-unseen-impact-how-poor-sleep-harms-your-body",
-    "excerpt": "Explore the long-term effects of disrupted sleep on vital organs and discover actionable strategies to reclaim your rest.",
-    "date": "2026-02-16",
-    "dateFormatted": "February 16, 2026",
-    "readTime": 3,
-    "category": "science",
-    "categoryLabel": "Science",
-    "coverImage": "posts/images/2026-02-16-unseen-impact-how-poor-sleep-harms-your-body-cover.jpg"
-  },
-  {
-    "title": "The Unexpected Connection Between What time should I sleep/wake? and Better Recovery",
-    "slug": "2026-02-02-the-unexpected-connection-between-what-time-should-i-sleep-wake-and-better-recov",
-    "excerpt": "Unlock better sleep by mastering your timing. Discover science-based insights tailored for shift workers and busy humans.",
-    "date": "2026-02-02",
-    "dateFormatted": "February 2, 2026",
-    "readTime": 3,
-    "category": "timing",
-    "categoryLabel": "Timing",
-    "coverImage": "posts/images/2026-02-02-the-unexpected-connection-between-what-time-should-i-sleep-wake-and-better-recov-cover.jpg"
-  },
-  {
     "title": "What Time Should I Sleep and Wake?",
     "slug": "2026-02-02-what-time-should-i-sleep-and-wake",
     "excerpt": "For shift workers, timing sleep is crucial. Learn how to manage circadian disruption effectively with evidence-based strategies.",
@@ -64,17 +42,6 @@
     "category": "timing",
     "categoryLabel": "Timing",
     "coverImage": "posts/images/2026-02-02-what-time-should-i-sleep-and-wake-cover.jpg"
-  },
-  {
-    "title": "Box Breathing and 4-7-8 Breathing for Sleep Onset",
-    "slug": "2026-01-26-box-breathing-and-4-7-8-breathing-for-sleep-onset",
-    "excerpt": "Discover how box breathing and the 4-7-8 technique can help shift workers find sleep amidst chaos.",
-    "date": "2026-01-26",
-    "dateFormatted": "January 26, 2026",
-    "readTime": 3,
-    "category": "tools",
-    "categoryLabel": "Tools",
-    "coverImage": "posts/images/2026-01-26-box-breathing-and-4-7-8-breathing-for-sleep-onset-cover.jpg"
   },
   {
     "title": "Box Breathing and 4-7-8 Technique for Better Sleep",
@@ -152,17 +119,6 @@
     "category": "timing",
     "categoryLabel": "Timing",
     "coverImage": "posts/images/2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know-cover.jpg"
-  },
-  {
-    "title": "Myth-Busting Sleep Timing: What Shift Workers Need to Know",
-    "slug": "2025-12-09-myth-busting-sleep-timing-what-shift-workers-need-to-know",
-    "excerpt": "Explore common myths about sleep timing for shift workers and learn evidence-based strategies to protect your rest.",
-    "date": "2025-12-09",
-    "dateFormatted": "December 9, 2025",
-    "readTime": 3,
-    "category": "timing",
-    "categoryLabel": "Timing",
-    "coverImage": "posts/images/2025-12-09-myth-busting-sleep-timing-what-shift-workers-need-to-know-cover.jpg"
   },
   {
     "title": "Cultural Sleep Practices You Can Use for Better Rest",

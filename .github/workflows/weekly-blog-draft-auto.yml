@@ -37,18 +37,40 @@ jobs:
         run: |
           node scripts/generate-blog-post.mjs
 
-          jq -r '.title' tmp/post-metadata.json | xargs -I {} echo "title={}" >> $GITHUB_OUTPUT
-          jq -r '.filename' tmp/post-metadata.json | xargs -I {} echo "filename={}" >> $GITHUB_OUTPUT
-          jq -r '.topic' tmp/post-metadata.json | xargs -I {} echo "topic={}" >> $GITHUB_OUTPUT
-          jq -r '.tag' tmp/post-metadata.json | xargs -I {} echo "tag={}" >> $GITHUB_OUTPUT
-          jq -r '.excerpt' tmp/post-metadata.json | xargs -I {} echo "excerpt={}" >> $GITHUB_OUTPUT
-          jq -r '.hasAiImage' tmp/post-metadata.json | xargs -I {} echo "has_image={}" >> $GITHUB_OUTPUT
+          # Use heredoc delimiters -- safe for titles with apostrophes/quotes
+          {
+            echo "title<<ENDVAL"
+            jq -r '.title' tmp/post-metadata.json
+            echo "ENDVAL"
+            echo "filename<<ENDVAL"
+            jq -r '.filename' tmp/post-metadata.json
+            echo "ENDVAL"
+            echo "topic<<ENDVAL"
+            jq -r '.topic' tmp/post-metadata.json
+            echo "ENDVAL"
+            echo "tag<<ENDVAL"
+            jq -r '.tag' tmp/post-metadata.json
+            echo "ENDVAL"
+            echo "excerpt<<ENDVAL"
+            jq -r '.excerpt' tmp/post-metadata.json
+            echo "ENDVAL"
+            echo "has_image<<ENDVAL"
+            jq -r '.hasAiImage' tmp/post-metadata.json
+            echo "ENDVAL"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Generate RSS feed
         run: node scripts/generate-rss-feed.mjs
 
       - name: Generate posts index
         run: node scripts/generate-posts-index.mjs
+
+      - name: Commit topic history and content memory
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .topic-history.json .content-memory.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "chore: update topic history and content memory"
 
       - name: Create Pull Request
         id: pr
@@ -74,7 +96,7 @@ jobs:
             2. **Section Writers** - One call per section for varied voice
             3. **Editor** - Reviewed full draft, removed AI-isms
             4. **Cross-Linker** - Added internal links to related posts
-            5. **Imagen 3** - Generated cover image
+            5. **Gemini Image** - Generated cover image (native image gen)
 
             ---
 
@@ -119,34 +141,42 @@ jobs:
 
       - name: Create summary issue
         if: success()
+        env:
+          POST_TITLE: ${{ steps.generate.outputs.title }}
+          POST_FILENAME: ${{ steps.generate.outputs.filename }}
+          PR_NUM: ${{ steps.pr.outputs.pull-request-number }}
+          HAS_IMAGE: ${{ steps.generate.outputs.has_image }}
         uses: actions/github-script@v7
         with:
           script: |
-            const title = '${{ steps.generate.outputs.title }}';
-            const filename = '${{ steps.generate.outputs.filename }}';
-            const prNumber = '${{ steps.pr.outputs.pull-request-number }}';
-            const hasImage = '${{ steps.generate.outputs.has_image }}';
+            const title = process.env.POST_TITLE;
+            const filename = process.env.POST_FILENAME;
+            const prNumber = process.env.PR_NUM;
+            const hasImage = process.env.HAS_IMAGE;
 
-            const body = `## Blog Auto-Published Successfully
-
-            **Title:** ${title}
-            **File:** \`blog/posts/${filename}\`
-            **PR:** #${prNumber}
-            **AI Cover Image:** ${hasImage === 'true' ? 'Yes (Imagen 3)' : 'No (generation unavailable)'}
-            **Pipeline:** Planner -> Section Writers -> Editor -> Cross-Linker -> Imagen 3
-
-            ### Links
-
-            - [View PR](https://github.com/${{ github.repository }}/pull/${prNumber})
-            - [Live Post](https://sleepmedic.co/blog/posts/${filename}) (available after merge)
-
-            ### Next Post
-
-            Next blog post will be automatically generated and published next Monday at 9:00 AM MT.
-
-            ---
-
-            *This issue will auto-close in 7 days.*`;
+            const imageStatus = hasImage === 'true' ? 'Yes (Gemini native)' : 'No (generation unavailable)';
+            const body = [
+              '## Blog Auto-Published Successfully',
+              '',
+              `**Title:** ${title}`,
+              `**File:** \`blog/posts/${filename}\``,
+              `**PR:** #${prNumber}`,
+              `**AI Cover Image:** ${imageStatus}`,
+              `**Pipeline:** Planner -> Section Writers -> Editor -> Cross-Linker -> Gemini Image`,
+              '',
+              '### Links',
+              '',
+              `- [View PR](https://github.com/${{ github.repository }}/pull/${prNumber})`,
+              `- [Live Post](https://sleepmedic.co/blog/posts/${filename}) (available after merge)`,
+              '',
+              '### Next Post',
+              '',
+              'Next blog post will be automatically generated and published next Monday at 9:00 AM MT.',
+              '',
+              '---',
+              '',
+              '*This issue will auto-close in 7 days.*'
+            ].join('\n');
 
             const resp = await github.rest.issues.create({
               owner: context.repo.owner,
@@ -158,7 +188,39 @@ jobs:
 
             core.info(`Created summary issue #${resp.data.number}`);
 
-      - name: Cleanup
+      - name: Trigger distribution (Pi service)
+        if: success()
+        continue-on-error: true
+        env:
+          PI_WEBHOOK_URL: ${{ secrets.PI_WEBHOOK_URL }}
+          PI_ADMIN_KEY: ${{ secrets.PI_ADMIN_KEY }}
+          POST_TITLE: ${{ steps.generate.outputs.title }}
+          POST_FILENAME: ${{ steps.generate.outputs.filename }}
+          POST_EXCERPT: ${{ steps.generate.outputs.excerpt }}
+        run: |
+          if [ -n "$PI_WEBHOOK_URL" ]; then
+            curl -s -X POST "${PI_WEBHOOK_URL}/trigger-send?key=${PI_ADMIN_KEY}" \
+              -H "Content-Type: application/json" \
+              -d "{\"title\": $(echo "$POST_TITLE" | jq -Rs '.'), \"link\": \"https://sleepmedic.co/blog/posts/${POST_FILENAME}\", \"excerpt\": $(echo "$POST_EXCERPT" | jq -Rs '.')}" \
+              || echo "Pi webhook failed (non-critical)"
+          else
+            echo "PI_WEBHOOK_URL not set, skipping distribution"
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Blog Pipeline Failed - ${new Date().toISOString().split('T')[0]}`,
+              body: `## Blog Generation Failed\n\nWorkflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\nCheck the logs for details.`,
+              labels: ['blog', 'bug']
+            });
+
+      - name: Cleanup tmp
         if: always()
         run: |
           rm -rf tmp/

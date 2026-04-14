@@ -18,21 +18,21 @@ function checkBlogHealth() {
   const latestPost = posts[0];
 
   if (!latestPost) {
-    console.error('❌ No blog posts found!');
+    console.error('ERROR: No blog posts found!');
     process.exit(1);
   }
 
   // Extract date from filename (YYYY-MM-DD format)
   const dateMatch = latestPost.match(/^(\d{4})-(\d{2})-(\d{2})/);
   if (!dateMatch) {
-    console.error('❌ Cannot parse date from latest post:', latestPost);
+    console.error('ERROR: Cannot parse date from latest post:', latestPost);
     process.exit(1);
   }
 
   const postDate = new Date(dateMatch[1], dateMatch[2] - 1, dateMatch[3]);
   const daysSinceLastPost = Math.floor((now - postDate) / (1000 * 60 * 60 * 24));
 
-  console.log('📊 Blog Health Report');
+  console.log('Blog Health Report');
   console.log('====================');
   console.log(`Total posts: ${posts.length}`);
   console.log(`Latest post: ${latestPost}`);
@@ -40,7 +40,7 @@ function checkBlogHealth() {
 
   // Check for duplicate images in recent posts
   const recentPosts = posts.slice(0, 5);
-  console.log('\n📸 Checking for duplicate images in recent posts...');
+  console.log('\nChecking for duplicate images in recent posts...');
 
   for (const postFile of recentPosts) {
     const postPath = path.join(postsDir, postFile);
@@ -49,24 +49,24 @@ function checkBlogHealth() {
     // Count occurrences of cover images
     const imgMatches = content.match(/<img[^>]+src="images\/[^"]+cover[^"]*"/g) || [];
     if (imgMatches.length > 1) {
-      console.warn(`⚠️  ${postFile} has ${imgMatches.length} cover images (should have 1)`);
+      console.warn(`WARNING: ${postFile} has ${imgMatches.length} cover images (should have 1)`);
     }
   }
 
   // Health status
-  console.log('\n📋 Status Summary:');
+  console.log('\nStatus Summary:');
 
   if (daysSinceLastPost > 10) {
-    console.error(`❌ CRITICAL: No posts in ${daysSinceLastPost} days! Blog automation may be broken.`);
+    console.error(`CRITICAL: No posts in ${daysSinceLastPost} days! Blog automation may be broken.`);
     process.exit(1);
   } else if (daysSinceLastPost > 7) {
-    console.warn(`⚠️  WARNING: No posts in ${daysSinceLastPost} days. Check if weekly automation is working.`);
+    console.warn(`WARNING: No posts in ${daysSinceLastPost} days. Check if weekly automation is working.`);
   } else {
-    console.log(`✅ Blog is healthy. Last post was ${daysSinceLastPost} days ago.`);
+    console.log(`Blog is healthy. Last post was ${daysSinceLastPost} days ago.`);
   }
 
   // Show posting frequency
-  console.log('\n📅 Recent Posting Activity:');
+  console.log('\nRecent Posting Activity:');
   const last10Posts = posts.slice(0, 10);
   for (const post of last10Posts) {
     const dateMatch = post.match(/^(\d{4})-(\d{2})-(\d{2})/);
@@ -76,7 +76,7 @@ function checkBlogHealth() {
   }
 
   // Check for upcoming scheduled posts
-  console.log('\n⏰ Next scheduled post: Every Monday at 9:00 AM MT');
+  console.log('\nNext scheduled post: Every Monday at 9:00 AM MT');
 
   const today = now.getDay();
   const daysUntilMonday = today === 0 ? 1 : (8 - today) % 7;

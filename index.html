@@ -4,13 +4,500 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SleepMedic - Evidence-Based Sleep Science for Shift Workers</title>
-  <meta http-equiv="refresh" content="0; url=/blog/" />
-  <link rel="canonical" href="https://sleepmedic.co/blog/" />
+  <meta name="description" content="Sleep tracking, coaching, and science built for shift workers, first responders, and anyone who struggles with sleep. Weekly blog + iOS app." />
+
+  <link rel="canonical" href="https://sleepmedic.co/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="SleepMedic" />
+  <meta property="og:description" content="Evidence-based sleep science for shift workers and busy humans." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --surface: #141416;
+      --surface-2: #1c1c1f;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text: #f5f5f5;
+      --text-2: #b0b0b8;
+      --text-3: #6b6b76;
+      --accent: #a78bfa;
+      --accent-2: #60a5fa;
+      --accent-dim: rgba(167,139,250,0.10);
+      --green: #34d399;
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-2);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 100px 0 80px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.78rem;
+      color: var(--text-2);
+      margin-bottom: 28px;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 5.5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-3);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: all 0.15s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+    }
+    .btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 80px;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--text-3); margin-top: 2px; }
+    @media (max-width: 600px) { .stats { gap: 24px; } .stat-num { font-size: 1.4rem; } }
+
+    /* Section headers */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      color: var(--text-3);
+      max-width: 480px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    /* Blog preview */
+    .blog-section { margin-bottom: 80px; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
+    .blog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .blog-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+    .blog-card-img {
+      width: 100%;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--surface-2);
+    }
+    .blog-card-body { padding: 18px; }
+    .blog-card-cat {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .blog-card-body h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .blog-card-meta { font-size: 0.75rem; color: var(--text-3); }
+    .view-all {
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .view-all:hover { color: var(--accent-2); }
+
+    /* App section */
+    .app-section {
+      margin-bottom: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .app-section { grid-template-columns: 1fr; }
+    }
+    .app-features { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .app-feat {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .app-feat-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .fi-p { background: rgba(167,139,250,0.12); }
+    .fi-b { background: rgba(96,165,250,0.12); }
+    .fi-g { background: rgba(52,211,153,0.12); }
+    .app-feat h4 { font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .app-feat p { font-size: 0.82rem; color: var(--text-3); line-height: 1.5; }
+
+    .app-visual {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+    }
+    .app-visual-icon { font-size: 3rem; margin-bottom: 20px; opacity: 0.7; }
+    .app-visual p { color: var(--text-3); font-size: 0.9rem; }
+    .app-visual .badge-sm {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 16px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 16px;
+    }
+
+    /* Audience */
+    .audience-section { margin-bottom: 80px; }
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 768px) { .audience-grid { grid-template-columns: 1fr; } }
+    .audience-card {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .audience-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .audience-card p { font-size: 0.85rem; color: var(--text-3); line-height: 1.55; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 64px 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 80px;
+    }
+    .cta-section h2 { font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .cta-section p { color: var(--text-3); margin-bottom: 28px; font-size: 0.95rem; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-3);
+      font-size: 0.78rem;
+    }
+    footer a { color: var(--text-3); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-content: center; }
+  </style>
 </head>
 <body>
+  <nav>
+    <a href="/" class="nav-brand">SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/app/">App</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Publishing weekly sleep science
+      </div>
+      <h1>Better sleep starts with<br><span class="grad">better science.</span></h1>
+      <p class="hero-sub">Evidence-based sleep tracking, coaching, and science for shift workers, first responders, and anyone who struggles with sleep.</p>
+      <div class="hero-actions">
+        <a href="/blog/" class="btn btn-primary">Read the Blog</a>
+        <a href="/app/" class="btn btn-secondary">App &mdash; Coming Soon</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Articles published</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Weekly</div>
+        <div class="stat-label">New posts every Monday</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Evidence-based</div>
+      </div>
+    </div>
+
+    <!-- Blog Preview -->
+    <div class="blog-section">
+      <p class="section-label">From the blog</p>
+      <h2 class="section-title">Latest sleep science</h2>
+      <p class="section-desc">We break down the research so you can actually use it. No jargon, no filler -- just what works.</p>
+      <div class="blog-grid" id="blog-grid">
+        <!-- Filled by JS -->
+      </div>
+      <a href="/blog/" class="view-all">View all posts &rarr;</a>
+    </div>
+
+    <!-- App Section -->
+    <div class="app-section">
+      <div>
+        <p class="section-label">The app</p>
+        <h2 class="section-title">Sleep tracking that<br>adapts to your life</h2>
+        <p class="section-desc">Most sleep apps assume a 9-to-5 schedule. SleepMedic adapts to yours -- whether you work nights, rotate shifts, or just have an unpredictable life.</p>
+        <div class="app-features">
+          <div class="app-feat">
+            <div class="app-feat-icon fi-p">S</div>
+            <div>
+              <h4>Anchor-based scheduling</h4>
+              <p>Set your ideal sleep window. The app adjusts as your pattern shifts.</p>
+            </div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-icon fi-g">7</div>
+            <div>
+              <h4>7 daily habit trackers</h4>
+              <p>Light, caffeine, meals, movement, wind-down, naps, anchor time. One tap each.</p>
+            </div>
+          </div>
+          <div class="app-feat">
+            <div class="app-feat-icon fi-b">AI</div>
+            <div>
+              <h4>AI coaching</h4>
+              <p>Personalized advice based on your actual data, not generic tips.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="app-visual">
+        <div class="app-visual-icon" style="font-size:1.6rem;font-weight:800;color:var(--accent);opacity:1;">SM</div>
+        <p>iOS app launching soon.<br>Track sleep, build habits, sleep better.</p>
+        <span class="badge-sm">Coming 2026</span>
+      </div>
+    </div>
+
+    <!-- Audience -->
+    <div class="audience-section">
+      <p class="section-label">Who it's for</p>
+      <h2 class="section-title">Built for people with real schedules</h2>
+      <p class="section-desc">If you've ever been told to "just go to bed earlier," SleepMedic is for you.</p>
+      <div class="audience-grid">
+        <div class="audience-card">
+          <h3>Shift workers</h3>
+          <p>Night shifts, rotating schedules, 24-hour rotations. The advice that works for 9-to-5 doesn't work for you. We know.</p>
+        </div>
+        <div class="audience-card">
+          <h3>First responders</h3>
+          <p>EMTs, firefighters, nurses, police. High-stakes jobs with unpredictable hours need sleep strategies built for chaos.</p>
+        </div>
+        <div class="audience-card">
+          <h3>Everyone else</h3>
+          <p>New parents, travelers, insomniacs, busy humans. If your sleep is broken, the science still applies.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Start sleeping better this week</h2>
+      <p>14 free articles. New science every Monday. No signup required.</p>
+      <div class="cta-actions">
+        <a href="/blog/" class="btn btn-primary">Read the Blog</a>
+        <a href="/app/" class="btn btn-secondary">Get Notified About the App</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 SleepMedic</p>
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/app/">App</a>
+      <a href="/blog/feed.xml">RSS</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </footer>
+
   <script>
-    window.location.href = '/blog/';
+    async function loadLatestPosts() {
+      try {
+        const res = await fetch('/blog/posts-index.json');
+        const posts = await res.json();
+        const grid = document.getElementById('blog-grid');
+        grid.innerHTML = posts.slice(0, 3).map(p => `
+          <a href="/blog/posts/${p.slug}.html" class="blog-card">
+            ${p.coverImage ? `<div class="blog-card-img" style="background-image:url('/blog/${p.coverImage}')"></div>` : ''}
+            <div class="blog-card-body">
+              <div class="blog-card-cat">${p.categoryLabel}</div>
+              <h3>${p.title}</h3>
+              <div class="blog-card-meta">${p.dateFormatted} &middot; ${p.readTime} min read</div>
+            </div>
+          </a>
+        `).join('');
+      } catch {}
+    }
+    loadLatestPosts();
   </script>
-  <p>Redirecting to <a href="/blog/">SleepMedic Blog</a>...</p>
 </body>
 </html>

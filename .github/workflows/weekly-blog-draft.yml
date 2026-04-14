@@ -1,9 +1,8 @@
 name: Weekly SleepMedic Blog Draft
 
 on:
-  schedule:
-    # Every Monday at 9:00 AM Mountain Time (16:00 UTC)
-    - cron: "0 16 * * 1"
+  # DISABLED: Replaced by weekly-blog-draft-auto.yml
+  # Old pipeline used OpenAI. New pipeline uses Gemini.
   workflow_dispatch: {}
 
 permissions:
@@ -64,9 +63,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "blog: Add ${{ steps.generate.outputs.filename }}"
-          title: "📝 Blog Draft: ${{ steps.generate.outputs.title }}"
+          title: "Blog Draft: ${{ steps.generate.outputs.title }}"
           body: |
-            ## 🤖 Auto-Generated Blog Post
+            ## Auto-Generated Blog Post
 
             **Topic:** ${{ steps.generate.outputs.topic }}
             **Tag:** ${{ steps.generate.outputs.tag }}
@@ -77,7 +76,7 @@ jobs:
 
             ---
 
-            ### ✅ Review Checklist
+            ### Review Checklist
 
             Please review before merging:
 
@@ -91,7 +90,7 @@ jobs:
 
             ---
 
-            ### 📝 Notes
+            ### Notes
 
             - **Merge within 7 days** to keep content timely
             - **Edit directly in PR** if changes needed (edit files in PR, not branch)
@@ -100,7 +99,7 @@ jobs:
 
             ---
 
-            ### 🔗 Preview
+            ### Preview
 
             After merging, post will be live at:
             `https://sleepmedic.co/blog/posts/${{ steps.generate.outputs.filename }}`
@@ -129,9 +128,9 @@ jobs:
             let body = `## Select Cover Image for: ${title}\n\n`;
             body += `**Topic:** ${topic}\n\n`;
             body += `### Quick Actions\n\n`;
-            body += `- 📝 [Edit Post Text](https://github.com/${{ github.repository }}/edit/blog-draft-${{ github.run_number }}/blog/posts/${filename})\n`;
-            body += `- 👀 [Read Full Post](https://github.com/${{ github.repository }}/pull/${prNumber}/files)\n`;
-            body += `- 🔗 [View PR #${prNumber}](https://github.com/${{ github.repository }}/pull/${prNumber})\n\n`;
+            body += `- [Edit Post Text](https://github.com/${{ github.repository }}/edit/blog-draft-${{ github.run_number }}/blog/posts/${filename})\n`;
+            body += `- [Read Full Post](https://github.com/${{ github.repository }}/pull/${prNumber}/files)\n`;
+            body += `- [View PR #${prNumber}](https://github.com/${{ github.repository }}/pull/${prNumber})\n\n`;
             body += `### Blog Post Preview\n\n`;
             body += `${excerpt}\n\n`;
             body += `---\n\n`;
@@ -146,7 +145,7 @@ jobs:
             });
 
             body += `---\n\n`;
-            body += `⏰ If no selection is made within 24 hours, a random image will be selected automatically.`;
+            body += `If no selection is made within 24 hours, a random image will be selected automatically.`;
 
             const resp = await github.rest.issues.create({
               owner: context.repo.owner,
@@ -163,4 +162,4 @@ jobs:
         if: always()
         run: |
           rm -rf tmp/
-          echo "✅ Cleanup complete"
+          echo "Cleanup complete"

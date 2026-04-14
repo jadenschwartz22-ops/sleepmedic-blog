@@ -8,24 +8,28 @@
 
   <!-- SEO -->
   <link rel="canonical" href="https://sleepmedic.co/blog/posts/{{SLUG}}.html">
-  <meta name="robots" content="index,follow" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="keywords" content="{{KEYWORDS}}" />
+  <meta name="author" content="SleepMedic" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="{{TITLE}}" />
   <meta property="og:description" content="{{EXCERPT}}" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://sleepmedic.co/blog/posts/{{SLUG}}.html" />
+  <meta property="og:site_name" content="SleepMedic" />
   <meta property="article:published_time" content="{{DATE_ISO}}" />
+  <meta property="article:section" content="{{CATEGORY}}" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{TITLE}}" />
   <meta name="twitter:description" content="{{EXCERPT}}" />
+  <meta name="twitter:site" content="@sleepmedic_co" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -34,16 +38,17 @@
     "@type": "BlogPosting",
     "headline": "{{TITLE}}",
     "description": "{{EXCERPT}}",
-    "author": {
-      "@type": "Organization",
-      "name": "SleepMedic"
-    },
+    "author": { "@type": "Organization", "name": "SleepMedic", "url": "https://sleepmedic.co" },
     "publisher": {
       "@type": "Organization",
-      "name": "SleepMedic"
+      "name": "SleepMedic",
+      "url": "https://sleepmedic.co",
+      "logo": { "@type": "ImageObject", "url": "https://sleepmedic.co/favicon-32.png" }
     },
     "datePublished": "{{DATE_ISO}}",
     "dateModified": "{{DATE_ISO}}",
+    "wordCount": "{{WORD_COUNT}}",
+    "articleSection": "{{CATEGORY}}",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://sleepmedic.co/blog/posts/{{SLUG}}.html"
@@ -51,142 +56,221 @@
   }
   </script>
 
+  <!-- Google Analytics (GA4) -->
+  <!-- Replace G-XXXXXXXXXX with your measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../_shared-styles.css">
 
   <style>
+    /* ── Reading Progress ── */
+    .reading-progress {
+      position: fixed; top: 0; left: 0;
+      width: 0%; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      z-index: 1000;
+      transition: width 50ms linear;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 20px; }
+    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; }
+    .nav-links a:hover { color: var(--text); }
+
     .post-container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 60px 20px;
-    }
-
-    .post-header {
-      margin-bottom: 48px;
-      padding-bottom: 32px;
-      border-bottom: 2px solid var(--line);
-    }
-
-    .post-category-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 8px;
-      background: rgba(22,160,133,0.1);
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 20px;
-    }
-
-    .post-header h1 {
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 900;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-
-    .post-meta {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .post-content {
-      font-size: 17px;
-      line-height: 1.8;
-      color: var(--ink);
-    }
-
-    .post-content h2 {
-      font-size: 1.75rem;
-      font-weight: 800;
-      margin-top: 48px;
-      margin-bottom: 20px;
-    }
-
-    .post-content h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-top: 36px;
-      margin-bottom: 16px;
-    }
-
-    .post-content p {
-      margin-bottom: 24px;
-    }
-
-    .post-content ul,
-    .post-content ol {
-      margin-bottom: 24px;
-      padding-left: 28px;
-    }
-
-    .post-content li {
-      margin-bottom: 12px;
-    }
-
-    .post-content a {
-      color: var(--primary);
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-    }
-
-    .post-content a:hover {
-      color: var(--secondary);
-    }
-
-    .post-content strong {
-      font-weight: 700;
-      color: var(--ink);
-    }
-
-    .post-content blockquote {
-      border-left: 3px solid var(--primary);
-      padding-left: 20px;
-      margin: 32px 0;
-      color: var(--muted);
-      font-style: italic;
+      padding: 48px 24px 40px;
     }
 
     .back-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      color: var(--muted);
-      font-weight: 600;
+      gap: 6px;
+      color: var(--text-3);
+      font-size: 0.85rem;
+      font-weight: 500;
       margin-bottom: 32px;
       transition: color 0.2s;
     }
+    .back-link:hover { color: var(--text); }
+    .back-link::before { content: "\2190"; }
 
-    .back-link:hover {
-      color: var(--primary);
+    .post-header {
+      margin-bottom: 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border);
     }
 
-    .back-link::before {
-      content: "←";
+    .post-category-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
     }
 
-    .comments-section {
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 2px solid var(--line);
-    }
-
-    .comments-section h2 {
-      font-size: 1.75rem;
+    .post-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 800;
-      margin-bottom: 24px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
     }
 
+    .post-meta {
+      color: var(--text-3);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .post-meta-sep { color: var(--border-hover); }
+
+    .post-content {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-2);
+    }
+    .post-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .post-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 36px;
+      margin-bottom: 12px;
+    }
+    .post-content p { margin-bottom: 20px; }
+    .post-content ul, .post-content ol {
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    .post-content li { margin-bottom: 8px; }
+    .post-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(167,139,250,0.35);
+      text-underline-offset: 3px;
+    }
+    .post-content a:hover { text-decoration-color: var(--accent); color: var(--accent-2); }
+    .post-content strong { font-weight: 600; color: var(--text); }
+    .post-content blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      margin: 24px 0;
+      background: var(--accent-dim);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-style: italic;
+      color: var(--text-3);
+    }
+    .post-content figure {
+      margin: 32px 0;
+    }
+    .post-content figure img {
+      width: 100%;
+      border-radius: 16px;
+      max-height: 360px;
+      object-fit: cover;
+    }
+
+    /* ── Newsletter CTA (in-post) ── */
+    .newsletter-cta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      margin: 48px 0;
+      text-align: center;
+    }
+    .newsletter-cta h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+    .newsletter-cta p {
+      font-size: 0.88rem;
+      color: var(--text-3);
+      margin: 0 0 16px;
+      line-height: 1.5;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+    .newsletter-form input::placeholder { color: var(--text-3); }
+    .newsletter-form input:focus { outline: none; border-color: var(--accent); }
+    .newsletter-form button {
+      padding: 10px 20px;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { opacity: 0.85; }
+    .newsletter-msg {
+      font-size: 0.8rem;
+      margin-top: 8px;
+      color: var(--accent);
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .newsletter-form { flex-direction: column; }
+    }
+
+    /* ── App CTA ── */
     .app-cta {
-      background: rgba(22,160,133,0.06);
-      border: 1px solid rgba(22,160,133,0.15);
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 24px 28px;
       margin: 48px 0 0;
@@ -194,134 +278,226 @@
       align-items: center;
       gap: 20px;
     }
-
-    .app-cta-icon {
-      font-size: 2.5rem;
-      flex-shrink: 0;
-    }
-
-    .app-cta-text {
-      flex: 1;
-    }
-
+    .app-cta:hover { border-color: var(--border-hover); }
+    .app-cta-icon { font-size: 1.2rem; font-weight: 800; color: var(--accent); flex-shrink: 0; }
+    .app-cta-text { flex: 1; }
     .app-cta-text p {
       margin: 0 0 10px;
-      font-size: 0.95rem;
-      color: var(--ink);
+      font-size: 0.9rem;
+      color: var(--text-2);
       line-height: 1.5;
     }
-
     .app-cta-text a {
       display: inline-block;
       padding: 8px 18px;
-      background: var(--primary);
-      color: #05080c;
+      background: var(--accent);
+      color: var(--bg);
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       border-radius: 8px;
       text-decoration: none;
-      transition: opacity 0.2s;
     }
-
-    .app-cta-text a:hover {
-      opacity: 0.85;
-    }
+    .app-cta-text a:hover { opacity: 0.85; color: var(--bg); }
 
     @media (max-width: 480px) {
-      .app-cta {
-        flex-direction: column;
-        text-align: center;
-      }
+      .app-cta { flex-direction: column; text-align: center; }
     }
 
-    .newsletter-cta {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    /* ── Related Posts ── */
+    .related-posts {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .related-posts h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .related-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 32px;
+      padding: 16px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s;
+    }
+    .related-card:hover { border-color: var(--border-hover); }
+    .related-card h4 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .related-card span {
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    /* ── Comments ── */
+    .comments-section {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 720px;
+      margin: 0 auto;
       text-align: center;
-      margin: 48px 0;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-3);
+      font-size: 0.78rem;
+      margin-top: 60px;
     }
-
-    .newsletter-cta h3 {
-      color: #05080c;
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .newsletter-cta p {
-      color: rgba(5,8,12,0.8);
-      margin-bottom: 20px;
-    }
+    footer a { color: var(--text-3); }
+    footer a:hover { color: var(--text); }
   </style>
 </head>
 <body>
+  <div class="reading-progress" id="reading-progress"></div>
+
+  <nav>
+    <a href="/" class="nav-brand">SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/app/">App</a>
+    </div>
+  </nav>
+
   <main>
     <div class="post-container">
-      <a href="../" class="back-link">Back to Blog</a>
+      <a href="../" class="back-link">All posts</a>
 
-      <!-- Post Header -->
       <article class="post-header">
         <span class="post-category-badge">{{CATEGORY}}</span>
         <h1>{{TITLE}}</h1>
         <div class="post-meta">
           <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
-          <span> • {{READ_TIME}} min read</span>
+          <span class="post-meta-sep">|</span>
+          <span>{{READ_TIME}} min read</span>
         </div>
       </article>
 
-      <!-- Post Content -->
       <div class="post-content">
         {{CONTENT}}
       </div>
 
-      <!-- App CTA -->
-      <div class="app-cta">
-        <div class="app-cta-icon">🌙</div>
-        <div class="app-cta-text">
-          <p>SleepMedic adapts to your actual schedule — not a rigid ideal. Track consistency, get smart reminders, and see what's really working.</p>
-          <a href="https://apps.apple.com/app/sleepmedic/id6744752786">Download Free on iOS</a>
-        </div>
-      </div>
-
       <!-- Newsletter CTA -->
       <div class="newsletter-cta">
-        <h3>Never Miss a Post</h3>
-        <p>Get evidence-based sleep science delivered weekly.</p>
-        <div id="newsletter-form-inline">
-          <!-- Follow.it form will go here -->
-          <p style="color: rgba(5,8,12,0.6); font-size: 0.9rem;">Newsletter coming soon!</p>
-        </div>
-        <p style="font-size: 0.85rem; color: rgba(5,8,12,0.6); margin-top: 16px;">
-          Or <a href="../feed.xml" style="color: #05080c; text-decoration: underline;">subscribe via RSS</a>
-        </p>
+        <h3>Weekly sleep science, no fluff</h3>
+        <p>One email a week. Evidence-based advice for people who actually want to sleep better.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="you@email.com" required id="newsletter-email" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="newsletter-msg" id="newsletter-msg">You are in. Check your inbox.</p>
       </div>
 
-      <!-- Comments Section -->
-      <div class="comments-section">
-        <h2>Discussion</h2>
-        <!-- Giscus comments will be embedded here after setup -->
-        <div id="giscus-comments">
-          <p style="color: var(--muted); font-style: italic;">
-            Comments system coming soon. Powered by GitHub Discussions.
-          </p>
+      <div class="app-cta">
+        <div class="app-cta-icon">SM</div>
+        <div class="app-cta-text">
+          <p>SleepMedic adapts to your actual schedule -- not a rigid ideal. Track consistency, get smart reminders, and see what's really working.</p>
+          <a href="/app/">Learn More</a>
         </div>
+      </div>
+
+      <!-- Related Posts (populated by JS) -->
+      <div class="related-posts" id="related-posts" style="display:none;">
+        <h3>Keep reading</h3>
+        <div class="related-grid" id="related-grid"></div>
+      </div>
+
+      <!-- Comments (Giscus) -->
+      <div class="comments-section">
+        <script src="https://giscus.app/client.js"
+          data-repo="jadenschwartz22-ops/sleepmedic-blog"
+          data-repo-id=""
+          data-category="Blog Comments"
+          data-category-id=""
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="dark_dimmed"
+          data-lang="en"
+          crossorigin="anonymous"
+          async>
+        </script>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer style="background: #0a0a0a; padding: 40px 20px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 80px;">
-    <div class="wrap">
-      <p style="color: #808080; font-size: 0.9rem;">
-        © 2025 SleepMedic. Evidence-based sleep science.
-      </p>
-      <p style="color: #606060; font-size: 0.8rem; margin-top: 8px;">
-        <a href="../../" style="color: var(--primary);">Home</a> ·
-        <a href="../" style="color: var(--primary);">Blog</a> ·
-        <a href="../feed.xml" style="color: var(--primary);">RSS</a>
-      </p>
-    </div>
+  <footer>
+    <p>&copy; 2026 SleepMedic</p>
+    <p style="margin-top:6px;">
+      <a href="/">Home</a> &middot;
+      <a href="/blog/">Blog</a> &middot;
+      <a href="/blog/feed.xml">RSS</a>
+    </p>
   </footer>
+
+  <script>
+    // Reading progress bar
+    const progress = document.getElementById('reading-progress');
+    const article = document.querySelector('.post-content');
+    if (article) {
+      window.addEventListener('scroll', () => {
+        const rect = article.getBoundingClientRect();
+        const total = article.scrollHeight;
+        const scrolled = Math.max(0, -rect.top);
+        const pct = Math.min(100, (scrolled / (total - window.innerHeight)) * 100);
+        progress.style.width = pct + '%';
+      }, { passive: true });
+    }
+
+    // Related posts
+    (async () => {
+      try {
+        const res = await fetch('../posts-index.json');
+        const posts = await res.json();
+        const current = window.location.pathname.split('/').pop().replace('.html', '');
+        const others = posts.filter(p => p.slug !== current).slice(0, 3);
+        if (!others.length) return;
+        const grid = document.getElementById('related-grid');
+        grid.innerHTML = others.map(p => `
+          <a href="${p.slug}.html" class="related-card">
+            <h4>${p.title}</h4>
+            <span>${p.dateFormatted} | ${p.readTime} min</span>
+          </a>
+        `).join('');
+        document.getElementById('related-posts').style.display = '';
+      } catch {}
+    })();
+
+    // Newsletter form (Resend API endpoint -- replace URL after setup)
+    const form = document.getElementById('newsletter-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        try {
+          // Replace with your Resend audience endpoint or Pi webhook
+          await fetch('https://your-pi-or-api.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+        } catch {}
+        document.getElementById('newsletter-msg').style.display = 'block';
+        form.style.display = 'none';
+      });
+    }
+  </script>
 </body>
 </html>

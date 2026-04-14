@@ -73,7 +73,7 @@ function updateIndexHTML() {
   );
 
   fs.writeFileSync(indexPath, content);
-  console.log('✅ Updated index.html with email and analytics');
+  console.log('Updated index.html with email and analytics');
 }
 
 // Update template for future posts
@@ -103,7 +103,7 @@ function updateTemplate() {
   }
 
   fs.writeFileSync(templatePath, content);
-  console.log('✅ Updated template with email and analytics');
+  console.log('Updated template with email and analytics');
 }
 
 // Create a simple tracking script
@@ -255,13 +255,13 @@ if (document.readyState === 'loading') {
 
   const scriptPath = path.join(__dirname, '..', 'blog', 'analytics.js');
   fs.writeFileSync(scriptPath, trackingScript);
-  console.log('✅ Created analytics.js tracking script');
+  console.log('Created analytics.js tracking script');
 }
 
 // Instructions for setup
 function printInstructions() {
   console.log(`
-📧 EMAIL SIGNUP SETUP:
+EMAIL SIGNUP SETUP:
 1. Sign up for ConvertKit (free): https://convertkit.com
 2. Create a form and get your form ID
 3. Replace YOUR_CONVERTKIT_FORM_ID in the code
@@ -272,7 +272,7 @@ function printInstructions() {
 2. Create a form and get your form ID
 3. Replace YOUR_FORM_ID in the code
 
-📊 ANALYTICS SETUP:
+ANALYTICS SETUP:
 1. Go to Google Analytics: https://analytics.google.com
 2. Create a new GA4 property for sleepmedic.co
 3. Get your Measurement ID (starts with G-)
@@ -284,7 +284,7 @@ function printInstructions() {
 2. Add sleepmedic.co as a site
 3. The script is already configured
 
-📈 WHAT YOU'LL TRACK:
+WHAT YOU'LL TRACK:
 - Page views and unique visitors
 - Which posts are most popular
 - How long people read
@@ -301,7 +301,7 @@ To implement:
 
 // Main execution
 if (import.meta.url === `file://${process.argv[1]}`) {
-  console.log('🚀 Adding email signup and analytics to blog...\n');
+  console.log('Adding email signup and analytics to blog...\n');
 
   updateIndexHTML();
   updateTemplate();

@@ -34,7 +34,7 @@ export function isTitleTooSimilar(proposedTitle, existingTitles) {
 
     // If more than 70% similar, consider it a duplicate
     if (similarity > 0.7) {
-      console.log(`⚠️  Title too similar to existing: "${existingTitle}"`);
+      console.log(`WARNING: Title too similar to existing: "${existingTitle}"`);
       console.log(`   Similarity: ${(similarity * 100).toFixed(1)}%`);
       return true;
     }
@@ -50,7 +50,7 @@ export function getExistingTitles() {
   const indexPath = path.join(__dirname, '..', 'blog', 'posts-index.json');
 
   if (!fs.existsSync(indexPath)) {
-    console.warn('⚠️  posts-index.json not found');
+    console.warn('WARNING: posts-index.json not found');
     return [];
   }
 
@@ -91,12 +91,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const result = checkForDuplicate(proposedTitle);
 
   if (result.isDuplicate) {
-    console.log('❌ DUPLICATE: This title is too similar to an existing post');
+    console.log('DUPLICATE: This title is too similar to an existing post');
     console.log('\nExisting titles:');
     result.existingTitles.forEach(title => console.log(`  - ${title}`));
     process.exit(1);
   } else {
-    console.log('✅ UNIQUE: This title is sufficiently different');
+    console.log('UNIQUE: This title is sufficiently different');
     process.exit(0);
   }
 }

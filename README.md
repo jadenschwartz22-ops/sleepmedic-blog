@@ -1,127 +1,69 @@
 # SleepMedic Blog
 
-> Evidence-based sleep science for shift workers, first responders, and busy humans.
+Auto-generated weekly blog at [sleepmedic.co/blog](https://sleepmedic.co/blog).
 
-Automated blog system powered by GPT-4o-mini, GitHub Actions, and proven editorial guidelines.
+## How It Works
 
-## 🌙 Features
+GitHub Actions runs every Monday at 9am MT (`.github/workflows/weekly-blog-draft-auto.yml`).
 
-- **Weekly Auto-Generation** - GPT-4o-mini creates posts every Monday
-- **50+ Topics** - Rotating sleep science topics across 4 categories
-- **Email Subscriptions** - Free unlimited subscribers via Follow.it
-- **Comments** - GitHub Discussions via Giscus
-- **RSS Feed** - Auto-generated and validated
-- **Mobile-First Design** - Fast, responsive, accessible
-- **Full Version Control** - Never lose content
+**Multi-agent pipeline** (`scripts/generate-blog-post.mjs`):
 
-## 🚀 Quick Start
+1. **Topic Selection** - Rotates through 6 SEO buckets in `scripts/editorial/topics.yaml` using ISO week + random offset
+2. **Planner Agent** (Gemini 2.5 Flash) - Creates outline, title, sections, image prompt
+3. **Section Writers** (Gemini 2.5 Flash) - One API call per section, varied temperature, style guidelines injected
+4. **Editor Agent** (Gemini 2.5 Flash) - Polishes draft, enforces 60+ banned phrases, style guidelines injected
+5. **Cross-Linker** (Gemini 2.5 Flash) - Reads `blog/posts-index.json`, inserts 1-3 internal links
+6. **Cover Image** (gemini-2.5-flash-image) - Native image generation via `responseModalities: ['TEXT', 'IMAGE']`
+7. **HTML Builder** - Assembles from `blog/_template.html`, injects og:image
 
-### 1. Install
+All Gemini calls use retry logic (3 attempts, exponential backoff). Workflow creates a PR, auto-merges, commits topic history and content memory back to repo, and posts a summary issue. On failure, creates a GitHub issue notification.
+
+## Site Structure
+
+```
+sleepmedic.co/            -> Landing page
+sleepmedic.co/blog/       -> Blog homepage (loads from posts-index.json)
+sleepmedic.co/blog/posts/ -> Individual posts
+sleepmedic.co/app/        -> App coming-soon page
+sleepmedic.co/privacy/    -> Privacy policy
+```
+
+## Key Files
+
+| File | Purpose |
+|------|---------|
+| `scripts/generate-blog-post.mjs` | Main pipeline (all agents, retry logic, banned phrases) |
+| `scripts/editorial/topics.yaml` | 6 topic buckets (~83 topics) |
+| `scripts/editorial/style_guidelines.md` | Editorial voice, rules, before/after examples |
+| `scripts/editorial/app-context.json` | App features for natural mentions |
+| `scripts/content-memory-system.mjs` | Novelty scoring, phrase dedup (Set-based) |
+| `scripts/generate-posts-index.mjs` | Regenerates `blog/posts-index.json` from HTML |
+| `scripts/generate-rss-feed.mjs` | Regenerates `blog/feed.xml` for Follow.it |
+| `scripts/check-duplicate-titles.mjs` | Jaccard similarity check (70% threshold) |
+| `scripts/monitor-blog-health.mjs` | Post frequency health check |
+| `scripts/cleanup-posts.mjs` | Batch update nav bars, footers, og:image |
+| `blog/_template.html` | Post HTML template |
+| `blog/_shared-styles.css` | Shared CSS with backward-compat variable aliases |
+| `blog/index.html` | Blog homepage (category filters, loads from `posts-index.json`) |
+| `.topic-history.json` | Persistent topic history (committed by workflow) |
+| `.content-memory.json` | Content memory for novelty scoring (committed by workflow) |
+| `.github/workflows/weekly-blog-draft-auto.yml` | Weekly automation |
+
+## Running Locally
 
 ```bash
 npm install
+GEMINI_API_KEY=xxx node scripts/generate-blog-post.mjs
+node scripts/generate-posts-index.mjs
+node scripts/generate-rss-feed.mjs
+node scripts/content-memory-system.mjs stats
+node scripts/monitor-blog-health.mjs
 ```
 
-### 2. Set Environment Variable
+## Secrets
 
-```bash
-export OPENAI_API_KEY="your_api_key_here"
-```
+`GEMINI_API_KEY` on `jadenschwartz22-ops/sleepmedic-blog`.
 
-### 3. Generate First Post
+## Cost
 
-```bash
-npm run blog:full
-```
-
-### 4. Preview
-
-Open `blog/index.html` in your browser.
-
-## 📝 Usage
-
-### Manual Generation
-
-```bash
-# Full workflow (generate + RSS)
-npm run blog:full
-
-# Just generate post
-npm run blog:generate
-
-# Just update RSS
-npm run blog:rss
-```
-
-### Automated Weekly
-
-GitHub Actions runs every Monday at 9am MT:
-1. Generates post
-2. Creates PR for review
-3. Notifies you via GitHub issue
-4. Merge to publish
-
-## 📁 Structure
-
-```
-blog/              # Published blog
-  ├── index.html   # Homepage
-  ├── feed.xml     # RSS feed
-  └── posts/       # Individual posts
-scripts/           # Generation scripts
-  └── editorial/   # Topics & guidelines
-.github/           # Automation workflows
-```
-
-## 🛠️ Configuration
-
-See [BLOG_SETUP.md](BLOG_SETUP.md) for complete setup instructions.
-
-## 🎨 Customization
-
-- **Topics:** Edit `scripts/editorial/topics.yaml`
-- **Voice:** Edit `scripts/editorial/style_guidelines.md`
-- **Design:** Edit `blog/_template.html` and `blog/_shared-styles.css`
-- **Schedule:** Edit `.github/workflows/weekly-blog-draft.yml`
-
-## 💰 Costs
-
-- **GitHub Pages:** Free
-- **GitHub Actions:** Free (2,000 min/month)
-- **GPT-4o-mini:** ~$0.02-0.05/post (~$1-2/year)
-- **Follow.it:** Free (unlimited subscribers)
-- **Giscus:** Free (open source)
-
-**Total: ~$1-2/year** (vs. Ghost at $132-300/year)
-
-## 📊 Stats
-
-- 50+ rotating topics
-- 6 template formats
-- Evidence-based with citations
-- 700-1,000 words per post
-- Anti-repetition logic
-- SEO optimized
-
-## 🔗 Links
-
-- **Live Blog:** https://sleepmedic.co/blog (after deployment)
-- **RSS Feed:** https://sleepmedic.co/blog/feed.xml
-- **Setup Guide:** [BLOG_SETUP.md](BLOG_SETUP.md)
-
-## 📄 License
-
-MIT
-
-## 👨‍💻 Author
-
-Built by Jaden Schwartz for SleepMedic.
-
----
-
-**Built with:**
-- GPT-4o-mini (OpenAI)
-- GitHub Actions
-- GitHub Pages
-- Follow.it (email)
-- Giscus (comments)
+~$0.01-0.03 per post (5-7 Gemini 2.5 Flash calls + 1 image gen call).

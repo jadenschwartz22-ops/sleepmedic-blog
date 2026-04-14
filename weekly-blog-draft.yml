@@ -36,7 +36,7 @@ jobs:
       - name: Generate blog post
         id: generate
         run: |
-          echo "🚀 Generating blog post..."
+          echo "Generating blog post..."
           node scripts/generate-blog-post.mjs
 
           # Read metadata
@@ -52,22 +52,22 @@ jobs:
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "image_idea=$IMAGE_IDEA" >> $GITHUB_OUTPUT
 
-          echo "✅ Post generated: $TITLE"
+          echo "Post generated: $TITLE"
 
       - name: Generate RSS feed
         run: |
-          echo "📡 Generating RSS feed..."
+          echo "Generating RSS feed..."
           node scripts/generate-rss-feed.mjs
-          echo "✅ RSS feed updated"
+          echo "RSS feed updated"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "blog: Add ${{ steps.generate.outputs.filename }}"
-          title: "📝 Blog Draft: ${{ steps.generate.outputs.title }}"
+          title: "Blog Draft: ${{ steps.generate.outputs.title }}"
           body: |
-            ## 🤖 Auto-Generated Blog Post
+            ## Auto-Generated Blog Post
 
             **Topic:** ${{ steps.generate.outputs.topic }}
             **Tag:** ${{ steps.generate.outputs.tag }}
@@ -78,7 +78,7 @@ jobs:
 
             ---
 
-            ### ✅ Review Checklist
+            ### Review Checklist
 
             Please review before merging:
 
@@ -92,7 +92,7 @@ jobs:
 
             ---
 
-            ### 📝 Notes
+            ### Notes
 
             - **Merge within 7 days** to keep content timely
             - **Edit directly in PR** if changes needed (edit files in PR, not branch)
@@ -101,7 +101,7 @@ jobs:
 
             ---
 
-            ### 🔗 Preview
+            ### Preview
 
             After merging, post will be live at:
             `https://sleepmedic.co/blog/posts/${{ steps.generate.outputs.filename }}`
@@ -127,7 +127,7 @@ jobs:
             **Topic:** ${topic}
             **File:** \`blog/posts/${filename}\`
 
-            📋 **Action Required:** Review the pull request and merge when ready.
+            **Action Required:** Review the pull request and merge when ready.
 
             The post will automatically deploy to sleepmedic.co/blog and trigger email notifications via Follow.it.`;
 
@@ -146,4 +146,4 @@ jobs:
         if: always()
         run: |
           rm -rf tmp/
-          echo "✅ Cleanup complete"
+          echo "Cleanup complete"

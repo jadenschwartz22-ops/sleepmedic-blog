@@ -66,23 +66,22 @@ buckets:
       - Why you sleep worse on Sunday nights
       - Can't sleep after exercise and what to do
 
-  - name: Trending sleep topics
+  - name: Popular claims vs real science
     tag: Trending
     topics:
-      - Magnesium for sleep what the research actually says
-      - Sleepmaxxing explained the trend the science and the BS
-      - Sleepy girl mocktail does it actually work for sleep
-      - Melatonin dosage how much is too much
-      - Orthosomnia when your sleep tracker makes your sleep worse
-      - L-theanine GABA and ashwagandha evidence review for sleep
-      - Tart cherry juice for sleep does it work
-      - Magnesium glycinate vs threonate vs citrate for sleep
-      - Bed rotting mental health rest or unhealthy habit
-      - The cortisol awakening response and morning anxiety
-      - Sleep syncing aligning your sleep with your menstrual cycle
-      - Huberman sleep toolkit what actually works
-      - Is 6 hours of sleep really enough
-      - The best sleep trackers and whether you need one
+      - Magnesium for sleep separating supplement marketing from clinical evidence
+      - The real science behind viral sleep trends from sleepmaxxing to sleepy girl mocktails
+      - Melatonin dosage why less is more and when to skip it entirely
+      - When your sleep tracker becomes the problem orthosomnia and data anxiety
+      - L-theanine GABA and ashwagandha what clinical trials actually show
+      - Tart cherry juice and sleep the anthocyanin mechanism vs the hype
+      - Magnesium forms compared glycinate threonate citrate and what absorption data says
+      - Rest vs avoidance how to tell when staying in bed helps and when it hurts
+      - Morning cortisol spikes why waking anxious is biological not personal failure
+      - Cycle-based sleep how hormonal shifts change sleep architecture across the month
+      - Sleep advice from influencers what holds up and what falls apart under scrutiny
+      - The six-hour sleep myth why genetic short sleepers are rarer than you think
+      - Sleep trackers as tools not judges how to use wearable data without obsessing
 
   - name: Shift worker & schedule sleep
     tag: Shift Work

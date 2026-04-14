@@ -419,6 +419,653 @@
         }
       ],
       "wordCount": 899
+    },
+    {
+      "id": "a0f01160930ac975",
+      "date": "2025-07-10",
+      "title": "Shift Workers: How to Get Sleep Like Your Life Depends on It. Because It Does.",
+      "titleFingerprint": "815ed85ab27fb9a0",
+      "excerpt": "The one most important tool for shift workers to fix sleep for good: wake up at the same time every day. A 7-day challenge that actually works.",
+      "keywords": {
+        "shift": 2,
+        "workers": 2,
+        "sleep": 2,
+        "like": 1,
+        "life": 1,
+        "depends": 1,
+        "because": 1,
+        "does": 1,
+        "most": 1,
+        "important": 1,
+        "tool": 1,
+        "good": 1,
+        "wake": 1,
+        "same": 1,
+        "time": 1,
+        "every": 1,
+        "7day": 1,
+        "challenge": 1,
+        "that": 1,
+        "actually": 1,
+        "works": 1
+      },
+      "imageId": "2025-07-10-shift-workers-wake-up-consistency.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1320
+    },
+    {
+      "id": "5fd595f2a3570ac6",
+      "date": "2025-10-16",
+      "title": "Sleep Like a Warrior: Ancient Wisdom and Modern Practice",
+      "titleFingerprint": "37967759399f7a98",
+      "excerpt": "Learn how ancient warriors approached rest with intention and resilience. Four core principles for modern shift workers seeking better sleep.",
+      "keywords": {
+        "sleep": 2,
+        "like": 1,
+        "warrior": 1,
+        "ancient": 2,
+        "wisdom": 1,
+        "modern": 2,
+        "practice": 1,
+        "learn": 1,
+        "warriors": 1,
+        "approached": 1,
+        "rest": 1,
+        "intention": 1,
+        "resilience": 1,
+        "four": 1,
+        "core": 1,
+        "principles": 1,
+        "shift": 1,
+        "workers": 1,
+        "seeking": 1,
+        "better": 1
+      },
+      "imageId": "2025-10-16-sleep-like-a-warrior.html",
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 654
+    },
+    {
+      "id": "5773173e0ac49f86",
+      "date": "2025-10-23",
+      "title": "Cultural Sleep Practices You Can Use for Better Rest",
+      "titleFingerprint": "a30a97b753868ee2",
+      "excerpt": "Explore sleep enhancement techniques from around the world - from Spanish siestas to Japanese inemuri - and how shift workers can adopt them for better rest.",
+      "keywords": {
+        "cultural": 1,
+        "sleep": 2,
+        "practices": 1,
+        "better": 2,
+        "rest": 2,
+        "explore": 1,
+        "enhancement": 1,
+        "techniques": 1,
+        "around": 1,
+        "world": 1,
+        "spanish": 1,
+        "siestas": 1,
+        "japanese": 1,
+        "inemuri": 1,
+        "shift": 1,
+        "workers": 1,
+        "adopt": 1,
+        "them": 1
+      },
+      "imageId": "2025-10-23-cultural-sleep-practices.html",
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 688
+    },
+    {
+      "id": "f00c0b2f5175937b",
+      "date": "2025-12-10",
+      "title": "Myth-Busting Sleep for Shift Workers: What You Need to Know",
+      "titleFingerprint": "f8e630753b1b256b",
+      "excerpt": "Discover the truths about sleep for shift workers. Learn how to protect your sleep against circadian disruption with evidence-based tactics.",
+      "keywords": {
+        "mythbusting": 1,
+        "sleep": 3,
+        "shift": 2,
+        "workers": 2,
+        "discover": 1,
+        "truths": 1,
+        "learn": 1,
+        "protect": 1,
+        "against": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "evidencebased": 1,
+        "tactics": 1
+      },
+      "imageId": "2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know.html",
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 898
+    },
+    {
+      "id": "c73bae308cd811bd",
+      "date": "2025-12-15",
+      "title": "Adjust Your Schedule Without Chaos: A Shift Work Guide",
+      "titleFingerprint": "430ce6ee73fd0591",
+      "excerpt": "Learn how to manage circadian disruption and protect your sleep as a shift worker with evidence-based tactics.",
+      "keywords": {
+        "adjust": 1,
+        "schedule": 1,
+        "without": 1,
+        "chaos": 1,
+        "shift": 2,
+        "work": 1,
+        "guide": 1,
+        "learn": 1,
+        "manage": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "protect": 1,
+        "sleep": 1,
+        "worker": 1,
+        "evidencebased": 1,
+        "tactics": 1
+      },
+      "imageId": "2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 890
+    },
+    {
+      "id": "5f750c43475ca317",
+      "date": "2025-12-22",
+      "title": "Long-Term Effects of Poor Sleep: What Shift Workers Need to Know",
+      "titleFingerprint": "59a1c3eb9ac575aa",
+      "excerpt": "Discover the long-term effects of poor sleep and how shift workers can protect their health with evidence-based strategies.",
+      "keywords": {
+        "longterm": 2,
+        "effects": 2,
+        "poor": 2,
+        "sleep": 2,
+        "shift": 2,
+        "workers": 2,
+        "discover": 1,
+        "protect": 1,
+        "their": 1,
+        "health": 1,
+        "evidencebased": 1,
+        "strategies": 1
+      },
+      "imageId": "2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 806
+    },
+    {
+      "id": "175145f6bc8e808d",
+      "date": "2025-12-29",
+      "title": "Nighttime Habits That Help Sleep for Shift Workers",
+      "titleFingerprint": "cf9db60526323f71",
+      "excerpt": "Discover evidence-based nighttime habits to enhance sleep for shift workers and busy humans. Protect your rest amidst circadian disruption.",
+      "keywords": {
+        "nighttime": 2,
+        "habits": 2,
+        "that": 1,
+        "help": 1,
+        "sleep": 2,
+        "shift": 2,
+        "workers": 2,
+        "discover": 1,
+        "evidencebased": 1,
+        "enhance": 1,
+        "busy": 1,
+        "humans": 1,
+        "protect": 1,
+        "rest": 1,
+        "amidst": 1,
+        "circadian": 1,
+        "disruption": 1
+      },
+      "imageId": "2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers.html",
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 903
+    },
+    {
+      "id": "69fbaca4bc4e45af",
+      "date": "2026-01-12",
+      "title": "Protecting Sleep as a Shift Worker: Evidence-Based Tactics",
+      "titleFingerprint": "fc0d12ccb1c8f34f",
+      "excerpt": "Shift work can disrupt sleep and health. Learn evidence-based strategies to protect your sleep and manage circadian disruption effectively.",
+      "keywords": {
+        "protecting": 1,
+        "sleep": 3,
+        "shift": 2,
+        "worker": 1,
+        "evidencebased": 2,
+        "tactics": 1,
+        "work": 1,
+        "disrupt": 1,
+        "health": 1,
+        "learn": 1,
+        "strategies": 1,
+        "protect": 1,
+        "manage": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "effectively": 1
+      },
+      "imageId": "2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html",
+      "contentThemes": [
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 926
+    },
+    {
+      "id": "068c358801f6ab6a",
+      "date": "2026-01-19",
+      "title": "The Unexpected Connection Between Memory consolidation during REM vs deep sleep and Better Recovery",
+      "titleFingerprint": "811706aba192278a",
+      "excerpt": "Explore how REM and deep sleep impact memory consolidation and discover strategies to enhance your sleep quality.",
+      "keywords": {
+        "unexpected": 1,
+        "connection": 1,
+        "between": 1,
+        "memory": 2,
+        "consolidation": 2,
+        "deep": 2,
+        "sleep": 3,
+        "better": 1,
+        "recovery": 1,
+        "explore": 1,
+        "impact": 1,
+        "discover": 1,
+        "strategies": 1,
+        "enhance": 1,
+        "quality": 1
+      },
+      "imageId": "2026-01-19-the-unexpected-connection-between-memory-consolidation-during-rem-vs-deep-sleep-.html",
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 950
+    },
+    {
+      "id": "9078096aee7d2db9",
+      "date": "2026-01-26",
+      "title": "Box Breathing and 4-7-8 Technique for Better Sleep",
+      "titleFingerprint": "31b8ca6679dcd747",
+      "excerpt": "Discover how box breathing and the 4-7-8 technique can help shift workers and busy humans improve sleep onset and manage circadian disruption.",
+      "keywords": {
+        "breathing": 2,
+        "technique": 2,
+        "better": 1,
+        "sleep": 2,
+        "discover": 1,
+        "help": 1,
+        "shift": 1,
+        "workers": 1,
+        "busy": 1,
+        "humans": 1,
+        "improve": 1,
+        "onset": 1,
+        "manage": 1,
+        "circadian": 1,
+        "disruption": 1
+      },
+      "imageId": "2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep.html",
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        }
+      ],
+      "wordCount": 850
+    },
+    {
+      "id": "aeac2096b814e170",
+      "date": "2026-02-02",
+      "title": "What Time Should I Sleep and Wake?",
+      "titleFingerprint": "6cf9ea8a2087109b",
+      "excerpt": "For shift workers, timing sleep is crucial. Learn how to manage circadian disruption effectively with evidence-based strategies.",
+      "keywords": {
+        "time": 1,
+        "sleep": 2,
+        "wake": 1,
+        "shift": 1,
+        "workers": 1,
+        "timing": 1,
+        "crucial": 1,
+        "learn": 1,
+        "manage": 1,
+        "circadian": 1,
+        "disruption": 1,
+        "effectively": 1,
+        "evidencebased": 1,
+        "strategies": 1
+      },
+      "imageId": "2026-02-02-what-time-should-i-sleep-and-wake.html",
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 876
+    },
+    {
+      "id": "813e4197f86b997a",
+      "date": "2026-02-16",
+      "title": "The Hidden Toll: How Poor Sleep Affects Your Vital Organs",
+      "titleFingerprint": "28d9a698adb7ead8",
+      "excerpt": "Explore the long-term impacts of inadequate sleep on key organs and discover actionable strategies to safeguard your health.",
+      "keywords": {
+        "hidden": 1,
+        "toll": 1,
+        "poor": 1,
+        "sleep": 2,
+        "affects": 1,
+        "vital": 1,
+        "organs": 2,
+        "explore": 1,
+        "longterm": 1,
+        "impacts": 1,
+        "inadequate": 1,
+        "discover": 1,
+        "actionable": 1,
+        "strategies": 1,
+        "safeguard": 1,
+        "health": 1
+      },
+      "imageId": "2026-02-16-the-hidden-toll-how-poor-sleep-affects-your-vital-organs.html",
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 929
+    },
+    {
+      "id": "6648f19e7c57d2a6",
+      "date": "2026-02-23",
+      "title": "Harnessing NSDR and Yoga Nidra for Better Sleep",
+      "titleFingerprint": "f8f205ec8a263200",
+      "excerpt": "Discover how NSDR and Yoga Nidra can enhance sleep quality for shift workers and busy individuals with actionable protocols.",
+      "keywords": {
+        "harnessing": 1,
+        "nsdr": 2,
+        "yoga": 2,
+        "nidra": 2,
+        "better": 1,
+        "sleep": 2,
+        "discover": 1,
+        "enhance": 1,
+        "quality": 1,
+        "shift": 1,
+        "workers": 1,
+        "busy": 1,
+        "individuals": 1,
+        "actionable": 1,
+        "protocols": 1
+      },
+      "imageId": "2026-02-23-harnessing-nsdr-and-yoga-nidra-for-better-sleep.html",
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 865
+    },
+    {
+      "id": "9a2000b5169a1bc0",
+      "date": "2026-03-01",
+      "title": "Sleepmaxxing: Decoding the Trend, Science, and Actionable Steps",
+      "titleFingerprint": "e2e9c4f2fa57a864",
+      "excerpt": "Is 'sleepmaxxing' a path to peak performance or a recipe for anxiety? We cut through the hype to reveal what science says about truly optimizing your sleep.",
+      "keywords": {
+        "sleepmaxxing": 2,
+        "decoding": 1,
+        "trend": 1,
+        "science": 2,
+        "actionable": 1,
+        "steps": 1,
+        "path": 1,
+        "peak": 1,
+        "performance": 1,
+        "recipe": 1,
+        "anxiety": 1,
+        "hype": 1,
+        "reveal": 1,
+        "says": 1,
+        "truly": 1,
+        "optimizing": 1,
+        "sleep": 1
+      },
+      "imageId": "2026-03-01-sleepmaxxing-decoding-the-trend-science-and-actionable-steps.html",
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 4
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1617
     }
   ],
   "images": [
@@ -466,6 +1113,76 @@
       "id": "2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html",
       "usedIn": "890fc921b41d5dea",
       "date": "2026-01-12"
+    },
+    {
+      "id": "2025-07-10-shift-workers-wake-up-consistency.html",
+      "usedIn": "a0f01160930ac975",
+      "date": "2025-07-10"
+    },
+    {
+      "id": "2025-10-16-sleep-like-a-warrior.html",
+      "usedIn": "5fd595f2a3570ac6",
+      "date": "2025-10-16"
+    },
+    {
+      "id": "2025-10-23-cultural-sleep-practices.html",
+      "usedIn": "5773173e0ac49f86",
+      "date": "2025-10-23"
+    },
+    {
+      "id": "2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know.html",
+      "usedIn": "f00c0b2f5175937b",
+      "date": "2025-12-10"
+    },
+    {
+      "id": "2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html",
+      "usedIn": "c73bae308cd811bd",
+      "date": "2025-12-15"
+    },
+    {
+      "id": "2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know.html",
+      "usedIn": "5f750c43475ca317",
+      "date": "2025-12-22"
+    },
+    {
+      "id": "2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers.html",
+      "usedIn": "175145f6bc8e808d",
+      "date": "2025-12-29"
+    },
+    {
+      "id": "2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html",
+      "usedIn": "69fbaca4bc4e45af",
+      "date": "2026-01-12"
+    },
+    {
+      "id": "2026-01-19-the-unexpected-connection-between-memory-consolidation-during-rem-vs-deep-sleep-.html",
+      "usedIn": "068c358801f6ab6a",
+      "date": "2026-01-19"
+    },
+    {
+      "id": "2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep.html",
+      "usedIn": "9078096aee7d2db9",
+      "date": "2026-01-26"
+    },
+    {
+      "id": "2026-02-02-what-time-should-i-sleep-and-wake.html",
+      "usedIn": "aeac2096b814e170",
+      "date": "2026-02-02"
+    },
+    {
+      "id": "2026-02-16-the-hidden-toll-how-poor-sleep-affects-your-vital-organs.html",
+      "usedIn": "813e4197f86b997a",
+      "date": "2026-02-16"
+    },
+    {
+      "id": "2026-02-23-harnessing-nsdr-and-yoga-nidra-for-better-sleep.html",
+      "usedIn": "6648f19e7c57d2a6",
+      "date": "2026-02-23"
+    },
+    {
+      "id": "2026-03-01-sleepmaxxing-decoding-the-trend-science-and-actionable-steps.html",
+      "usedIn": "9a2000b5169a1bc0",
+      "date": "2026-03-01"
     }
   ],
   "topics": [
@@ -513,6 +1230,76 @@
       "topic": "Protecting Sleep as a Shift Worker",
       "usedIn": "890fc921b41d5dea",
       "date": "2026-01-12"
+    },
+    {
+      "topic": "Shift Workers",
+      "usedIn": "a0f01160930ac975",
+      "date": "2025-07-10"
+    },
+    {
+      "topic": "Sleep Like a Warrior",
+      "usedIn": "5fd595f2a3570ac6",
+      "date": "2025-10-16"
+    },
+    {
+      "topic": "Cultural Sleep Practices You Can Use for Better Rest",
+      "usedIn": "5773173e0ac49f86",
+      "date": "2025-10-23"
+    },
+    {
+      "topic": "Myth",
+      "usedIn": "f00c0b2f5175937b",
+      "date": "2025-12-10"
+    },
+    {
+      "topic": "Adjust Your Schedule Without Chaos",
+      "usedIn": "c73bae308cd811bd",
+      "date": "2025-12-15"
+    },
+    {
+      "topic": "Long",
+      "usedIn": "5f750c43475ca317",
+      "date": "2025-12-22"
+    },
+    {
+      "topic": "Nighttime Habits That Help Sleep for Shift Workers",
+      "usedIn": "175145f6bc8e808d",
+      "date": "2025-12-29"
+    },
+    {
+      "topic": "Protecting Sleep as a Shift Worker",
+      "usedIn": "69fbaca4bc4e45af",
+      "date": "2026-01-12"
+    },
+    {
+      "topic": "The Unexpected Connection Between Memory consolidation during REM vs deep sleep and Better Recovery",
+      "usedIn": "068c358801f6ab6a",
+      "date": "2026-01-19"
+    },
+    {
+      "topic": "Box Breathing and 4",
+      "usedIn": "9078096aee7d2db9",
+      "date": "2026-01-26"
+    },
+    {
+      "topic": "What Time Should I Sleep and Wake?",
+      "usedIn": "aeac2096b814e170",
+      "date": "2026-02-02"
+    },
+    {
+      "topic": "The Hidden Toll",
+      "usedIn": "813e4197f86b997a",
+      "date": "2026-02-16"
+    },
+    {
+      "topic": "Harnessing NSDR and Yoga Nidra for Better Sleep",
+      "usedIn": "6648f19e7c57d2a6",
+      "date": "2026-02-23"
+    },
+    {
+      "topic": "Sleepmaxxing",
+      "usedIn": "9a2000b5169a1bc0",
+      "date": "2026-03-01"
     }
   ],
   "phrases": [
@@ -681,7 +1468,117 @@
     "protecting sleep as a shift",
     "sleep as a shift worker",
     "as a shift worker evidencebased",
-    "a shift worker evidencebased tactics"
+    "a shift worker evidencebased tactics",
+    "the unexpected connection",
+    "unexpected connection between",
+    "connection between memory",
+    "between memory consolidation",
+    "memory consolidation during",
+    "consolidation during rem",
+    "during rem vs",
+    "rem vs deep",
+    "vs deep sleep",
+    "deep sleep and",
+    "sleep and better",
+    "and better recovery",
+    "the unexpected connection between",
+    "unexpected connection between memory",
+    "connection between memory consolidation",
+    "between memory consolidation during",
+    "memory consolidation during rem",
+    "consolidation during rem vs",
+    "during rem vs deep",
+    "rem vs deep sleep",
+    "vs deep sleep and",
+    "deep sleep and better",
+    "sleep and better recovery",
+    "the unexpected connection between memory",
+    "unexpected connection between memory consolidation",
+    "connection between memory consolidation during",
+    "between memory consolidation during rem",
+    "memory consolidation during rem vs",
+    "consolidation during rem vs deep",
+    "during rem vs deep sleep",
+    "rem vs deep sleep and",
+    "vs deep sleep and better",
+    "deep sleep and better recovery",
+    "box breathing and",
+    "breathing and 478",
+    "and 478 technique",
+    "478 technique for",
+    "technique for better",
+    "for better sleep",
+    "box breathing and 478",
+    "breathing and 478 technique",
+    "and 478 technique for",
+    "478 technique for better",
+    "technique for better sleep",
+    "box breathing and 478 technique",
+    "breathing and 478 technique for",
+    "and 478 technique for better",
+    "478 technique for better sleep",
+    "what time should",
+    "time should i",
+    "should i sleep",
+    "i sleep and",
+    "sleep and wake",
+    "what time should i",
+    "time should i sleep",
+    "should i sleep and",
+    "i sleep and wake",
+    "what time should i sleep",
+    "time should i sleep and",
+    "should i sleep and wake",
+    "the hidden toll",
+    "hidden toll how",
+    "toll how poor",
+    "how poor sleep",
+    "poor sleep affects",
+    "sleep affects your",
+    "affects your vital",
+    "your vital organs",
+    "the hidden toll how",
+    "hidden toll how poor",
+    "toll how poor sleep",
+    "how poor sleep affects",
+    "poor sleep affects your",
+    "sleep affects your vital",
+    "affects your vital organs",
+    "the hidden toll how poor",
+    "hidden toll how poor sleep",
+    "toll how poor sleep affects",
+    "how poor sleep affects your",
+    "poor sleep affects your vital",
+    "sleep affects your vital organs",
+    "harnessing nsdr and",
+    "nsdr and yoga",
+    "and yoga nidra",
+    "yoga nidra for",
+    "nidra for better",
+    "harnessing nsdr and yoga",
+    "nsdr and yoga nidra",
+    "and yoga nidra for",
+    "yoga nidra for better",
+    "nidra for better sleep",
+    "harnessing nsdr and yoga nidra",
+    "nsdr and yoga nidra for",
+    "and yoga nidra for better",
+    "yoga nidra for better sleep",
+    "sleepmaxxing decoding the",
+    "decoding the trend",
+    "the trend science",
+    "trend science and",
+    "science and actionable",
+    "and actionable steps",
+    "sleepmaxxing decoding the trend",
+    "decoding the trend science",
+    "the trend science and",
+    "trend science and actionable",
+    "science and actionable steps",
+    "sleepmaxxing decoding the trend science",
+    "decoding the trend science and",
+    "the trend science and actionable",
+    "trend science and actionable steps"
   ],
   "titlePatterns": [
     {
@@ -728,8 +1625,78 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Protecting Sleep as a Shift Worker: Evidence-Based Tactics",
       "date": "2026-01-12"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Shift Workers: How to Get Sleep Like Your Life Depends on It. Because It Does.",
+      "date": "2025-07-10"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Sleep Like a Warrior: Ancient Wisdom and Modern Practice",
+      "date": "2025-10-16"
+    },
+    {
+      "pattern": "Cultural [SLEEP] Practices You Can Use for Better [SLEEP]",
+      "example": "Cultural Sleep Practices You Can Use for Better Rest",
+      "date": "2025-10-23"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Myth-Busting Sleep for Shift Workers: What You Need to Know",
+      "date": "2025-12-10"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Adjust Your Schedule Without Chaos: A Shift Work Guide",
+      "date": "2025-12-15"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Long-Term Effects of Poor Sleep: What Shift Workers Need to Know",
+      "date": "2025-12-22"
+    },
+    {
+      "pattern": "Nighttime Habits That Help [SLEEP] for Shift [AUDIENCE]",
+      "example": "Nighttime Habits That Help Sleep for Shift Workers",
+      "date": "2025-12-29"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Protecting Sleep as a Shift Worker: Evidence-Based Tactics",
+      "date": "2026-01-12"
+    },
+    {
+      "pattern": "[ARTICLE] [TOPIC]",
+      "example": "The Unexpected Connection Between Memory consolidation during REM vs deep sleep and Better Recovery",
+      "date": "2026-01-19"
+    },
+    {
+      "pattern": "Box Breathing and [NUMBER]-[NUMBER]-[NUMBER] Technique for Better [SLEEP]",
+      "example": "Box Breathing and 4-7-8 Technique for Better Sleep",
+      "date": "2026-01-26"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "What Time Should I Sleep and Wake?",
+      "date": "2026-02-02"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "The Hidden Toll: How Poor Sleep Affects Your Vital Organs",
+      "date": "2026-02-16"
+    },
+    {
+      "pattern": "Harnessing NSDR and Yoga Nidra for Better [SLEEP]",
+      "example": "Harnessing NSDR and Yoga Nidra for Better Sleep",
+      "date": "2026-02-23"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Sleepmaxxing: Decoding the Trend, Science, and Actionable Steps",
+      "date": "2026-03-01"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-01-14T18:43:53.949Z"
+  "lastUpdated": "2026-03-01T12:52:25.109Z"
 }
