@@ -7,23 +7,13 @@ import fs from 'fs/promises';
 import chalk from 'chalk';
 
 /**
- * Extract posts from blog/index.html
+ * Load posts from posts-index.json (source of truth)
  */
 async function extractPosts() {
-  const indexHtml = await fs.readFile('blog/index.html', 'utf8');
-
-  const postsMatch = indexHtml.match(/const posts = (\[[\s\S]*?\]);/);
-
-  if (!postsMatch) {
-    console.log(chalk.yellow('No posts found in blog/index.html'));
-    return [];
-  }
-
   try {
-    const posts = JSON.parse(postsMatch[1]);
-    return posts;
-  } catch (error) {
-    console.error(chalk.red('Failed to parse posts:', error.message));
+    return JSON.parse(await fs.readFile('blog/posts-index.json', 'utf8'));
+  } catch {
+    console.log(chalk.yellow('No posts-index.json found'));
     return [];
   }
 }

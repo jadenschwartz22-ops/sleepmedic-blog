@@ -6,7 +6,7 @@
     "date": "2026-04-06",
     "dateFormatted": "April 6, 2026",
     "readTime": 6,
-    "category": "science",
+    "category": "trending",
     "categoryLabel": "Trending",
     "coverImage": null
   },
@@ -17,7 +17,7 @@
     "date": "2026-03-30",
     "dateFormatted": "March 30, 2026",
     "readTime": 6,
-    "category": "science",
+    "category": "tools",
     "categoryLabel": "Troubleshooting",
     "coverImage": null
   },
