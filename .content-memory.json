@@ -1066,6 +1066,55 @@
         }
       ],
       "wordCount": 1617
+    },
+    {
+      "id": "04d8f30641041c9a",
+      "date": "2026-04-14",
+      "title": "Why the 90-Minute Sleep Cycle Myth Leaves You Tired",
+      "titleFingerprint": "5083b4fda0b41a47",
+      "excerpt": "That popular 'sleep hack' often fails because your sleep cycles are unique. Discover the real science behind truly refreshing rest.",
+      "keywords": {
+        "90minute": 1,
+        "sleep": 3,
+        "cycle": 1,
+        "myth": 1,
+        "leaves": 1,
+        "tired": 1,
+        "that": 1,
+        "popular": 1,
+        "hack": 1,
+        "often": 1,
+        "fails": 1,
+        "because": 1,
+        "cycles": 1,
+        "unique": 1,
+        "discover": 1,
+        "real": 1,
+        "science": 1,
+        "behind": 1,
+        "truly": 1,
+        "refreshing": 1,
+        "rest": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1135
     }
   ],
   "images": [
@@ -1300,6 +1349,11 @@
       "topic": "Sleepmaxxing",
       "usedIn": "9a2000b5169a1bc0",
       "date": "2026-03-01"
+    },
+    {
+      "topic": "Sleep cycles explained and the 90-minute myth",
+      "usedIn": "04d8f30641041c9a",
+      "date": "2026-04-14"
     }
   ],
   "phrases": [
@@ -1578,7 +1632,25 @@
     "sleepmaxxing decoding the trend science",
     "decoding the trend science and",
     "the trend science and actionable",
-    "trend science and actionable steps"
+    "trend science and actionable steps",
+    "why the 90minute",
+    "the 90minute sleep",
+    "90minute sleep cycle",
+    "sleep cycle myth",
+    "cycle myth leaves",
+    "myth leaves you",
+    "leaves you tired",
+    "why the 90minute sleep",
+    "the 90minute sleep cycle",
+    "90minute sleep cycle myth",
+    "sleep cycle myth leaves",
+    "cycle myth leaves you",
+    "myth leaves you tired",
+    "why the 90minute sleep cycle",
+    "the 90minute sleep cycle myth",
+    "90minute sleep cycle myth leaves",
+    "sleep cycle myth leaves you",
+    "cycle myth leaves you tired"
   ],
   "titlePatterns": [
     {
@@ -1695,8 +1767,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Sleepmaxxing: Decoding the Trend, Science, and Actionable Steps",
       "date": "2026-03-01"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "Why the 90-Minute Sleep Cycle Myth Leaves You Tired",
+      "date": "2026-04-14"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-03-01T12:52:25.109Z"
+  "lastUpdated": "2026-04-14T02:41:30.765Z"
 }
