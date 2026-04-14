@@ -56,6 +56,30 @@ function dateFormattedMT() {
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
+/** Attempt to repair truncated JSON by closing open structures */
+function repairJson(str) {
+  let s = str.trim();
+  // Close any unterminated string
+  const quotes = (s.match(/(?<!\\)"/g) || []).length;
+  if (quotes % 2 !== 0) s += '"';
+  // Count and close open brackets/braces
+  let braces = 0, brackets = 0;
+  let inStr = false;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '"' && (i === 0 || s[i - 1] !== '\\')) { inStr = !inStr; continue; }
+    if (inStr) continue;
+    if (s[i] === '{') braces++;
+    else if (s[i] === '}') braces--;
+    else if (s[i] === '[') brackets++;
+    else if (s[i] === ']') brackets--;
+  }
+  // Remove trailing comma before closing
+  s = s.replace(/,\s*$/, '');
+  while (brackets > 0) { s += ']'; brackets--; }
+  while (braces > 0) { s += '}'; braces--; }
+  return s;
+}
+
 function log(stage, msg) { console.log(chalk.cyan(`[Stage ${stage}] `) + msg); }
 function logDetail(msg) { console.log(chalk.gray(`  ${msg}`)); }
 
@@ -101,11 +125,27 @@ async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 81
       }
 
       const data = await res.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      // Concatenate all text parts (google_search responses may split across parts)
+      const parts = data.candidates?.[0]?.content?.parts || [];
+      const text = parts.filter(p => p.text).map(p => p.text).join('');
       if (!text) throw new Error('Empty Gemini response');
 
       const cleaned = stripCodeFences(text);
-      return json ? JSON.parse(cleaned) : cleaned;
+      if (!json) return cleaned;
+
+      // For JSON: extract the JSON object/array from the response text
+      try {
+        return JSON.parse(cleaned);
+      } catch {
+        // Try to find JSON object in the text (model may add prose around it)
+        const match = cleaned.match(/\{[\s\S]*\}/);
+        if (match) {
+          try { return JSON.parse(match[0]); } catch { /* fall through */ }
+          // Try to repair truncated JSON by closing open structures
+          try { return JSON.parse(repairJson(match[0])); } catch { /* fall through */ }
+        }
+        throw new Error(`Unterminated string in JSON at position ${cleaned.length}`);
+      }
     } catch (err) {
       if (attempt === 3) throw err;
       const wait = attempt * 3000;
@@ -268,34 +308,23 @@ function getTemplateFormat() {
 async function stage2_research(topicInfo) {
   log(2, 'Researching topic with web search...');
 
-  const research = await gemini(
-    `Research the following sleep science topic thoroughly.
+  const researchPrompt = `Research the following sleep science topic thoroughly.
 
 Topic: "${topicInfo.topic}"
 Angle: ${topicInfo.angle}
 Target audience: ${topicInfo.audience_segment}
 
-Find and return JSON with REAL, VERIFIABLE information:
+Return a JSON object with REAL, VERIFIABLE information. Keep values SHORT -- no long paragraphs.
 {
   "studies": [
-    {
-      "finding": "one-sentence summary of the finding",
-      "source": "organization or journal name",
-      "url": "real URL to CDC, NIH, PubMed, WHO, AASM, or Cochrane page",
-      "year": 2024,
-      "stat": "specific number if available (e.g., '42% reduction in sleep latency')"
-    }
+    { "finding": "one short sentence", "source": "journal or org name", "url": "real URL", "year": 2024, "stat": "specific number" }
   ],
   "key_stats": [
-    {
-      "stat": "specific statistic with number",
-      "source": "CDC/NIH/WHO/etc",
-      "url": "real URL"
-    }
+    { "stat": "specific statistic with number", "source": "CDC/NIH/WHO/etc", "url": "real URL" }
   ],
-  "surprising_fact": "one counterintuitive or lesser-known fact about this topic",
-  "mechanisms": ["named physiological mechanism 1", "mechanism 2"],
-  "practical_protocols": ["real technique or protocol name with origin"]
+  "surprising_fact": "one short counterintuitive fact",
+  "mechanisms": ["mechanism 1", "mechanism 2"],
+  "practical_protocols": ["technique name with origin"]
 }
 
 RULES:
@@ -303,9 +332,18 @@ RULES:
 - 2-3 statistics with real numbers
 - Only include URLs you are confident are real
 - Mechanisms must be named physiological processes (circadian phase, homeostatic sleep drive, thermoregulation, etc.)
-- If a protocol exists (military sleep method, 4-7-8 breathing, etc.), name it with its origin`,
-    { json: true, temp: 0.3, search: true, maxTokens: 4096 }
-  );
+- Keep ALL string values under 150 characters to avoid truncation`;
+
+  let research;
+  try {
+    // Try with google_search grounding first
+    research = await gemini(researchPrompt, { json: true, temp: 0.3, search: true, maxTokens: 4096 });
+  } catch (err) {
+    logDetail(`Search grounding failed: ${err.message.slice(0, 100)}`);
+    logDetail('Falling back to non-search research...');
+    // Fallback: no search tool, just use model knowledge with JSON mode
+    research = await gemini(researchPrompt, { json: true, temp: 0.3, maxTokens: 4096 });
+  }
 
   logDetail(`Found ${research.studies?.length || 0} studies, ${research.key_stats?.length || 0} stats`);
   logDetail(`Mechanisms: ${(research.mechanisms || []).join(', ')}`);
