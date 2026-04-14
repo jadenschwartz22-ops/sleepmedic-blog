@@ -154,34 +154,26 @@ jobs:
             const prNumber = process.env.PR_NUM;
             const hasImage = process.env.HAS_IMAGE;
 
-            const imageStatus = hasImage === 'true' ? 'Yes (Gemini native)' : 'No (generation unavailable)';
+            const imageStatus = hasImage === 'true' ? 'Yes' : 'No';
+            const date = new Date().toLocaleDateString('en-US', { timeZone: 'America/Denver', month: 'short', day: 'numeric' });
             const body = [
-              '## Blog Auto-Published Successfully',
+              `New blog post live on sleepmedic.co:`,
               '',
-              `**Title:** ${title}`,
-              `**File:** \`blog/posts/${filename}\``,
-              `**PR:** #${prNumber}`,
-              `**AI Cover Image:** ${imageStatus}`,
-              `**Pipeline:** Planner -> Section Writers -> Editor -> Cross-Linker -> Gemini Image`,
+              `**"${title}"**`,
               '',
-              '### Links',
-              '',
-              `- [View PR](https://github.com/${{ github.repository }}/pull/${prNumber})`,
-              `- [Live Post](https://sleepmedic.co/blog/posts/${filename}) (available after merge)`,
-              '',
-              '### Next Post',
-              '',
-              'Next blog post will be automatically generated and published next Monday at 9:00 AM MT.',
+              `[Read it here](https://sleepmedic.co/blog/posts/${filename})`,
               '',
               '---',
               '',
-              '*This issue will auto-close in 7 days.*'
+              `Cover image: ${imageStatus} | PR: #${prNumber} | File: \`${filename}\``,
+              '',
+              'Next post publishes next Monday at 9:00 AM MT.'
             ].join('\n');
 
             const resp = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Auto-Published: ${title}`,
+              title: `Blog posted: ${title}`,
               body,
               labels: ['blog', 'auto-published']
             });
@@ -215,8 +207,8 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Blog Pipeline Failed - ${new Date().toISOString().split('T')[0]}`,
-              body: `## Blog Generation Failed\n\nWorkflow run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\n\nCheck the logs for details.`,
+              title: `Blog FAILED - ${new Date().toLocaleDateString('en-US', { timeZone: 'America/Denver', month: 'short', day: 'numeric' })}`,
+              body: `Weekly blog post failed to generate.\n\n[View logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})`,
               labels: ['blog', 'bug']
             });
 
