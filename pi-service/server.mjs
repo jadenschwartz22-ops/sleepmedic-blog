@@ -40,9 +40,11 @@ const TWITTER_ACCESS_SECRET = process.env.TWITTER_ACCESS_SECRET || '';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'SleepMedic <blog@sleepmedic.co>';
 const RSS_URL = 'https://sleepmedic.co/blog/feed.xml';
 const POLL_INTERVAL = 30 * 60 * 1000; // 30 minutes
+const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
 
 const SUBS_PATH = path.join(__dirname, 'subscribers.json');
 const LAST_POST_PATH = path.join(__dirname, '.last-post-guid.txt');
+const APP_INTEREST_PATH = path.join(__dirname, 'app-interest.json');
 
 // ── Subscribers Store ────────────────────────────────
 
@@ -63,6 +65,7 @@ async function addSubscriber(email) {
   subs.push({ email, subscribedAt: new Date().toISOString() });
   await saveSubscribers(subs);
   console.log(`+ subscriber: ${email} (total: ${subs.length})`);
+  notifyDiscord(`**[NEWSLETTER] New subscriber** \`${email}\` \u2014 **total: ${subs.length}**`);
   return { ok: true };
 }
 
@@ -72,6 +75,60 @@ async function removeSubscriber(email) {
   const filtered = subs.filter(s => s.email !== email);
   await saveSubscribers(filtered);
   return { ok: true, removed: subs.length - filtered.length };
+}
+
+// ── Discord Notifications ────────────────────────────
+
+async function notifyDiscord(content) {
+  if (!DISCORD_WEBHOOK_URL) return;
+  try {
+    await fetch(DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content, username: 'SleepMedic' })
+    });
+  } catch (err) {
+    console.error(`Discord notify failed: ${err.message}`);
+  }
+}
+
+// ── App Interest Store (smokescreen Download App button) ──
+
+async function loadAppInterest() {
+  try { return JSON.parse(await fs.readFile(APP_INTEREST_PATH, 'utf8')); }
+  catch { return { clicks: 0, emails: [], events: [] }; }
+}
+
+async function saveAppInterest(data) {
+  await fs.writeFile(APP_INTEREST_PATH, JSON.stringify(data, null, 2));
+}
+
+async function recordAppInterest({ type, email, location, path: refPath, referrer, ip, ua }) {
+  const data = await loadAppInterest();
+  const ts = new Date().toISOString();
+
+  if (type === 'click') {
+    data.clicks = (data.clicks || 0) + 1;
+  } else if (type === 'email' && email) {
+    email = email.toLowerCase().trim();
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && !data.emails.find(e => e.email === email)) {
+      data.emails.push({ email, firstSeen: ts, location });
+    }
+  }
+
+  // Keep last 500 events only
+  data.events = (data.events || []).slice(-499);
+  data.events.push({ ts, type, email: email || null, location: location || null, path: refPath || null, referrer: referrer || null, ip: ip || null, ua: ua || null });
+
+  await saveAppInterest(data);
+
+  const total = type === 'click' ? data.clicks : data.emails.length;
+  const msg = type === 'click'
+    ? `**[APP-INTEREST] Click** from \`${refPath || '?'}\` \u2014 location: \`${location || '?'}\` \u2014 **total clicks: ${total}**`
+    : `**[APP-INTEREST] Email captured** \`${email}\` \u2014 location: \`${location || '?'}\` \u2014 **total emails: ${total}**`;
+  notifyDiscord(msg);
+
+  return { ok: true, clicks: data.clicks, emails: data.emails.length };
 }
 
 // ── Resend Email ─────────────────────────────────────
@@ -285,6 +342,46 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // App interest (smokescreen Download App tracker)
+  if (url.pathname === '/app-interest' && req.method === 'POST') {
+    const body = await parseBody(req);
+    const ip = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '').toString().split(',')[0].trim();
+    const ua = (req.headers['user-agent'] || '').slice(0, 200);
+    const result = await recordAppInterest({
+      type: body.type === 'email' ? 'email' : 'click',
+      email: body.email,
+      location: body.location,
+      path: body.path,
+      referrer: body.referrer,
+      ip, ua
+    });
+    json(res, 200, result);
+    return;
+  }
+
+  // Admin: app interest dashboard
+  if (url.pathname === '/app-interest/stats' && url.searchParams.get('key') === ADMIN_KEY) {
+    const data = await loadAppInterest();
+    json(res, 200, {
+      clicks: data.clicks || 0,
+      emails: data.emails || [],
+      emailCount: (data.emails || []).length,
+      recentEvents: (data.events || []).slice(-50).reverse()
+    });
+    return;
+  }
+
+  // Admin: unified stats
+  if (url.pathname === '/stats' && url.searchParams.get('key') === ADMIN_KEY) {
+    const [subs, interest] = await Promise.all([loadSubscribers(), loadAppInterest()]);
+    json(res, 200, {
+      newsletter: { count: subs.length },
+      appInterest: { clicks: interest.clicks || 0, emails: (interest.emails || []).length },
+      uptime: process.uptime()
+    });
+    return;
+  }
+
   // Webhook: trigger distribution manually (from GitHub Actions)
   if (url.pathname === '/trigger-send' && req.method === 'POST') {
     if (url.searchParams.get('key') !== ADMIN_KEY) { json(res, 401, { error: 'unauthorized' }); return; }
@@ -306,9 +403,12 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(PORT, () => {
   console.log(`SleepMedic Distribution Service running on :${PORT}`);
-  console.log(`  Health:    http://localhost:${PORT}/health`);
-  console.log(`  Subscribe: POST http://localhost:${PORT}/subscribe`);
-  console.log(`  RSS poll:  every ${POLL_INTERVAL / 60000} minutes`);
+  console.log(`  Health:       http://localhost:${PORT}/health`);
+  console.log(`  Subscribe:    POST http://localhost:${PORT}/subscribe`);
+  console.log(`  App interest: POST http://localhost:${PORT}/app-interest`);
+  console.log(`  Stats:        GET http://localhost:${PORT}/stats?key=...`);
+  console.log(`  RSS poll:     every ${POLL_INTERVAL / 60000} minutes`);
+  console.log(`  Discord:      ${DISCORD_WEBHOOK_URL ? 'enabled' : 'disabled (set DISCORD_WEBHOOK_URL)'}`);
   console.log('');
 });
 

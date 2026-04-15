@@ -1,0 +1,60 @@
+name: Backfill Cover Images
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Regenerate ALL covers (not just missing). Costs ~$2 for full re-run.'
+        required: false
+        default: 'false'
+        type: choice
+        options: [ 'false', 'true' ]
+      max_attempts:
+        description: 'Max generation attempts per image (QA retries)'
+        required: false
+        default: '3'
+
+permissions:
+  contents: write
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run image backfill (with QA loop)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MAX_ATTEMPTS: ${{ github.event.inputs.max_attempts }}
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            node scripts/backfill-images.mjs --force
+          else
+            node scripts/backfill-images.mjs
+          fi
+
+      - name: Regenerate posts index + RSS
+        run: |
+          node scripts/generate-posts-index.mjs
+          node scripts/generate-rss-feed.mjs
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/posts/images blog/posts/*.html blog/posts-index.json blog/feed.xml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Backfill cover images (AI-QA loop)"
+            git push
+          fi

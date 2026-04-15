@@ -19,3 +19,11 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Claude Code workspace
+.claude/
+
+# Pi runtime data (never commit subscriber / interest data)
+pi-service/subscribers.json
+pi-service/app-interest.json
+pi-service/.last-post-guid.txt

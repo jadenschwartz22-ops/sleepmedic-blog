@@ -63,6 +63,8 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--text); }
+    .nav-cta { padding: 7px 14px; background: rgba(167,139,250,0.10); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
+    .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
 
     /* ── Hero ── */
     .hero {
@@ -394,8 +396,8 @@
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
-      <a href="/app/">App</a>
       <a href="feed.xml">RSS</a>
+      <button type="button" class="nav-cta" data-app-interest="blog-nav">Download App</button>
     </div>
   </nav>
 
@@ -437,7 +439,7 @@
       <div class="no-posts">Loading posts...</div>
     </div>
 
-    <div class="newsletter">
+    <div class="newsletter" id="newsletter">
       <h2>Weekly sleep science, no fluff</h2>
       <p>One email a week. Real research, real advice, zero spam. Join shift workers, nurses, and curious humans who want to sleep better.</p>
       <div class="followit--follow-form-container" attr-a attr-b attr-c attr-d attr-e attr-f>
@@ -458,11 +460,13 @@
   </div>
 
   <footer>
-    <p>&copy; 2026 SleepMedic</p>
+    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
     <p style="margin-top:6px;">
-      <a href="/">Home</a> &middot; <a href="feed.xml">RSS</a> &middot; <a href="/app/">App</a>
+      <a href="/">Home</a> &middot; <a href="feed.xml">RSS</a> &middot; <a href="#" data-app-interest="blog-footer">Download App</a>
     </p>
   </footer>
+
+  <script src="/assets/app-interest.js" data-pi="https://pi.sleepmedic.co/app-interest"></script>
 
   <script>
     let posts = [];
@@ -477,8 +481,24 @@
         btn.classList.add('active');
         activeCategory = btn.dataset.category;
         render(activeCategory);
+        if (window.gtag) window.gtag('event', 'blog_filter', { category: activeCategory });
       });
     });
+
+    // Track clicks into posts
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a.featured, a.card');
+      if (a && window.gtag) window.gtag('event', 'blog_card_click', { link_url: a.getAttribute('href') || '', location: 'blog-index' });
+    });
+
+    // Track newsletter submit (Follow.it form)
+    const nlForm = document.querySelector('.followit--follow-form-container form');
+    if (nlForm) {
+      nlForm.addEventListener('submit', () => {
+        const email = nlForm.querySelector('input[name="email"]')?.value || '';
+        if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'blog-index' });
+      });
+    }
 
     async function loadPosts() {
       try {

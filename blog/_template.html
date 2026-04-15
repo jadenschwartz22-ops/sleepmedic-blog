@@ -96,9 +96,11 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 20px; }
+    .nav-links { display: flex; gap: 16px; align-items: center; }
     .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; }
     .nav-links a:hover { color: var(--text); }
+    .nav-cta { padding: 7px 14px; background: rgba(167,139,250,0.10); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
+    .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
 
     .post-container {
       max-width: 720px;
@@ -373,7 +375,8 @@
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
-      <a href="/app/">App</a>
+      <a href="/blog/feed.xml">RSS</a>
+      <button type="button" class="nav-cta" data-app-interest="post-nav">Download App</button>
     </div>
   </nav>
 
@@ -419,7 +422,7 @@
         <div class="app-cta-icon">SM</div>
         <div class="app-cta-text">
           <p>SleepMedic adapts to your actual schedule -- not a rigid ideal. Track consistency, get smart reminders, and see what's really working.</p>
-          <a href="/app/">Learn More</a>
+          <a href="#" data-app-interest="post-cta">Download App</a>
         </div>
       </div>
 
@@ -451,7 +454,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2026 SleepMedic</p>
+    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
     <p style="margin-top:6px;">
       <a href="/">Home</a> &middot;
       <a href="/blog/">Blog</a> &middot;
@@ -459,7 +462,46 @@
     </p>
   </footer>
 
+  <script src="/assets/app-interest.js" data-pi="https://pi.sleepmedic.co/app-interest"></script>
+
   <script>
+    // GA4 enriched blog post view event
+    if (window.gtag) {
+      window.gtag('event', 'blog_post_view', {
+        slug: '{{SLUG}}',
+        category: '{{CATEGORY}}',
+        read_time: {{READ_TIME}},
+        word_count: '{{WORD_COUNT}}'
+      });
+    }
+
+    // Track scroll depth for engagement (25/50/75/100)
+    (function() {
+      if (!window.gtag) return;
+      const milestones = [25, 50, 75, 100];
+      const hit = new Set();
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const pct = Math.round(((h.scrollTop + window.innerHeight) / h.scrollHeight) * 100);
+        for (const m of milestones) {
+          if (pct >= m && !hit.has(m)) {
+            hit.add(m);
+            window.gtag('event', 'scroll_depth', { depth: m, slug: '{{SLUG}}' });
+          }
+        }
+      }, { passive: true });
+    })();
+
+    // Newsletter submit tracking
+    (function() {
+      const f = document.querySelector('.followit--follow-form-container form');
+      if (!f) return;
+      f.addEventListener('submit', () => {
+        const email = f.querySelector('input[name="email"]')?.value || '';
+        if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'post', slug: '{{SLUG}}' });
+      });
+    })();
+
     // Reading progress bar
     const progress = document.getElementById('reading-progress');
     const article = document.querySelector('.post-content');
