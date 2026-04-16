@@ -3,6 +3,7 @@
 
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
+import { TAGS_PATH } from './paths.mjs';
 
 const force = process.argv.includes('--force');
 
@@ -11,7 +12,7 @@ async function loadIndex() {
 }
 
 async function loadTags() {
-  try { return JSON.parse(await fs.readFile('blog/ab-tags.json', 'utf8')); }
+  try { return JSON.parse(await fs.readFile(TAGS_PATH, 'utf8')); }
   catch { return {}; }
 }
 

@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /blog/ab-tags.json
+Disallow: /blog/ab-analytics.json
+Disallow: /blog/ab-dashboard.html
 Sitemap: https://sleepmedic.co/sitemap.xml

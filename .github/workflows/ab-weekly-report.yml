@@ -2,8 +2,7 @@ name: A/B Weekly Report
 
 on:
   schedule:
-    # Every Monday at 10:00 AM Mountain Time (17:00 UTC)
-    - cron: "0 17 * * 1"
+    - cron: "0 17 * * 1"  # Monday 10:00 AM Mountain Time (17:00 UTC)
   workflow_dispatch: {}
 
 permissions:
@@ -44,13 +43,13 @@ jobs:
         run: |
           echo "# SleepMedic A/B Weekly Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Dashboard: [blog/ab-dashboard.html](../../blob/main/blog/ab-dashboard.html)" >> $GITHUB_STEP_SUMMARY
+          echo "Dashboard file: private/ab-dashboard.html (internal, not linked from the site)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          if [ -f blog/ab-analytics.json ]; then
+          if [ -f private/ab-analytics.json ]; then
             echo "## Top 5 posts by avg engagement time" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             node -e "
-              const a=require('./blog/ab-analytics.json').filter(r=>r.tagged);
+              const a=require('./private/ab-analytics.json').filter(r=>r.tagged);
               a.sort((x,y)=>(y.avg_engagement_seconds||0)-(x.avg_engagement_seconds||0));
               for (const r of a.slice(0,5)) console.log((r.avg_engagement_seconds||0).toFixed(1)+'s', '|', r.energy, '/', r.opening_vehicle, '->', r.closing_vehicle, '|', r.slug);
             " >> $GITHUB_STEP_SUMMARY
@@ -59,7 +58,7 @@ jobs:
             echo "## Energy x avg engagement (mean)" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             node -e "
-              const a=require('./blog/ab-analytics.json').filter(r=>r.tagged);
+              const a=require('./private/ab-analytics.json').filter(r=>r.tagged);
               const g={};
               for (const r of a) { g[r.energy] = g[r.energy]||[]; g[r.energy].push(r.avg_engagement_seconds||0); }
               const rows=Object.entries(g).map(([k,xs])=>[k, xs.length, xs.reduce((a,b)=>a+b,0)/xs.length]);
@@ -75,8 +74,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/ab-dashboard.html blog/ab-analytics.json 2>/dev/null || true
-          if [ -n "$(git status --porcelain)" ]; then
+          git add private/ 2>/dev/null || true
+          if [ -n "$(git status --porcelain private/)" ]; then
             git commit -m "A/B: weekly report [skip ci]"
             git push
           else

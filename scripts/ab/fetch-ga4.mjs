@@ -1,20 +1,15 @@
-// Fetch GA4 metrics via the Data API and produce blog/ab-analytics.json
-// joined against blog/ab-tags.json.
+// Fetch GA4 metrics via the Data API and produce private/ab-analytics.json
+// joined against private/ab-tags.json.
 //
-// Required env:
-//   GA4_PROPERTY_ID   e.g. "532856345" (the numeric ID, not the G-XXX stream ID)
-//   GA4_CLIENT_EMAIL  service account email
-//   GA4_PRIVATE_KEY   service account private key (with literal \n preserved)
+// Required env: GA4_PROPERTY_ID, GA4_CLIENT_EMAIL, GA4_PRIVATE_KEY
 //
-// The service account must have "Viewer" role on the GA4 property
-// (GA4 Admin > Property Access Management).
-//
-// Usage:
 //   node scripts/ab/fetch-ga4.mjs            # last 90 days
 //   node scripts/ab/fetch-ga4.mjs --days 30  # custom window
 
 import fs from 'fs/promises';
+import path from 'path';
 import crypto from 'crypto';
+import { TAGS_PATH, ANALYTICS_PATH } from './paths.mjs';
 
 const PROPERTY_ID = process.env.GA4_PROPERTY_ID;
 const CLIENT_EMAIL = process.env.GA4_CLIENT_EMAIL;
@@ -24,10 +19,8 @@ function arg(flag, fallback) {
   const i = process.argv.indexOf(flag);
   return i >= 0 ? process.argv[i + 1] : fallback;
 }
-
 const DAYS = parseInt(arg('--days', '90'));
 
-// ── JWT for service account auth (no google-auth-library dep) ──
 function base64url(buf) {
   return Buffer.from(buf).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
@@ -46,7 +39,6 @@ async function getAccessToken() {
   const unsigned = `${base64url(JSON.stringify(header))}.${base64url(JSON.stringify(claim))}`;
   const sig = crypto.createSign('RSA-SHA256').update(unsigned).sign(PRIVATE_KEY);
   const jwt = `${unsigned}.${base64url(sig)}`;
-
   const res = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -80,7 +72,6 @@ async function main() {
   const token = await getAccessToken();
   const dateRanges = [{ startDate: `${DAYS}daysAgo`, endDate: 'today' }];
 
-  // 1) Pages report
   const pages = await ga4Run(token, {
     dateRanges,
     dimensions: [{ name: 'pagePath' }],
@@ -90,13 +81,10 @@ async function main() {
       { name: 'userEngagementDuration' },
       { name: 'sessions' }
     ],
-    dimensionFilter: {
-      filter: { fieldName: 'pagePath', stringFilter: { value: '/blog/posts/', matchType: 'CONTAINS' } }
-    },
+    dimensionFilter: { filter: { fieldName: 'pagePath', stringFilter: { value: '/blog/posts/', matchType: 'CONTAINS' } } },
     limit: 1000
   });
 
-  // 2) Events report (our 4 custom events per ANALYTICS.md)
   const events = await ga4Run(token, {
     dateRanges,
     dimensions: [{ name: 'pagePath' }, { name: 'eventName' }],
@@ -110,7 +98,7 @@ async function main() {
     limit: 1000
   });
 
-  const tags = JSON.parse(await fs.readFile('blog/ab-tags.json', 'utf8'));
+  const tags = JSON.parse(await fs.readFile(TAGS_PATH, 'utf8'));
 
   const bySlug = {};
   for (const row of (pages.rows || [])) {
@@ -151,10 +139,11 @@ async function main() {
   }
 
   rows.sort((a, b) => b.views - a.views);
-  await fs.writeFile('blog/ab-analytics.json', JSON.stringify(rows, null, 2));
+  await fs.mkdir(path.dirname(ANALYTICS_PATH), { recursive: true });
+  await fs.writeFile(ANALYTICS_PATH, JSON.stringify(rows, null, 2));
 
   const tagged = rows.filter(r => r.tagged).length;
-  console.log(`Fetched ${rows.length} posts over ${DAYS} days (${tagged} tagged) -> blog/ab-analytics.json`);
+  console.log(`Fetched ${rows.length} posts over ${DAYS} days (${tagged} tagged) -> ${ANALYTICS_PATH}`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

@@ -1,19 +1,13 @@
-// Pivot the A/B analytics by each tag dimension.
+// CLI pivot over private/ab-analytics.json.
 //   node scripts/ab/pivot.mjs
 //   node scripts/ab/pivot.mjs --metric subscribe_rate
 //   node scripts/ab/pivot.mjs --dim energy,opening_vehicle
-//
-// Reads blog/ab-analytics.json, prints per-dimension tables ranked by the
-// chosen metric. Single-value dims pivot directly; array dims (devices)
-// explode one-row-per-value.
 
 import fs from 'fs/promises';
+import { ANALYTICS_PATH } from './paths.mjs';
 
-const METRICS = ['views', 'avg_engagement_seconds', 'newsletter_subscribes',
-                 'app_interest_clicks', 'subscribe_rate', 'app_click_rate'];
-const DEFAULT_DIMS = ['energy', 'opening_vehicle', 'closing_vehicle',
-                      'length_bucket', 'voice_intensity', 'topic_cluster',
-                      'hook_type', 'format', 'devices'];
+const METRICS = ['views', 'avg_engagement_seconds', 'newsletter_subscribes', 'app_interest_clicks', 'subscribe_rate', 'app_click_rate'];
+const DEFAULT_DIMS = ['energy', 'opening_vehicle', 'closing_vehicle', 'length_bucket', 'voice_intensity', 'topic_cluster', 'hook_type', 'format', 'devices'];
 
 function arg(flag, fallback) {
   const i = process.argv.indexOf(flag);
@@ -34,13 +28,7 @@ function table(rows, dim, metric) {
       groups[v].push(r[metric] || 0);
     }
   }
-  const out = Object.entries(groups).map(([k, xs]) => ({
-    value: k,
-    n: xs.length,
-    mean: mean(xs),
-    total: sum(xs)
-  }));
-  // rank by mean for rates, by total for counts
+  const out = Object.entries(groups).map(([k, xs]) => ({ value: k, n: xs.length, mean: mean(xs), total: sum(xs) }));
   const rateMetric = metric.endsWith('_rate') || metric.startsWith('avg_');
   out.sort((a, b) => rateMetric ? b.mean - a.mean : b.total - a.total);
   return { dim, metric, rows: out };
@@ -49,8 +37,8 @@ function table(rows, dim, metric) {
 function printTable(t) {
   console.log(`\n=== ${t.dim} by ${t.metric} ===`);
   const fmt = t.metric.endsWith('_rate') ? (x => (x * 100).toFixed(2) + '%')
-            : t.metric.startsWith('avg_') ? (x => x.toFixed(1) + 's')
-            : (x => Math.round(x).toString());
+           : t.metric.startsWith('avg_') ? (x => x.toFixed(1) + 's')
+           : (x => Math.round(x).toString());
   const maxLen = Math.max(...t.rows.map(r => r.value.length), 10);
   console.log(`${'value'.padEnd(maxLen)}  ${'n'.padStart(4)}  ${'mean'.padStart(10)}  ${'total'.padStart(10)}`);
   console.log('-'.repeat(maxLen + 32));
@@ -60,22 +48,17 @@ function printTable(t) {
 }
 
 async function main() {
-  const rows = JSON.parse(await fs.readFile('blog/ab-analytics.json', 'utf8'));
+  const rows = JSON.parse(await fs.readFile(ANALYTICS_PATH, 'utf8'));
   const metric = arg('--metric', 'avg_engagement_seconds');
-  if (!METRICS.includes(metric)) {
-    console.error(`Unknown metric. Choose: ${METRICS.join(', ')}`);
-    process.exit(1);
-  }
+  if (!METRICS.includes(metric)) { console.error(`Unknown metric. Choose: ${METRICS.join(', ')}`); process.exit(1); }
   const dimsArg = arg('--dim');
   const dims = dimsArg ? dimsArg.split(',') : DEFAULT_DIMS;
 
   const tagged = rows.filter(r => r.tagged).length;
   console.log(`A/B PIVOT — ${rows.length} posts (${tagged} tagged), metric: ${metric}`);
   console.log('='.repeat(60));
-
   for (const d of dims) printTable(table(rows, d, metric));
 
-  // quick co-occurrence: which two-tag combos dominate the top 5?
   const topN = [...rows].filter(r => r.tagged).sort((a, b) => (b[metric] || 0) - (a[metric] || 0)).slice(0, 5);
   console.log(`\n=== top 5 posts by ${metric} ===`);
   for (const r of topN) {

@@ -1,16 +1,13 @@
 // Classify a SleepMedic blog post against the A/B schema.
-// Replaces tag-post.mjs — same CLI interface, correct HTML selector for
-// SleepMedic's template (post-content div), robust JSON repair.
-//
 //   node scripts/ab/classify.mjs <slug> [--force]
 
 import fs from 'fs/promises';
 import path from 'path';
 import { SCHEMA, bucketForWordCount, validate } from './tag-schema.mjs';
+import { TAGS_PATH } from './paths.mjs';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const MODEL = process.env.GEMINI_TEXT_MODEL || 'gemini-2.5-flash';
-const TAGS_PATH = 'blog/ab-tags.json';
 
 async function loadTags() {
   try { return JSON.parse(await fs.readFile(TAGS_PATH, 'utf8')); }
@@ -18,6 +15,7 @@ async function loadTags() {
 }
 
 async function saveTags(tags) {
+  await fs.mkdir(path.dirname(TAGS_PATH), { recursive: true });
   await fs.writeFile(TAGS_PATH, JSON.stringify(tags, null, 2));
 }
 
@@ -33,8 +31,6 @@ function stripHtml(html) {
     .trim();
 }
 
-// Balanced-div extraction: find <div class="post-content"> and walk forward
-// counting open/close <div> tags until balance returns to zero.
 function extractPostContent(html) {
   const openRx = /<div\s+class="post-content"[^>]*>/i;
   const start = html.search(openRx);
@@ -59,7 +55,6 @@ function extractPostContent(html) {
 function extractBody(html) {
   const content = extractPostContent(html);
   if (content && content.length > 500) return content;
-  // fallback: look for the first <article>, then <main>, then all of body
   const art = html.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
   if (art && art[1].length > 500) return art[1];
   const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
@@ -68,11 +63,9 @@ function extractBody(html) {
   return body ? body[1] : html;
 }
 
-// Try to repair truncated JSON by closing open strings/brackets
 function repairJson(str) {
   let s = String(str).trim();
   s = s.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
-  // close unterminated string
   let inStr = false, escape = false;
   for (let i = 0; i < s.length; i++) {
     const ch = s[i];
@@ -81,7 +74,6 @@ function repairJson(str) {
     if (ch === '"') inStr = !inStr;
   }
   if (inStr) s += '"';
-  // count brace/bracket balance (outside strings)
   let braces = 0, brackets = 0;
   inStr = false; escape = false;
   for (let i = 0; i < s.length; i++) {
@@ -105,7 +97,6 @@ function parseModelJson(raw) {
   if (!raw) throw new Error('empty response');
   const cleaned = raw.trim().replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
   try { return JSON.parse(cleaned); } catch {}
-  // try extracting an object substring
   const objMatch = cleaned.match(/\{[\s\S]*\}/);
   if (objMatch) {
     try { return JSON.parse(objMatch[0]); } catch {}
@@ -120,11 +111,7 @@ async function callGemini(prompt) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}`;
   const body = {
     contents: [{ role: 'user', parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: 0.2,
-      maxOutputTokens: 2048,
-      responseMimeType: 'application/json'
-    }
+    generationConfig: { temperature: 0.2, maxOutputTokens: 2048, responseMimeType: 'application/json' }
   };
   for (let attempt = 1; attempt <= 3; attempt++) {
     const res = await fetch(url, {
@@ -139,8 +126,7 @@ async function callGemini(prompt) {
     if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
     const data = await res.json();
     const parts = data.candidates?.[0]?.content?.parts || [];
-    const text = parts.filter(p => p.text).map(p => p.text).join('');
-    return text;
+    return parts.filter(p => p.text).map(p => p.text).join('');
   }
   throw new Error('Gemini unavailable after 3 attempts');
 }

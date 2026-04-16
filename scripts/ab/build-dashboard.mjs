@@ -1,15 +1,11 @@
-// Build a static dashboard page at blog/ab-dashboard.html showing:
-//   - current tag distributions (works with only ab-tags.json)
-//   - pivot tables (works when ab-analytics.json exists)
-//
-// Run locally: node scripts/ab/build-dashboard.mjs
-// Run in CI: same command, committed by the workflow
+// Render private/ab-dashboard.html from private/ab-tags.json (+ ab-analytics.json if present).
 
 import fs from 'fs/promises';
-import { SCHEMA } from './tag-schema.mjs';
+import path from 'path';
+import { TAGS_PATH, ANALYTICS_PATH, DASHBOARD_PATH } from './paths.mjs';
 
-async function loadJson(path, fallback = null) {
-  try { return JSON.parse(await fs.readFile(path, 'utf8')); }
+async function loadJson(p, fallback = null) {
+  try { return JSON.parse(await fs.readFile(p, 'utf8')); }
   catch { return fallback; }
 }
 
@@ -53,8 +49,9 @@ function fmt(metric, x) {
 
 function distTable(data, title) {
   const max = data[0] ? data[0][1] : 1;
+  const total = data.reduce((a, [, v]) => a + v, 0);
   const rows = data.map(([k, n]) => {
-    const pct = ((n / data.reduce((a, [, v]) => a + v, 0)) * 100).toFixed(0);
+    const pct = ((n / total) * 100).toFixed(0);
     const bar = '█'.repeat(Math.round((n / max) * 30));
     return `<tr><td>${k}</td><td class="num">${n}</td><td class="num">${pct}%</td><td class="bar">${bar}</td></tr>`;
   }).join('');
@@ -67,9 +64,7 @@ function distTable(data, title) {
 
 function pivotTable(data, metric, dim) {
   if (!data.length) return '';
-  const rows = data.map(r => {
-    return `<tr><td>${r.value}</td><td class="num">${r.n}</td><td class="num">${fmt(metric, r.mean)}</td><td class="num">${fmt(metric, r.total)}</td></tr>`;
-  }).join('');
+  const rows = data.map(r => `<tr><td>${r.value}</td><td class="num">${r.n}</td><td class="num">${fmt(metric, r.mean)}</td><td class="num">${fmt(metric, r.total)}</td></tr>`).join('');
   return `
     <section>
       <h4>${dim} × ${metric}</h4>
@@ -98,7 +93,6 @@ function render({ tags, analytics, generated }) {
     const taggedAnalytics = analytics.filter(a => a.tagged);
     const metrics = ['views', 'avg_engagement_seconds', 'subscribe_rate', 'app_click_rate'];
     const dims = ['energy', 'voice_intensity', 'length_bucket', 'opening_vehicle', 'closing_vehicle', 'topic_cluster', 'hook_type', 'devices'];
-
     const blocks = [];
     for (const metric of metrics) {
       const parts = dims.map(d => pivotTable(pivot(taggedAnalytics, d, metric), metric, d)).join('\n');
@@ -111,7 +105,7 @@ function render({ tags, analytics, generated }) {
   } else {
     pivotsBlock = `
       <h2>Pivots</h2>
-      <p class="sub">No GA4 data joined yet. Export <code>pages.csv</code> and <code>events.csv</code> from GA4, drop them in the repo root, and run <code>node scripts/ab/join-ga4.mjs pages.csv events.csv</code> — or set up the GA4 API workflow (see AB.md).</p>`;
+      <p class="sub">No GA4 data joined yet. Wire GA4 secrets (see AB.md) and the weekly workflow will populate pivots.</p>`;
   }
 
   return `<!doctype html>
@@ -119,8 +113,8 @@ function render({ tags, analytics, generated }) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>SleepMedic A/B Dashboard</title>
+<meta name="robots" content="noindex, nofollow">
+<title>SleepMedic A/B Dashboard (internal)</title>
 <style>
   body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 980px; margin: 24px auto; padding: 0 20px; color: #222; }
   h1 { font-size: 22px; margin: 0 0 4px; }
@@ -137,11 +131,13 @@ function render({ tags, analytics, generated }) {
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px 32px; }
   code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
   .meta { color: #888; font-size: 12px; }
+  .banner { background: #fff8e1; border-left: 3px solid #f0a500; padding: 8px 14px; font-size: 12px; margin: 10px 0 20px; color: #6a4e00; border-radius: 0 4px 4px 0; }
 </style>
 </head>
 <body>
 
 <h1>SleepMedic A/B Dashboard</h1>
+<p class="banner">Internal. Not linked from the public site, noindex, disallowed in robots.txt. Readers of the blog never see the voice labels.</p>
 <p class="meta">Generated ${generated}. ${n} tagged posts.</p>
 
 <h2>Current tag distributions</h2>
@@ -165,17 +161,16 @@ ${pivotsBlock}
 }
 
 async function main() {
-  const tags = await loadJson('blog/ab-tags.json', {});
-  const analytics = await loadJson('blog/ab-analytics.json', null);
-
+  const tags = await loadJson(TAGS_PATH, {});
+  const analytics = await loadJson(ANALYTICS_PATH, null);
   if (!Object.keys(tags).length) {
-    console.error('No tags found at blog/ab-tags.json. Run backfill-tags.mjs first.');
+    console.error(`No tags found at ${TAGS_PATH}. Run backfill.mjs first.`);
     process.exit(1);
   }
-
   const html = render({ tags, analytics, generated: new Date().toISOString() });
-  await fs.writeFile('blog/ab-dashboard.html', html);
-  console.log(`Dashboard written to blog/ab-dashboard.html (${Object.keys(tags).length} tagged, analytics: ${analytics ? 'yes' : 'no'})`);
+  await fs.mkdir(path.dirname(DASHBOARD_PATH), { recursive: true });
+  await fs.writeFile(DASHBOARD_PATH, html);
+  console.log(`Dashboard -> ${DASHBOARD_PATH} (${Object.keys(tags).length} tagged, analytics: ${analytics ? 'yes' : 'no'})`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
