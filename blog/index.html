@@ -18,6 +18,32 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="alternate" type="application/rss+xml" title="SleepMedic Blog" href="https://sleepmedic.co/blog/feed.xml" />
 
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SleepMedic",
+    "url": "https://sleepmedic.co",
+    "description": "Evidence-based sleep science for shift workers, first responders, and anyone who struggles with sleep.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": { "@type": "EntryPoint", "urlTemplate": "https://sleepmedic.co/blog/?q={search_term_string}" },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SleepMedic",
+    "url": "https://sleepmedic.co",
+    "logo": { "@type": "ImageObject", "url": "https://sleepmedic.co/favicon-32.png" },
+    "sameAs": []
+  }
+  </script>
+
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
   <script>
@@ -396,6 +422,7 @@
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
       <a href="feed.xml">RSS</a>
       <button type="button" class="nav-cta" data-app-interest="blog-nav">Download App</button>
     </div>
@@ -406,6 +433,15 @@
     <div class="hero">
       <h1>Sleep Science That<br>Actually Works</h1>
       <p>Weekly evidence-based advice for shift workers, first responders, and anyone who struggles with sleep.</p>
+    </div>
+
+    <div style="max-width:420px;margin:0 auto 40px;text-align:center;">
+      <form data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" style="display:flex;gap:8px;">
+        <input type="email" name="email" required placeholder="Your email" style="flex:1;padding:11px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.88rem;font-family:inherit;" />
+        <button type="submit" style="padding:11px 20px;background:var(--accent);color:var(--bg);border:none;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;font-family:inherit;white-space:nowrap;">Subscribe</button>
+      </form>
+      <div data-sm-newsletter-msg style="font-size:0.82rem;margin-top:8px;color:var(--accent);min-height:1.2em;"></div>
+      <p style="font-size:0.75rem;color:var(--text-3);margin-top:6px;">Weekly sleep science. No spam.</p>
     </div>
 
     <div class="stats-bar" id="stats-bar">
@@ -442,7 +478,7 @@
     <div class="newsletter" id="newsletter">
       <h2>Weekly sleep science, no fluff</h2>
       <p>One email a week. Real research, real advice, zero spam. Join shift workers, nurses, and curious humans who want to sleep better.</p>
-      <form data-sm-newsletter style="max-width:400px;margin:0 auto;">
+      <form data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" style="max-width:400px;margin:0 auto;">
         <input type="email" name="email" required placeholder="you@email.com" style="font-family:inherit;color:#fff;font-size:14px;text-align:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:6px;height:44px;width:100%;outline:none;" />
         <button type="submit" style="margin-top:10px;font-family:inherit;font-weight:600;color:#fff;font-size:15px;background:linear-gradient(135deg,#7c8cf5,#6dd5ed);border:none;border-radius:6px;height:44px;width:100%;cursor:pointer;">Subscribe</button>
       </form>
@@ -484,36 +520,35 @@
       if (a && window.gtag) window.gtag('event', 'blog_card_click', { link_url: a.getAttribute('href') || '', location: 'blog-index' });
     });
 
-    // Newsletter submit (Pi + Resend)
-    (function() {
-      const f = document.querySelector('[data-sm-newsletter]');
-      const msg = document.querySelector('[data-sm-newsletter-msg]');
-      if (!f) return;
+    // Newsletter submit (Pi + Resend) — handles all forms on the page
+    document.querySelectorAll('[data-sm-newsletter]').forEach(f => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]')
+        || f.nextElementSibling;
       f.addEventListener('submit', async (e) => {
         e.preventDefault();
         const input = f.querySelector('input[name="email"]');
         const email = (input?.value || '').trim();
         if (!email) return;
-        msg.textContent = 'Subscribing...';
+        if (msg) msg.textContent = 'Subscribing...';
         try {
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ email, leadMagnet: f.dataset.smLeadMagnet })
           });
           const d = await r.json();
           if (d.ok) {
-            msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
             input.value = '';
             if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'blog-index' });
           } else {
-            msg.textContent = d.error || 'Subscription failed.';
+            if (msg) msg.textContent = d.error || 'Subscription failed.';
           }
         } catch {
-          msg.textContent = 'Network error. Try again.';
+          if (msg) msg.textContent = 'Network error. Try again.';
         }
       });
-    })();
+    });
 
     async function loadPosts() {
       try {
@@ -547,7 +582,16 @@
 
       const imgHtml = first.coverImage
         ? `<div class="featured-img" style="background-image:url('${first.coverImage}')"></div>`
-        : `<div class="featured-img"></div>`;
+        : `<div class="featured-img" style="display:flex;align-items:center;justify-content:center;">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="32" cy="32" r="28" stroke="rgba(167,139,250,0.3)" stroke-width="2"/>
+              <path d="M32 18 C32 18 20 26 20 34 C20 40.6 25.4 46 32 46 C38.6 46 44 40.6 44 34 C44 26 32 18 32 18Z" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.5)" stroke-width="1.5"/>
+              <circle cx="32" cy="20" r="3" fill="rgba(167,139,250,0.6)"/>
+              <line x1="32" y1="14" x2="32" y2="10" stroke="rgba(167,139,250,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="40" y1="16" x2="43" y2="13" stroke="rgba(167,139,250,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="24" y1="16" x2="21" y2="13" stroke="rgba(167,139,250,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>`;
 
       featuredSlot.innerHTML = `
         <a href="posts/${first.slug}.html" class="featured">
