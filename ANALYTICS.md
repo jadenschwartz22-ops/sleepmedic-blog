@@ -69,6 +69,15 @@ A pre-built Library > Collection isn't set up yet (GA4 key events need first-tra
 - **Subscriber acquisition** -- free-form, rows: `Slug` + `source`, metric: `newsletter_subscribe` event count
 - **Funnel** (described above)
 
+## SEO schema and SERP appearance
+
+Two additional JSON-LD schema types are injected at build time by the pipeline:
+
+- **FAQPage** -- emitted when a post uses the `Q&A` template type or has 3+ `<h2>` headings ending with `?`. Google may render these as expandable Q&A rich results in search, increasing click-through rate.
+- **HowTo** -- emitted when a post uses the `Field Manual` template type or contains an ordered list with 3+ steps. Google may render these as numbered step rich results.
+
+Neither requires any manual action. To verify a post has the schemas, view source and search for `"@type": "FAQPage"` or `"@type": "HowTo"`. To test rendering, use the [Google Rich Results Test](https://search.google.com/test/rich-results) with the post URL.
+
 ## Also tracking
 
 - **GoatCounter** (`goatcounter.com/sleepmedic`) -- privacy-friendly pageviews as a second source of truth. No events, just raw traffic.

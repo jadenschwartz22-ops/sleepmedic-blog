@@ -424,8 +424,7 @@ This week's template format: ${format}`;
 
   const researchSummary = JSON.stringify(research, null, 2);
 
-  const outline = await gemini(
-    `Plan a blog post.
+  const planPrompt = `Plan a blog post.
 
 TOPIC: "${topicInfo.topic}"
 ANGLE: ${topicInfo.angle}
@@ -458,8 +457,10 @@ Return JSON:
     }
   ],
   "imagePrompt": "a visually distinct, editorial scene. Be creative and varied. Examples: misty mountain ridge at first light, neurons firing in a stylized brain cross-section, rain streaking down a kitchen window at dawn, a lone jogger on an empty bridge at blue hour, macro shot of an espresso surface, city skyline shifting from night to sunrise, a lab bench with a circadian rhythm chart, golden light filtering through forest canopy, hands wrapped around a thermos on a cold morning, neon pharmacy sign reflected in a rain puddle. Avoid: beds, bedrooms, pillows, generic sleeping scenes. Each post should look completely different.",
+  "cover_alt": "80-125 char descriptive alt text for cover image including primary keyword",
   "inline_image_after_section": 2,
   "inline_image_prompt": "a second editorial image tied to this section's content. Be visually creative -- nature, science, workplace, urban, or abstract. NOT a bedroom or bed.",
+  "inline_alt": "80-125 char descriptive alt text for inline image including primary keyword",
   "closingLine": "short grounded closing line"
 }
 
@@ -471,9 +472,30 @@ RULES:
 - Section headings: specific to THIS topic, never generic
 - inline_image_after_section: pick the section index where a visual would help most
 - Title must match what someone would search for. No clickbait.
-- If RELATED SEARCHES are provided, work at least 1-2 into section headings or content angles (these are real queries people type).`,
-    { system, json: true, temp: 0.7 }
-  );
+- cover_alt and inline_alt: descriptive, 80-125 chars, include the primary keyword phrase
+- If RELATED SEARCHES are provided, work at least 1-2 into section headings or content angles (these are real queries people type).`;
+
+  let outline = await gemini(planPrompt, { system, json: true, temp: 0.7 });
+
+  // Validate title contains at least one token from seo_angles or topic
+  const seoTokens = [
+    ...(research.seo_angles || []),
+    topicInfo.topic
+  ].flatMap(s => s.toLowerCase().split(/\s+/)).filter(t => t.length > 3);
+  const titleLower = (outline.title || '').toLowerCase();
+  const titleHasToken = seoTokens.some(t => titleLower.includes(t));
+
+  // Validate excerpt length (140-160 chars) and contains primary keyword
+  const primaryKw = (topicInfo.search_query || topicInfo.topic).toLowerCase().split(/\s+/).slice(0, 3).join(' ');
+  const excerptLen = (outline.excerpt || '').length;
+  const excerptValid = excerptLen >= 140 && excerptLen <= 160 && (outline.excerpt || '').toLowerCase().includes(primaryKw.split(' ')[0]);
+
+  if (!titleHasToken || !excerptValid) {
+    if (!titleHasToken) logDetail(`Title missing SEO token, retrying stage 3...`);
+    if (!excerptValid) logDetail(`Excerpt length ${excerptLen} or missing keyword, retrying stage 3...`);
+    const retry = await gemini(planPrompt, { system, json: true, temp: 0.7 });
+    outline = retry;
+  }
 
   logDetail(`Title: "${outline.title}"`);
   logDetail(`Sections: ${outline.sections.length}`);
@@ -757,6 +779,22 @@ async function stage9_generateImages(outline, slug) {
 // STAGE 10: HTML BUILDER
 // ════════════════════════════════════════════════════════
 
+// ── Heading hierarchy lint ────────────────────────────
+function fixHeadingHierarchy(html) {
+  // Strip any <h1> in body content (template provides the page H1)
+  html = html.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/gi, '<h2$1>$2</h2>');
+  // Promote orphan <h3> that have no preceding <h2> in the same content
+  let hasH2 = false;
+  html = html.replace(/<(\/?)h([23])([^>]*)>/gi, (match, close, level, attrs) => {
+    if (level === '2') { if (!close) hasH2 = true; return match; }
+    if (level === '3') {
+      if (!hasH2) return `<${close}h2${attrs}>`;
+    }
+    return match;
+  });
+  return html;
+}
+
 async function stage10_buildHtml(content, topicInfo, outline, images) {
   log(10, 'Building HTML...');
 
@@ -764,14 +802,19 @@ async function stage10_buildHtml(content, topicInfo, outline, images) {
   const dateISO = dateISOmt();
   const dateFormatted = dateFormattedMT();
   const slug = `${dateISO}-${slugify(outline.title)}`;
+
+  // Heading hierarchy lint pass
+  content = fixHeadingHierarchy(content);
+
   const wordCount = content.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
   const readTime = Math.ceil(wordCount / 200);
 
   // Insert inline image at the slot
   if (images.inlinePath) {
     const relPath = `images/${slug}-inline-1.jpg`;
+    const inlineAlt = outline.inline_alt || `Illustration for ${outline.title}`;
     const imgHtml = `<figure style="margin: 32px 0;">
-        <img src="${relPath}" alt="Illustration for ${outline.title}" style="width: 100%; border-radius: 16px; max-height: 360px; object-fit: cover;" loading="lazy">
+        <img src="${relPath}" alt="${inlineAlt}" style="width: 100%; border-radius: 16px; max-height: 360px; object-fit: cover;" loading="lazy">
       </figure>`;
     content = content.replace('<!-- INLINE_IMAGE_SLOT -->', imgHtml);
   } else {
@@ -799,10 +842,57 @@ async function stage10_buildHtml(content, topicInfo, outline, images) {
       html = html.replace(/(<meta property="og:url"[^>]*>)/, `$1\n${ogImageTag}`);
     }
 
+    const coverAlt = outline.cover_alt || `Cover image for ${outline.title}`;
     const coverHtml = `      <div style="margin-bottom: 40px;">
-        <img src="${imageRelPath}" alt="Cover image for ${outline.title}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;" loading="lazy">
+        <img src="${imageRelPath}" alt="${coverAlt}" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 24px;" loading="lazy">
       </div>\n`;
     html = html.replace('<div class="post-content">', coverHtml + '      <div class="post-content">');
+  }
+
+  // ── FAQ + HowTo schema injection ──────────────────────
+  const extraSchemas = [];
+
+  // FAQPage: Q&A template type OR 3+ h2s ending with ?
+  const faqH2s = [...html.matchAll(/<h2[^>]*>(.*?)<\/h2>/gi)].map(m => m[1].replace(/<[^>]+>/g, '').trim());
+  const questionH2s = faqH2s.filter(h => h.endsWith('?'));
+  if (outline.template_type === 'Q&A' || questionH2s.length >= 3) {
+    const mainEntity = questionH2s.map(q => {
+      // Extract text of paragraphs between this h2 and the next heading
+      const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const match = html.match(new RegExp(`<h2[^>]*>${escaped}<\\/h2>([\\s\\S]*?)(?=<h[23]|$)`, 'i'));
+      const answerText = match ? match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 500) : '';
+      return { '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: answerText } };
+    });
+    if (mainEntity.length >= 3) {
+      extraSchemas.push(JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity }, null, 2));
+      logDetail(`FAQPage schema: ${mainEntity.length} questions`);
+    }
+  }
+
+  // HowTo: Field Manual template type OR first <ol> with 3+ <li>
+  const olMatch = html.match(/<ol[^>]*>([\s\S]*?)<\/ol>/i);
+  if (outline.template_type === 'Field Manual' || olMatch) {
+    const olHtml = olMatch ? olMatch[1] : '';
+    const liItems = [...olHtml.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map(m => m[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim());
+    if (liItems.length >= 3) {
+      const steps = liItems.map((text, i) => ({
+        '@type': 'HowToStep',
+        name: text.slice(0, 80),
+        text: text.slice(0, 300)
+      }));
+      extraSchemas.push(JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: outline.title,
+        step: steps
+      }, null, 2));
+      logDetail(`HowTo schema: ${steps.length} steps`);
+    }
+  }
+
+  if (extraSchemas.length) {
+    const injection = extraSchemas.map(s => `  <script type="application/ld+json">\n  ${s}\n  </script>`).join('\n');
+    html = html.replace('</head>', `${injection}\n</head>`);
   }
 
   const filename = `${slug}.html`;

@@ -54,6 +54,16 @@ async function extractPostMetadata(filepath) {
 
 async function generatePostsIndex() {
   const postsDir = 'blog/posts';
+  const indexPath = 'blog/posts-index.json';
+
+  // Load existing index to preserve hand-edited fields (pillar, audience, etc.)
+  let existing = [];
+  try {
+    existing = JSON.parse(await fs.readFile(indexPath, 'utf8'));
+  } catch { /* fresh start */ }
+  // Build a lookup by slug for fast field preservation
+  const existingBySlug = Object.fromEntries(existing.map(p => [p.slug, p]));
+
   const files = await fs.readdir(postsDir);
   const htmlFiles = files.filter(f => f.endsWith('.html'));
 
@@ -62,13 +72,23 @@ async function generatePostsIndex() {
     const filepath = path.join(postsDir, file);
     const metadata = await extractPostMetadata(filepath);
     if (metadata) {
+      const prev = existingBySlug[metadata.slug] || {};
+      // Preserve pillar and audience if they were set
+      if (prev.pillar) metadata.pillar = prev.pillar;
+      if (prev.audience) metadata.audience = prev.audience;
       posts.push(metadata);
+    }
+  }
+
+  // Preserve entries that have no HTML file (e.g. the pillar post placeholder)
+  for (const entry of existing) {
+    if (!posts.find(p => p.slug === entry.slug)) {
+      posts.push(entry);
     }
   }
 
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  const indexPath = 'blog/posts-index.json';
   await fs.writeFile(indexPath, JSON.stringify(posts, null, 2));
 
   console.log(`Generated posts index with ${posts.length} posts`);

@@ -29,18 +29,22 @@ These do not depend on each other at runtime. If the Pi is offline the blog stil
 
 Runs every Monday at 9am MT (`.github/workflows/weekly-blog-draft-auto.yml`).
 
-**10-stage multi-agent pipeline** (`scripts/generate-blog-post.mjs`):
+**12-stage multi-agent pipeline** (`scripts/generate-blog-post.mjs`):
 
 1. **Topic Selector** - 50/50 split: predefined buckets from `topics.yaml` or LLM-generated topics via search grounding.
 2. **Researcher** (Gemini + Google Search) - Real studies, stats, mechanisms. Identifies SEO angles.
-3. **Planner** (Gemini 2.5 Flash) - Outline with varied formats (Story-First, Myth-Busting, Q&A, etc.)
+3. **Planner** (Gemini 2.5 Flash) - Outline with varied formats (Story-First, Myth-Busting, Q&A, etc.). Validates title SEO-token coverage and excerpt length (140-160 chars); retries once if either fails. Produces `cover_alt` and `inline_alt` descriptive alt text fields.
 4. **Section Writers** - One call per section, varied temperature.
 5. **Assembler** - Join + inline image slot selection.
 6. **Editor** - Polish, enforce 60+ banned AI-isms.
 7. **Humanizer** - Conversational pass.
 8. **Cross-Linker** - Reads `posts-index.json`, inserts 1-3 internal links.
 9. **Image Generation** (gemini-2.5-flash-image) - Cover + 1-2 inline images.
-10. **HTML Builder** - Template assembly + metadata + GA4.
+10. **HTML Builder** - Template assembly + metadata + GA4. Runs heading-hierarchy lint (strips body `<h1>`, promotes orphan `<h3>`). Injects FAQPage JSON-LD for Q&A posts and HowTo JSON-LD for Field Manual / ordered-list posts.
+
+**Category pages** live at `/blog/shift-workers/`, `/blog/new-parents/`, `/blog/nurses/`, `/blog/paramedics/`. Each fetches `posts-index.json` and filters by `audience` field. Add `"audience": "<slug>"` to any post entry to have it surface on the matching category page.
+
+**Author / E-E-A-T page** at `/about/` — placeholder copy marked `<!-- TODO: credibility copy -->`. Includes Person JSON-LD and newsletter form.
 
 Workflow creates a PR, auto-merges, commits history, and posts a summary issue.
 
@@ -192,7 +196,7 @@ sleepmedic.co/assets/         -> Shared JS (app-interest smokescreen)
 | `blog/_shared-styles.css` | Shared CSS |
 | `assets/app-interest.js` | Shared smokescreen modal + tracking |
 | `pi-service/server.mjs` | Pi service: newsletter + app-interest + RSS + Discord |
-| `scripts/generate-blog-post.mjs` | Main 10-stage pipeline |
+| `scripts/generate-blog-post.mjs` | Main 12-stage pipeline |
 | `scripts/migrate-smokescreen.mjs` | One-off migrator for legacy posts |
 | `scripts/editorial/topics.yaml` | 6 topic buckets (~83 seed topics) |
 | `scripts/editorial/style_guidelines.md` | Editorial voice, rules |
