@@ -1,0 +1,87 @@
+name: A/B Tag Posts
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Re-tag posts even if already tagged"
+        required: false
+        default: "false"
+  # Also tag automatically after the weekly blog publish commits a new post
+  workflow_run:
+    workflows: ["Weekly Blog - Fully Automated"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    # Skip auto-runs that were triggered by a failed blog run
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Backfill A/B tags for all posts
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            node scripts/ab/backfill-tags.mjs --force
+          else
+            node scripts/ab/backfill-tags.mjs
+          fi
+
+      - name: Show tag summary
+        run: |
+          echo "### A/B tag summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f blog/ab-tags.json ]; then
+            TAGGED=$(node -e "const t=require('./blog/ab-tags.json'); console.log(Object.keys(t).length)")
+            echo "Tagged posts: **$TAGGED**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### Energy distribution" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            node -e "
+              const t=require('./blog/ab-tags.json');
+              const c={};
+              for (const v of Object.values(t)) c[v.energy]=(c[v.energy]||0)+1;
+              for (const [k,n] of Object.entries(c).sort((a,b)=>b[1]-a[1])) console.log(k.padEnd(12), n);
+            " >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### Voice intensity distribution" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            node -e "
+              const t=require('./blog/ab-tags.json');
+              const c={};
+              for (const v of Object.values(t)) c[v.voice_intensity]=(c[v.voice_intensity]||0)+1;
+              for (const [k,n] of Object.entries(c).sort((a,b)=>b[1]-a[1])) console.log(k.padEnd(12), n);
+            " >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Commit tag file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain blog/ab-tags.json)" ]; then
+            git add blog/ab-tags.json
+            git commit -m "A/B: update post tags [skip ci]"
+            git push
+          else
+            echo "No tag changes to commit"
+          fi
