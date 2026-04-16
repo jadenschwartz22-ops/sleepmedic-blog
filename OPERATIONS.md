@@ -5,7 +5,7 @@
 | Layer | What | Where | How it runs |
 |---|---|---|---|
 | Blog site | Static HTML + GA4 | `sleepmedic.co` via GitHub Pages | Push to `main` deploys |
-| Weekly pipeline | 10-stage Gemini blog generator | GitHub Actions | `weekly-blog-draft-auto.yml` cron Mon+Thu 9am MT |
+| Weekly pipeline | 12-stage Gemini blog generator | GitHub Actions | `weekly-blog-draft-auto.yml` cron Mon+Thu 9am MT |
 | Pi service | Newsletter + app-interest + RSS watcher + Discord | `raspberrypi.local:3847` | pm2 + systemd |
 | Public API | Cloudflare Tunnel | `pi.sleepmedic.co` | cloudflared systemd service |
 | Email | Resend | `blog@sleepmedic.co` | API, domain verified |
@@ -77,6 +77,29 @@ Failure path: pipeline opens a GitHub issue titled `Blog FAILED - <date>` which 
 3. Last GitHub Actions run on weekly pipeline is green.
 4. GA4 Realtime shows hits on any recent blog post.
 5. Discord channel has a "New post detected" message within the last 7 days.
+
+## SEO: pillar posts, category pages, and the generator
+
+### Adding a new pillar post
+
+1. Write or generate the post and save it to `blog/posts/<slug>.html`.
+2. In `blog/posts-index.json`, find the entry for that slug (or add one manually) and set `"pillar": true` and `"audience": "<category-slug>"`.
+3. `generate-posts-index.mjs` preserves these fields across regenerations -- they will not be overwritten on the next pipeline run.
+4. Link to the pillar from the relevant category page's `.pillar-card` `href`.
+
+### Adding a new category page
+
+1. Copy an existing page, e.g. `cp blog/shift-workers/index.html blog/firefighters/index.html`.
+2. Update: directory name, `<title>`, `<meta name="description">`, `<h1>`, hero `<p>`, JSON-LD `name`/`description`/`url`, pillar card copy, app banner copy, newsletter source string in `gtag` call, and the audience filter value in `loadPosts()` (`p.audience === 'firefighters'`).
+3. Add `blog/firefighters/` to the sitemap by editing `scripts/generate-sitemap.mjs` if it doesn't auto-pick up new dirs.
+
+### How the generator preserves pillar/audience on regen
+
+`scripts/generate-posts-index.mjs` loads the existing `posts-index.json` before scanning HTML files. It builds a slug-keyed lookup and copies `pillar` and `audience` from the old entry onto the freshly-extracted metadata. It also preserves entries with no matching HTML file (e.g., pillar post placeholders not yet generated). Manual edits to these fields in `posts-index.json` are therefore safe and persist through pipeline runs.
+
+### FAQ/HowTo schema
+
+The pipeline auto-injects these; no manual steps needed. See ANALYTICS.md for how to verify.
 
 ## Disaster recovery
 
