@@ -1,1 +1,365 @@
-{}
+{
+  "2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li": {
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "quiet_stop",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "anaphora",
+      "extended_metaphor",
+      "one_sentence_paragraph",
+      "braided_register",
+      "colon_reveal"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explores the gut-brain axis as a hidden cause of sleep issues, using a problem-solution structure with scientific explanations.",
+    "length_bucket": "flash",
+    "word_count": 332,
+    "tagged_at": "2026-04-16T21:37:54.008Z"
+  },
+  "2026-04-16-the-hardest-part-of-good-sleep": {
+    "energy": "monk",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "catalog",
+      "em_dash_pivot",
+      "numbered_protocol",
+      "anaphora",
+      "colon_reveal"
+    ],
+    "topic_cluster": "philosophy",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "History/Philosophy Lens",
+    "notes": "Explores the social and psychological friction of prioritizing sleep, offering a nuanced, philosophical perspective on discipline.",
+    "length_bucket": "long",
+    "word_count": 1063,
+    "tagged_at": "2026-04-16T21:38:06.269Z"
+  },
+  "shift-worker-sleep-protocol": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot",
+      "self_interrupt"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "A detailed, science-backed guide offering practical protocols for shift workers to manage circadian disruption and improve sleep.",
+    "length_bucket": "long",
+    "word_count": 1545,
+    "tagged_at": "2026-04-16T21:38:13.938Z"
+  },
+  "2026-04-14-why-the-90-minute-sleep-cycle-myth-leaves-you-tired": {
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "numbered_protocol",
+      "list_structure",
+      "colon_reveal",
+      "em_dash_pivot",
+      "one_sentence_paragraph"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Debunks the 90-minute sleep cycle myth, explaining the biology of sleep variability and offering a CBT-I inspired protocol.",
+    "length_bucket": "long",
+    "word_count": 1126,
+    "tagged_at": "2026-04-16T21:38:24.286Z"
+  },
+  "2026-03-30-reclaiming-your-rest-debunking-myths-to-fix-a-destroyed-sleep-schedule": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot",
+      "one_sentence_paragraph"
+    ],
+    "topic_cluster": "circadian",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Debunks common sleep myths, explaining scientific mechanisms and offering a practical protocol for circadian rhythm alignment.",
+    "length_bucket": "long",
+    "word_count": 1085,
+    "tagged_at": "2026-04-16T21:38:47.325Z"
+  },
+  "2026-03-23-box-breathing-4-7-8-simple-techniques-for-faster-sleep": {
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "imperative",
+    "voice_intensity": "0.7",
+    "devices": [
+      "self_interrupt",
+      "list_structure",
+      "numbered_protocol"
+    ],
+    "length_bucket": "medium",
+    "word_count": 938,
+    "tagged_at": "2026-04-16T21:39:00.392Z"
+  },
+  "2026-03-01-sleepmaxxing-decoding-the-trend-science-and-actionable-steps": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explains sleep biology and debunks 'sleepmaxxing' obsession, offering practical, science-backed advice.",
+    "length_bucket": "long",
+    "word_count": 1070,
+    "tagged_at": "2026-04-16T21:39:12.552Z"
+  },
+  "2026-02-23-harnessing-nsdr-and-yoga-nidra-for-better-sleep": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "imperative",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "The post clearly defines NSDR, explains its scientific benefits for shift workers, and provides actionable steps for implementation.",
+    "length_bucket": "short",
+    "word_count": 442,
+    "tagged_at": "2026-04-16T21:39:24.288Z"
+  },
+  "2026-02-16-the-hidden-toll-how-poor-sleep-affects-your-vital-organs": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "download",
+    "format": "Science-First",
+    "notes": "Science-backed explanation of sleep deprivation's impact, with practical strategies for shift workers.",
+    "length_bucket": "short",
+    "word_count": 489,
+    "tagged_at": "2026-04-16T21:39:32.511Z"
+  },
+  "2026-02-02-what-time-should-i-sleep-and-wake": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "colon_reveal"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "download",
+    "format": "Field Manual",
+    "notes": "The post",
+    "length_bucket": "short",
+    "word_count": 471,
+    "tagged_at": "2026-04-16T21:39:44.876Z"
+  },
+  "2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "one_sentence_paragraph",
+      "first_person_scene"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "This post effectively blends scientific explanation with practical, actionable advice for shift workers, supported by research.",
+    "length_bucket": "short",
+    "word_count": 436,
+    "tagged_at": "2026-04-16T21:39:53.919Z"
+  },
+  "2026-01-19-the-unexpected-connection-between-memory-consolidation-during-rem-vs-deep-sleep-": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "quiet_stop",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "length_bucket": "short",
+    "word_count": 422,
+    "tagged_at": "2026-04-16T21:40:07.017Z"
+  },
+  "2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "one_sentence_paragraph",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "download",
+    "format": "Field Manual",
+    "notes": "The post offers practical, evidence-based strategies for shift workers to manage circadian misalignment and improve sleep quality.",
+    "length_bucket": "short",
+    "word_count": 516,
+    "tagged_at": "2026-04-16T21:40:16.569Z"
+  },
+  "2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers": {
+    "energy": "scientist",
+    "opening_vehicle": "data",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "catalog",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "A clear, evidence-based guide for shift workers, focusing on practical habits and circadian rhythm understanding.",
+    "length_bucket": "short",
+    "word_count": 499,
+    "tagged_at": "2026-04-16T21:40:26.736Z"
+  },
+  "2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "download",
+    "format": "Field Manual",
+    "notes": "Explores the health costs of chronic sleep deprivation, especially for shift workers, and provides evidence-based strategies.",
+    "length_bucket": "medium",
+    "word_count": 885,
+    "tagged_at": "2026-04-16T21:40:38.184Z"
+  },
+  "2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide": {
+    "energy": "scientist",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "download",
+    "format": "Field Manual",
+    "notes": "A practical, science-backed guide for shift workers, explaining mechanisms and offering actionable strategies.",
+    "length_bucket": "short",
+    "word_count": 452,
+    "tagged_at": "2026-04-16T21:40:46.366Z"
+  },
+  "2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "list_structure",
+      "anaphora",
+      "first_person_scene",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "download",
+    "format": "Myth-Busting",
+    "notes": "A science-backed myth-busting post offering practical strategies and a checklist for shift workers to improve sleep.",
+    "length_bucket": "short",
+    "word_count": 486,
+    "tagged_at": "2026-04-16T21:40:55.564Z"
+  },
+  "2025-10-16-sleep-like-a-warrior": {
+    "energy": "warrior",
+    "opening_vehicle": "claim",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "literary_ref",
+      "list_structure",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "challenge",
+    "length_bucket": "medium",
+    "word_count": 906,
+    "tagged_at": "2026-04-16T21:41:20.495Z"
+  }
+}
