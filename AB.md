@@ -23,8 +23,8 @@ Nothing in this system modifies the existing blog pipeline. It sits alongside it
 
 ## What runs automatically
 
-1. **Every blog publish** → `A/B Tag Posts` workflow auto-triggers after `Weekly Blog - Fully Automated` finishes. It tags the new post and commits `blog/ab-tags.json`.
-2. **Every Monday 10am MT** → `A/B Weekly Report` fetches the last 90 days of GA4 data, joins it with tags, rebuilds `blog/ab-dashboard.html`, commits it.
+1. **Every blog publish** → `A/B Backfill` workflow auto-triggers after `Weekly Blog - Fully Automated` finishes. It tags the new post and commits `blog/ab-tags.json`.
+2. **Every Monday 10 AM MT** → `A/B Weekly Report` fetches the last 90 days of GA4 data, joins it with tags, rebuilds `blog/ab-dashboard.html`, commits it.
 3. **Manual trigger any time** → GitHub > Actions > A/B Weekly Report > Run workflow. Gives you an immediate refresh.
 
 ---
@@ -33,7 +33,7 @@ Nothing in this system modifies the existing blog pipeline. It sits alongside it
 
 ### 1. Backfill tags for every existing post
 
-Go to GitHub > Actions > **A/B Tag Posts** > Run workflow. Runs `backfill-tags.mjs` against every post in `posts-index.json`, classifies each via Gemini (~2s/post, ~45s total for ~20 posts). Commits `blog/ab-tags.json`.
+Go to GitHub > Actions > **A/B Backfill** > Run workflow. Runs `backfill.mjs` against every post in `posts-index.json`, classifies each via Gemini (~8 s/post, ~2–3 min total for ~20 posts). Commits `blog/ab-tags.json`.
 
 Leave "force" off unless you want to re-tag already-tagged posts.
 
@@ -77,12 +77,12 @@ Per `ANALYTICS.md`, after the first traffic hits the new stream, mark these even
 
 ```bash
 # Backfill or retag
-node scripts/ab/backfill-tags.mjs
-node scripts/ab/tag-post.mjs <slug>
+node scripts/ab/backfill.mjs
+node scripts/ab/classify.mjs <slug>
 
 # Join GA4 — either via the API (preferred) or CSV exports
-node scripts/ab/fetch-ga4.mjs --days 90          # API path
-node scripts/ab/join-ga4.mjs pages.csv events.csv # CSV path
+node scripts/ab/fetch-ga4.mjs --days 90           # API path
+node scripts/ab/join-ga4.mjs pages.csv events.csv # CSV fallback
 
 # Build dashboard (HTML) or print pivots to terminal
 node scripts/ab/build-dashboard.mjs
@@ -142,6 +142,22 @@ You need ~15–25 tagged posts across varied buckets before pivots are meaningfu
 
 ---
 
+## Current state (as of first backfill)
+
+18 posts tagged. The distributions reveal the blog is heavily unbalanced:
+
+- **Energy:** 16 scientist / 1 monk / 1 warrior / 0 princess / 0 hybrid
+- **Voice intensity:** 17 at 0.7, 1 at 1.0, 0 at 0.5
+- **Topic cluster:** 11 shift_work / 3 biology / 1 philosophy / 1 circadian (7 other clusters untouched)
+- **Opening vehicle:** 11 claim / 3 question / 3 scene / 1 data (no confession, quote, or literary_ref)
+- **Closing vehicle:** 13 checklist / 2 quiet_stop / 2 imperative / 1 reframe
+- **Hook type:** 15 pain / 1 challenge (no permission, curiosity, mystery, or validation)
+- **Format:** 7 Field Manual / 4 Science-First / 3 Myth-Busting / 1 History/Philosophy Lens
+
+This is the baseline. Fill the empty buckets to get A/B coverage.
+
+---
+
 ## Parking lot (not yet wired)
 
 - Per-post share counts (needs a share-count API integration)
@@ -158,14 +174,14 @@ Add when basic pivots surface obvious wins and you want sharper cuts.
 | File | Purpose |
 |---|---|
 | `scripts/ab/tag-schema.mjs` | Taxonomy, validators, length buckets |
-| `scripts/ab/tag-post.mjs` | Classify one post by slug |
-| `scripts/ab/backfill-tags.mjs` | Classify every untagged post |
+| `scripts/ab/classify.mjs` | Classify one post by slug |
+| `scripts/ab/backfill.mjs` | Classify every untagged post |
 | `scripts/ab/fetch-ga4.mjs` | Pull metrics from GA4 Data API |
 | `scripts/ab/join-ga4.mjs` | Join CSV exports against tags (manual fallback) |
 | `scripts/ab/build-dashboard.mjs` | Render `blog/ab-dashboard.html` |
 | `scripts/ab/pivot.mjs` | CLI pivot tables (terminal output) |
-| `.github/workflows/ab-tag-posts.yml` | Auto-tag after publish, manual trigger |
+| `.github/workflows/ab-backfill.yml` | Auto-tag after publish, manual trigger |
 | `.github/workflows/ab-weekly-report.yml` | Weekly: fetch GA4, rebuild dashboard |
 | `blog/ab-tags.json` | Tag store, keyed by slug |
-| `blog/ab-analytics.json` | Joined metrics + tags |
+| `blog/ab-analytics.json` | Joined metrics + tags (after first GA4 run) |
 | `blog/ab-dashboard.html` | The page you actually look at |
