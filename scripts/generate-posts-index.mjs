@@ -33,7 +33,8 @@ async function extractPostMetadata(filepath) {
     'Trending': 'trending',
     'Shift Work': 'special',
     'Life Stages': 'special',
-    'Troubleshooting': 'tools'
+    'Troubleshooting': 'tools',
+    'Philosophy': 'philosophy'
   };
 
   const categoryLabel = categoryMatch ? categoryMatch[1] : 'Science';
@@ -76,6 +77,7 @@ async function generatePostsIndex() {
       // Preserve pillar and audience if they were set
       if (prev.pillar) metadata.pillar = prev.pillar;
       if (prev.audience) metadata.audience = prev.audience;
+      if (prev.redirectTo) metadata.redirectTo = prev.redirectTo;
       posts.push(metadata);
     }
   }

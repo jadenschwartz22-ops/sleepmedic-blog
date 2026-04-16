@@ -1,5 +1,17 @@
 [
   {
+    "title": "The Hardest Part of Good Sleep Has Nothing to Do With Sleep",
+    "slug": "2026-04-16-the-hardest-part-of-good-sleep",
+    "excerpt": "The science is the easy part. The hard part is leaving early, saying no, and accepting the social friction that comes with protecting your sleep. A real essay on sleep discipline.",
+    "date": "2026-04-16",
+    "dateFormatted": "April 16, 2026",
+    "readTime": 7,
+    "category": "philosophy",
+    "categoryLabel": "Philosophy",
+    "coverImage": null,
+    "audience": "shift-workers"
+  },
+  {
     "title": "The Shift Worker Sleep Protocol: A Complete Evidence-Based Guide",
     "slug": "shift-worker-sleep-protocol",
     "excerpt": "A full protocol for shift workers to protect sleep, manage circadian disruption, and recover faster between rotations.",
@@ -110,7 +122,8 @@
     "readTime": 3,
     "category": "tools",
     "categoryLabel": "Tools",
-    "coverImage": "posts/images/2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep-cover.jpg"
+    "coverImage": "posts/images/2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep-cover.jpg",
+    "redirectTo": "2026-03-23-box-breathing-4-7-8-simple-techniques-for-faster-sleep"
   },
   {
     "title": "The Unexpected Connection Between Memory consolidation during REM vs deep sleep and Better Recovery",
