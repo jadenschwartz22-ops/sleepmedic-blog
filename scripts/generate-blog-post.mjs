@@ -461,8 +461,11 @@ Return JSON:
   "inline_image_after_section": 2,
   "inline_image_prompt": "a second editorial image tied to this section's content. Be visually creative -- nature, science, workplace, urban, or abstract. NOT a bedroom or bed.",
   "inline_alt": "80-125 char descriptive alt text for inline image including primary keyword",
-  "closingLine": "short grounded closing line"
+  "voice_archetype": null,
+  "closingLine": "short grounded closing line — not a sign-off, not inspirational, just where the thought lands"
 }
+
+NOTE: voice_archetype is OPTIONAL. Set it only when the topic genuinely matches one of the four archetypes. Leave null for base SleepMedic voice.
 
 RULES:
 - 4-6 sections including intro hook and closing protocol
@@ -473,7 +476,14 @@ RULES:
 - inline_image_after_section: pick the section index where a visual would help most
 - Title must match what someone would search for. No clickbait.
 - cover_alt and inline_alt: descriptive, 80-125 chars, include the primary keyword phrase
-- If RELATED SEARCHES are provided, work at least 1-2 into section headings or content angles (these are real queries people type).`;
+- If RELATED SEARCHES are provided, work at least 1-2 into section headings or content angles (these are real queries people type).
+
+VOICE ARCHETYPE SELECTION — pick exactly one based on topic and template:
+- "scientist": mechanism-heavy posts, sleep biology, circadian science, memory, hormones. Curious, rigorous, dry wit. "Here's what's actually happening in your cells."
+- "monk": ritual, bedtime routines, NSDR, meditation, slow intentional practice. Still, philosophical, breathing room in the prose. No urgency.
+- "warrior": discipline posts, saying no, consistency habits, shift work survival. Direct, makes the hard ask, won't let you stew. Empathetic but no excuses.
+- "princess": self-worth posts, permission to rest, why sleep isn't laziness, caregiver burnout. Warm, affirming, addresses guilt without being saccharine.
+Do NOT default to warrior. Match the archetype to the topic.`;
 
   let outline = await gemini(planPrompt, { system, json: true, temp: 0.7 });
 
@@ -510,18 +520,54 @@ RULES:
 async function stage4_writeSections(outline, research, guidelines) {
   log(4, `Writing ${outline.sections.length} sections...`);
 
+  const archetypeDescriptions = {
+    scientist: `VOICE ARCHETYPE — SCIENTIST:
+Energy: curious, rigorous, finds the biology genuinely fascinating. Dry wit. Precise.
+Primary references: Matt Walker (Why We Sleep — memory consolidation, immune function, cancer risk, the cost of every lost hour of deep sleep) and Andrew Huberman (actionable neuroscience — light exposure protocols, cortisol timing, temperature manipulation, adenosine clearance). When in Scientist mode, the post should feel like it's in dialogue with their work — not citing them by name necessarily, but operating in the same register of "here is the mechanism, here is what to do with it."
+Secondary model: Mary Roach + Michael Easter. "Here's what's actually happening in your cells at 3am."
+Prose: long sentences that build through mechanism → implication → application. Names things accurately. Not clinical — engaged.
+What it is NOT: it is not lecturing. It is sharing something genuinely interesting.`,
+    monk: `VOICE ARCHETYPE — MONK:
+Energy: still, intentional, philosophical. Interested in ritual, presence, the quiet discipline of a life well-ordered. No urgency.
+Model: meditative essay, not a briefing. References contemplative traditions alongside the science.
+Prose: breathing room between ideas. Sentences land slowly. No bullet-point energy even in protocol sections.
+What it is NOT: it is not passive or vague. It is deeply intentional, just unhurried.`,
+    warrior: `VOICE ARCHETYPE — WARRIOR:
+Energy: disciplined, direct, won't let you stew in mediocrity. Empathetic but makes the hard ask. Ryan Holiday / Stoic energy.
+Model: "You know what you need to do. The question is whether you'll do it."
+Prose: short declarative sentences mixed into longer analytical ones. Commands are real commands. No hedging.
+What it is NOT: it is not harsh or dismissive. It respects the reader enough to be honest.`,
+    princess: `VOICE ARCHETYPE — PRINCESS:
+Energy: self-worth, care, permission. Addresses the reader who feels guilty for prioritizing sleep, who has been told rest is laziness.
+Model: warm, affirming without being saccharine. "You are not being selfish. You are being necessary."
+Prose: second-person that feels like a hand on the shoulder. Validates before prescribing. Specific and practical, not abstract affirmations.
+What it is NOT: it is not soft on the science. The warmth wraps rigorous advice, not platitudes.`
+  };
+
+  const archetypeNote = outline.voice_archetype
+    ? archetypeDescriptions[outline.voice_archetype] || ''
+    : '';
+
   const system = `You write for SleepMedic, a sleep science blog.
 Primary audience: anyone struggling with sleep.
 Core niche: shift workers (EMTs, nurses, firefighters).
 
 ${guidelines}
 
-Voice: warm, direct, expert. Like a sleep researcher explaining to a friend over coffee.
+${archetypeNote}
+
+CRAFT PRINCIPLES (apply to all archetypes):
+- Long flowing sentences that build momentum — run a thought fully before landing it
+- Start with one specific concrete detail (a scenario, a number, a moment) and let it expand
+- Make bold interpretive claims and stand by them — don't hedge everything
+- Trust the reader's intelligence. Don't repeat what you just said. Make a connection and move on.
+- First-person ("I") is natural when appropriate to the archetype and topic
+- Endings: leave with a tension or open question, not a neat bow or sign-off
 
 ${bannedPhrasesBlock()}
 
 STYLE:
-- Vary sentence length dramatically. Short punch. Then longer with detail.
+- Vary sentence length deliberately. A long analytical clause earns a short punchy one.
 - Use "you" directly. Never "one should."
 - Specific numbers: temps in F, durations in minutes, percentages.
 - Use contractions (don't, you'll, it's, can't).
@@ -630,7 +676,11 @@ function stage5_assemble(sections, outline) {
 async function stage6_edit(fullHtml, outline, guidelines) {
   log(6, 'Editing and polishing...');
 
+  const archetypeReminder = outline.voice_archetype ? `Voice archetype for this post: ${outline.voice_archetype}. Preserve the energy of that archetype throughout — do not flatten it into generic editorial voice.` : '';
+
   const system = `You are a senior editor at SleepMedic. Polish this draft so it reads like a knowledgeable human wrote it, not AI.
+
+${archetypeReminder}
 
 ${guidelines}
 
@@ -673,11 +723,12 @@ async function stage7_humanize(html, outline, guidelines) {
     `You are a writing coach. This blog post is good but still reads slightly like AI wrote it. Make it sound like a real human expert.
 
 Title: "${outline.title}"
+${outline.voice_archetype ? `Voice archetype: ${outline.voice_archetype} — preserve this energy throughout. Do not flatten it into generic editorial voice.` : 'Voice: base SleepMedic voice — knowledgeable, direct, human. Not a specific archetype.'}
 
 ${html}
 
 YOUR TASKS:
-1. Replace any remaining formal/stiff phrasing with conversational tone
+1. Replace any remaining formal/stiff phrasing with the energy of the archetype above
 2. Add 1-2 rhetorical questions where they feel natural (not forced)
 3. If there's no concrete scene or micro-story in the opening, add one (2-3 sentences max)
 4. Vary paragraph lengths more aggressively -- some should be just 1 sentence
@@ -686,12 +737,13 @@ YOUR TASKS:
 7. Make sure transitions between sections feel like natural thought progression, not "Next, let's discuss..."
 8. Keep all factual content, citations, protocols, and numbers exactly as they are
 9. Keep the <!-- INLINE_IMAGE_SLOT --> comment (do not remove)
+10. The closing line must NOT be a motivational sign-off or neat bow. End where the thought actually lands.
 
 ${bannedPhrasesBlock()}
 
 Return ONLY the improved HTML body. Same tag set. No meta commentary.`,
     {
-      system: `You write for SleepMedic. Voice: warm, direct, expert. Like explaining to a smart friend. ${guidelines.slice(0, 500)}`,
+      system: `You write for SleepMedic. ${outline.voice_archetype ? `Voice archetype: ${outline.voice_archetype}. Preserve that energy.` : 'Base SleepMedic voice — direct, specific, human.'} ${guidelines.slice(0, 500)}`,
       temp: 0.6,
       maxTokens: 10000
     }

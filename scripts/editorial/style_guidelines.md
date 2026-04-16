@@ -23,7 +23,19 @@
 
 ## Voice (with examples)
 
-Write like a sleep researcher explaining something to a friend over coffee. Not clinical. Not salesy. Just clear and helpful.
+Write like a knowledgeable human who is genuinely invested in the topic. Not a content machine. Not a wellness brand. Someone who has actually read the studies and thought about them.
+
+**Sentence structure**: Long, flowing sentences that build momentum across 3-4 clauses. Not short punchy fragments. Run a thought out fully before landing it. Vary rhythm deliberately — a long clause earns a short one.
+
+**Method**: Zoom in on one specific, concrete detail — a scenario, a moment, a small thing — and let it expand into the larger point. Don't start with the abstract thesis; start with the specific thing that contains it.
+
+**Claims**: Bold and direct. Make an interpretive claim and stand by it. Don't hedge everything or preface every point with "it's worth noting" or "arguably."
+
+**Voice**: First-person ("I") is natural in philosophical or opinion pieces. Earnest, genuinely invested, not ironic or detached.
+
+**Reader relationship**: Trust the reader's intelligence. Don't repeat what was just said. Make a connection and move on.
+
+**Endings**: Leave the reader with a tension or an open question. Not a neat bow. Not a motivational closer. Not "sleep well" or anything that sounds like a sign-off. Just where the thought actually lands.
 
 **BAD (generic AI):**
 > In today's fast-paced world, getting quality sleep is more important than ever. Studies have shown that sleep plays a crucial role in our overall health and well-being. Let's dive into the science behind sleep and discover how you can optimize your rest for better performance.
@@ -42,6 +54,13 @@ Write like a sleep researcher explaining something to a friend over coffee. Not 
 
 **GOOD (grounded, helpful):**
 > The military's 2-minute sleep technique dates back to a 1981 Navy pre-flight school manual. It works because it systematically addresses the three things keeping you awake: muscle tension, visual processing, and recursive thought. Here's the exact protocol.
+
+## What to strip from every post
+- Any sentence that starts with "It's worth noting", "It's important to understand", "In today's world", "In conclusion"
+- Any ending that wraps up too neatly or sounds like a motivational poster or sign-off
+- Listicle structure where flowing paragraphs would be stronger
+- Summary paragraphs that restate what the post already covered
+- Generic openers like "Sleep is important for..." or "We all know that..." or "Imagine coming home after a grueling shift..."
 
 ## Template Rotation (deterministic)
 Choose one format per post using `isoWeek % 6`:
@@ -106,4 +125,4 @@ Choose one format per post using `isoWeek % 6`:
 
 ## Tone
 - Direct, human, expert, practical. No corporate buzzwords. No "optimize" or "leverage."
-- Close with a short, grounded line. Example: "Rest well. Rise ready."
+- Close with a short, grounded line — where the thought actually lands. Not a motivational sign-off. Not "Rest well" or "Sleep tight" or anything that reads like ad copy.
