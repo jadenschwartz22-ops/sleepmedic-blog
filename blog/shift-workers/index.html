@@ -151,6 +151,7 @@
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
       <a href="/blog/feed.xml">RSS</a>
       <button type="button" class="nav-cta" data-app-interest="shift-workers-nav">Download App</button>
     </div>
@@ -210,6 +211,21 @@
         const res = await fetch('../posts-index.json');
         const posts = await res.json();
         const filtered = posts.filter(p => p.audience === 'shift-workers' && !p.pillar);
+
+        // Inject hasPart into CollectionPage JSON-LD
+        const ldEl = document.querySelector('script[type="application/ld+json"]');
+        if (ldEl && filtered.length) {
+          try {
+            const ld = JSON.parse(ldEl.textContent);
+            ld.hasPart = filtered.map(p => ({
+              '@type': 'BlogPosting',
+              headline: p.title,
+              url: 'https://sleepmedic.co/blog/posts/' + p.slug + '.html'
+            }));
+            ldEl.textContent = JSON.stringify(ld, null, 2);
+          } catch {}
+        }
+
         const grid = document.getElementById('posts-grid');
         if (!filtered.length) {
           grid.innerHTML = '<div class="no-posts"><p>More articles coming soon.</p></div>';

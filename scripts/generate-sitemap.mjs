@@ -9,10 +9,15 @@ import chalk from 'chalk';
 const BASE = 'https://sleepmedic.co';
 
 const STATIC_PAGES = [
-  { loc: '/',        priority: '1.0', changefreq: 'monthly' },
-  { loc: '/blog/',   priority: '0.9', changefreq: 'weekly' },
-  { loc: '/app/',    priority: '0.5', changefreq: 'monthly' },
-  { loc: '/privacy/', priority: '0.3', changefreq: 'yearly' },
+  { loc: '/',                      priority: '1.0', changefreq: 'monthly' },
+  { loc: '/blog/',                  priority: '0.9', changefreq: 'weekly' },
+  { loc: '/about/',                 priority: '0.8', changefreq: 'monthly' },
+  { loc: '/blog/shift-workers/',    priority: '0.8', changefreq: 'weekly' },
+  { loc: '/blog/new-parents/',      priority: '0.8', changefreq: 'weekly' },
+  { loc: '/blog/nurses/',           priority: '0.8', changefreq: 'weekly' },
+  { loc: '/blog/paramedics/',       priority: '0.8', changefreq: 'weekly' },
+  { loc: '/app/',                   priority: '0.5', changefreq: 'monthly' },
+  { loc: '/privacy/',               priority: '0.3', changefreq: 'yearly' },
 ];
 
 function escapeXml(s) {
