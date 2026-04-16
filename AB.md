@@ -8,19 +8,28 @@ Nothing in this system modifies the existing blog pipeline. It sits alongside it
 
 ---
 
-## Where to look (the TL;DR)
+## Status: live
+
+- **Tagging:** 18 existing posts classified. New posts auto-tag after every publish.
+- **GA4 pipeline:** service account `sleepmedic-ga4-reader@sleepmedic-90416.iam.gserviceaccount.com` created; credentials stored as GitHub secrets (`GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `GA4_PRIVATE_KEY`).
+- **Dashboard:** `private/ab-dashboard.html`, rebuilt every Monday 10 AM MT. Noindex, disallowed, not linked.
+- **Privacy:** `/private/` and each A/B file blocked in `robots.txt`. Local key at `~/.sleepmedic-ga4-key.json` (mode 600, outside the repo).
+
+---
+
+## Where to look
 
 **The dashboard:** `private/ab-dashboard.html`
 
-Open it locally after a `git pull` — the file lives in the repo but is disallowed from search and not linked from the site. Regenerated every Monday at 10 AM MT by `ab-weekly-report.yml`. Shows tag distributions always, plus pivot tables once GA4 is wired.
+Open locally after a `git pull` — the file lives in the repo but is disallowed from search and not linked from the site. Shows tag distributions always, plus pivot tables from 90 days of GA4 data.
 
 **The Actions summary:** GitHub > Actions > A/B Weekly Report > latest run > Summary
 
-A concise markdown block with the top 5 posts by engagement and an energy × engagement mean table. Read in your browser, no file download.
+A concise markdown block with the top 5 posts by engagement and an energy × engagement mean table.
 
 **Raw data:**
 - `private/ab-tags.json` — what got classified
-- `private/ab-analytics.json` — join of tags × GA4 metrics (created on first GA4 run)
+- `private/ab-analytics.json` — join of tags × GA4 metrics
 
 ---
 
@@ -32,55 +41,62 @@ Three layers keep voice labels off the public site:
 2. **Disallowed in robots.txt.** `/private/` and each A/B file path are explicitly blocked.
 3. **Noindex on the HTML.** `<meta name="robots" content="noindex, nofollow">` at the top of the dashboard.
 
-None of this makes the files cryptographically private — anyone who types `sleepmedic.co/private/ab-dashboard.html` could still load it. If that matters, the right next step is moving the dashboard out of the static site entirely (e.g., a password-gated Cloudflare Pages project or a local-only artifact). For now the files are de-indexed and unlinked, which is the bar you set.
+None of this is cryptographically private — anyone who types `sleepmedic.co/private/ab-dashboard.html` could still load it. If that matters more, move the dashboard off the static site entirely (password-gated Cloudflare Pages project or a local-only artifact). For now, de-indexed + unlinked is the posture.
 
 ---
 
 ## What runs automatically
 
-1. **Every blog publish** → `A/B Backfill` workflow auto-triggers after `Weekly Blog - Fully Automated` finishes. It tags the new post and commits `private/ab-tags.json`.
-2. **Every Monday 10 AM MT** → `A/B Weekly Report` fetches 90 days of GA4 data, joins with tags, rebuilds `private/ab-dashboard.html`, commits.
+1. **Every blog publish** → `A/B Backfill` auto-triggers after `Weekly Blog - Fully Automated` finishes. Tags the new post, commits `private/ab-tags.json`.
+2. **Every Monday 10 AM MT** → `A/B Weekly Report` fetches 90 days of GA4, joins with tags, rebuilds `private/ab-dashboard.html`, commits.
 3. **Manual trigger any time** → GitHub > Actions > A/B Weekly Report > Run workflow.
 
 ---
 
-## One-time setup
+## Setup (done)
 
-### 1. Backfill tags for every existing post
+The initial setup is already complete. Recorded here for reproducibility or if you ever need to rotate the key.
 
-Already done. 18 posts tagged at initial backfill. Re-run only if you add many posts or want to retag with `force`.
+### Service account (done via `gcloud`)
 
-Manual trigger: GitHub > Actions > **A/B Backfill** > Run workflow.
+```bash
+gcloud config set project sleepmedic-90416
+gcloud iam service-accounts create sleepmedic-ga4-reader \
+  --display-name="SleepMedic GA4 Reader" \
+  --description="Read-only GA4 access for A/B analytics"
+gcloud iam service-accounts keys create ~/.sleepmedic-ga4-key.json \
+  --iam-account=sleepmedic-ga4-reader@sleepmedic-90416.iam.gserviceaccount.com
+```
 
-### 2. Wire GA4 (required for pivot tables)
+### GitHub secrets (done via `gh`)
 
-Add three GitHub repo secrets: Settings > Secrets and variables > Actions.
+```bash
+KEY=~/.sleepmedic-ga4-key.json
+echo "532856345" | gh secret set GA4_PROPERTY_ID
+jq -r '.client_email' "$KEY" | gh secret set GA4_CLIENT_EMAIL
+jq -r '.private_key'  "$KEY" | gh secret set GA4_PRIVATE_KEY
+```
 
-| Secret | Value |
-|---|---|
-| `GA4_PROPERTY_ID` | Numeric property ID. GA4 > Admin > Property details. Looks like `532856345`. |
-| `GA4_CLIENT_EMAIL` | From a service account JSON key. See below. |
-| `GA4_PRIVATE_KEY` | From the same JSON, `private_key` field. Keep the `\n` escape sequences literal. |
+### GA4 property access (manual one-time click)
 
-#### Creating the service account (5 min)
+The one step that requires UI: grant the service account email **Viewer** access on the GA4 property.
 
-1. Google Cloud Console > IAM & Admin > Service Accounts > Create
-2. Name it `sleepmedic-ga4-reader`, skip the optional permission steps
-3. Open the created account > Keys tab > Add Key > Create new key > JSON. Download.
-4. In GA4: Admin > Property Access Management > + > Add user. Paste the service account email (JSON `client_email`). Grant **Viewer** role.
-5. Add GitHub secrets with the three values from the JSON.
-6. Actions > A/B Weekly Report > Run workflow. Dashboard now includes pivots.
+1. https://analytics.google.com/analytics/web/#/p532856345/admin/suiteusermanagement/property
+2. `+` → Add users
+3. Paste: `sleepmedic-ga4-reader@sleepmedic-90416.iam.gserviceaccount.com`
+4. Role: **Viewer**
+5. Untick "Notify new users by email"
+6. Add
 
-### 3. (Optional) Mark GA4 events as Key events
+### (Optional) Mark GA4 events as Key events
 
 Per `ANALYTICS.md`, after the new stream has traffic, mark these in GA4 > Admin > Events:
-
 - `blog_post_view`
 - `newsletter_subscribe`
 - `app_interest_click`
 - `app_interest_email`
 
-`fetch-ga4.mjs` pulls these regardless of the Key event toggle — this is cosmetic but unlocks GA4's own funnel tooling.
+`fetch-ga4.mjs` pulls these regardless — this is cosmetic but unlocks GA4's own funnel UI.
 
 ---
 
@@ -91,8 +107,13 @@ Per `ANALYTICS.md`, after the new stream has traffic, mark these in GA4 > Admin 
 node scripts/ab/backfill.mjs
 node scripts/ab/classify.mjs <slug>
 
-# Join GA4 — API path or CSV fallback
+# Pull GA4 data (requires the three GA4_ env vars or .env values)
+GA4_PROPERTY_ID=532856345 \
+GA4_CLIENT_EMAIL=$(jq -r .client_email ~/.sleepmedic-ga4-key.json) \
+GA4_PRIVATE_KEY=$(jq -r .private_key ~/.sleepmedic-ga4-key.json) \
 node scripts/ab/fetch-ga4.mjs --days 90
+
+# Or use CSV exports as fallback
 node scripts/ab/join-ga4.mjs pages.csv events.csv
 
 # Dashboard or terminal pivots
@@ -126,7 +147,7 @@ Add values only when real data shows something doesn't fit. Edit `SCHEMA` in `sc
 
 ## How to read the dashboard
 
-For each dimension, you see ranked values with `n`, `mean`, `total`.
+For each dimension, ranked values with `n`, `mean`, `total`:
 
 - Rate metrics (`subscribe_rate`, `avg_engagement_seconds`): sort by `mean`.
 - Count metrics (`views`, `newsletter_subscribes`): sort by `total`.
@@ -135,9 +156,9 @@ For each dimension, you see ranked values with `n`, `mean`, `total`.
 
 ---
 
-## Current state (as of first backfill)
+## Baseline (first backfill)
 
-18 posts tagged. Heavy imbalance, which is the whole point — the taxonomy surfaced it:
+18 posts tagged. Heavy imbalance — the taxonomy surfaced it:
 
 - **Energy:** 16 scientist / 1 monk / 1 warrior / 0 princess / 0 hybrid
 - **Voice intensity:** 17 at 0.7, 1 at 1.0, 0 at 0.5
@@ -176,7 +197,7 @@ Add when basic pivots surface obvious wins.
 
 | File | Purpose |
 |---|---|
-| `scripts/ab/paths.mjs` | Central path constants (TAGS_PATH, ANALYTICS_PATH, DASHBOARD_PATH) |
+| `scripts/ab/paths.mjs` | Central path constants |
 | `scripts/ab/tag-schema.mjs` | Taxonomy, validators, length buckets |
 | `scripts/ab/classify.mjs` | Classify one post by slug |
 | `scripts/ab/backfill.mjs` | Classify every untagged post |
@@ -186,8 +207,16 @@ Add when basic pivots surface obvious wins.
 | `scripts/ab/pivot.mjs` | CLI pivot (terminal output) |
 | `.github/workflows/ab-backfill.yml` | Auto-tag after publish |
 | `.github/workflows/ab-weekly-report.yml` | Weekly GA4 fetch + dashboard rebuild |
-| `private/ab-tags.json` | Tag store |
+| `private/ab-tags.json` | Tag store (18 entries) |
 | `private/ab-analytics.json` | Joined metrics (after first GA4 run) |
 | `private/ab-dashboard.html` | Internal dashboard |
 | `private/README.md` | Purpose of this directory |
 | `robots.txt` | Disallows `/private/` and each A/B file |
+
+---
+
+## Key management
+
+- Service account key: `~/.sleepmedic-ga4-key.json` (local, mode 600, not in the repo)
+- GitHub secrets: `GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `GA4_PRIVATE_KEY`
+- To rotate: `gcloud iam service-accounts keys create ~/.sleepmedic-ga4-key-new.json --iam-account=sleepmedic-ga4-reader@sleepmedic-90416.iam.gserviceaccount.com`, re-run the `gh secret set` commands, then delete the old key with `gcloud iam service-accounts keys delete <KEY_ID>`.
