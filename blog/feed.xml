@@ -5,7 +5,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2026 23:35:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2026 17:17:29 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -13,6 +13,24 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>The Hardest Part of Good Sleep Has Nothing to Do With Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-04-16-the-hardest-part-of-good-sleep.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-16-the-hardest-part-of-good-sleep.html</guid>
+      <description>The science is the easy part. The hard part is leaving early, saying no, and accepting the social friction that comes with protecting your sleep. A real essay on sleep discipline.</description>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Philosophy</category>
+    </item>
+  
+    <item>
+      <title>The Shift Worker Sleep Protocol: A Complete Evidence-Based Guide</title>
+      <link>https://sleepmedic.co/blog/posts/shift-worker-sleep-protocol.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/shift-worker-sleep-protocol.html</guid>
+      <description>A full protocol for shift workers to protect sleep, manage circadian disruption, and recover faster between rotations.</description>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Shift Work</category>
+    </item>
+  
     <item>
       <title>Why the 90-Minute Sleep Cycle Myth Leaves You Tired</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-14-why-the-90-minute-sleep-cycle-myth-leaves-you-tired.html</link>

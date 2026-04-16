@@ -1115,6 +1115,50 @@
         }
       ],
       "wordCount": 1135
+    },
+    {
+      "id": "06801741b757b54d",
+      "date": "2026-04-16",
+      "title": "Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link",
+      "titleFingerprint": "47e80866adf2089b",
+      "excerpt": "Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.",
+      "keywords": {
+        "bacteria": 1,
+        "cause": 1,
+        "insomnia": 1,
+        "microbiomesleep": 1,
+        "link": 1,
+        "still": 1,
+        "struggling": 1,
+        "sleep": 1,
+        "despite": 1,
+        "countless": 1,
+        "efforts": 1,
+        "might": 1,
+        "hold": 1,
+        "surprising": 1,
+        "discover": 1,
+        "microbiome": 1,
+        "influences": 1,
+        "internal": 1,
+        "clock": 1,
+        "offering": 1,
+        "path": 1,
+        "consistent": 1,
+        "restorative": 1,
+        "rest": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 334
     }
   ],
   "images": [
@@ -1354,6 +1398,11 @@
       "topic": "Sleep cycles explained and the 90-minute myth",
       "usedIn": "04d8f30641041c9a",
       "date": "2026-04-14"
+    },
+    {
+      "topic": "Gut Microbiome and Circadian Rhythm: The Bidirectional Sleep Link",
+      "usedIn": "06801741b757b54d",
+      "date": "2026-04-16"
     }
   ],
   "phrases": [
@@ -1650,7 +1699,25 @@
     "the 90minute sleep cycle myth",
     "90minute sleep cycle myth leaves",
     "sleep cycle myth leaves you",
-    "cycle myth leaves you tired"
+    "cycle myth leaves you tired",
+    "can your gut",
+    "your gut bacteria",
+    "gut bacteria cause",
+    "bacteria cause insomnia",
+    "cause insomnia the",
+    "insomnia the microbiomesleep",
+    "the microbiomesleep link",
+    "can your gut bacteria",
+    "your gut bacteria cause",
+    "gut bacteria cause insomnia",
+    "bacteria cause insomnia the",
+    "cause insomnia the microbiomesleep",
+    "insomnia the microbiomesleep link",
+    "can your gut bacteria cause",
+    "your gut bacteria cause insomnia",
+    "gut bacteria cause insomnia the",
+    "bacteria cause insomnia the microbiomesleep",
+    "cause insomnia the microbiomesleep link"
   ],
   "titlePatterns": [
     {
@@ -1772,8 +1839,13 @@
       "pattern": "[QUESTION_WORD] [TOPIC]",
       "example": "Why the 90-Minute Sleep Cycle Myth Leaves You Tired",
       "date": "2026-04-14"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link",
+      "date": "2026-04-16"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-04-14T02:41:30.765Z"
+  "lastUpdated": "2026-04-16T17:17:29.642Z"
 }
