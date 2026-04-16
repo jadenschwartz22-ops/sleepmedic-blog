@@ -1,8 +1,5 @@
-// Tag every post in posts-index.json that isn't already tagged.
-// Safe to re-run — skips tagged slugs unless --force.
-//
-//   node scripts/ab/backfill-tags.mjs
-//   node scripts/ab/backfill-tags.mjs --force
+// Run classify.mjs over every post in posts-index.json.
+// Safe to re-run; skips already-tagged slugs unless --force.
 
 import fs from 'fs/promises';
 import { spawn } from 'child_process';
@@ -18,12 +15,12 @@ async function loadTags() {
   catch { return {}; }
 }
 
-function runTag(slug) {
-  return new Promise((resolve, reject) => {
-    const args = ['scripts/ab/tag-post.mjs', slug];
+function runOne(slug) {
+  return new Promise((resolve) => {
+    const args = ['scripts/ab/classify.mjs', slug];
     if (force) args.push('--force');
     const child = spawn('node', args, { stdio: 'inherit', env: process.env });
-    child.on('close', code => code === 0 ? resolve() : reject(new Error(`tag-post exit ${code}`)));
+    child.on('close', code => resolve(code === 0));
   });
 }
 
@@ -34,17 +31,13 @@ async function main() {
   const todo = posts.filter(p => force || !tags[p.slug]);
   console.log(`${todo.length} posts to tag (${posts.length - todo.length} already tagged)`);
 
-  let failures = 0;
+  let ok = 0, fail = 0;
   for (const p of todo) {
-    try {
-      await runTag(p.slug);
-      await new Promise(r => setTimeout(r, 1500)); // gentle on the API
-    } catch (err) {
-      console.error(`[fail] ${p.slug}: ${err.message}`);
-      failures++;
-    }
+    const success = await runOne(p.slug);
+    if (success) ok++; else fail++;
+    await new Promise(r => setTimeout(r, 1500));
   }
-  console.log(`\nDone. ${todo.length - failures} tagged, ${failures} failures.`);
+  console.log(`\nDone. ${ok} tagged, ${fail} failures.`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
