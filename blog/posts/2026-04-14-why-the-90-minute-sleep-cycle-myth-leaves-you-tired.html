@@ -59,12 +59,12 @@
 
   <!-- Google Analytics (GA4) -->
   <!-- GA4: sleepmedic.co -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H4073EG26"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-5H4073EG26');
+    gtag('config', 'G-717M9L2RTM');
   </script>
   <!-- GoatCounter -->
   <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -568,7 +568,7 @@ Forget chasing an ideal cycle length. Instead, focus on these foundational habit
         const email = document.getElementById('newsletter-email').value;
         try {
           // Replace with your Resend audience endpoint or Pi webhook
-          await fetch('https://your-pi-or-api.sleepmedic.co/subscribe', {
+          await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })

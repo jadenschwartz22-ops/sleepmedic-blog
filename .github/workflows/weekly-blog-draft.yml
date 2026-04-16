@@ -95,7 +95,7 @@ jobs:
             - **Merge within 7 days** to keep content timely
             - **Edit directly in PR** if changes needed (edit files in PR, not branch)
             - **Auto-deploys** to sleepmedic.co/blog on merge (GitHub Pages)
-            - **Email notification** sent via Follow.it when RSS updates (~30 min after merge)
+            - **Email notification** sent via Pi + Resend when RSS updates (~30 min after merge)
 
             ---
 

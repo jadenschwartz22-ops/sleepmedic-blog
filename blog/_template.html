@@ -58,12 +58,12 @@
 
   <!-- Google Analytics (GA4) -->
   <!-- GA4: sleepmedic.co -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5H4073EG26"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-5H4073EG26');
+    gtag('config', 'G-717M9L2RTM');
   </script>
 
   <!-- GoatCounter -->
@@ -400,22 +400,15 @@
         {{CONTENT}}
       </div>
 
-      <!-- Newsletter CTA (Follow.it) -->
+      <!-- Newsletter CTA -->
       <div class="newsletter-cta">
         <h3>Weekly sleep science, no fluff</h3>
         <p>One email a week. Evidence-based advice for people who actually want to sleep better.</p>
-        <div class="followit--follow-form-container" attr-a attr-b attr-c attr-d attr-e attr-f>
-          <form action="https://api.follow.it/subscription-form/bm0wRFJpeUhrc3VyNnRPK2w4VnZQRjFBMkU3UWx6cmFwMi8vZlFBdFpxdFljSlhFS2h2aVYyREhVeE1hRnlRMW1wR0lCZlMzREcxSkxMaVFyenNmZUY5MVFsaVFvY1dNRjBsOHg0d2RoN0dpRkQyVERQWVBPQXYyOThPQktOdkV8Z3R2QW1mT083bXVLeEttMEkzbTd5NUp0Y2Vhc3F3QVQ2Zk51ZTFQUms3Yz0=/8" method="post">
-            <div class="form-preview" style="background-color: transparent; border: none; box-shadow: none; padding: 0; margin: 0;">
-              <div class="preview-input-field" style="margin-top: 0;">
-                <input type="email" name="email" required placeholder="you@email.com" style="font-family: inherit; color: #fff; font-size: 14px; text-align: center; background-color: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; height: 44px; width: 100%; outline: none;" />
-              </div>
-              <div class="preview-submit-button" style="margin-top: 10px;">
-                <button type="submit" style="font-family: inherit; font-weight: 600; color: #fff; font-size: 15px; background: linear-gradient(135deg, #7c8cf5, #6dd5ed); border: none; border-radius: 6px; height: 44px; width: 100%; cursor: pointer;">Subscribe</button>
-              </div>
-            </div>
-          </form>
-        </div>
+        <form class="newsletter-form" data-sm-newsletter>
+          <input type="email" name="email" required placeholder="you@email.com" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="newsletter-msg" data-sm-newsletter-msg></div>
       </div>
 
       <div class="app-cta">
@@ -492,13 +485,34 @@
       }, { passive: true });
     })();
 
-    // Newsletter submit tracking
+    // Newsletter submit (Pi + Resend)
     (function() {
-      const f = document.querySelector('.followit--follow-form-container form');
+      const f = document.querySelector('[data-sm-newsletter]');
+      const msg = document.querySelector('[data-sm-newsletter-msg]');
       if (!f) return;
-      f.addEventListener('submit', () => {
-        const email = f.querySelector('input[name="email"]')?.value || '';
-        if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'post', slug: '{{SLUG}}' });
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        msg.textContent = 'Subscribing...';
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          const d = await r.json();
+          if (d.ok) {
+            msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            input.value = '';
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'post', slug: '{{SLUG}}' });
+          } else {
+            msg.textContent = d.error || 'Subscription failed.';
+          }
+        } catch {
+          msg.textContent = 'Network error. Try again.';
+        }
       });
     })();
 
@@ -534,7 +548,7 @@
       } catch {}
     })();
 
-    // Newsletter is handled by Follow.it (no custom JS needed)
+    
 
     // GoatCounter view count
     (async () => {

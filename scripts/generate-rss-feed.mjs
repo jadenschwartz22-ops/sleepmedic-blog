@@ -1,6 +1,6 @@
 /**
  * Generate RSS Feed for SleepMedic Blog
- * Used by Follow.it for email notifications
+ * Used by Pi + Resend for email notifications
  */
 
 import fs from 'fs/promises';

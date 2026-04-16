@@ -2,6 +2,8 @@
 
 Blog-first site at [sleepmedic.co](https://sleepmedic.co). The blog is the main destination; the iOS app is promoted via a tracked "Download App" smokescreen so we can measure real interest before launch.
 
+**Operator docs:** [OPERATIONS.md](OPERATIONS.md) - runbook | [ANALYTICS.md](ANALYTICS.md) - non-technical analytics guide | [AUDIT.md](AUDIT.md) - last end-to-end audit.
+
 ## Architecture
 
 Two independent systems:
@@ -122,7 +124,7 @@ Three layers, each useful for a different question:
 | Layer | What it answers | Where to look |
 |-------|-----------------|---------------|
 | **GoatCounter** | Per-URL pageviews. Simple, cookie-free, visible on blog pages. | [jschwartz9.goatcounter.com](https://jschwartz9.goatcounter.com) |
-| **GA4** (G-5H4073EG26) | Funnel: landing → blog card click → post view → scroll depth → app interest → newsletter. | [analytics.google.com](https://analytics.google.com) → Reports → Realtime / Engagement → Events |
+| **GA4** (G-717M9L2RTM) | Funnel: landing → blog card click → post view → scroll depth → app interest → newsletter. | [analytics.google.com](https://analytics.google.com) → Reports → Realtime / Engagement → Events |
 | **Pi `/stats`** | Ground truth for conversions (actual emails captured, actual click counts). | `curl https://pi.sleepmedic.co/stats?key=ADMIN_KEY` |
 
 ### GA4 custom events fired site-wide
@@ -137,7 +139,7 @@ All events get standard GA4 params (`page_location`, `page_title`) automatically
 | `blog_filter` | Blog index | `category` | Which categories are explored? |
 | `app_interest_click` | Any Download App button | `location`, `path` | How many want the app? |
 | `app_interest_email` | Smokescreen modal submit | `location`, `email_domain` | How many convert click → email? |
-| `newsletter_subscribe` | Follow.it form submit | `source`, `email_domain`, `slug` (if post) | Newsletter conversion rate |
+| `newsletter_subscribe` | Newsletter form submit (Pi + Resend) | `source`, `email_domain`, `slug` (if post) | Newsletter conversion rate |
 
 ### Reading the numbers
 
@@ -175,7 +177,7 @@ Register custom dimensions for `location`, `slug`, `category` under Admin → Cu
 sleepmedic.co/                -> Landing page (blog-first, recent posts grid)
 sleepmedic.co/blog/           -> Blog index (category filters, all posts, newsletter)
 sleepmedic.co/blog/posts/     -> Individual posts (smokescreen nav + inline CTA)
-sleepmedic.co/app/            -> Legacy; to be retired
+sleepmedic.co/app/            -> App pre-launch waitlist (Pi /app-interest)
 sleepmedic.co/privacy/        -> Privacy policy
 sleepmedic.co/assets/         -> Shared JS (app-interest smokescreen)
 ```
@@ -186,7 +188,7 @@ sleepmedic.co/assets/         -> Shared JS (app-interest smokescreen)
 |------|---------|
 | `index.html` | Landing page (blog-first) |
 | `blog/index.html` | Blog homepage |
-| `blog/_template.html` | Post template (GA4 events, smokescreen, Follow.it) |
+| `blog/_template.html` | Post template (GA4 events, smokescreen, Pi + Resend) |
 | `blog/_shared-styles.css` | Shared CSS |
 | `assets/app-interest.js` | Shared smokescreen modal + tracking |
 | `pi-service/server.mjs` | Pi service: newsletter + app-interest + RSS + Discord |

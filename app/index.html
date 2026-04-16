@@ -20,6 +20,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
   <style>
     :root {
       --bg: #0a0a0c;
@@ -433,27 +441,36 @@
   </footer>
 
   <script>
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('email-input').value;
+      const email = document.getElementById('email-input').value.trim();
       const msg = document.getElementById('form-msg');
       const btn = document.getElementById('submit-btn');
-
-      const waitlist = JSON.parse(localStorage.getItem('sm-waitlist') || '[]');
-      if (!waitlist.includes(email)) {
-        waitlist.push(email);
-        localStorage.setItem('sm-waitlist', JSON.stringify(waitlist));
-      }
-
-      btn.textContent = 'Done';
-      btn.style.background = '#34d399';
-      msg.textContent = "We'll let you know when SleepMedic launches.";
-      msg.style.display = 'block';
-
-      setTimeout(() => {
+      if (!email) return;
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+      try {
+        const r = await fetch('https://pi.sleepmedic.co/app-interest', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'email', email, location: 'app-page', path: location.pathname })
+        });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(data.error || 'Request failed');
+        if (window.gtag) window.gtag('event', 'app_interest_email', {
+          email_domain: (email.split('@')[1] || '').toLowerCase(),
+          location: 'app-page'
+        });
+        btn.textContent = 'Done';
+        btn.style.background = '#34d399';
+        msg.textContent = "We'll let you know when SleepMedic launches.";
+        msg.style.display = 'block';
+      } catch (err) {
+        btn.disabled = false;
         btn.textContent = 'Notify Me';
-        btn.style.background = '';
-      }, 3000);
+        msg.textContent = 'Something went wrong. Try again in a minute.';
+        msg.style.display = 'block';
+      }
     }
   </script>
 </body>
