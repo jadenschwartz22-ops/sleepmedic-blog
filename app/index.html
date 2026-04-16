@@ -154,10 +154,12 @@
       font-size: 1.1rem;
       margin-bottom: 14px;
     }
-    .fi-purple { background: rgba(167,139,250,0.12); }
-    .fi-blue { background: rgba(96,165,250,0.12); }
-    .fi-green { background: rgba(52,211,153,0.12); }
-    .fi-pink { background: rgba(244,114,182,0.12); }
+    .feature-icon svg { width: 20px; height: 20px; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .fi-purple { background: rgba(167,139,250,0.12); color: #a78bfa; }
+    .fi-blue { background: rgba(96,165,250,0.12); color: #60a5fa; }
+    .fi-green { background: rgba(52,211,153,0.12); color: #34d399; }
+    .fi-pink { background: rgba(244,114,182,0.12); color: #f472b6; }
+    .feature-icon svg { stroke: currentColor; }
     .feature h3 {
       font-size: 0.95rem;
       font-weight: 600;
@@ -354,22 +356,30 @@
     <p class="features-label">What you get</p>
     <div class="features">
       <div class="feature">
-        <div class="feature-icon fi-purple" style="font-weight:700;font-size:0.8rem;">AS</div>
+        <div class="feature-icon fi-purple" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </div>
         <h3>Adaptive Scheduling</h3>
         <p>Set your anchor times. The app learns when you actually sleep and adjusts recommendations as patterns emerge.</p>
       </div>
       <div class="feature">
-        <div class="feature-icon fi-green" style="font-weight:700;font-size:0.8rem;">7H</div>
+        <div class="feature-icon fi-green" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="4 12 9 17 20 6"/></svg>
+        </div>
         <h3>7 Habit Trackers</h3>
         <p>Light exposure, caffeine, meals, movement, wind-down, naps, and anchor adherence. One-tap logging throughout the day.</p>
       </div>
       <div class="feature">
-        <div class="feature-icon fi-blue" style="font-weight:700;font-size:0.8rem;">PD</div>
+        <div class="feature-icon fi-blue" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="15 7 21 7 21 13"/></svg>
+        </div>
         <h3>Pattern Detection</h3>
         <p>After 7 days, SleepMedic spots your patterns and surfaces the specific changes that will actually make a difference.</p>
       </div>
       <div class="feature">
-        <div class="feature-icon fi-pink" style="font-weight:700;font-size:0.8rem;">AI</div>
+        <div class="feature-icon fi-pink" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg>
+        </div>
         <h3>AI Coaching</h3>
         <p>Get personalized sleep advice from an AI coach that knows your schedule, your habits, and what has (and hasn't) worked.</p>
       </div>
