@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>SleepMedic A/B Dashboard</title>
+<style>
+  body { font: 14px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 980px; margin: 24px auto; padding: 0 20px; color: #222; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 36px 0 8px; border-bottom: 1px solid #ddd; padding-bottom: 6px; }
+  h3 { font-size: 14px; margin: 18px 0 6px; color: #555; text-transform: uppercase; letter-spacing: 0.05em; }
+  h4 { font-size: 13px; margin: 10px 0 4px; color: #888; font-weight: 600; }
+  .sub { color: #666; font-size: 13px; margin: 4px 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0 14px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid #eee; font-size: 13px; }
+  th { color: #888; font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+  td.num { text-align: right; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  td.bar { font-family: ui-monospace, "SF Mono", Menlo, monospace; color: #4a7; letter-spacing: -1px; }
+  .metric-block { margin: 18px 0 36px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 10px 32px; }
+  code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+  .meta { color: #888; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<h1>SleepMedic A/B Dashboard</h1>
+<p class="meta">Generated 2026-04-16T21:43:19.881Z. 18 tagged posts.</p>
+
+<h2>Current tag distributions</h2>
+<p class="sub">What you've shipped so far, bucketed. Uneven buckets are where you have blind spots — go write a post that lives there.</p>
+<div class="grid">
+
+    <section>
+      <h3>Energy</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>scientist</td><td class="num">16</td><td class="num">89%</td><td class="bar">██████████████████████████████</td></tr><tr><td>monk</td><td class="num">1</td><td class="num">6%</td><td class="bar">██</td></tr><tr><td>warrior</td><td class="num">1</td><td class="num">6%</td><td class="bar">██</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Voice intensity</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>0.7</td><td class="num">17</td><td class="num">94%</td><td class="bar">██████████████████████████████</td></tr><tr><td>1.0</td><td class="num">1</td><td class="num">6%</td><td class="bar">██</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Length bucket</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>short</td><td class="num">9</td><td class="num">50%</td><td class="bar">██████████████████████████████</td></tr><tr><td>long</td><td class="num">5</td><td class="num">28%</td><td class="bar">█████████████████</td></tr><tr><td>medium</td><td class="num">3</td><td class="num">17%</td><td class="bar">██████████</td></tr><tr><td>flash</td><td class="num">1</td><td class="num">6%</td><td class="bar">███</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Opening vehicle</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>claim</td><td class="num">11</td><td class="num">61%</td><td class="bar">██████████████████████████████</td></tr><tr><td>question</td><td class="num">3</td><td class="num">17%</td><td class="bar">████████</td></tr><tr><td>scene</td><td class="num">3</td><td class="num">17%</td><td class="bar">████████</td></tr><tr><td>data</td><td class="num">1</td><td class="num">6%</td><td class="bar">███</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Closing vehicle</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>checklist</td><td class="num">13</td><td class="num">72%</td><td class="bar">██████████████████████████████</td></tr><tr><td>quiet_stop</td><td class="num">2</td><td class="num">11%</td><td class="bar">█████</td></tr><tr><td>imperative</td><td class="num">2</td><td class="num">11%</td><td class="bar">█████</td></tr><tr><td>reframe</td><td class="num">1</td><td class="num">6%</td><td class="bar">██</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Topic cluster</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>shift_work</td><td class="num">11</td><td class="num">69%</td><td class="bar">██████████████████████████████</td></tr><tr><td>biology</td><td class="num">3</td><td class="num">19%</td><td class="bar">████████</td></tr><tr><td>philosophy</td><td class="num">1</td><td class="num">6%</td><td class="bar">███</td></tr><tr><td>circadian</td><td class="num">1</td><td class="num">6%</td><td class="bar">███</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Hook type</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>pain</td><td class="num">15</td><td class="num">94%</td><td class="bar">██████████████████████████████</td></tr><tr><td>challenge</td><td class="num">1</td><td class="num">6%</td><td class="bar">██</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Format</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>Field Manual</td><td class="num">7</td><td class="num">47%</td><td class="bar">██████████████████████████████</td></tr><tr><td>Science-First</td><td class="num">4</td><td class="num">27%</td><td class="bar">█████████████████</td></tr><tr><td>Myth-Busting</td><td class="num">3</td><td class="num">20%</td><td class="bar">█████████████</td></tr><tr><td>History/Philosophy Lens</td><td class="num">1</td><td class="num">7%</td><td class="bar">████</td></tr></tbody></table>
+    </section>
+
+    <section>
+      <h3>Devices (multi)</h3>
+      <table><thead><tr><th>value</th><th>n</th><th>share</th><th></th></tr></thead><tbody><tr><td>colon_reveal</td><td class="num">17</td><td class="num">19%</td><td class="bar">██████████████████████████████</td></tr><tr><td>list_structure</td><td class="num">16</td><td class="num">18%</td><td class="bar">████████████████████████████</td></tr><tr><td>numbered_protocol</td><td class="num">14</td><td class="num">16%</td><td class="bar">█████████████████████████</td></tr><tr><td>em_dash_pivot</td><td class="num">13</td><td class="num">15%</td><td class="bar">███████████████████████</td></tr><tr><td>one_sentence_paragraph</td><td class="num">10</td><td class="num">11%</td><td class="bar">██████████████████</td></tr><tr><td>catalog</td><td class="num">5</td><td class="num">6%</td><td class="bar">█████████</td></tr><tr><td>first_person_scene</td><td class="num">4</td><td class="num">5%</td><td class="bar">███████</td></tr><tr><td>anaphora</td><td class="num">3</td><td class="num">3%</td><td class="bar">█████</td></tr><tr><td>extended_metaphor</td><td class="num">2</td><td class="num">2%</td><td class="bar">████</td></tr><tr><td>self_interrupt</td><td class="num">2</td><td class="num">2%</td><td class="bar">████</td></tr><tr><td>braided_register</td><td class="num">1</td><td class="num">1%</td><td class="bar">██</td></tr><tr><td>literary_ref</td><td class="num">1</td><td class="num">1%</td><td class="bar">██</td></tr></tbody></table>
+    </section>
+</div>
+
+
+      <h2>Pivots</h2>
+      <p class="sub">No GA4 data joined yet. Export <code>pages.csv</code> and <code>events.csv</code> from GA4, drop them in the repo root, and run <code>node scripts/ab/join-ga4.mjs pages.csv events.csv</code> — or set up the GA4 API workflow (see AB.md).</p>
+
+<h2>How to read this</h2>
+<ul>
+<li>For <strong>rate metrics</strong> (subscribe_rate, avg_engagement_seconds), sort by <code>mean</code>.</li>
+<li>For <strong>count metrics</strong> (views), sort by <code>total</code>.</li>
+<li>Ignore any row where <code>n &lt; 5</code>. Not enough signal.</li>
+<li>Winners compound — if <em>monk × long × literary_ref</em> wins on three metrics, write more of those.</li>
+</ul>
+
+</body>
+</html>
