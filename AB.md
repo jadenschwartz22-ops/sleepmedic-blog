@@ -8,12 +8,31 @@ Nothing in this system modifies the existing blog pipeline. It sits alongside it
 
 ---
 
-## Status: live
+## Status: live end-to-end
 
 - **Tagging:** 18 existing posts classified. New posts auto-tag after every publish.
-- **GA4 pipeline:** service account `sleepmedic-ga4-reader@sleepmedic-90416.iam.gserviceaccount.com` created; credentials stored as GitHub secrets (`GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `GA4_PRIVATE_KEY`).
+- **GA4 pipeline:** service account `sleepmedic-ga4-reader@sleepmedic-90416.iam.gserviceaccount.com` has Viewer role on property 532856345; Analytics Data API enabled on project `sleepmedic-90416`; credentials stored as GitHub secrets (`GA4_PROPERTY_ID`, `GA4_CLIENT_EMAIL`, `GA4_PRIVATE_KEY`).
+- **First pull:** 5 posts had at least 1 view in the last 90 days. `private/ab-analytics.json` committed, dashboard rebuilt.
 - **Dashboard:** `private/ab-dashboard.html`, rebuilt every Monday 10 AM MT. Noindex, disallowed, not linked.
 - **Privacy:** `/private/` and each A/B file blocked in `robots.txt`. Local key at `~/.sleepmedic-ga4-key.json` (mode 600, outside the repo).
+
+---
+
+## The honest state (current pivot signal)
+
+The framework works. The data doesn't say anything yet.
+
+- 5 posts have traffic, all at 1–2 views
+- 0 newsletter subscribes, 0 app clicks in the window
+- All 5 posts with traffic are `scientist` energy — which is the only voice published so far
+- Every bucket has `n < 5`, so nothing crosses the "real finding" bar
+
+Two bottlenecks, neither is the analytics pipeline:
+
+1. **Traffic.** Until the blog has readers, pivots have nothing to average. SEO, social, email list — pick whichever channel you're investing in.
+2. **Voice diversity.** 16/18 posts are scientist. You literally can't A/B test voice when only one voice exists.
+
+Do both. The framework will start telling you something around week 6–8.
 
 ---
 
@@ -21,15 +40,15 @@ Nothing in this system modifies the existing blog pipeline. It sits alongside it
 
 **The dashboard:** `private/ab-dashboard.html`
 
-Open locally after a `git pull` — the file lives in the repo but is disallowed from search and not linked from the site. Shows tag distributions always, plus pivot tables from 90 days of GA4 data.
+Open locally after a `git pull` — the file lives in the repo but is disallowed from search and not linked from the site. Shows tag distributions always, plus pivot tables once GA4 has enough data.
 
 **The Actions summary:** GitHub > Actions > A/B Weekly Report > latest run > Summary
 
 A concise markdown block with the top 5 posts by engagement and an energy × engagement mean table.
 
 **Raw data:**
-- `private/ab-tags.json` — what got classified
-- `private/ab-analytics.json` — join of tags × GA4 metrics
+- `private/ab-tags.json` — 18 classified posts
+- `private/ab-analytics.json` — 5 rows with GA4 metrics (grows as traffic grows)
 
 ---
 
@@ -53,14 +72,13 @@ None of this is cryptographically private — anyone who types `sleepmedic.co/pr
 
 ---
 
-## Setup (done)
-
-The initial setup is already complete. Recorded here for reproducibility or if you ever need to rotate the key.
+## Setup (done — recorded for reproducibility)
 
 ### Service account (done via `gcloud`)
 
 ```bash
 gcloud config set project sleepmedic-90416
+gcloud services enable analyticsdata.googleapis.com --project=sleepmedic-90416
 gcloud iam service-accounts create sleepmedic-ga4-reader \
   --display-name="SleepMedic GA4 Reader" \
   --description="Read-only GA4 access for A/B analytics"
@@ -72,14 +90,14 @@ gcloud iam service-accounts keys create ~/.sleepmedic-ga4-key.json \
 
 ```bash
 KEY=~/.sleepmedic-ga4-key.json
-echo "532856345" | gh secret set GA4_PROPERTY_ID
-jq -r '.client_email' "$KEY" | gh secret set GA4_CLIENT_EMAIL
-jq -r '.private_key'  "$KEY" | gh secret set GA4_PRIVATE_KEY
+echo "532856345"                   | gh secret set GA4_PROPERTY_ID
+jq -r '.client_email' "$KEY"       | gh secret set GA4_CLIENT_EMAIL
+jq -r '.private_key'  "$KEY"       | gh secret set GA4_PRIVATE_KEY
 ```
 
 ### GA4 property access (manual one-time click)
 
-The one step that requires UI: grant the service account email **Viewer** access on the GA4 property.
+The one step that requires the UI: grant the service account email **Viewer** access on the GA4 property.
 
 1. https://analytics.google.com/analytics/web/#/p532856345/admin/suiteusermanagement/property
 2. `+` → Add users
@@ -96,7 +114,7 @@ Per `ANALYTICS.md`, after the new stream has traffic, mark these in GA4 > Admin 
 - `app_interest_click`
 - `app_interest_email`
 
-`fetch-ga4.mjs` pulls these regardless — this is cosmetic but unlocks GA4's own funnel UI.
+`fetch-ga4.mjs` pulls these regardless — cosmetic, but unlocks GA4's own funnel UI.
 
 ---
 
@@ -107,7 +125,7 @@ Per `ANALYTICS.md`, after the new stream has traffic, mark these in GA4 > Admin 
 node scripts/ab/backfill.mjs
 node scripts/ab/classify.mjs <slug>
 
-# Pull GA4 data (requires the three GA4_ env vars or .env values)
+# Pull GA4 data locally (uses the key file directly)
 GA4_PROPERTY_ID=532856345 \
 GA4_CLIENT_EMAIL=$(jq -r .client_email ~/.sleepmedic-ga4-key.json) \
 GA4_PRIVATE_KEY=$(jq -r .private_key ~/.sleepmedic-ga4-key.json) \
@@ -156,9 +174,9 @@ For each dimension, ranked values with `n`, `mean`, `total`:
 
 ---
 
-## Baseline (first backfill)
+## Baseline (first backfill, 18 posts)
 
-18 posts tagged. Heavy imbalance — the taxonomy surfaced it:
+Heavy imbalance — the taxonomy surfaced it:
 
 - **Energy:** 16 scientist / 1 monk / 1 warrior / 0 princess / 0 hybrid
 - **Voice intensity:** 17 at 0.7, 1 at 1.0, 0 at 0.5
@@ -169,6 +187,14 @@ For each dimension, ranked values with `n`, `mean`, `total`:
 - **Format:** 7 Field Manual / 4 Science-First / 3 Myth-Busting / 1 History/Philosophy Lens
 
 The blog is a scientist writing pain-hook checklists to shift workers. Fill the empty buckets to get A/B coverage.
+
+### Concrete next-3-posts plan
+
+To earn real A/B signal as traffic grows, next three posts should fill gaps:
+
+1. **Monk, medium length, literary_ref opening.** Philosophy angle — Aurelius/Seneca on rest, say. Ends on quiet_stop.
+2. **Princess, medium length, permission hook.** New-parent or burned-out-professional angle. Ends on reframe or self_aware, not checklist.
+3. **voice_intensity = 0.5, any energy, confession opening.** Plain and professional to see how it compares to the current 0.7 default.
 
 ---
 
@@ -208,7 +234,7 @@ Add when basic pivots surface obvious wins.
 | `.github/workflows/ab-backfill.yml` | Auto-tag after publish |
 | `.github/workflows/ab-weekly-report.yml` | Weekly GA4 fetch + dashboard rebuild |
 | `private/ab-tags.json` | Tag store (18 entries) |
-| `private/ab-analytics.json` | Joined metrics (after first GA4 run) |
+| `private/ab-analytics.json` | Joined metrics (5 rows, grows with traffic) |
 | `private/ab-dashboard.html` | Internal dashboard |
 | `private/README.md` | Purpose of this directory |
 | `robots.txt` | Disallows `/private/` and each A/B file |
