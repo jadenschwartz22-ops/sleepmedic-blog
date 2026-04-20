@@ -5,7 +5,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2026 17:17:29 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Apr 2026 17:07:20 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -13,6 +13,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link</title>
+      <link>https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</guid>
+      <description>Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.</description>
+      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
+      <category>circadian</category>
+    </item>
+  
     <item>
       <title>The Hardest Part of Good Sleep Has Nothing to Do With Sleep</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-16-the-hardest-part-of-good-sleep.html</link>
@@ -181,15 +190,6 @@
       <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-10-16-sleep-like-a-warrior.html</guid>
       <description>Learn how ancient warriors approached rest with intention and resilience. Four core principles for modern shift workers seeking better sleep.</description>
       <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
-      <category>Science</category>
-    </item>
-  
-    <item>
-      <title>Shift Workers: How to Get Sleep Like Your Life Depends on It. Because It Does.</title>
-      <link>https://sleepmedic.co/blog/posts/2025-07-10-shift-workers-wake-up-consistency.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-07-10-shift-workers-wake-up-consistency.html</guid>
-      <description>The one most important tool for shift workers to fix sleep for good: wake up at the same time every day. A 7-day challenge that actually works.</description>
-      <pubDate>Thu, 10 Jul 2025 00:00:00 GMT</pubDate>
       <category>Science</category>
     </item>
   
