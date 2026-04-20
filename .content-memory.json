@@ -1159,6 +1159,62 @@
         }
       ],
       "wordCount": 334
+    },
+    {
+      "id": "0dece099fe4b8da1",
+      "date": "2026-04-20",
+      "title": "Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol",
+      "titleFingerprint": "b5fe930b8b4bf4eb",
+      "excerpt": "Physically drained but mentally wired after a night shift? Discover the precise 30-minute ritual to signal your brain it's time to switch off, helping you fall asleep faster and stay asleep longer during the day.",
+      "keywords": {
+        "unwiring": 1,
+        "brain": 2,
+        "30minute": 2,
+        "night": 2,
+        "shift": 2,
+        "sleep": 1,
+        "protocol": 1,
+        "physically": 1,
+        "drained": 1,
+        "mentally": 1,
+        "wired": 1,
+        "after": 1,
+        "discover": 1,
+        "precise": 1,
+        "ritual": 1,
+        "signal": 1,
+        "time": 1,
+        "switch": 1,
+        "helping": 1,
+        "fall": 1,
+        "asleep": 2,
+        "faster": 1,
+        "stay": 1,
+        "longer": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1037
     }
   ],
   "images": [
@@ -1403,6 +1459,11 @@
       "topic": "Gut Microbiome and Circadian Rhythm: The Bidirectional Sleep Link",
       "usedIn": "06801741b757b54d",
       "date": "2026-04-16"
+    },
+    {
+      "topic": "How to sleep after a night shift",
+      "usedIn": "0dece099fe4b8da1",
+      "date": "2026-04-20"
     }
   ],
   "phrases": [
@@ -1717,7 +1778,25 @@
     "your gut bacteria cause insomnia",
     "gut bacteria cause insomnia the",
     "bacteria cause insomnia the microbiomesleep",
-    "cause insomnia the microbiomesleep link"
+    "cause insomnia the microbiomesleep link",
+    "unwiring your brain",
+    "your brain the",
+    "brain the 30minute",
+    "the 30minute night",
+    "30minute night shift",
+    "night shift sleep",
+    "shift sleep protocol",
+    "unwiring your brain the",
+    "your brain the 30minute",
+    "brain the 30minute night",
+    "the 30minute night shift",
+    "30minute night shift sleep",
+    "night shift sleep protocol",
+    "unwiring your brain the 30minute",
+    "your brain the 30minute night",
+    "brain the 30minute night shift",
+    "the 30minute night shift sleep",
+    "30minute night shift sleep protocol"
   ],
   "titlePatterns": [
     {
@@ -1844,8 +1923,13 @@
       "pattern": "[QUESTION]",
       "example": "Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link",
       "date": "2026-04-16"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol",
+      "date": "2026-04-20"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-04-16T17:17:29.642Z"
+  "lastUpdated": "2026-04-20T17:07:20.146Z"
 }
