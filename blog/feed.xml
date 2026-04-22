@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="/blog/feed.xsl"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SleepMedic Blog</title>
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Apr 2026 17:07:20 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 18 Apr 2026 01:58:38 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -17,7 +18,7 @@
       <title>Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</link>
       <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</guid>
-      <description>Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.</description>
+      <description>Tired but wired after doing everything right? The 38 trillion microbes in your gut make serotonin, GABA, and SCFAs that directly shape how you sleep. Here&apos;s the evidence and a 14-day reset.</description>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <category>circadian</category>
     </item>

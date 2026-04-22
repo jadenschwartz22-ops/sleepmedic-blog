@@ -15,9 +15,34 @@
  */
 
 import fs from 'fs/promises';
+import { execFile as _execFile } from 'child_process';
+import { promisify } from 'util';
 import yaml from 'yaml';
 import chalk from 'chalk';
 import ContentMemory from './content-memory-system.mjs';
+
+const execFile = promisify(_execFile);
+
+/** Compress a JPEG in place. Tries ImageMagick (cross-platform), falls back to macOS sips. */
+async function compressImage(path) {
+  // ImageMagick v7 (`magick`) — works on Linux CI and macOS with brew
+  try {
+    await execFile('magick', [path, '-resize', '1400x1400>', '-quality', '78', path]);
+    return;
+  } catch {}
+  // ImageMagick v6 (`convert`)
+  try {
+    await execFile('convert', [path, '-resize', '1400x1400>', '-quality', '78', path]);
+    return;
+  } catch {}
+  // macOS `sips`
+  try {
+    await execFile('sips', ['-Z', '1400', '-s', 'format', 'jpeg', '-s', 'formatOptions', '78', path, '--out', path]);
+    return;
+  } catch {}
+  // No compressor available — leave the image as-is rather than fail the whole pipeline
+  console.warn(chalk.yellow(`  No image compressor found (install ImageMagick); kept ${path} uncompressed`));
+}
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const TEXT_MODEL = process.env.GEMINI_TEXT_MODEL || 'gemini-2.5-flash';
@@ -83,6 +108,23 @@ function repairJson(str) {
 function log(stage, msg) { console.log(chalk.cyan(`[Stage ${stage}] `) + msg); }
 function logDetail(msg) { console.log(chalk.gray(`  ${msg}`)); }
 
+/** Guard: fail loudly if content was truncated or has malformed HTML. */
+function assertCoherent(html, where) {
+  if (!html || html.length < 400) throw new Error(`${where}: output too short (${html?.length || 0} chars) — likely truncated`);
+  // Balanced critical tags
+  const tags = ['p', 'h2', 'h3', 'ul', 'ol', 'li', 'strong', 'a', 'figure'];
+  for (const t of tags) {
+    const open = (html.match(new RegExp(`<${t}(\\s[^>]*)?>`, 'gi')) || []).length;
+    const close = (html.match(new RegExp(`</${t}>`, 'gi')) || []).length;
+    if (open !== close) throw new Error(`${where}: unbalanced <${t}> (${open} open, ${close} close) — likely truncated`);
+  }
+  // Last non-empty chunk must end with a proper sentence or closing tag
+  const tail = html.replace(/\s+$/, '').slice(-120);
+  const endsOk = /[.!?]["')\]]?\s*<\/(p|li|ol|ul|h2|h3|figure|blockquote|div)>\s*$/i.test(tail)
+    || /<\/(p|li|ol|ul|h2|h3|figure|blockquote|div)>\s*$/i.test(tail);
+  if (!endsOk) throw new Error(`${where}: content does not end with a closed block tag — likely truncated. Tail: "${tail.slice(-80)}"`);
+}
+
 // ── Gemini Text API (with retry) ─────────────────────
 
 async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 8192, search = false } = {}) {
@@ -125,10 +167,22 @@ async function gemini(prompt, { system, json = false, temp = 0.7, maxTokens = 81
       }
 
       const data = await res.json();
-      // Concatenate all text parts (google_search responses may split across parts)
-      const parts = data.candidates?.[0]?.content?.parts || [];
+      const candidate = data.candidates?.[0];
+      const finishReason = candidate?.finishReason;
+      const parts = candidate?.content?.parts || [];
       const text = parts.filter(p => p.text).map(p => p.text).join('');
       if (!text) throw new Error('Empty Gemini response');
+
+      if (finishReason === 'MAX_TOKENS') {
+        // Retry with a larger budget before giving up
+        if (attempt < 3) {
+          body.generationConfig.maxOutputTokens = Math.min((body.generationConfig.maxOutputTokens || maxTokens) * 2, 32768);
+          console.warn(chalk.yellow(`  Truncated at MAX_TOKENS, retrying with ${body.generationConfig.maxOutputTokens}...`));
+          await sleep(1000);
+          continue;
+        }
+        throw new Error(`Gemini truncated output at MAX_TOKENS after 3 attempts`);
+      }
 
       const cleaned = stripCodeFences(text);
       if (!json) return cleaned;
@@ -189,6 +243,7 @@ async function generateImage(prompt, outputPath) {
 
       await fs.mkdir('blog/posts/images', { recursive: true });
       await fs.writeFile(outputPath, Buffer.from(imagePart.inlineData.data, 'base64'));
+      await compressImage(outputPath);
       return outputPath;
     } catch (err) {
       console.warn(chalk.yellow(`  Image gen failed: ${err.message}`));
@@ -573,7 +628,14 @@ STYLE:
 - Use contractions (don't, you'll, it's, can't).
 - No filler. Every sentence earns its place.
 - Never start two consecutive paragraphs the same way.
-- Name the mechanism, explain simply, give the actionable takeaway.`;
+- Name the mechanism, explain simply, give the actionable takeaway.
+
+CITATIONS (non-negotiable):
+- Every numeric claim or research-framed statement MUST be followed by an inline <a href="..."> link to a specific study, PMC article, CDC/NIH page, or AASM resource. Examples: "30% of shift workers (<a href=...>CDC NIOSH 2019</a>)...", "studies show X (<a href=...>Smith et al., 2020</a>)".
+- Only cite URLs provided in the RESEARCH TO WEAVE IN block. NEVER invent URLs. If there is no URL available for a specific number, either drop the number, phrase it as qualitative ("most", "many", "commonly"), or omit the claim entirely.
+- NEVER cite a domain homepage (e.g. cdc.gov/, nih.gov/, aasm.org/, sleepfoundation.org/). Citations must link to a specific article or page.
+- Link text must match the destination. If the URL is a CDC page, the link text cannot say "World Health Organization" or "AASM."
+- If you attribute a stat to a named organization ("According to the CDC..."), the very next sentence or the same sentence must contain a link to that organization's actual page with the data.`;
 
   const sections = [];
   let prevContext = '';
@@ -705,9 +767,10 @@ KEEP INTACT:
 
   const result = await gemini(
     `Polish this blog post. Title: "${outline.title}"\n\n${fullHtml}\n\nReturn ONLY the polished HTML body. Same tags. No title, no wrapper divs.`,
-    { system, temp: 0.4, maxTokens: 10000 }
+    { system, temp: 0.4, maxTokens: 16384 }
   );
 
+  assertCoherent(result, 'stage 6 editor');
   logDetail('Edit pass complete');
   return result;
 }
@@ -745,10 +808,11 @@ Return ONLY the improved HTML body. Same tag set. No meta commentary.`,
     {
       system: `You write for SleepMedic. ${outline.voice_archetype ? `Voice archetype: ${outline.voice_archetype}. Preserve that energy.` : 'Base SleepMedic voice — direct, specific, human.'} ${guidelines.slice(0, 500)}`,
       temp: 0.6,
-      maxTokens: 10000
+      maxTokens: 16384
     }
   );
 
+  assertCoherent(result, 'stage 7 humanizer');
   logDetail('Humanizer pass complete');
   return result;
 }
@@ -795,6 +859,64 @@ Return the FULL HTML with links inserted.`,
 
   logDetail('Cross-linking complete');
   return result;
+}
+
+// ════════════════════════════════════════════════════════
+// STAGE 8.5: LINK VALIDATION
+// ════════════════════════════════════════════════════════
+
+async function stage8_5_validateLinks(html) {
+  log('8.5', 'Validating external links & citations...');
+  const urls = [...new Set([...html.matchAll(/href="(https?:\/\/[^"]+)"/g)].map(m => m[1]))];
+  const skip = ['sleepmedic.co', 'apps.apple.com', 'googletagmanager', 'goatcounter', 'fonts.google', 'giscus'];
+  const checks = urls.filter(u => !skip.some(s => u.includes(s)));
+  const broken = [];
+
+  await Promise.all(checks.map(async (url) => {
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 8000);
+      const r = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: ctrl.signal,
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; SleepMedicLinkCheck/1.0)' } });
+      clearTimeout(timer);
+      if (r.status === 404 || r.status === 410 || r.status >= 500) broken.push(url);
+    } catch { broken.push(url); }
+  }));
+
+  let cleaned = html;
+  if (broken.length) {
+    for (const url of broken) {
+      const re = new RegExp(`<a [^>]*href="${url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>([^<]+)<\\/a>`, 'g');
+      cleaned = cleaned.replace(re, '$1');
+    }
+    console.warn(chalk.yellow(`  Stripped ${broken.length} broken links: ${broken.slice(0,3).join(', ')}${broken.length>3?'...':''}`));
+  }
+
+  // Flag homepage-only citations (link text implies specific source but URL is a bare domain root)
+  const genericDomains = /^https?:\/\/(www\.)?(cdc|nih|who|aasm|sleepfoundation|sleepeducation|cochranelibrary|ncbi\.nlm\.nih|pubmed\.ncbi\.nlm\.nih|mayoclinic|webmd|healthline)\.(gov|org|com|int)\/?$/i;
+  const genericLinks = [...cleaned.matchAll(/<a [^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+    .filter(m => genericDomains.test(m[1]));
+  if (genericLinks.length) {
+    console.warn(chalk.yellow(`  WARNING: ${genericLinks.length} citations point to a domain homepage (not a specific page): ${genericLinks.slice(0,3).map(m => m[1]).join(', ')}`));
+  }
+
+  // Flag numeric claims in paragraphs with no link in the same <p>
+  const paragraphs = [...cleaned.matchAll(/<p>([\s\S]*?)<\/p>/g)].map(m => m[1]);
+  const uncited = paragraphs.filter(p => {
+    const hasStat = /\b\d+(\.\d+)?\s*%|\b(\d{1,3}[\.,])?\d{3,}\s*(people|adults|workers|participants|subjects|shift|nurses)/i.test(p)
+      || /\b(studies? (show|find|report)|research (show|find|suggest)|according to|evidence (shows|suggests)|(\d+|a|one)\s+(study|trial|meta-analysis))/i.test(p);
+    const hasLink = /<a [^>]*href=/.test(p);
+    return hasStat && !hasLink;
+  });
+  if (uncited.length) {
+    console.warn(chalk.yellow(`  WARNING: ${uncited.length} paragraph(s) contain numeric/research claims with no inline citation:`));
+    uncited.slice(0, 3).forEach(p => console.warn(chalk.gray(`    "${p.replace(/<[^>]+>/g, '').slice(0, 100)}..."`)));
+  }
+
+  if (!broken.length && !genericLinks.length && !uncited.length) {
+    logDetail(`All ${checks.length} external links valid; all stats cited`);
+  }
+  return cleaned;
 }
 
 // ════════════════════════════════════════════════════════
@@ -1020,12 +1142,15 @@ async function main() {
     // Stage 8: Cross-link
     const linked = await stage8_crossLink(humanized, outline);
 
+    // Stage 8.5: Validate external links - strip any that 404 / fail
+    const validated = await stage8_5_validateLinks(linked);
+
     // Stage 9: Images
     const slug = `${dateISOmt()}-${slugify(outline.title)}`;
     const images = await stage9_generateImages(outline, slug);
 
     // Stage 10: Build HTML
-    const postMeta = await stage10_buildHtml(linked, topicInfo, outline, images);
+    const postMeta = await stage10_buildHtml(validated, topicInfo, outline, images);
 
     // Record to content memory
     try {
