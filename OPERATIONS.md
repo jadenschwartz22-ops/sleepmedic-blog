@@ -101,6 +101,18 @@ Failure path: pipeline opens a GitHub issue titled `Blog FAILED - <date>` which 
 
 The pipeline auto-injects these; no manual steps needed. See ANALYTICS.md for how to verify.
 
+### Citation enforcement
+
+The generator (stage 1 system prompt) treats citations as non-negotiable: every numeric claim or research-framed statement must be followed by an inline `<a href>` link, and the only allowed URLs are the deep links passed in via the `RESEARCH TO WEAVE IN` block. Domain homepages are rejected.
+
+Stage 8.5 (`stage8_5_validateLinks` in `generate-blog-post.mjs`) is the post-generation enforcement pass:
+
+- HEAD-checks every external URL and strips anchors returning 404/410/5xx.
+- Warns on homepage-only citations (bare domain roots).
+- Warns on paragraphs that contain numeric or research-framed claims but no inline link.
+
+Warnings surface in the pipeline log; the final HTML is the authoritative output. If an older post flags a warning during a regen, fix by replacing the bare homepage with a deep link or removing the uncited claim.
+
 ## Disaster recovery
 
 **Pi dies / SD card corrupts.** New Pi: install Node 20+, pm2, cloudflared. Clone `sleepmedic-blog`. Copy `.env` from 1Password (or rebuild: new Resend key, new Cloudflare tunnel). `pm2 start ecosystem.config.cjs && pm2 save && pm2 startup`. Transfer tunnel creds from old Pi or create fresh tunnel and re-route DNS.
