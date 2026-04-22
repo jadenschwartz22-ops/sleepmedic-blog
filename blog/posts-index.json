@@ -13,10 +13,10 @@
   {
     "title": "Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link",
     "slug": "2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li",
-    "excerpt": "Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.",
+    "excerpt": "Tired but wired after doing everything right? The 38 trillion microbes in your gut make serotonin, GABA, and SCFAs that directly shape how you sleep. Here's the evidence and a 14-day reset.",
     "date": "2026-04-16",
     "dateFormatted": "April 16, 2026",
-    "readTime": 2,
+    "readTime": 6,
     "category": "science",
     "categoryLabel": "circadian",
     "coverImage": "posts/images/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li-cover.jpg"
@@ -30,7 +30,7 @@
     "readTime": 7,
     "category": "philosophy",
     "categoryLabel": "Philosophy",
-    "coverImage": null,
+    "coverImage": "posts/images/2026-04-16-the-hardest-part-of-good-sleep-cover.jpg",
     "audience": "shift-workers"
   },
   {
@@ -42,7 +42,7 @@
     "readTime": 12,
     "category": "special",
     "categoryLabel": "Shift Work",
-    "coverImage": null,
+    "coverImage": "posts/images/shift-worker-sleep-protocol-cover.jpg",
     "pillar": true,
     "audience": "shift-workers"
   },

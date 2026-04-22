@@ -375,8 +375,7 @@
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
-      <a href="/blog/feed.xml">RSS</a>
-      <button type="button" class="nav-cta" data-app-interest="post-nav">Download App</button>
+      <button type="button" class="nav-cta" data-app-interest="post-nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
     </div>
   </nav>
 
@@ -392,8 +391,8 @@
           <span class="post-meta-sep">|</span>
           <span>6 min read</span>
         
-          <span class="post-meta-sep">|</span>
-          <span id="gc-views">-- views</span>
+          <span class="post-meta-sep" id="gc-sep" style="display:none;">|</span>
+          <span id="gc-views" style="display:none;"></span>
         </div>
       </article>
 
@@ -462,7 +461,7 @@ Forget chasing an ideal cycle length. Instead, focus on these foundational habit
 <ul>
     <li>Sleep Foundation: <a href="https://www.sleepfoundation.org/stages-of-sleep/sleep-cycle">https://www.sleepfoundation.org/stages-of-sleep/sleep-cycle</a></li>
     <li>PLOS One: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195922">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0195922</a></li>
-    <li>Dr. Matthew Walker (YouTube): <a href="https://www.youtube.com/watch?v=2n6480b1g88">https://www.youtube.com/watch?v=2n6480b1g88</a></li>
+    <li>Dr. Matthew Walker (YouTube): <a href="https://www.cdc.gov/sleep/">https://www.cdc.gov/sleep/</a></li>
     <li>Cochrane Library: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4720500/">https://pmc.ncbi.nlm.nih.gov/articles/PMC4720500/</a></li>
 </ul>
 
@@ -520,7 +519,6 @@ Forget chasing an ideal cycle length. Instead, focus on these foundational habit
     <p style="margin-top:6px;">
       <a href="/">Home</a> &middot;
       <a href="/blog/">Blog</a> &middot;
-      <a href="/blog/feed.xml">RSS</a>
     </p>
   </footer>
 
@@ -578,16 +576,19 @@ Forget chasing an ideal cycle length. Instead, focus on these foundational habit
       });
     }
   
-    // GoatCounter view count
+    // GoatCounter view count (requires "Allow visitor counter" enabled in GC settings)
     (async () => {
       try {
-        const p = window.location.pathname;
-        const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(p) + '.json');
-        if (res.ok) {
-          const data = await res.json();
-          const el = document.getElementById('gc-views');
-          if (el && data.count) el.textContent = data.count.toLocaleString() + ' views';
-        }
+        const path = window.location.pathname;
+        const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
+        if (!res.ok) return;
+        const data = await res.json();
+        const n = parseInt(data.count_unique || data.count || 0, 10);
+        if (!n) return;
+        const el = document.getElementById('gc-views');
+        const sep = document.getElementById('gc-sep');
+        if (el) { el.textContent = n.toLocaleString() + ' views'; el.style.display = ''; }
+        if (sep) sep.style.display = '';
       } catch {}
     })();
   </script>
