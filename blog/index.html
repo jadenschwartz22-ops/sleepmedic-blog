@@ -423,8 +423,7 @@
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <a href="feed.xml">RSS</a>
-      <button type="button" class="nav-cta" data-app-interest="blog-nav">Download App</button>
+      <button type="button" class="nav-cta" data-app-interest="blog-nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
     </div>
   </nav>
 
@@ -632,18 +631,18 @@
 
     
 
-    // GoatCounter view counts
+    // GoatCounter view counts (requires "Allow visitor counter" enabled in GC settings)
     async function loadViewCounts() {
       document.querySelectorAll('.gc-count').forEach(async (el) => {
+        el.textContent = '';
         try {
           const path = el.dataset.gcPath;
           const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
-          if (res.ok) {
-            const data = await res.json();
-            if (data.count) el.textContent = data.count.toLocaleString() + ' views';
-            else el.textContent = '';
-          } else { el.textContent = ''; }
-        } catch { el.textContent = ''; }
+          if (!res.ok) return;
+          const data = await res.json();
+          const n = parseInt(data.count_unique || data.count || 0, 10);
+          if (n) el.textContent = n.toLocaleString() + ' views';
+        } catch {}
       });
     }
 

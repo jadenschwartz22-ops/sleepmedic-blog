@@ -376,8 +376,7 @@
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <a href="/blog/feed.xml">RSS</a>
-      <button type="button" class="nav-cta" data-app-interest="post-nav">Download App</button>
+      <button type="button" class="nav-cta" data-app-interest="post-nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
     </div>
   </nav>
 
@@ -394,8 +393,8 @@
           <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
           <span class="post-meta-sep">|</span>
           <span>{{READ_TIME}} min read</span>
-          <span class="post-meta-sep">|</span>
-          <span id="gc-views">-- views</span>
+          <span class="post-meta-sep" id="gc-sep" style="display:none;">|</span>
+          <span id="gc-views" style="display:none;"></span>
         </div>
       </article>
 
@@ -553,16 +552,19 @@
 
     
 
-    // GoatCounter view count
+    // GoatCounter view count (requires "Allow visitor counter" enabled in GC settings)
     (async () => {
       try {
         const path = window.location.pathname;
         const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
-        if (res.ok) {
-          const data = await res.json();
-          const el = document.getElementById('gc-views');
-          if (el && data.count) el.textContent = data.count.toLocaleString() + ' views';
-        }
+        if (!res.ok) return;
+        const data = await res.json();
+        const n = parseInt(data.count_unique || data.count || 0, 10);
+        if (!n) return;
+        const el = document.getElementById('gc-views');
+        const sep = document.getElementById('gc-sep');
+        if (el) { el.textContent = n.toLocaleString() + ' views'; el.style.display = ''; }
+        if (sep) sep.style.display = '';
       } catch {}
     })();
   </script>

@@ -61,6 +61,16 @@
     .nav-links a:hover { color: var(--text); }
     .nav-cta { padding: 7px 14px; background: var(--accent-dim); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
     .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
+    .nav-cta-short { display: none; }
+    .nav-cta-full { display: inline; }
+    @media (max-width: 480px) {
+      nav { padding: 14px 16px; }
+      .nav-links { gap: 10px; }
+      .nav-links a { font-size: 0.8rem; }
+      .nav-cta { padding: 6px 10px; font-size: 0.75rem !important; }
+      .nav-cta-full { display: none; }
+      .nav-cta-short { display: inline; }
+    }
 
     .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
@@ -132,8 +142,8 @@
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
-      <a href="/blog/feed.xml">RSS</a>
-      <button type="button" class="nav-cta" data-app-interest="nav">Download App</button>
+      <a href="/about/">About</a>
+      <button type="button" class="nav-cta" data-app-interest="nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
     </div>
   </nav>
 

@@ -115,4 +115,16 @@ a:hover { color: var(--accent-2); }
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 3px; }
+
+/* Nav responsive: compact layout on mobile */
+.nav-cta-short { display: none; }
+.nav-cta-full { display: inline; }
+@media (max-width: 480px) {
+  nav { padding: 14px 16px !important; }
+  .nav-links { gap: 10px !important; }
+  .nav-links a { font-size: 0.8rem !important; }
+  .nav-cta { padding: 6px 10px !important; font-size: 0.75rem !important; }
+  .nav-cta-full { display: none; }
+  .nav-cta-short { display: inline; }
+}
 ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
