@@ -1215,6 +1215,58 @@
         }
       ],
       "wordCount": 1037
+    },
+    {
+      "id": "e051bef9c5ef3a4e",
+      "date": "2026-04-23",
+      "title": "Shift Work Insomnia: Adapting CBT-I for Irregular Schedules",
+      "titleFingerprint": "b07a14a269d909da",
+      "excerpt": "Traditional CBT-I can feel impossible with a rotating schedule. Discover the precise adaptations—like anchor sleep and flexible restriction—that conquer shift work insomnia.",
+      "keywords": {
+        "shift": 2,
+        "work": 2,
+        "insomnia": 2,
+        "adapting": 1,
+        "cbti": 2,
+        "irregular": 1,
+        "schedules": 1,
+        "traditional": 1,
+        "feel": 1,
+        "impossible": 1,
+        "rotating": 1,
+        "schedule": 1,
+        "discover": 1,
+        "precise": 1,
+        "adaptationslike": 1,
+        "anchor": 1,
+        "sleep": 1,
+        "flexible": 1,
+        "restrictionthat": 1,
+        "conquer": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1181
     }
   ],
   "images": [
@@ -1464,6 +1516,11 @@
       "topic": "How to sleep after a night shift",
       "usedIn": "0dece099fe4b8da1",
       "date": "2026-04-20"
+    },
+    {
+      "topic": "Tailoring CBT-I for Shift Workers: Strategies to Master Insomnia with Irregular Schedules",
+      "usedIn": "e051bef9c5ef3a4e",
+      "date": "2026-04-23"
     }
   ],
   "phrases": [
@@ -1796,7 +1853,22 @@
     "your brain the 30minute night",
     "brain the 30minute night shift",
     "the 30minute night shift sleep",
-    "30minute night shift sleep protocol"
+    "30minute night shift sleep protocol",
+    "shift work insomnia",
+    "work insomnia adapting",
+    "insomnia adapting cbti",
+    "adapting cbti for",
+    "cbti for irregular",
+    "for irregular schedules",
+    "shift work insomnia adapting",
+    "work insomnia adapting cbti",
+    "insomnia adapting cbti for",
+    "adapting cbti for irregular",
+    "cbti for irregular schedules",
+    "shift work insomnia adapting cbti",
+    "work insomnia adapting cbti for",
+    "insomnia adapting cbti for irregular",
+    "adapting cbti for irregular schedules"
   ],
   "titlePatterns": [
     {
@@ -1928,8 +2000,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol",
       "date": "2026-04-20"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Shift Work Insomnia: Adapting CBT-I for Irregular Schedules",
+      "date": "2026-04-23"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-04-20T17:07:20.146Z"
+  "lastUpdated": "2026-04-23T17:22:41.226Z"
 }

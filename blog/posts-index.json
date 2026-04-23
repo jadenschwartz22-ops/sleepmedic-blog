@@ -1,5 +1,16 @@
 [
   {
+    "title": "Shift Work Insomnia: Adapting CBT-I for Irregular Schedules",
+    "slug": "2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules",
+    "excerpt": "Traditional CBT-I can feel impossible with a rotating schedule. Discover the precise adaptations—like anchor sleep and flexible restriction—that conquer shift work insomnia.",
+    "date": "2026-04-23",
+    "dateFormatted": "April 23, 2026",
+    "readTime": 6,
+    "category": "science",
+    "categoryLabel": "shift-work",
+    "coverImage": "posts/images/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules-cover.jpg"
+  },
+  {
     "title": "Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol",
     "slug": "2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol",
     "excerpt": "Physically drained but mentally wired after a night shift? Discover the precise 30-minute ritual to signal your brain it's time to switch off, helping you fall asleep faster and stay asleep longer during the day.",
@@ -13,7 +24,7 @@
   {
     "title": "Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link",
     "slug": "2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li",
-    "excerpt": "Tired but wired after doing everything right? The 38 trillion microbes in your gut make serotonin, GABA, and SCFAs that directly shape how you sleep. Here's the evidence and a 14-day reset.",
+    "excerpt": "Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.",
     "date": "2026-04-16",
     "dateFormatted": "April 16, 2026",
     "readTime": 6,
@@ -30,7 +41,7 @@
     "readTime": 7,
     "category": "philosophy",
     "categoryLabel": "Philosophy",
-    "coverImage": "posts/images/2026-04-16-the-hardest-part-of-good-sleep-cover.jpg",
+    "coverImage": null,
     "audience": "shift-workers"
   },
   {
