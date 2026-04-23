@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 Apr 2026 01:58:38 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Apr 2026 17:22:41 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol</title>
+      <link>https://sleepmedic.co/blog/posts/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol.html</guid>
+      <description>Physically drained but mentally wired after a night shift? Discover the precise 30-minute ritual to signal your brain it&apos;s time to switch off, helping you fall asleep faster and stay asleep longer during the day.</description>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Shift Work</category>
+    </item>
+  
     <item>
       <title>Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</link>
@@ -182,15 +191,6 @@
       <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-10-23-cultural-sleep-practices.html</guid>
       <description>Explore sleep enhancement techniques from around the world - from Spanish siestas to Japanese inemuri - and how shift workers can adopt them for better rest.</description>
       <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
-      <category>Science</category>
-    </item>
-  
-    <item>
-      <title>Sleep Like a Warrior: Ancient Wisdom and Modern Practice</title>
-      <link>https://sleepmedic.co/blog/posts/2025-10-16-sleep-like-a-warrior.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-10-16-sleep-like-a-warrior.html</guid>
-      <description>Learn how ancient warriors approached rest with intention and resilience. Four core principles for modern shift workers seeking better sleep.</description>
-      <pubDate>Thu, 16 Oct 2025 00:00:00 GMT</pubDate>
       <category>Science</category>
     </item>
   
