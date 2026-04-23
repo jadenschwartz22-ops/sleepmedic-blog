@@ -419,5 +419,49 @@
     "length_bucket": "medium",
     "word_count": 993,
     "tagged_at": "2026-04-20T17:09:17.566Z"
+  },
+  "2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "numbered_protocol",
+      "list_structure",
+      "extended_metaphor",
+      "colon_reveal",
+      "anaphora",
+      "catalog"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Debunks fixed sleep schedule myth for shift workers, offering an adaptive CBT-I protocol with scientific backing.",
+    "length_bucket": "long",
+    "word_count": 1177,
+    "tagged_at": "2026-04-23T17:24:01.378Z"
+  },
+  "2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "em_dash_pivot",
+      "colon_reveal"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "This post provides a practical, science-backed protocol for night shift workers to manage sleep, addressing physiological challenges.",
+    "length_bucket": "long",
+    "word_count": 1035,
+    "tagged_at": "2026-04-23T17:24:11.172Z"
   }
 }
