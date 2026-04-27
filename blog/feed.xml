@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Apr 2026 17:22:41 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2026 17:26:00 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Shift Work Insomnia: Adapting CBT-I for Irregular Schedules</title>
+      <link>https://sleepmedic.co/blog/posts/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules.html</guid>
+      <description>Traditional CBT-I can feel impossible with a rotating schedule. Discover the precise adaptations—like anchor sleep and flexible restriction—that conquer shift work insomnia.</description>
+      <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
+      <category>shift-work</category>
+    </item>
+  
     <item>
       <title>Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol.html</link>
@@ -27,7 +36,7 @@
       <title>Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</link>
       <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</guid>
-      <description>Tired but wired after doing everything right? The 38 trillion microbes in your gut make serotonin, GABA, and SCFAs that directly shape how you sleep. Here&apos;s the evidence and a 14-day reset.</description>
+      <description>Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.</description>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <category>circadian</category>
     </item>
@@ -183,15 +192,6 @@
       <description>Discover the truths about sleep for shift workers. Learn how to protect your sleep against circadian disruption with evidence-based tactics.</description>
       <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
       <category>Timing</category>
-    </item>
-  
-    <item>
-      <title>Cultural Sleep Practices You Can Use for Better Rest</title>
-      <link>https://sleepmedic.co/blog/posts/2025-10-23-cultural-sleep-practices.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-10-23-cultural-sleep-practices.html</guid>
-      <description>Explore sleep enhancement techniques from around the world - from Spanish siestas to Japanese inemuri - and how shift workers can adopt them for better rest.</description>
-      <pubDate>Thu, 23 Oct 2025 00:00:00 GMT</pubDate>
-      <category>Science</category>
     </item>
   
   </channel>
