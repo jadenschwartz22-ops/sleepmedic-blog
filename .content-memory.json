@@ -1267,6 +1267,58 @@
         }
       ],
       "wordCount": 1181
+    },
+    {
+      "id": "3ec42e1c19d867d8",
+      "date": "2026-04-27",
+      "title": "Why Long COVID Insomnia Isn't Just 'Bad Sleep': Unraveling the Puzzle",
+      "titleFingerprint": "0df1e355fdfc1491",
+      "excerpt": "Long COVID insomnia isn't typical sleeplessness. Discover the neurological shifts behind wired-but-tired exhaustion and targeted strategies to gently reset your body.",
+      "keywords": {
+        "long": 2,
+        "covid": 2,
+        "insomnia": 2,
+        "isnt": 2,
+        "sleep": 1,
+        "unraveling": 1,
+        "puzzle": 1,
+        "typical": 1,
+        "sleeplessness": 1,
+        "discover": 1,
+        "neurological": 1,
+        "shifts": 1,
+        "behind": 1,
+        "wiredbuttired": 1,
+        "exhaustion": 1,
+        "targeted": 1,
+        "strategies": 1,
+        "gently": 1,
+        "reset": 1,
+        "body": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "medical",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1161
     }
   ],
   "images": [
@@ -1521,6 +1573,11 @@
       "topic": "Tailoring CBT-I for Shift Workers: Strategies to Master Insomnia with Irregular Schedules",
       "usedIn": "e051bef9c5ef3a4e",
       "date": "2026-04-23"
+    },
+    {
+      "topic": "Unraveling Long COVID's Sleep Puzzle: Strategies for Post-Viral Insomnia",
+      "usedIn": "3ec42e1c19d867d8",
+      "date": "2026-04-27"
     }
   ],
   "phrases": [
@@ -1868,7 +1925,31 @@
     "shift work insomnia adapting cbti",
     "work insomnia adapting cbti for",
     "insomnia adapting cbti for irregular",
-    "adapting cbti for irregular schedules"
+    "adapting cbti for irregular schedules",
+    "why long covid",
+    "long covid insomnia",
+    "covid insomnia isnt",
+    "insomnia isnt just",
+    "isnt just bad",
+    "just bad sleep",
+    "bad sleep unraveling",
+    "sleep unraveling the",
+    "unraveling the puzzle",
+    "why long covid insomnia",
+    "long covid insomnia isnt",
+    "covid insomnia isnt just",
+    "insomnia isnt just bad",
+    "isnt just bad sleep",
+    "just bad sleep unraveling",
+    "bad sleep unraveling the",
+    "sleep unraveling the puzzle",
+    "why long covid insomnia isnt",
+    "long covid insomnia isnt just",
+    "covid insomnia isnt just bad",
+    "insomnia isnt just bad sleep",
+    "isnt just bad sleep unraveling",
+    "just bad sleep unraveling the",
+    "bad sleep unraveling the puzzle"
   ],
   "titlePatterns": [
     {
@@ -2005,8 +2086,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Shift Work Insomnia: Adapting CBT-I for Irregular Schedules",
       "date": "2026-04-23"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Why Long COVID Insomnia Isn't Just 'Bad Sleep': Unraveling the Puzzle",
+      "date": "2026-04-27"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-04-23T17:22:41.226Z"
+  "lastUpdated": "2026-04-27T17:26:00.634Z"
 }
