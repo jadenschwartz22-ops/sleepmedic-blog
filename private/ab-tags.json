@@ -463,5 +463,27 @@
     "length_bucket": "long",
     "word_count": 1035,
     "tagged_at": "2026-04-23T17:24:11.172Z"
+  },
+  "2026-04-27-why-long-covid-insomnia-isnt-just-bad-sleep-unraveling-the-p": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Uses a strong war metaphor to explain complex biological sleep disruptions in Long COVID, debunking common myths.",
+    "length_bucket": "long",
+    "word_count": 1157,
+    "tagged_at": "2026-04-27T17:27:28.712Z"
   }
 }
