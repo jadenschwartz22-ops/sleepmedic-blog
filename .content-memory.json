@@ -1319,6 +1319,55 @@
         }
       ],
       "wordCount": 1161
+    },
+    {
+      "id": "8c4aee02057e9033",
+      "date": "2026-04-30",
+      "title": "Pregnancy Sleep: Hormones, Positions, and Real Solutions",
+      "titleFingerprint": "5ce77f9ce68a2e01",
+      "excerpt": "Struggling to sleep through pregnancy despite every pillow and position? It's not just the bump; hormones are sabotaging your rest. Discover why and what actually works.",
+      "keywords": {
+        "pregnancy": 2,
+        "sleep": 2,
+        "hormones": 2,
+        "positions": 1,
+        "real": 1,
+        "solutions": 1,
+        "struggling": 1,
+        "despite": 1,
+        "every": 1,
+        "pillow": 1,
+        "position": 1,
+        "bump": 1,
+        "sabotaging": 1,
+        "rest": 1,
+        "discover": 1,
+        "actually": 1,
+        "works": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 4
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 962
     }
   ],
   "images": [
@@ -1578,6 +1627,11 @@
       "topic": "Unraveling Long COVID's Sleep Puzzle: Strategies for Post-Viral Insomnia",
       "usedIn": "3ec42e1c19d867d8",
       "date": "2026-04-27"
+    },
+    {
+      "topic": "Sleep during pregnancy positions hormones and solutions",
+      "usedIn": "8c4aee02057e9033",
+      "date": "2026-04-30"
     }
   ],
   "phrases": [
@@ -1949,7 +2003,19 @@
     "insomnia isnt just bad sleep",
     "isnt just bad sleep unraveling",
     "just bad sleep unraveling the",
-    "bad sleep unraveling the puzzle"
+    "bad sleep unraveling the puzzle",
+    "pregnancy sleep hormones",
+    "sleep hormones positions",
+    "hormones positions and",
+    "positions and real",
+    "and real solutions",
+    "pregnancy sleep hormones positions",
+    "sleep hormones positions and",
+    "hormones positions and real",
+    "positions and real solutions",
+    "pregnancy sleep hormones positions and",
+    "sleep hormones positions and real",
+    "hormones positions and real solutions"
   ],
   "titlePatterns": [
     {
@@ -2091,8 +2157,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Why Long COVID Insomnia Isn't Just 'Bad Sleep': Unraveling the Puzzle",
       "date": "2026-04-27"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Pregnancy Sleep: Hormones, Positions, and Real Solutions",
+      "date": "2026-04-30"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-04-27T17:26:00.634Z"
+  "lastUpdated": "2026-04-30T17:23:46.536Z"
 }
