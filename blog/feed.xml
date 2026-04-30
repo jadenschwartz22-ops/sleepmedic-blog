@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Apr 2026 17:26:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2026 17:23:46 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Why Long COVID Insomnia Isn&apos;t Just &apos;Bad Sleep&apos;: Unraveling the Puzzle</title>
+      <link>https://sleepmedic.co/blog/posts/2026-04-27-why-long-covid-insomnia-isnt-just-bad-sleep-unraveling-the-p.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-27-why-long-covid-insomnia-isnt-just-bad-sleep-unraveling-the-p.html</guid>
+      <description>Long COVID insomnia isn&apos;t typical sleeplessness. Discover the neurological shifts behind wired-but-tired exhaustion and targeted strategies to gently reset your body.</description>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
+      <category>conditions</category>
+    </item>
+  
     <item>
       <title>Shift Work Insomnia: Adapting CBT-I for Irregular Schedules</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules.html</link>
@@ -183,15 +192,6 @@
       <description>Learn how to manage circadian disruption and protect your sleep as a shift worker with evidence-based tactics.</description>
       <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
       <category>Special</category>
-    </item>
-  
-    <item>
-      <title>Myth-Busting Sleep for Shift Workers: What You Need to Know</title>
-      <link>https://sleepmedic.co/blog/posts/2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-12-10-myth-busting-sleep-for-shift-workers-what-you-need-to-know.html</guid>
-      <description>Discover the truths about sleep for shift workers. Learn how to protect your sleep against circadian disruption with evidence-based tactics.</description>
-      <pubDate>Wed, 10 Dec 2025 00:00:00 GMT</pubDate>
-      <category>Timing</category>
     </item>
   
   </channel>
