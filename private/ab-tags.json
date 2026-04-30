@@ -485,5 +485,26 @@
     "length_bucket": "long",
     "word_count": 1157,
     "tagged_at": "2026-04-27T17:27:28.712Z"
+  },
+  "2026-04-30-pregnancy-sleep-hormones-positions-and-real-solutions": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "extended_metaphor",
+      "list_structure",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "parenting",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "Addresses pregnancy insomnia through hormonal shifts, RLS, and physical challenges, offering a CBT-I focused protocol.",
+    "length_bucket": "medium",
+    "word_count": 953,
+    "tagged_at": "2026-04-30T17:25:13.295Z"
   }
 }
