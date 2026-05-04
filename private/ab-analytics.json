@@ -1,10 +1,10 @@
 [
   {
     "slug": "2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li",
-    "views": 7,
-    "users": 4,
-    "sessions": 4,
-    "avg_engagement_seconds": 46.5,
+    "views": 8,
+    "users": 5,
+    "sessions": 5,
+    "avg_engagement_seconds": 39.2,
     "energy": "scientist",
     "opening_vehicle": "question",
     "closing_vehicle": "quiet_stop",
@@ -146,6 +146,28 @@
     "app_click_rate": 0
   },
   {
+    "slug": "2026-03-23-box-breathing-4-7-8-simple-techniques-for-faster-sleep",
+    "views": 2,
+    "users": 2,
+    "sessions": 2,
+    "avg_engagement_seconds": 2,
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "imperative",
+    "voice_intensity": "0.7",
+    "devices": [
+      "self_interrupt",
+      "list_structure",
+      "numbered_protocol"
+    ],
+    "length_bucket": "medium",
+    "word_count": 938,
+    "tagged_at": "2026-04-16T21:39:00.392Z",
+    "tagged": true,
+    "subscribe_rate": 0,
+    "app_click_rate": 0
+  },
+  {
     "slug": "2026-04-14-why-the-90-minute-sleep-cycle-myth-leaves-you-tired",
     "views": 2,
     "users": 2,
@@ -234,28 +256,6 @@
     "app_click_rate": 0
   },
   {
-    "slug": "2026-03-23-box-breathing-4-7-8-simple-techniques-for-faster-sleep",
-    "views": 1,
-    "users": 1,
-    "sessions": 1,
-    "avg_engagement_seconds": 0,
-    "energy": "scientist",
-    "opening_vehicle": "question",
-    "closing_vehicle": "imperative",
-    "voice_intensity": "0.7",
-    "devices": [
-      "self_interrupt",
-      "list_structure",
-      "numbered_protocol"
-    ],
-    "length_bucket": "medium",
-    "word_count": 938,
-    "tagged_at": "2026-04-16T21:39:00.392Z",
-    "tagged": true,
-    "subscribe_rate": 0,
-    "app_click_rate": 0
-  },
-  {
     "slug": "2026-03-30-reclaiming-your-rest-debunking-myths-to-fix-a-destroyed-sleep-schedule",
     "views": 1,
     "users": 1,
@@ -280,6 +280,36 @@
     "length_bucket": "long",
     "word_count": 1085,
     "tagged_at": "2026-04-16T21:38:47.325Z",
+    "tagged": true,
+    "subscribe_rate": 0,
+    "app_click_rate": 0
+  },
+  {
+    "slug": "2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules",
+    "views": 1,
+    "users": 1,
+    "sessions": 1,
+    "avg_engagement_seconds": 8,
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "numbered_protocol",
+      "list_structure",
+      "extended_metaphor",
+      "colon_reveal",
+      "anaphora",
+      "catalog"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Debunks fixed sleep schedule myth for shift workers, offering an adaptive CBT-I protocol with scientific backing.",
+    "length_bucket": "long",
+    "word_count": 1177,
+    "tagged_at": "2026-04-23T17:24:01.378Z",
     "tagged": true,
     "subscribe_rate": 0,
     "app_click_rate": 0
