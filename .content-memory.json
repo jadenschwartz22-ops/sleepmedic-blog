@@ -1368,6 +1368,56 @@
         }
       ],
       "wordCount": 962
+    },
+    {
+      "id": "29dc9fb2df31ead7",
+      "date": "2026-05-07",
+      "title": "Neurodivergent Sleep: Stop Fighting Your ADHD or Autistic Brain",
+      "titleFingerprint": "08876794ea1eed10",
+      "excerpt": "Conventional sleep advice often fails neurodivergent brains. Discover precise strategies for ADHD and autism that align with your unique sensory and circadian needs.",
+      "keywords": {
+        "neurodivergent": 2,
+        "sleep": 2,
+        "stop": 1,
+        "fighting": 1,
+        "adhd": 2,
+        "autistic": 1,
+        "brain": 1,
+        "conventional": 1,
+        "advice": 1,
+        "often": 1,
+        "fails": 1,
+        "brains": 1,
+        "discover": 1,
+        "precise": 1,
+        "strategies": 1,
+        "autism": 1,
+        "that": 1,
+        "align": 1,
+        "unique": 1,
+        "sensory": 1,
+        "circadian": 1,
+        "needs": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1280
     }
   ],
   "images": [
@@ -1632,6 +1682,11 @@
       "topic": "Sleep during pregnancy positions hormones and solutions",
       "usedIn": "8c4aee02057e9033",
       "date": "2026-04-30"
+    },
+    {
+      "topic": "Neurodiversity and Sleep: Tailored Strategies for ADHD and Autism",
+      "usedIn": "29dc9fb2df31ead7",
+      "date": "2026-05-07"
     }
   ],
   "phrases": [
@@ -2015,7 +2070,25 @@
     "positions and real solutions",
     "pregnancy sleep hormones positions and",
     "sleep hormones positions and real",
-    "hormones positions and real solutions"
+    "hormones positions and real solutions",
+    "neurodivergent sleep stop",
+    "sleep stop fighting",
+    "stop fighting your",
+    "fighting your adhd",
+    "your adhd or",
+    "adhd or autistic",
+    "or autistic brain",
+    "neurodivergent sleep stop fighting",
+    "sleep stop fighting your",
+    "stop fighting your adhd",
+    "fighting your adhd or",
+    "your adhd or autistic",
+    "adhd or autistic brain",
+    "neurodivergent sleep stop fighting your",
+    "sleep stop fighting your adhd",
+    "stop fighting your adhd or",
+    "fighting your adhd or autistic",
+    "your adhd or autistic brain"
   ],
   "titlePatterns": [
     {
@@ -2162,8 +2235,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Pregnancy Sleep: Hormones, Positions, and Real Solutions",
       "date": "2026-04-30"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Neurodivergent Sleep: Stop Fighting Your ADHD or Autistic Brain",
+      "date": "2026-05-07"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-04-30T17:23:46.536Z"
+  "lastUpdated": "2026-05-07T17:51:09.339Z"
 }
