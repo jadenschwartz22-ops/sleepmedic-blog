@@ -506,5 +506,27 @@
     "length_bucket": "medium",
     "word_count": 953,
     "tagged_at": "2026-04-30T17:25:13.295Z"
+  },
+  "2026-05-07-neurodivergent-sleep-stop-fighting-your-adhd-or-autistic-bra": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "1.0",
+    "devices": [
+      "catalog",
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal"
+    ],
+    "topic_cluster": "conditions",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "This post expertly blends scientific explanation of neurodivergent sleep challenges with empathetic validation and actionable, structured solutions.",
+    "length_bucket": "long",
+    "word_count": 1272,
+    "tagged_at": "2026-05-07T17:52:31.590Z"
   }
 }
