@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Apr 2026 17:23:46 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 07 May 2026 17:51:09 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Pregnancy Sleep: Hormones, Positions, and Real Solutions</title>
+      <link>https://sleepmedic.co/blog/posts/2026-04-30-pregnancy-sleep-hormones-positions-and-real-solutions.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-30-pregnancy-sleep-hormones-positions-and-real-solutions.html</guid>
+      <description>Struggling to sleep through pregnancy despite every pillow and position? It&apos;s not just the bump; hormones are sabotaging your rest. Discover why and what actually works.</description>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
+      <category>Life Stages</category>
+    </item>
+  
     <item>
       <title>Why Long COVID Insomnia Isn&apos;t Just &apos;Bad Sleep&apos;: Unraveling the Puzzle</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-27-why-long-covid-insomnia-isnt-just-bad-sleep-unraveling-the-p.html</link>
@@ -183,15 +192,6 @@
       <description>Discover the long-term effects of poor sleep and how shift workers can protect their health with evidence-based strategies.</description>
       <pubDate>Mon, 22 Dec 2025 00:00:00 GMT</pubDate>
       <category>Science</category>
-    </item>
-  
-    <item>
-      <title>Adjust Your Schedule Without Chaos: A Shift Work Guide</title>
-      <link>https://sleepmedic.co/blog/posts/2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html</guid>
-      <description>Learn how to manage circadian disruption and protect your sleep as a shift worker with evidence-based tactics.</description>
-      <pubDate>Mon, 15 Dec 2025 00:00:00 GMT</pubDate>
-      <category>Special</category>
     </item>
   
   </channel>
