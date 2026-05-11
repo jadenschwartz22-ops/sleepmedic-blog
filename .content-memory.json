@@ -1418,6 +1418,57 @@
         }
       ],
       "wordCount": 1280
+    },
+    {
+      "id": "3b6f674355d0a446",
+      "date": "2026-05-11",
+      "title": "Why Your Sleep Tracker Makes You Anxious (And How to Fix It)",
+      "titleFingerprint": "dd44bdf6d173126e",
+      "excerpt": "Are you meticulously optimizing sleep data, only to feel more anxious? Discover how orthosomnia makes your sleep worse and learn counter-intuitive strategies to reclaim natural rest.",
+      "keywords": {
+        "sleep": 3,
+        "tracker": 1,
+        "makes": 2,
+        "anxious": 2,
+        "meticulously": 1,
+        "optimizing": 1,
+        "data": 1,
+        "only": 1,
+        "feel": 1,
+        "more": 1,
+        "discover": 1,
+        "orthosomnia": 1,
+        "worse": 1,
+        "learn": 1,
+        "counterintuitive": 1,
+        "strategies": 1,
+        "reclaim": 1,
+        "natural": 1,
+        "rest": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 5
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1251
     }
   ],
   "images": [
@@ -1687,6 +1738,11 @@
       "topic": "Neurodiversity and Sleep: Tailored Strategies for ADHD and Autism",
       "usedIn": "29dc9fb2df31ead7",
       "date": "2026-05-07"
+    },
+    {
+      "topic": "The Paradox of Trying Too Hard to Sleep: Overcoming Orthosomnia",
+      "usedIn": "3b6f674355d0a446",
+      "date": "2026-05-11"
     }
   ],
   "phrases": [
@@ -2088,7 +2144,28 @@
     "sleep stop fighting your adhd",
     "stop fighting your adhd or",
     "fighting your adhd or autistic",
-    "your adhd or autistic brain"
+    "your adhd or autistic brain",
+    "why your sleep",
+    "your sleep tracker",
+    "sleep tracker makes",
+    "tracker makes you",
+    "makes you anxious",
+    "you anxious and",
+    "anxious and how",
+    "why your sleep tracker",
+    "your sleep tracker makes",
+    "sleep tracker makes you",
+    "tracker makes you anxious",
+    "makes you anxious and",
+    "you anxious and how",
+    "anxious and how to",
+    "why your sleep tracker makes",
+    "your sleep tracker makes you",
+    "sleep tracker makes you anxious",
+    "tracker makes you anxious and",
+    "makes you anxious and how",
+    "you anxious and how to",
+    "anxious and how to fix"
   ],
   "titlePatterns": [
     {
@@ -2240,8 +2317,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Neurodivergent Sleep: Stop Fighting Your ADHD or Autistic Brain",
       "date": "2026-05-07"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "Why Your Sleep Tracker Makes You Anxious (And How to Fix It)",
+      "date": "2026-05-11"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-05-07T17:51:09.339Z"
+  "lastUpdated": "2026-05-11T17:57:38.733Z"
 }

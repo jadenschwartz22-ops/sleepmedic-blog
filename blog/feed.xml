@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 07 May 2026 17:51:09 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 17:57:38 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Neurodivergent Sleep: Stop Fighting Your ADHD or Autistic Brain</title>
+      <link>https://sleepmedic.co/blog/posts/2026-05-07-neurodivergent-sleep-stop-fighting-your-adhd-or-autistic-bra.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-07-neurodivergent-sleep-stop-fighting-your-adhd-or-autistic-bra.html</guid>
+      <description>Conventional sleep advice often fails neurodivergent brains. Discover precise strategies for ADHD and autism that align with your unique sensory and circadian needs.</description>
+      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
+      <category>conditions</category>
+    </item>
+  
     <item>
       <title>Pregnancy Sleep: Hormones, Positions, and Real Solutions</title>
       <link>https://sleepmedic.co/blog/posts/2026-04-30-pregnancy-sleep-hormones-positions-and-real-solutions.html</link>
@@ -183,15 +192,6 @@
       <description>Discover evidence-based nighttime habits to enhance sleep for shift workers and busy humans. Protect your rest amidst circadian disruption.</description>
       <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
       <category>Tools</category>
-    </item>
-  
-    <item>
-      <title>Long-Term Effects of Poor Sleep: What Shift Workers Need to Know</title>
-      <link>https://sleepmedic.co/blog/posts/2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-12-22-long-term-effects-of-poor-sleep-what-shift-workers-need-to-know.html</guid>
-      <description>Discover the long-term effects of poor sleep and how shift workers can protect their health with evidence-based strategies.</description>
-      <pubDate>Mon, 22 Dec 2025 00:00:00 GMT</pubDate>
-      <category>Science</category>
     </item>
   
   </channel>
