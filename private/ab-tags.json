@@ -528,5 +528,19 @@
     "length_bucket": "long",
     "word_count": 1272,
     "tagged_at": "2026-05-07T17:52:31.590Z"
+  },
+  "2026-05-11-why-your-sleep-tracker-makes-you-anxious-and-how-to-fix-it": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "numbered_protocol",
+      "one_sentence_paragraph"
+    ],
+    "length_bucket": "long",
+    "word_count": 1249,
+    "tagged_at": "2026-05-11T17:59:16.955Z"
   }
 }
