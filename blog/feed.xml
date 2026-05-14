@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 17:57:38 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2026 17:54:19 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Why Your Sleep Tracker Makes You Anxious (And How to Fix It)</title>
+      <link>https://sleepmedic.co/blog/posts/2026-05-11-why-your-sleep-tracker-makes-you-anxious-and-how-to-fix-it.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-11-why-your-sleep-tracker-makes-you-anxious-and-how-to-fix-it.html</guid>
+      <description>Are you meticulously optimizing sleep data, only to feel more anxious? Discover how orthosomnia makes your sleep worse and learn counter-intuitive strategies to reclaim natural rest.</description>
+      <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
+      <category>conditions</category>
+    </item>
+  
     <item>
       <title>Neurodivergent Sleep: Stop Fighting Your ADHD or Autistic Brain</title>
       <link>https://sleepmedic.co/blog/posts/2026-05-07-neurodivergent-sleep-stop-fighting-your-adhd-or-autistic-bra.html</link>
@@ -183,15 +192,6 @@
       <description>Shift work can disrupt sleep and health. Learn evidence-based strategies to protect your sleep and manage circadian disruption effectively.</description>
       <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
       <category>Special</category>
-    </item>
-  
-    <item>
-      <title>Nighttime Habits That Help Sleep for Shift Workers</title>
-      <link>https://sleepmedic.co/blog/posts/2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2025-12-29-nighttime-habits-that-help-sleep-for-shift-workers.html</guid>
-      <description>Discover evidence-based nighttime habits to enhance sleep for shift workers and busy humans. Protect your rest amidst circadian disruption.</description>
-      <pubDate>Mon, 29 Dec 2025 00:00:00 GMT</pubDate>
-      <category>Tools</category>
     </item>
   
   </channel>
