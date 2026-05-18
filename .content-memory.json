@@ -1522,6 +1522,60 @@
         }
       ],
       "wordCount": 1162
+    },
+    {
+      "id": "9ae428f4391744e5",
+      "date": "2026-05-18",
+      "title": "Sleeping 8 Hours But Still Exhausted? Your Meds Might Be Why",
+      "titleFingerprint": "1eb85ff5552e998b",
+      "excerpt": "Waking up tired despite enough sleep? Your daily medications, from allergy pills to blood pressure drugs, might be secretly sabotaging your rest. Discover how.",
+      "keywords": {
+        "sleeping": 1,
+        "hours": 1,
+        "still": 1,
+        "exhausted": 1,
+        "meds": 1,
+        "might": 2,
+        "waking": 1,
+        "tired": 1,
+        "despite": 1,
+        "enough": 1,
+        "sleep": 1,
+        "daily": 1,
+        "medications": 1,
+        "allergy": 1,
+        "pills": 1,
+        "blood": 1,
+        "pressure": 1,
+        "drugs": 1,
+        "secretly": 1,
+        "sabotaging": 1,
+        "rest": 1,
+        "discover": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 4
+        },
+        {
+          "theme": "warning",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1156
     }
   ],
   "images": [
@@ -1801,6 +1855,11 @@
       "topic": "Interpreting Your Wearable Sleep Data: A Critical Scientific Guide",
       "usedIn": "c6deb29837a46b3a",
       "date": "2026-05-14"
+    },
+    {
+      "topic": "Decoding Medication's Nighttime Impact: Non-Sleep Drugs and Your Sleep Quality",
+      "usedIn": "9ae428f4391744e5",
+      "date": "2026-05-18"
     }
   ],
   "phrases": [
@@ -2243,7 +2302,31 @@
     "sleep tracker lies interpreting data",
     "tracker lies interpreting data without",
     "lies interpreting data without the",
-    "interpreting data without the anxiety"
+    "interpreting data without the anxiety",
+    "sleeping 8 hours",
+    "8 hours but",
+    "hours but still",
+    "but still exhausted",
+    "still exhausted your",
+    "exhausted your meds",
+    "your meds might",
+    "meds might be",
+    "might be why",
+    "sleeping 8 hours but",
+    "8 hours but still",
+    "hours but still exhausted",
+    "but still exhausted your",
+    "still exhausted your meds",
+    "exhausted your meds might",
+    "your meds might be",
+    "meds might be why",
+    "sleeping 8 hours but still",
+    "8 hours but still exhausted",
+    "hours but still exhausted your",
+    "but still exhausted your meds",
+    "still exhausted your meds might",
+    "exhausted your meds might be",
+    "your meds might be why"
   ],
   "titlePatterns": [
     {
@@ -2405,8 +2488,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "When Your Sleep Tracker Lies: Interpreting Data Without the Anxiety",
       "date": "2026-05-14"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Sleeping 8 Hours But Still Exhausted? Your Meds Might Be Why",
+      "date": "2026-05-18"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-05-14T17:54:19.103Z"
+  "lastUpdated": "2026-05-18T18:04:36.102Z"
 }
