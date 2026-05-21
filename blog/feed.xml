@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 May 2026 18:04:36 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 21 May 2026 17:59:20 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Sleeping 8 Hours But Still Exhausted? Your Meds Might Be Why</title>
+      <link>https://sleepmedic.co/blog/posts/2026-05-18-sleeping-8-hours-but-still-exhausted-your-meds-might-be-why.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-18-sleeping-8-hours-but-still-exhausted-your-meds-might-be-why.html</guid>
+      <description>Waking up tired despite enough sleep? Your daily medications, from allergy pills to blood pressure drugs, might be secretly sabotaging your rest. Discover how.</description>
+      <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+      <category>conditions</category>
+    </item>
+  
     <item>
       <title>When Your Sleep Tracker Lies: Interpreting Data Without the Anxiety</title>
       <link>https://sleepmedic.co/blog/posts/2026-05-14-when-your-sleep-tracker-lies-interpreting-data-without-the-a.html</link>
@@ -183,15 +192,6 @@
       <description>Discover how box breathing and the 4-7-8 technique can help shift workers and busy humans improve sleep onset and manage circadian disruption.</description>
       <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
       <category>Tools</category>
-    </item>
-  
-    <item>
-      <title>The Unexpected Connection Between Memory consolidation during REM vs deep sleep and Better Recovery</title>
-      <link>https://sleepmedic.co/blog/posts/2026-01-19-the-unexpected-connection-between-memory-consolidation-during-rem-vs-deep-sleep-.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-01-19-the-unexpected-connection-between-memory-consolidation-during-rem-vs-deep-sleep-.html</guid>
-      <description>Explore how REM and deep sleep impact memory consolidation and discover strategies to enhance your sleep quality.</description>
-      <pubDate>Mon, 19 Jan 2026 00:00:00 GMT</pubDate>
-      <category>Science</category>
     </item>
   
   </channel>
