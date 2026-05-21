@@ -562,5 +562,27 @@
     "length_bucket": "long",
     "word_count": 1145,
     "tagged_at": "2026-05-14T17:55:48.614Z"
+  },
+  "2026-05-21-magnesium-l-theanine-apigenin-natural-sleep-aids-without-gro": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "list_structure",
+      "numbered_protocol",
+      "extended_metaphor",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "supplements",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "The post effectively blends scientific explanation of supplements with a practical, step-by-step sleep protocol.",
+    "length_bucket": "long",
+    "word_count": 1019,
+    "tagged_at": "2026-05-21T18:00:43.065Z"
   }
 }
