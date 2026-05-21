@@ -1576,6 +1576,51 @@
         }
       ],
       "wordCount": 1156
+    },
+    {
+      "id": "0e1cd0298e0f4a95",
+      "date": "2026-05-21",
+      "title": "Magnesium, L-Theanine, Apigenin: Natural Sleep Aids Without Grogginess",
+      "titleFingerprint": "4ad7e0665cb3b36b",
+      "excerpt": "Tired of melatonin hangovers? Explore how Magnesium Threonate, L-Theanine, and Apigenin offer a new path to natural, deep sleep without morning grogginess.",
+      "keywords": {
+        "magnesium": 2,
+        "ltheanine": 2,
+        "apigenin": 2,
+        "natural": 2,
+        "sleep": 2,
+        "aids": 1,
+        "without": 2,
+        "grogginess": 2,
+        "tired": 1,
+        "melatonin": 1,
+        "hangovers": 1,
+        "explore": 1,
+        "threonate": 1,
+        "offer": 1,
+        "path": 1,
+        "deep": 1,
+        "morning": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1021
     }
   ],
   "images": [
@@ -1860,6 +1905,11 @@
       "topic": "Decoding Medication's Nighttime Impact: Non-Sleep Drugs and Your Sleep Quality",
       "usedIn": "9ae428f4391744e5",
       "date": "2026-05-18"
+    },
+    {
+      "topic": "Emerging Sleep Aids: Magnesium Threonate, L-Theanine, Apigenin Explained",
+      "usedIn": "0e1cd0298e0f4a95",
+      "date": "2026-05-21"
     }
   ],
   "phrases": [
@@ -2326,7 +2376,22 @@
     "but still exhausted your meds",
     "still exhausted your meds might",
     "exhausted your meds might be",
-    "your meds might be why"
+    "your meds might be why",
+    "magnesium ltheanine apigenin",
+    "ltheanine apigenin natural",
+    "apigenin natural sleep",
+    "natural sleep aids",
+    "sleep aids without",
+    "aids without grogginess",
+    "magnesium ltheanine apigenin natural",
+    "ltheanine apigenin natural sleep",
+    "apigenin natural sleep aids",
+    "natural sleep aids without",
+    "sleep aids without grogginess",
+    "magnesium ltheanine apigenin natural sleep",
+    "ltheanine apigenin natural sleep aids",
+    "apigenin natural sleep aids without",
+    "natural sleep aids without grogginess"
   ],
   "titlePatterns": [
     {
@@ -2493,8 +2558,13 @@
       "pattern": "[QUESTION]",
       "example": "Sleeping 8 Hours But Still Exhausted? Your Meds Might Be Why",
       "date": "2026-05-18"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Magnesium, L-Theanine, Apigenin: Natural Sleep Aids Without Grogginess",
+      "date": "2026-05-21"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-05-18T18:04:36.102Z"
+  "lastUpdated": "2026-05-21T17:59:20.585Z"
 }
