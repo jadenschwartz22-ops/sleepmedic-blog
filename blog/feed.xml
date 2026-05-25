@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 May 2026 17:59:20 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 25 May 2026 17:47:27 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Magnesium, L-Theanine, Apigenin: Natural Sleep Aids Without Grogginess</title>
+      <link>https://sleepmedic.co/blog/posts/2026-05-21-magnesium-l-theanine-apigenin-natural-sleep-aids-without-gro.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-21-magnesium-l-theanine-apigenin-natural-sleep-aids-without-gro.html</guid>
+      <description>Tired of melatonin hangovers? Explore how Magnesium Threonate, L-Theanine, and Apigenin offer a new path to natural, deep sleep without morning grogginess.</description>
+      <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
+      <category>supplements</category>
+    </item>
+  
     <item>
       <title>Sleeping 8 Hours But Still Exhausted? Your Meds Might Be Why</title>
       <link>https://sleepmedic.co/blog/posts/2026-05-18-sleeping-8-hours-but-still-exhausted-your-meds-might-be-why.html</link>
@@ -183,15 +192,6 @@
       <description>For shift workers, timing sleep is crucial. Learn how to manage circadian disruption effectively with evidence-based strategies.</description>
       <pubDate>Mon, 02 Feb 2026 00:00:00 GMT</pubDate>
       <category>Timing</category>
-    </item>
-  
-    <item>
-      <title>Box Breathing and 4-7-8 Technique for Better Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-01-26-box-breathing-and-4-7-8-technique-for-better-sleep.html</guid>
-      <description>Discover how box breathing and the 4-7-8 technique can help shift workers and busy humans improve sleep onset and manage circadian disruption.</description>
-      <pubDate>Mon, 26 Jan 2026 00:00:00 GMT</pubDate>
-      <category>Tools</category>
     </item>
   
   </channel>

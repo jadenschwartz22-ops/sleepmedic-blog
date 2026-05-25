@@ -1621,6 +1621,49 @@
         }
       ],
       "wordCount": 1021
+    },
+    {
+      "id": "c7f10a29be466a16",
+      "date": "2026-05-25",
+      "title": "Why 8 Hours of Sleep Still Leaves Your Brain Foggy",
+      "titleFingerprint": "3f261d256a1f64a7",
+      "excerpt": "Getting enough sleep isn't always enough. Discover how your brain truly cleans, consolidates memories, and recharges during sleep—and what happens when it doesn't.",
+      "keywords": {
+        "hours": 1,
+        "sleep": 2,
+        "still": 1,
+        "leaves": 1,
+        "brain": 2,
+        "foggy": 1,
+        "getting": 1,
+        "enough": 2,
+        "isnt": 1,
+        "always": 1,
+        "discover": 1,
+        "truly": 1,
+        "cleans": 1,
+        "consolidates": 1,
+        "memories": 1,
+        "recharges": 1,
+        "sleepand": 1,
+        "happens": 1,
+        "doesnt": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 995
     }
   ],
   "images": [
@@ -1910,6 +1953,11 @@
       "topic": "Emerging Sleep Aids: Magnesium Threonate, L-Theanine, Apigenin Explained",
       "usedIn": "0e1cd0298e0f4a95",
       "date": "2026-05-21"
+    },
+    {
+      "topic": "What happens to your brain while you sleep",
+      "usedIn": "c7f10a29be466a16",
+      "date": "2026-05-25"
     }
   ],
   "phrases": [
@@ -2391,7 +2439,28 @@
     "magnesium ltheanine apigenin natural sleep",
     "ltheanine apigenin natural sleep aids",
     "apigenin natural sleep aids without",
-    "natural sleep aids without grogginess"
+    "natural sleep aids without grogginess",
+    "why 8 hours",
+    "8 hours of",
+    "hours of sleep",
+    "of sleep still",
+    "sleep still leaves",
+    "still leaves your",
+    "leaves your brain",
+    "your brain foggy",
+    "why 8 hours of",
+    "8 hours of sleep",
+    "hours of sleep still",
+    "of sleep still leaves",
+    "sleep still leaves your",
+    "still leaves your brain",
+    "leaves your brain foggy",
+    "why 8 hours of sleep",
+    "8 hours of sleep still",
+    "hours of sleep still leaves",
+    "of sleep still leaves your",
+    "sleep still leaves your brain",
+    "still leaves your brain foggy"
   ],
   "titlePatterns": [
     {
@@ -2563,8 +2632,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Magnesium, L-Theanine, Apigenin: Natural Sleep Aids Without Grogginess",
       "date": "2026-05-21"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "Why 8 Hours of Sleep Still Leaves Your Brain Foggy",
+      "date": "2026-05-25"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-05-21T17:59:20.585Z"
+  "lastUpdated": "2026-05-25T17:47:27.287Z"
 }
