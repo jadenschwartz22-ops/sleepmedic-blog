@@ -369,5 +369,33 @@
     "tagged": true,
     "subscribe_rate": 0,
     "app_click_rate": 0
+  },
+  {
+    "slug": "2026-05-14-when-your-sleep-tracker-lies-interpreting-data-without-the-a",
+    "views": 1,
+    "users": 1,
+    "sessions": 1,
+    "avg_engagement_seconds": 13,
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "mental_health",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Addresses the psychological impact of sleep trackers, debunking accuracy myths and offering a balanced approach to data.",
+    "length_bucket": "long",
+    "word_count": 1145,
+    "tagged_at": "2026-05-14T17:55:48.614Z",
+    "tagged": true,
+    "subscribe_rate": 0,
+    "app_click_rate": 0
   }
 ]
