@@ -1664,6 +1664,44 @@
         }
       ],
       "wordCount": 995
+    },
+    {
+      "id": "f7e9af3a8c990f70",
+      "date": "2026-05-28",
+      "title": "Why You're Still Tired: The Hidden Impact of Noise on Deep Sleep",
+      "titleFingerprint": "2e8af568d6ff277c",
+      "excerpt": "Waking up exhausted despite a 'quiet' room? Discover how subtle, low-frequency urban noise secretly fragments your deep sleep, leaving you chronically fatigued.",
+      "keywords": {
+        "youre": 1,
+        "still": 1,
+        "tired": 1,
+        "hidden": 1,
+        "impact": 1,
+        "noise": 2,
+        "deep": 2,
+        "sleep": 2,
+        "waking": 1,
+        "exhausted": 1,
+        "despite": 1,
+        "quiet": 1,
+        "room": 1,
+        "discover": 1,
+        "subtle": 1,
+        "lowfrequency": 1,
+        "urban": 1,
+        "secretly": 1,
+        "fragments": 1,
+        "leaving": 1,
+        "chronically": 1,
+        "fatigued": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 923
     }
   ],
   "images": [
@@ -1958,6 +1996,11 @@
       "topic": "What happens to your brain while you sleep",
       "usedIn": "c7f10a29be466a16",
       "date": "2026-05-25"
+    },
+    {
+      "topic": "Silent Threat: Unpacking the Hidden Impacts of Noise Pollution on Your Sleep",
+      "usedIn": "f7e9af3a8c990f70",
+      "date": "2026-05-28"
     }
   ],
   "phrases": [
@@ -2460,7 +2503,34 @@
     "hours of sleep still leaves",
     "of sleep still leaves your",
     "sleep still leaves your brain",
-    "still leaves your brain foggy"
+    "still leaves your brain foggy",
+    "why youre still",
+    "youre still tired",
+    "still tired the",
+    "tired the hidden",
+    "the hidden impact",
+    "hidden impact of",
+    "impact of noise",
+    "of noise on",
+    "noise on deep",
+    "on deep sleep",
+    "why youre still tired",
+    "youre still tired the",
+    "still tired the hidden",
+    "tired the hidden impact",
+    "the hidden impact of",
+    "hidden impact of noise",
+    "impact of noise on",
+    "of noise on deep",
+    "noise on deep sleep",
+    "why youre still tired the",
+    "youre still tired the hidden",
+    "still tired the hidden impact",
+    "tired the hidden impact of",
+    "the hidden impact of noise",
+    "hidden impact of noise on",
+    "impact of noise on deep",
+    "of noise on deep sleep"
   ],
   "titlePatterns": [
     {
@@ -2637,8 +2707,13 @@
       "pattern": "[QUESTION_WORD] [TOPIC]",
       "example": "Why 8 Hours of Sleep Still Leaves Your Brain Foggy",
       "date": "2026-05-25"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Why You're Still Tired: The Hidden Impact of Noise on Deep Sleep",
+      "date": "2026-05-28"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-05-25T17:47:27.287Z"
+  "lastUpdated": "2026-05-28T18:39:17.755Z"
 }
