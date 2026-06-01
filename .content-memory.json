@@ -1702,6 +1702,57 @@
         }
       ],
       "wordCount": 923
+    },
+    {
+      "id": "f51638d66c7bcd87",
+      "date": "2026-06-01",
+      "title": "Wide Awake at 3 AM? Why Hormones Sabotage Perimenopause Sleep",
+      "titleFingerprint": "3be6033acdc124c6",
+      "excerpt": "The crushing exhaustion of perimenopause sleep loss is real. Discover how fluctuating hormones disrupt sleep architecture and learn evidence-based strategies to reclaim your nights.",
+      "keywords": {
+        "wide": 1,
+        "awake": 1,
+        "hormones": 2,
+        "sabotage": 1,
+        "perimenopause": 2,
+        "sleep": 3,
+        "crushing": 1,
+        "exhaustion": 1,
+        "loss": 1,
+        "real": 1,
+        "discover": 1,
+        "fluctuating": 1,
+        "disrupt": 1,
+        "architecture": 1,
+        "learn": 1,
+        "evidencebased": 1,
+        "strategies": 1,
+        "reclaim": 1,
+        "nights": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 5
+        },
+        {
+          "theme": "medical",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1269
     }
   ],
   "images": [
@@ -2001,6 +2052,11 @@
       "topic": "Silent Threat: Unpacking the Hidden Impacts of Noise Pollution on Your Sleep",
       "usedIn": "f7e9af3a8c990f70",
       "date": "2026-05-28"
+    },
+    {
+      "topic": "Navigating Sleep During Perimenopause and Menopause: Hormonal Shifts and Solutions",
+      "usedIn": "f51638d66c7bcd87",
+      "date": "2026-06-01"
     }
   ],
   "phrases": [
@@ -2530,7 +2586,25 @@
     "the hidden impact of noise",
     "hidden impact of noise on",
     "impact of noise on deep",
-    "of noise on deep sleep"
+    "of noise on deep sleep",
+    "wide awake at",
+    "awake at 3",
+    "am why hormones",
+    "why hormones sabotage",
+    "hormones sabotage perimenopause",
+    "sabotage perimenopause sleep",
+    "wide awake at 3",
+    "awake at 3 am",
+    "3 am why hormones",
+    "am why hormones sabotage",
+    "why hormones sabotage perimenopause",
+    "hormones sabotage perimenopause sleep",
+    "wide awake at 3 am",
+    "awake at 3 am why",
+    "at 3 am why hormones",
+    "3 am why hormones sabotage",
+    "am why hormones sabotage perimenopause",
+    "why hormones sabotage perimenopause sleep"
   ],
   "titlePatterns": [
     {
@@ -2712,8 +2786,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Why You're Still Tired: The Hidden Impact of Noise on Deep Sleep",
       "date": "2026-05-28"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Wide Awake at 3 AM? Why Hormones Sabotage Perimenopause Sleep",
+      "date": "2026-06-01"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-05-28T18:39:17.755Z"
+  "lastUpdated": "2026-06-01T20:21:39.273Z"
 }

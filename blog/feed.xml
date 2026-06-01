@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 28 May 2026 18:39:17 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 20:21:39 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Why You&apos;re Still Tired: The Hidden Impact of Noise on Deep Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-05-28-why-youre-still-tired-the-hidden-impact-of-noise-on-deep-sle.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-28-why-youre-still-tired-the-hidden-impact-of-noise-on-deep-sle.html</guid>
+      <description>Waking up exhausted despite a &apos;quiet&apos; room? Discover how subtle, low-frequency urban noise secretly fragments your deep sleep, leaving you chronically fatigued.</description>
+      <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
+      <category>sleep-hygiene</category>
+    </item>
+  
     <item>
       <title>Why 8 Hours of Sleep Still Leaves Your Brain Foggy</title>
       <link>https://sleepmedic.co/blog/posts/2026-05-25-why-8-hours-of-sleep-still-leaves-your-brain-foggy.html</link>
@@ -183,15 +192,6 @@
       <description>Discover how NSDR and Yoga Nidra can enhance sleep quality for shift workers and busy individuals with actionable protocols.</description>
       <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
       <category>Tools</category>
-    </item>
-  
-    <item>
-      <title>The Hidden Toll: How Poor Sleep Affects Your Vital Organs</title>
-      <link>https://sleepmedic.co/blog/posts/2026-02-16-the-hidden-toll-how-poor-sleep-affects-your-vital-organs.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-02-16-the-hidden-toll-how-poor-sleep-affects-your-vital-organs.html</guid>
-      <description>Explore the long-term impacts of inadequate sleep on key organs and discover actionable strategies to safeguard your health.</description>
-      <pubDate>Mon, 16 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Science</category>
     </item>
   
   </channel>
