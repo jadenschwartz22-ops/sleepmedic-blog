@@ -605,5 +605,70 @@
     "length_bucket": "medium",
     "word_count": 986,
     "tagged_at": "2026-05-25T17:48:45.253Z"
+  },
+  "2026-06-01-wide-awake-at-3-am-why-hormones-sabotage-perimenopause-sleep": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "quiet_stop",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explains perimenopause sleep disruption through hormonal biology and offers evidence-based strategies.",
+    "length_bucket": "long",
+    "word_count": 1257,
+    "tagged_at": "2026-06-01T20:23:07.831Z"
+  },
+  "2026-05-28-why-youre-still-tired-the-hidden-impact-of-noise-on-deep-sle": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol",
+      "literary_ref"
+    ],
+    "topic_cluster": "environment",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "Combines scientific explanation of urban noise's impact on sleep with a practical, actionable noise reduction protocol.",
+    "length_bucket": "medium",
+    "word_count": 917,
+    "tagged_at": "2026-06-01T20:23:19.954Z"
+  },
+  "2026-05-18-sleeping-8-hours-but-still-exhausted-your-meds-might-be-why": {
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "self_interrupt",
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "conditions",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "This post meticulously explains how various medications disrupt sleep architecture and provides a structured protocol for addressing the issue with a clinician.",
+    "length_bucket": "long",
+    "word_count": 1152,
+    "tagged_at": "2026-06-01T20:23:31.421Z"
   }
 }
