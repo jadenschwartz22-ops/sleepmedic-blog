@@ -670,5 +670,27 @@
     "length_bucket": "long",
     "word_count": 1152,
     "tagged_at": "2026-06-01T20:23:31.421Z"
+  },
+  "2026-06-04-why-sleeping-in-on-weekends-harms-your-health-and-metabolism": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "circadian",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "Explains social jet lag's biological impact and offers a practical consistency protocol for circadian rhythm alignment.",
+    "length_bucket": "long",
+    "word_count": 1195,
+    "tagged_at": "2026-06-04T18:20:07.521Z"
   }
 }
