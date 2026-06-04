@@ -1753,6 +1753,66 @@
         }
       ],
       "wordCount": 1269
+    },
+    {
+      "id": "25691fc435992a68",
+      "date": "2026-06-04",
+      "title": "Why Sleeping In on Weekends Harms Your Health and Metabolism",
+      "titleFingerprint": "299f6d54f7a173ad",
+      "excerpt": "Your weekend sleep-ins might feel like a reset, but they're secretly throwing your body's internal clock into chaos, impacting your mood, energy, and even your metabolism all week long. Discover the hidden costs of social jet lag.",
+      "keywords": {
+        "sleeping": 1,
+        "weekends": 1,
+        "harms": 1,
+        "health": 1,
+        "metabolism": 2,
+        "weekend": 1,
+        "sleepins": 1,
+        "might": 1,
+        "feel": 1,
+        "like": 1,
+        "reset": 1,
+        "theyre": 1,
+        "secretly": 1,
+        "throwing": 1,
+        "bodys": 1,
+        "internal": 1,
+        "clock": 1,
+        "chaos": 1,
+        "impacting": 1,
+        "mood": 1,
+        "energy": 1,
+        "even": 1,
+        "week": 1,
+        "long": 1,
+        "discover": 1,
+        "hidden": 1,
+        "costs": 1,
+        "social": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1217
     }
   ],
   "images": [
@@ -2057,6 +2117,11 @@
       "topic": "Navigating Sleep During Perimenopause and Menopause: Hormonal Shifts and Solutions",
       "usedIn": "f51638d66c7bcd87",
       "date": "2026-06-01"
+    },
+    {
+      "topic": "The Circadian Cost of Social Jet Lag: Why Your Weekend Sleep Schedule Matters More Than You Think",
+      "usedIn": "25691fc435992a68",
+      "date": "2026-06-04"
     }
   ],
   "phrases": [
@@ -2604,7 +2669,28 @@
     "at 3 am why hormones",
     "3 am why hormones sabotage",
     "am why hormones sabotage perimenopause",
-    "why hormones sabotage perimenopause sleep"
+    "why hormones sabotage perimenopause sleep",
+    "why sleeping in",
+    "sleeping in on",
+    "in on weekends",
+    "on weekends harms",
+    "weekends harms your",
+    "harms your health",
+    "your health and",
+    "health and metabolism",
+    "why sleeping in on",
+    "sleeping in on weekends",
+    "in on weekends harms",
+    "on weekends harms your",
+    "weekends harms your health",
+    "harms your health and",
+    "your health and metabolism",
+    "why sleeping in on weekends",
+    "sleeping in on weekends harms",
+    "in on weekends harms your",
+    "on weekends harms your health",
+    "weekends harms your health and",
+    "harms your health and metabolism"
   ],
   "titlePatterns": [
     {
@@ -2791,8 +2877,13 @@
       "pattern": "[QUESTION]",
       "example": "Wide Awake at 3 AM? Why Hormones Sabotage Perimenopause Sleep",
       "date": "2026-06-01"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "Why Sleeping In on Weekends Harms Your Health and Metabolism",
+      "date": "2026-06-04"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-01T20:21:39.273Z"
+  "lastUpdated": "2026-06-04T18:18:48.602Z"
 }
