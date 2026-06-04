@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jun 2026 20:21:39 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jun 2026 18:18:48 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Wide Awake at 3 AM? Why Hormones Sabotage Perimenopause Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-01-wide-awake-at-3-am-why-hormones-sabotage-perimenopause-sleep.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-01-wide-awake-at-3-am-why-hormones-sabotage-perimenopause-sleep.html</guid>
+      <description>The crushing exhaustion of perimenopause sleep loss is real. Discover how fluctuating hormones disrupt sleep architecture and learn evidence-based strategies to reclaim your nights.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+      <category>life-stages</category>
+    </item>
+  
     <item>
       <title>Why You&apos;re Still Tired: The Hidden Impact of Noise on Deep Sleep</title>
       <link>https://sleepmedic.co/blog/posts/2026-05-28-why-youre-still-tired-the-hidden-impact-of-noise-on-deep-sle.html</link>
@@ -183,15 +192,6 @@
       <description>Is &apos;sleepmaxxing&apos; a path to peak performance or a recipe for anxiety? We cut through the hype to reveal what science says about truly optimizing your sleep.</description>
       <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
       <category>Trending</category>
-    </item>
-  
-    <item>
-      <title>Harnessing NSDR and Yoga Nidra for Better Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-02-23-harnessing-nsdr-and-yoga-nidra-for-better-sleep.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-02-23-harnessing-nsdr-and-yoga-nidra-for-better-sleep.html</guid>
-      <description>Discover how NSDR and Yoga Nidra can enhance sleep quality for shift workers and busy individuals with actionable protocols.</description>
-      <pubDate>Mon, 23 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Tools</category>
     </item>
   
   </channel>
