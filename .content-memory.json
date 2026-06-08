@@ -1813,6 +1813,61 @@
         }
       ],
       "wordCount": 1217
+    },
+    {
+      "id": "d9661e8a4a028dcf",
+      "date": "2026-06-08",
+      "title": "Beyond CBD: CBN & CBG for Your 3 AM Wake-Ups",
+      "titleFingerprint": "0f7fe91e944e73f0",
+      "excerpt": "Frustrated by sleepless nights even after trying CBD? Emerging science points to minor cannabinoids like CBN and CBG offering targeted relief for specific sleep problems, from anxiety-driven onset to those stubborn 3 AM awakenings, without addiction.",
+      "keywords": {
+        "beyond": 1,
+        "wakeups": 1,
+        "frustrated": 1,
+        "sleepless": 1,
+        "nights": 1,
+        "even": 1,
+        "after": 1,
+        "trying": 1,
+        "emerging": 1,
+        "science": 1,
+        "points": 1,
+        "minor": 1,
+        "cannabinoids": 1,
+        "like": 1,
+        "offering": 1,
+        "targeted": 1,
+        "relief": 1,
+        "specific": 1,
+        "sleep": 1,
+        "problems": 1,
+        "anxietydriven": 1,
+        "onset": 1,
+        "those": 1,
+        "stubborn": 1,
+        "awakenings": 1,
+        "without": 1,
+        "addiction": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 4
+        },
+        {
+          "theme": "warning",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1020
     }
   ],
   "images": [
@@ -2122,6 +2177,11 @@
       "topic": "The Circadian Cost of Social Jet Lag: Why Your Weekend Sleep Schedule Matters More Than You Think",
       "usedIn": "25691fc435992a68",
       "date": "2026-06-04"
+    },
+    {
+      "topic": "Beyond CBD: The Emerging Science of Minor Cannabinoids (CBN, CBG) for Sleep",
+      "usedIn": "d9661e8a4a028dcf",
+      "date": "2026-06-08"
     }
   ],
   "phrases": [
@@ -2690,7 +2750,22 @@
     "in on weekends harms your",
     "on weekends harms your health",
     "weekends harms your health and",
-    "harms your health and metabolism"
+    "harms your health and metabolism",
+    "beyond cbd cbn",
+    "cbg for your",
+    "for your 3",
+    "your 3 am",
+    "3 am wakeups",
+    "beyond cbd cbn cbg",
+    "cbn cbg for your",
+    "cbg for your 3",
+    "for your 3 am",
+    "your 3 am wakeups",
+    "beyond cbd cbn cbg for",
+    "cbd cbn cbg for your",
+    "cbn cbg for your 3",
+    "cbg for your 3 am",
+    "for your 3 am wakeups"
   ],
   "titlePatterns": [
     {
@@ -2882,8 +2957,13 @@
       "pattern": "[QUESTION_WORD] [TOPIC]",
       "example": "Why Sleeping In on Weekends Harms Your Health and Metabolism",
       "date": "2026-06-04"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Beyond CBD: CBN & CBG for Your 3 AM Wake-Ups",
+      "date": "2026-06-08"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-04T18:18:48.602Z"
+  "lastUpdated": "2026-06-08T18:28:09.828Z"
 }
