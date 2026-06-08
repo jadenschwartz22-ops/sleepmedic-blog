@@ -692,5 +692,27 @@
     "length_bucket": "long",
     "word_count": 1195,
     "tagged_at": "2026-06-04T18:20:07.521Z"
+  },
+  "2026-06-08-beyond-cbd-cbn-cbg-for-your-3-am-wake-ups": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "quiet_stop",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "extended_metaphor",
+      "list_structure",
+      "catalog",
+      "em_dash_pivot",
+      "colon_reveal"
+    ],
+    "topic_cluster": "supplements",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explores specific cannabinoids (CBN, CBG) for sleep maintenance and onset, detailing mechanisms and providing a dosage protocol.",
+    "length_bucket": "long",
+    "word_count": 1014,
+    "tagged_at": "2026-06-08T18:29:31.389Z"
   }
 }
