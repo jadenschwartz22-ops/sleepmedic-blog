@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Jun 2026 18:18:48 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2026 18:28:09 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Why Sleeping In on Weekends Harms Your Health and Metabolism</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-04-why-sleeping-in-on-weekends-harms-your-health-and-metabolism.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-04-why-sleeping-in-on-weekends-harms-your-health-and-metabolism.html</guid>
+      <description>Your weekend sleep-ins might feel like a reset, but they&apos;re secretly throwing your body&apos;s internal clock into chaos, impacting your mood, energy, and even your metabolism all week long. Discover the hidden costs of social jet lag.</description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+      <category>circadian</category>
+    </item>
+  
     <item>
       <title>Wide Awake at 3 AM? Why Hormones Sabotage Perimenopause Sleep</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-01-wide-awake-at-3-am-why-hormones-sabotage-perimenopause-sleep.html</link>
@@ -183,15 +192,6 @@
       <description>Struggling to fall asleep? Learn how two powerful breathing techniques—Box Breathing and the 4-7-8 Method—can calm your nervous system and guide you to deeper rest.</description>
       <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
       <category>Tools</category>
-    </item>
-  
-    <item>
-      <title>Sleepmaxxing: Decoding the Trend, Science, and Actionable Steps</title>
-      <link>https://sleepmedic.co/blog/posts/2026-03-01-sleepmaxxing-decoding-the-trend-science-and-actionable-steps.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-03-01-sleepmaxxing-decoding-the-trend-science-and-actionable-steps.html</guid>
-      <description>Is &apos;sleepmaxxing&apos; a path to peak performance or a recipe for anxiety? We cut through the hype to reveal what science says about truly optimizing your sleep.</description>
-      <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
-      <category>Trending</category>
     </item>
   
   </channel>
