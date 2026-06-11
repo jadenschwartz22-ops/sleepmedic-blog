@@ -1868,6 +1868,60 @@
         }
       ],
       "wordCount": 1020
+    },
+    {
+      "id": "b6561fd9b4dc9e8a",
+      "date": "2026-06-11",
+      "title": "Rapid Rest: Firefighter's Field Manual for On-Shift Deep Sleep",
+      "titleFingerprint": "de17e7f172f50171",
+      "excerpt": "For firefighters and first responders, deep sleep between calls seems impossible. This field manual offers practical strategies and quick relaxation techniques to achieve restorative rest amidst unpredictable schedules.",
+      "keywords": {
+        "rapid": 1,
+        "rest": 2,
+        "firefighters": 2,
+        "field": 2,
+        "manual": 2,
+        "onshift": 1,
+        "deep": 2,
+        "sleep": 2,
+        "first": 1,
+        "responders": 1,
+        "between": 1,
+        "calls": 1,
+        "seems": 1,
+        "impossible": 1,
+        "this": 1,
+        "offers": 1,
+        "practical": 1,
+        "strategies": 1,
+        "quick": 1,
+        "relaxation": 1,
+        "techniques": 1,
+        "achieve": 1,
+        "restorative": 1,
+        "amidst": 1,
+        "unpredictable": 1,
+        "schedules": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 1
+        }
+      ],
+      "wordCount": 952
     }
   ],
   "images": [
@@ -2182,6 +2236,11 @@
       "topic": "Beyond CBD: The Emerging Science of Minor Cannabinoids (CBN, CBG) for Sleep",
       "usedIn": "d9661e8a4a028dcf",
       "date": "2026-06-08"
+    },
+    {
+      "topic": "The firefighter paradox sleep between calls",
+      "usedIn": "b6561fd9b4dc9e8a",
+      "date": "2026-06-11"
     }
   ],
   "phrases": [
@@ -2765,7 +2824,25 @@
     "cbd cbn cbg for your",
     "cbn cbg for your 3",
     "cbg for your 3 am",
-    "for your 3 am wakeups"
+    "for your 3 am wakeups",
+    "rapid rest firefighters",
+    "rest firefighters field",
+    "firefighters field manual",
+    "field manual for",
+    "manual for onshift",
+    "for onshift deep",
+    "onshift deep sleep",
+    "rapid rest firefighters field",
+    "rest firefighters field manual",
+    "firefighters field manual for",
+    "field manual for onshift",
+    "manual for onshift deep",
+    "for onshift deep sleep",
+    "rapid rest firefighters field manual",
+    "rest firefighters field manual for",
+    "firefighters field manual for onshift",
+    "field manual for onshift deep",
+    "manual for onshift deep sleep"
   ],
   "titlePatterns": [
     {
@@ -2962,8 +3039,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Beyond CBD: CBN & CBG for Your 3 AM Wake-Ups",
       "date": "2026-06-08"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Rapid Rest: Firefighter's Field Manual for On-Shift Deep Sleep",
+      "date": "2026-06-11"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-08T18:28:09.828Z"
+  "lastUpdated": "2026-06-11T18:49:48.985Z"
 }
