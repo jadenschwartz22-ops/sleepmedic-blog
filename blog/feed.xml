@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 08 Jun 2026 18:28:09 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 18:49:49 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Beyond CBD: CBN &amp; CBG for Your 3 AM Wake-Ups</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-08-beyond-cbd-cbn-cbg-for-your-3-am-wake-ups.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-08-beyond-cbd-cbn-cbg-for-your-3-am-wake-ups.html</guid>
+      <description>Frustrated by sleepless nights even after trying CBD? Emerging science points to minor cannabinoids like CBN and CBG offering targeted relief for specific sleep problems, from anxiety-driven onset to those stubborn 3 AM awakenings, without addiction.</description>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 GMT</pubDate>
+      <category>supplements</category>
+    </item>
+  
     <item>
       <title>Why Sleeping In on Weekends Harms Your Health and Metabolism</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-04-why-sleeping-in-on-weekends-harms-your-health-and-metabolism.html</link>
@@ -183,15 +192,6 @@
       <description>Feeling lost in a chaotic sleep schedule? We debunk common myths and offer science-backed strategies to reset your sleep and reclaim consistent rest.</description>
       <pubDate>Mon, 30 Mar 2026 00:00:00 GMT</pubDate>
       <category>Troubleshooting</category>
-    </item>
-  
-    <item>
-      <title>Box Breathing &amp; 4-7-8: Simple Techniques for Faster Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-03-23-box-breathing-4-7-8-simple-techniques-for-faster-sleep.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-03-23-box-breathing-4-7-8-simple-techniques-for-faster-sleep.html</guid>
-      <description>Struggling to fall asleep? Learn how two powerful breathing techniques—Box Breathing and the 4-7-8 Method—can calm your nervous system and guide you to deeper rest.</description>
-      <pubDate>Mon, 23 Mar 2026 00:00:00 GMT</pubDate>
-      <category>Tools</category>
     </item>
   
   </channel>
