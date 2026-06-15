@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jun 2026 18:49:49 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jun 2026 19:52:19 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Rapid Rest: Firefighter&apos;s Field Manual for On-Shift Deep Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep.html</guid>
+      <description>For firefighters and first responders, deep sleep between calls seems impossible. This field manual offers practical strategies and quick relaxation techniques to achieve restorative rest amidst unpredictable schedules.</description>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 GMT</pubDate>
+      <category>Shift Work</category>
+    </item>
+  
     <item>
       <title>Beyond CBD: CBN &amp; CBG for Your 3 AM Wake-Ups</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-08-beyond-cbd-cbn-cbg-for-your-3-am-wake-ups.html</link>
@@ -183,15 +192,6 @@
       <description>The viral &apos;sleepy girl mocktail&apos; promises restful nights. We dive into its ingredients, what the science says, and how to approach trendy sleep aids wisely.</description>
       <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
       <category>Trending</category>
-    </item>
-  
-    <item>
-      <title>Reclaiming Your Rest: Debunking Myths to Fix a Destroyed Sleep Schedule</title>
-      <link>https://sleepmedic.co/blog/posts/2026-03-30-reclaiming-your-rest-debunking-myths-to-fix-a-destroyed-sleep-schedule.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-03-30-reclaiming-your-rest-debunking-myths-to-fix-a-destroyed-sleep-schedule.html</guid>
-      <description>Feeling lost in a chaotic sleep schedule? We debunk common myths and offer science-backed strategies to reset your sleep and reclaim consistent rest.</description>
-      <pubDate>Mon, 30 Mar 2026 00:00:00 GMT</pubDate>
-      <category>Troubleshooting</category>
     </item>
   
   </channel>
