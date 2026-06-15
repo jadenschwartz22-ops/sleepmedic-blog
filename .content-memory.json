@@ -1922,6 +1922,50 @@
         }
       ],
       "wordCount": 952
+    },
+    {
+      "id": "3a24f4443ee25e99",
+      "date": "2026-06-15",
+      "title": "Non-Sleep Deep Rest: Myths, Mechanisms, and Finding Calm",
+      "titleFingerprint": "91cd66c5787df4d6",
+      "excerpt": "Feeling exhausted but can't truly rest? Discover how Non-Sleep Deep Rest (NSDR) and Yoga Nidra offer profound restoration, busting myths about real calm.",
+      "keywords": {
+        "nonsleep": 2,
+        "deep": 2,
+        "rest": 3,
+        "myths": 2,
+        "mechanisms": 1,
+        "finding": 1,
+        "calm": 2,
+        "feeling": 1,
+        "exhausted": 1,
+        "cant": 1,
+        "truly": 1,
+        "discover": 1,
+        "nsdr": 1,
+        "yoga": 1,
+        "nidra": 1,
+        "offer": 1,
+        "profound": 1,
+        "restoration": 1,
+        "busting": 1,
+        "real": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1090
     }
   ],
   "images": [
@@ -2241,6 +2285,11 @@
       "topic": "The firefighter paradox sleep between calls",
       "usedIn": "b6561fd9b4dc9e8a",
       "date": "2026-06-11"
+    },
+    {
+      "topic": "Non-sleep deep rest (NSDR) and Yoga Nidra protocols",
+      "usedIn": "3a24f4443ee25e99",
+      "date": "2026-06-15"
     }
   ],
   "phrases": [
@@ -2842,7 +2891,22 @@
     "rest firefighters field manual for",
     "firefighters field manual for onshift",
     "field manual for onshift deep",
-    "manual for onshift deep sleep"
+    "manual for onshift deep sleep",
+    "nonsleep deep rest",
+    "deep rest myths",
+    "rest myths mechanisms",
+    "myths mechanisms and",
+    "mechanisms and finding",
+    "and finding calm",
+    "nonsleep deep rest myths",
+    "deep rest myths mechanisms",
+    "rest myths mechanisms and",
+    "myths mechanisms and finding",
+    "mechanisms and finding calm",
+    "nonsleep deep rest myths mechanisms",
+    "deep rest myths mechanisms and",
+    "rest myths mechanisms and finding",
+    "myths mechanisms and finding calm"
   ],
   "titlePatterns": [
     {
@@ -3044,8 +3108,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Rapid Rest: Firefighter's Field Manual for On-Shift Deep Sleep",
       "date": "2026-06-11"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Non-Sleep Deep Rest: Myths, Mechanisms, and Finding Calm",
+      "date": "2026-06-15"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-11T18:49:48.985Z"
+  "lastUpdated": "2026-06-15T19:52:19.222Z"
 }
