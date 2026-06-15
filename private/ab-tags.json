@@ -714,5 +714,49 @@
     "length_bucket": "long",
     "word_count": 1014,
     "tagged_at": "2026-06-08T18:29:31.389Z"
+  },
+  "2026-06-15-non-sleep-deep-rest-myths-mechanisms-and-finding-calm": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "braided_register",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "mental_health",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Debunks common myths about rest and sleep, offering NSDR as a complementary solution with scientific backing and a practical guide.",
+    "length_bucket": "long",
+    "word_count": 1078,
+    "tagged_at": "2026-06-15T19:53:51.980Z"
+  },
+  "2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "imperative",
+    "voice_intensity": "1.0",
+    "devices": [
+      "braided_register",
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "A practical guide for firefighters to optimize on-shift rest, blending scientific explanation with direct, actionable strategies.",
+    "length_bucket": "medium",
+    "word_count": 948,
+    "tagged_at": "2026-06-15T19:54:01.741Z"
   }
 }
