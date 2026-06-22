@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Jun 2026 19:52:19 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jun 2026 19:28:42 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Non-Sleep Deep Rest: Myths, Mechanisms, and Finding Calm</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-15-non-sleep-deep-rest-myths-mechanisms-and-finding-calm.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-15-non-sleep-deep-rest-myths-mechanisms-and-finding-calm.html</guid>
+      <description>Feeling exhausted but can&apos;t truly rest? Discover how Non-Sleep Deep Rest (NSDR) and Yoga Nidra offer profound restoration, busting myths about real calm.</description>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <category>Tools</category>
+    </item>
+  
     <item>
       <title>Rapid Rest: Firefighter&apos;s Field Manual for On-Shift Deep Sleep</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep.html</link>
@@ -183,15 +192,6 @@
       <description>That popular &apos;sleep hack&apos; often fails because your sleep cycles are unique. Discover the real science behind truly refreshing rest.</description>
       <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
       <category>Science</category>
-    </item>
-  
-    <item>
-      <title>Sleepy Girl Mocktail: Decoding the Trend for Better Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-06-sleepy-girl-mocktail-decoding-the-trend-for-better-sleep.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-06-sleepy-girl-mocktail-decoding-the-trend-for-better-sleep.html</guid>
-      <description>The viral &apos;sleepy girl mocktail&apos; promises restful nights. We dive into its ingredients, what the science says, and how to approach trendy sleep aids wisely.</description>
-      <pubDate>Mon, 06 Apr 2026 00:00:00 GMT</pubDate>
-      <category>Trending</category>
     </item>
   
   </channel>
