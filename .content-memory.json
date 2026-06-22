@@ -1966,6 +1966,58 @@
         }
       ],
       "wordCount": 1090
+    },
+    {
+      "id": "9cdd98cd190c45ce",
+      "date": "2026-06-22",
+      "title": "Why Does My Gut Wake Me Up at 3 AM? The Microbiome-Sleep Link",
+      "titleFingerprint": "d64782c66e4cf63c",
+      "excerpt": "Persistent 3 AM wake-ups and restless nights might point to your gut. Discover how your microbiome dictates sleep quality and what specific steps can bring lasting rest.",
+      "keywords": {
+        "does": 1,
+        "wake": 1,
+        "microbiomesleep": 1,
+        "link": 1,
+        "persistent": 1,
+        "wakeups": 1,
+        "restless": 1,
+        "nights": 1,
+        "might": 1,
+        "point": 1,
+        "discover": 1,
+        "microbiome": 1,
+        "dictates": 1,
+        "sleep": 1,
+        "quality": 1,
+        "specific": 1,
+        "steps": 1,
+        "bring": 1,
+        "lasting": 1,
+        "rest": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1156
     }
   ],
   "images": [
@@ -2290,6 +2342,11 @@
       "topic": "Non-sleep deep rest (NSDR) and Yoga Nidra protocols",
       "usedIn": "3a24f4443ee25e99",
       "date": "2026-06-15"
+    },
+    {
+      "topic": "The Gut-Sleep Axis: How Your Microbiome Impacts Rest",
+      "usedIn": "9cdd98cd190c45ce",
+      "date": "2026-06-22"
     }
   ],
   "phrases": [
@@ -2906,7 +2963,27 @@
     "nonsleep deep rest myths mechanisms",
     "deep rest myths mechanisms and",
     "rest myths mechanisms and finding",
-    "myths mechanisms and finding calm"
+    "myths mechanisms and finding calm",
+    "why does my",
+    "does my gut",
+    "my gut wake",
+    "gut wake me",
+    "wake me up",
+    "am the microbiomesleep",
+    "why does my gut",
+    "does my gut wake",
+    "my gut wake me",
+    "gut wake me up",
+    "wake me up at",
+    "3 am the microbiomesleep",
+    "am the microbiomesleep link",
+    "why does my gut wake",
+    "does my gut wake me",
+    "my gut wake me up",
+    "gut wake me up at",
+    "wake me up at 3",
+    "at 3 am the microbiomesleep",
+    "3 am the microbiomesleep link"
   ],
   "titlePatterns": [
     {
@@ -3113,8 +3190,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Non-Sleep Deep Rest: Myths, Mechanisms, and Finding Calm",
       "date": "2026-06-15"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Why Does My Gut Wake Me Up at 3 AM? The Microbiome-Sleep Link",
+      "date": "2026-06-22"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-15T19:52:19.222Z"
+  "lastUpdated": "2026-06-22T19:28:42.832Z"
 }
