@@ -758,5 +758,26 @@
     "length_bucket": "medium",
     "word_count": 948,
     "tagged_at": "2026-06-15T19:54:01.741Z"
+  },
+  "2026-06-22-why-does-my-gut-wake-me-up-at-3-am-the-microbiome-sleep-link": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "numbered_protocol",
+      "list_structure",
+      "colon_reveal",
+      "em_dash_pivot",
+      "extended_metaphor"
+    ],
+    "topic_cluster": "nutrition",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explains the biological mechanisms of the gut-brain axis on sleep, offering dietary and lifestyle protocols.",
+    "length_bucket": "long",
+    "word_count": 1150,
+    "tagged_at": "2026-06-22T19:30:17.454Z"
   }
 }
