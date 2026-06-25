@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 22 Jun 2026 19:28:42 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jun 2026 18:12:18 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Why Does My Gut Wake Me Up at 3 AM? The Microbiome-Sleep Link</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-22-why-does-my-gut-wake-me-up-at-3-am-the-microbiome-sleep-link.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-22-why-does-my-gut-wake-me-up-at-3-am-the-microbiome-sleep-link.html</guid>
+      <description>Persistent 3 AM wake-ups and restless nights might point to your gut. Discover how your microbiome dictates sleep quality and what specific steps can bring lasting rest.</description>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <category>circadian</category>
+    </item>
+  
     <item>
       <title>Non-Sleep Deep Rest: Myths, Mechanisms, and Finding Calm</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-15-non-sleep-deep-rest-myths-mechanisms-and-finding-calm.html</link>
@@ -183,15 +192,6 @@
       <description>A full protocol for shift workers to protect sleep, manage circadian disruption, and recover faster between rotations.</description>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <category>Shift Work</category>
-    </item>
-  
-    <item>
-      <title>Why the 90-Minute Sleep Cycle Myth Leaves You Tired</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-14-why-the-90-minute-sleep-cycle-myth-leaves-you-tired.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-14-why-the-90-minute-sleep-cycle-myth-leaves-you-tired.html</guid>
-      <description>That popular &apos;sleep hack&apos; often fails because your sleep cycles are unique. Discover the real science behind truly refreshing rest.</description>
-      <pubDate>Tue, 14 Apr 2026 00:00:00 GMT</pubDate>
-      <category>Science</category>
     </item>
   
   </channel>
