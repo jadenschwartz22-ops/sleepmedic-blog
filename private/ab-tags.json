@@ -779,5 +779,19 @@
     "length_bucket": "long",
     "word_count": 1150,
     "tagged_at": "2026-06-22T19:30:17.454Z"
+  },
+  "2026-06-25-why-sunday-night-insomnia-steals-your-week-and-how-to-beat-i": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "braided_register",
+      "list_structure"
+    ],
+    "length_bucket": "long",
+    "word_count": 1096,
+    "tagged_at": "2026-06-25T18:13:50.423Z"
   }
 }
