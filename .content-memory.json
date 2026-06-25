@@ -2018,6 +2018,57 @@
         }
       ],
       "wordCount": 1156
+    },
+    {
+      "id": "3ed0504c18517509",
+      "date": "2026-06-25",
+      "title": "Why Sunday Night Insomnia Steals Your Week, And How To Beat It",
+      "titleFingerprint": "a13aa7db9aab7962",
+      "excerpt": "The dread of a sleepless Sunday night, fueled by work anxiety, can sabotage your entire week. Uncover the psychological triggers and implement a proactive wind-down routine to reclaim your sleep and Monday.",
+      "keywords": {
+        "sunday": 2,
+        "night": 2,
+        "insomnia": 1,
+        "steals": 1,
+        "week": 2,
+        "beat": 1,
+        "dread": 1,
+        "sleepless": 1,
+        "fueled": 1,
+        "work": 1,
+        "anxiety": 1,
+        "sabotage": 1,
+        "entire": 1,
+        "uncover": 1,
+        "psychological": 1,
+        "triggers": 1,
+        "implement": 1,
+        "proactive": 1,
+        "winddown": 1,
+        "routine": 1,
+        "reclaim": 1,
+        "sleep": 1,
+        "monday": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 4
+        },
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1102
     }
   ],
   "images": [
@@ -2347,6 +2398,11 @@
       "topic": "The Gut-Sleep Axis: How Your Microbiome Impacts Rest",
       "usedIn": "9cdd98cd190c45ce",
       "date": "2026-06-22"
+    },
+    {
+      "topic": "Sunday night insomnia why it happens and how to beat it",
+      "usedIn": "3ed0504c18517509",
+      "date": "2026-06-25"
     }
   ],
   "phrases": [
@@ -2983,7 +3039,33 @@
     "gut wake me up at",
     "wake me up at 3",
     "at 3 am the microbiomesleep",
-    "3 am the microbiomesleep link"
+    "3 am the microbiomesleep link",
+    "why sunday night",
+    "sunday night insomnia",
+    "night insomnia steals",
+    "insomnia steals your",
+    "steals your week",
+    "your week and",
+    "week and how",
+    "how to beat",
+    "to beat it",
+    "why sunday night insomnia",
+    "sunday night insomnia steals",
+    "night insomnia steals your",
+    "insomnia steals your week",
+    "steals your week and",
+    "your week and how",
+    "week and how to",
+    "and how to beat",
+    "how to beat it",
+    "why sunday night insomnia steals",
+    "sunday night insomnia steals your",
+    "night insomnia steals your week",
+    "insomnia steals your week and",
+    "steals your week and how",
+    "your week and how to",
+    "week and how to beat",
+    "and how to beat it"
   ],
   "titlePatterns": [
     {
@@ -3195,8 +3277,13 @@
       "pattern": "[QUESTION]",
       "example": "Why Does My Gut Wake Me Up at 3 AM? The Microbiome-Sleep Link",
       "date": "2026-06-22"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "Why Sunday Night Insomnia Steals Your Week, And How To Beat It",
+      "date": "2026-06-25"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-22T19:28:42.832Z"
+  "lastUpdated": "2026-06-25T18:12:18.330Z"
 }
