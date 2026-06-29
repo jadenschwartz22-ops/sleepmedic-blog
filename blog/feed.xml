@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Jun 2026 18:12:18 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 18:12:05 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Why Sunday Night Insomnia Steals Your Week, And How To Beat It</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-25-why-sunday-night-insomnia-steals-your-week-and-how-to-beat-i.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-25-why-sunday-night-insomnia-steals-your-week-and-how-to-beat-i.html</guid>
+      <description>The dread of a sleepless Sunday night, fueled by work anxiety, can sabotage your entire week. Uncover the psychological triggers and implement a proactive wind-down routine to reclaim your sleep and Monday.</description>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+      <category>Troubleshooting</category>
+    </item>
+  
     <item>
       <title>Why Does My Gut Wake Me Up at 3 AM? The Microbiome-Sleep Link</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-22-why-does-my-gut-wake-me-up-at-3-am-the-microbiome-sleep-link.html</link>
@@ -183,15 +192,6 @@
       <description>The science is the easy part. The hard part is leaving early, saying no, and accepting the social friction that comes with protecting your sleep. A real essay on sleep discipline.</description>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <category>Philosophy</category>
-    </item>
-  
-    <item>
-      <title>The Shift Worker Sleep Protocol: A Complete Evidence-Based Guide</title>
-      <link>https://sleepmedic.co/blog/posts/shift-worker-sleep-protocol.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/shift-worker-sleep-protocol.html</guid>
-      <description>A full protocol for shift workers to protect sleep, manage circadian disruption, and recover faster between rotations.</description>
-      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
-      <category>Shift Work</category>
     </item>
   
   </channel>
