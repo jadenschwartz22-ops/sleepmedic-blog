@@ -2069,6 +2069,54 @@
         }
       ],
       "wordCount": 1102
+    },
+    {
+      "id": "9d3d42733c2f6883",
+      "date": "2026-06-29",
+      "title": "Beyond White Noise: Actively Guiding Your Brain to Deeper Sleep",
+      "titleFingerprint": "d2916426bcea04a3",
+      "excerpt": "Tired of white noise failing your anxious mind? Discover how scientifically engineered soundscapes actively guide your brain into truly restorative deep sleep.",
+      "keywords": {
+        "beyond": 1,
+        "white": 2,
+        "noise": 2,
+        "actively": 2,
+        "guiding": 1,
+        "brain": 2,
+        "deeper": 1,
+        "sleep": 2,
+        "tired": 1,
+        "failing": 1,
+        "anxious": 1,
+        "mind": 1,
+        "discover": 1,
+        "scientifically": 1,
+        "engineered": 1,
+        "soundscapes": 1,
+        "guide": 1,
+        "truly": 1,
+        "restorative": 1,
+        "deep": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        }
+      ],
+      "wordCount": 1137
     }
   ],
   "images": [
@@ -2403,6 +2451,11 @@
       "topic": "Sunday night insomnia why it happens and how to beat it",
       "usedIn": "3ed0504c18517509",
       "date": "2026-06-25"
+    },
+    {
+      "topic": "Beyond White Noise: The Science of Therapeutic Soundscapes for Better Sleep",
+      "usedIn": "9d3d42733c2f6883",
+      "date": "2026-06-29"
     }
   ],
   "phrases": [
@@ -3065,7 +3118,28 @@
     "steals your week and how",
     "your week and how to",
     "week and how to beat",
-    "and how to beat it"
+    "and how to beat it",
+    "beyond white noise",
+    "white noise actively",
+    "noise actively guiding",
+    "actively guiding your",
+    "guiding your brain",
+    "your brain to",
+    "brain to deeper",
+    "to deeper sleep",
+    "beyond white noise actively",
+    "white noise actively guiding",
+    "noise actively guiding your",
+    "actively guiding your brain",
+    "guiding your brain to",
+    "your brain to deeper",
+    "brain to deeper sleep",
+    "beyond white noise actively guiding",
+    "white noise actively guiding your",
+    "noise actively guiding your brain",
+    "actively guiding your brain to",
+    "guiding your brain to deeper",
+    "your brain to deeper sleep"
   ],
   "titlePatterns": [
     {
@@ -3282,8 +3356,13 @@
       "pattern": "[QUESTION_WORD] [TOPIC]",
       "example": "Why Sunday Night Insomnia Steals Your Week, And How To Beat It",
       "date": "2026-06-25"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Beyond White Noise: Actively Guiding Your Brain to Deeper Sleep",
+      "date": "2026-06-29"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-25T18:12:18.330Z"
+  "lastUpdated": "2026-06-29T18:12:05.579Z"
 }
