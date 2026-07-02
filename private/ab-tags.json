@@ -793,5 +793,27 @@
     "length_bucket": "long",
     "word_count": 1096,
     "tagged_at": "2026-06-25T18:13:50.423Z"
+  },
+  "2026-06-29-beyond-white-noise-actively-guiding-your-brain-to-deeper-sle": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "catalog",
+      "numbered_protocol",
+      "extended_metaphor",
+      "self_interrupt",
+      "colon_reveal"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explains the biological mechanisms of sound therapy for sleep, offering specific techniques and a practical protocol.",
+    "length_bucket": "long",
+    "word_count": 1121,
+    "tagged_at": "2026-07-02T17:50:35.105Z"
   }
 }
