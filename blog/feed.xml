@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 Jun 2026 18:12:05 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 17:49:04 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Beyond White Noise: Actively Guiding Your Brain to Deeper Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-06-29-beyond-white-noise-actively-guiding-your-brain-to-deeper-sle.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-29-beyond-white-noise-actively-guiding-your-brain-to-deeper-sle.html</guid>
+      <description>Tired of white noise failing your anxious mind? Discover how scientifically engineered soundscapes actively guide your brain into truly restorative deep sleep.</description>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
+      <category>tools</category>
+    </item>
+  
     <item>
       <title>Why Sunday Night Insomnia Steals Your Week, And How To Beat It</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-25-why-sunday-night-insomnia-steals-your-week-and-how-to-beat-i.html</link>
@@ -183,15 +192,6 @@
       <description>Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.</description>
       <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
       <category>circadian</category>
-    </item>
-  
-    <item>
-      <title>The Hardest Part of Good Sleep Has Nothing to Do With Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-16-the-hardest-part-of-good-sleep.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-16-the-hardest-part-of-good-sleep.html</guid>
-      <description>The science is the easy part. The hard part is leaving early, saying no, and accepting the social friction that comes with protecting your sleep. A real essay on sleep discipline.</description>
-      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
-      <category>Philosophy</category>
     </item>
   
   </channel>

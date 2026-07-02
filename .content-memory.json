@@ -2117,6 +2117,54 @@
         }
       ],
       "wordCount": 1137
+    },
+    {
+      "id": "db62c48aaf27a882",
+      "date": "2026-07-02",
+      "title": "ADHD Brain Won't Shut Off? Why 'Winding Down' Fails",
+      "titleFingerprint": "2c32ac85e50e7d8e",
+      "excerpt": "That 2 AM buzz? Discover why your ADHD brain resists sleep and learn counter-intuitive strategies to quiet the mental chatter for restful nights.",
+      "keywords": {
+        "adhd": 2,
+        "brain": 2,
+        "wont": 1,
+        "shut": 1,
+        "winding": 1,
+        "down": 1,
+        "fails": 1,
+        "that": 1,
+        "buzz": 1,
+        "discover": 1,
+        "resists": 1,
+        "sleep": 1,
+        "learn": 1,
+        "counterintuitive": 1,
+        "strategies": 1,
+        "quiet": 1,
+        "mental": 1,
+        "chatter": 1,
+        "restful": 1,
+        "nights": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1413
     }
   ],
   "images": [
@@ -2456,6 +2504,11 @@
       "topic": "Beyond White Noise: The Science of Therapeutic Soundscapes for Better Sleep",
       "usedIn": "9d3d42733c2f6883",
       "date": "2026-06-29"
+    },
+    {
+      "topic": "ADHD and sleep why your brain won't shut off",
+      "usedIn": "db62c48aaf27a882",
+      "date": "2026-07-02"
     }
   ],
   "phrases": [
@@ -3139,7 +3192,25 @@
     "noise actively guiding your brain",
     "actively guiding your brain to",
     "guiding your brain to deeper",
-    "your brain to deeper sleep"
+    "your brain to deeper sleep",
+    "adhd brain wont",
+    "brain wont shut",
+    "wont shut off",
+    "shut off why",
+    "off why winding",
+    "why winding down",
+    "winding down fails",
+    "adhd brain wont shut",
+    "brain wont shut off",
+    "wont shut off why",
+    "shut off why winding",
+    "off why winding down",
+    "why winding down fails",
+    "adhd brain wont shut off",
+    "brain wont shut off why",
+    "wont shut off why winding",
+    "shut off why winding down",
+    "off why winding down fails"
   ],
   "titlePatterns": [
     {
@@ -3361,8 +3432,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Beyond White Noise: Actively Guiding Your Brain to Deeper Sleep",
       "date": "2026-06-29"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "ADHD Brain Won't Shut Off? Why 'Winding Down' Fails",
+      "date": "2026-07-02"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-06-29T18:12:05.579Z"
+  "lastUpdated": "2026-07-02T17:49:04.391Z"
 }
