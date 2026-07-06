@@ -1,10 +1,10 @@
 [
   {
     "slug": "shift-worker-sleep-protocol",
-    "views": 11,
-    "users": 11,
-    "sessions": 11,
-    "avg_engagement_seconds": 11.454545454545455,
+    "views": 13,
+    "users": 13,
+    "sessions": 15,
+    "avg_engagement_seconds": 11.866666666666667,
     "energy": "scientist",
     "opening_vehicle": "claim",
     "closing_vehicle": "checklist",
@@ -394,6 +394,28 @@
     "length_bucket": "long",
     "word_count": 1085,
     "tagged_at": "2026-04-16T21:38:47.325Z",
+    "tagged": true,
+    "subscribe_rate": 0,
+    "app_click_rate": 0
+  },
+  {
+    "slug": "2026-05-11-why-your-sleep-tracker-makes-you-anxious-and-how-to-fix-it",
+    "views": 1,
+    "users": 1,
+    "sessions": 1,
+    "avg_engagement_seconds": 119,
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "numbered_protocol",
+      "one_sentence_paragraph"
+    ],
+    "length_bucket": "long",
+    "word_count": 1249,
+    "tagged_at": "2026-05-11T17:59:16.955Z",
     "tagged": true,
     "subscribe_rate": 0,
     "app_click_rate": 0
