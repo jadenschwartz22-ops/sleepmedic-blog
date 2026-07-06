@@ -2165,6 +2165,64 @@
         }
       ],
       "wordCount": 1413
+    },
+    {
+      "id": "daa5f6e7fcc0a89f",
+      "date": "2026-07-06",
+      "title": "Woke Up Drained? Damage Control for Athletes After Poor Sleep",
+      "titleFingerprint": "f6a4672a2eebb72e",
+      "excerpt": "Woke up exhausted before a crucial event? Learn immediate protocols and tactical adjustments athletes can implement to prevent injury, salvage performance, and optimize recovery after one night of inadequate sleep.",
+      "keywords": {
+        "woke": 2,
+        "drained": 1,
+        "damage": 1,
+        "control": 1,
+        "athletes": 2,
+        "after": 2,
+        "poor": 1,
+        "sleep": 2,
+        "exhausted": 1,
+        "before": 1,
+        "crucial": 1,
+        "event": 1,
+        "learn": 1,
+        "immediate": 1,
+        "protocols": 1,
+        "tactical": 1,
+        "adjustments": 1,
+        "implement": 1,
+        "prevent": 1,
+        "injury": 1,
+        "salvage": 1,
+        "performance": 1,
+        "optimize": 1,
+        "recovery": 1,
+        "night": 1,
+        "inadequate": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 4
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1132
     }
   ],
   "images": [
@@ -2509,6 +2567,11 @@
       "topic": "ADHD and sleep why your brain won't shut off",
       "usedIn": "db62c48aaf27a882",
       "date": "2026-07-02"
+    },
+    {
+      "topic": "Sleep for athletes recovery and performance optimization",
+      "usedIn": "daa5f6e7fcc0a89f",
+      "date": "2026-07-06"
     }
   ],
   "phrases": [
@@ -3210,7 +3273,28 @@
     "brain wont shut off why",
     "wont shut off why winding",
     "shut off why winding down",
-    "off why winding down fails"
+    "off why winding down fails",
+    "woke up drained",
+    "up drained damage",
+    "drained damage control",
+    "damage control for",
+    "control for athletes",
+    "for athletes after",
+    "athletes after poor",
+    "after poor sleep",
+    "woke up drained damage",
+    "up drained damage control",
+    "drained damage control for",
+    "damage control for athletes",
+    "control for athletes after",
+    "for athletes after poor",
+    "athletes after poor sleep",
+    "woke up drained damage control",
+    "up drained damage control for",
+    "drained damage control for athletes",
+    "damage control for athletes after",
+    "control for athletes after poor",
+    "for athletes after poor sleep"
   ],
   "titlePatterns": [
     {
@@ -3437,8 +3521,13 @@
       "pattern": "[QUESTION]",
       "example": "ADHD Brain Won't Shut Off? Why 'Winding Down' Fails",
       "date": "2026-07-02"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Woke Up Drained? Damage Control for Athletes After Poor Sleep",
+      "date": "2026-07-06"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-02T17:49:04.391Z"
+  "lastUpdated": "2026-07-06T18:13:54.675Z"
 }
