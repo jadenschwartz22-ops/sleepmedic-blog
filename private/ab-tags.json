@@ -815,5 +815,49 @@
     "length_bucket": "long",
     "word_count": 1121,
     "tagged_at": "2026-07-02T17:50:35.105Z"
+  },
+  "2026-07-06-woke-up-drained-damage-control-for-athletes-after-poor-sleep": {
+    "energy": "warrior",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "first_person_scene",
+      "extended_metaphor",
+      "list_structure",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "biology",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "A tactical guide for athletes to mitigate performance damage and recover from a single night of poor sleep.",
+    "length_bucket": "long",
+    "word_count": 1126,
+    "tagged_at": "2026-07-06T18:15:17.911Z"
+  },
+  "2026-07-02-adhd-brain-wont-shut-off-why-winding-down-fails": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "1.0",
+    "devices": [
+      "first_person_scene",
+      "catalog",
+      "extended_metaphor",
+      "colon_reveal",
+      "em_dash_pivot",
+      "numbered_protocol"
+    ],
+    "topic_cluster": "conditions",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "Blends scientific explanation with empathetic language and a practical, actionable 7-day protocol for ADHD-related sleep issues.",
+    "length_bucket": "long",
+    "word_count": 1407,
+    "tagged_at": "2026-07-06T18:15:28.080Z"
   }
 }
