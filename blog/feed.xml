@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 02 Jul 2026 17:49:04 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2026 18:13:54 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>ADHD Brain Won&apos;t Shut Off? Why &apos;Winding Down&apos; Fails</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-02-adhd-brain-wont-shut-off-why-winding-down-fails.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-02-adhd-brain-wont-shut-off-why-winding-down-fails.html</guid>
+      <description>That 2 AM buzz? Discover why your ADHD brain resists sleep and learn counter-intuitive strategies to quiet the mental chatter for restful nights.</description>
+      <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
+      <category>Life Stages</category>
+    </item>
+  
     <item>
       <title>Beyond White Noise: Actively Guiding Your Brain to Deeper Sleep</title>
       <link>https://sleepmedic.co/blog/posts/2026-06-29-beyond-white-noise-actively-guiding-your-brain-to-deeper-sle.html</link>
@@ -183,15 +192,6 @@
       <description>Physically drained but mentally wired after a night shift? Discover the precise 30-minute ritual to signal your brain it&apos;s time to switch off, helping you fall asleep faster and stay asleep longer during the day.</description>
       <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
       <category>Shift Work</category>
-    </item>
-  
-    <item>
-      <title>Can Your Gut Bacteria Cause Insomnia? The Microbiome-Sleep Link</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-16-can-your-gut-bacteria-cause-insomnia-the-microbiome-sleep-li.html</guid>
-      <description>Still struggling with sleep despite countless efforts? Your gut might hold the surprising key. Discover how your microbiome influences your internal clock, offering a new path to consistent, restorative rest.</description>
-      <pubDate>Thu, 16 Apr 2026 00:00:00 GMT</pubDate>
-      <category>circadian</category>
     </item>
   
   </channel>
