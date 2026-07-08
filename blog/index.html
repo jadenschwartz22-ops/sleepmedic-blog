@@ -52,10 +52,6 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
-
-  <!-- GoatCounter -->
-  <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -631,19 +627,18 @@
 
     
 
-    // GoatCounter view counts (requires "Allow visitor counter" enabled in GC settings)
+    // View counts from a static GA4 snapshot (blog/data/views.json), refreshed on publish.
     async function loadViewCounts() {
-      document.querySelectorAll('.gc-count').forEach(async (el) => {
-        el.textContent = '';
-        try {
-          const path = el.dataset.gcPath;
-          const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
-          if (!res.ok) return;
-          const data = await res.json();
-          const n = parseInt(data.count_unique || data.count || 0, 10);
-          if (n) el.textContent = n.toLocaleString() + ' views';
-        } catch {}
-      });
+      try {
+        const res = await fetch('data/views.json', { cache: 'no-store' });
+        if (!res.ok) return;
+        const { views } = await res.json();
+        document.querySelectorAll('.gc-count').forEach((el) => {
+          const slug = (el.dataset.gcPath || '').match(/\/blog\/posts\/([^/?#.]+)/)?.[1];
+          const n = slug ? views[slug] : null;
+          el.textContent = n ? n.toLocaleString() + ' views' : '';
+        });
+      } catch {}
     }
 
     const _origRender = render;

@@ -65,10 +65,6 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
-
-  <!-- GoatCounter -->
-  <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -474,15 +470,20 @@
       } catch {}
     })();
 
+    // View count from a static GA4 snapshot (blog/data/views.json), refreshed on publish.
     (async () => {
       try {
-        const path = window.location.pathname;
-        const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
-        if (res.ok) {
-          const data = await res.json();
-          const el = document.getElementById('gc-views');
-          if (el && data.count) el.textContent = data.count.toLocaleString() + ' views';
-        }
+        const slug = window.location.pathname.match(/\/blog\/posts\/([^/?#.]+)/)?.[1];
+        if (!slug) return;
+        const res = await fetch('/blog/data/views.json', { cache: 'no-store' });
+        if (!res.ok) return;
+        const { views } = await res.json();
+        const n = views[slug];
+        if (!n) return;
+        const el = document.getElementById('gc-views');
+        const sep = document.getElementById('gc-sep');
+        if (el) { el.textContent = n.toLocaleString() + ' views'; el.style.display = ''; }
+        if (sep) sep.style.display = '';
       } catch {}
     })();
   </script>

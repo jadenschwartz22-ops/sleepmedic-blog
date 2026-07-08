@@ -66,10 +66,6 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
-
-  <!-- GoatCounter -->
-  <script data-goatcounter="https://jschwartz9.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
   <!-- Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -607,14 +603,15 @@
 
     
 
-    // GoatCounter view count (requires "Allow visitor counter" enabled in GC settings)
+    // View count from a static GA4 snapshot (blog/data/views.json), refreshed on publish.
     (async () => {
       try {
-        const path = window.location.pathname;
-        const res = await fetch('https://jschwartz9.goatcounter.com/counter/' + encodeURIComponent(path) + '.json');
+        const slug = window.location.pathname.match(/\/blog\/posts\/([^/?#.]+)/)?.[1];
+        if (!slug) return;
+        const res = await fetch('/blog/data/views.json', { cache: 'no-store' });
         if (!res.ok) return;
-        const data = await res.json();
-        const n = parseInt(data.count_unique || data.count || 0, 10);
+        const { views } = await res.json();
+        const n = views[slug];
         if (!n) return;
         const el = document.getElementById('gc-views');
         const sep = document.getElementById('gc-sep');

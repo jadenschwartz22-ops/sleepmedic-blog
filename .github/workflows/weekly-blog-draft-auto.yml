@@ -68,11 +68,19 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate-sitemap.mjs
 
+      - name: Refresh public view counts
+        continue-on-error: true
+        env:
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+          GA4_CLIENT_EMAIL: ${{ secrets.GA4_CLIENT_EMAIL }}
+          GA4_PRIVATE_KEY: ${{ secrets.GA4_PRIVATE_KEY }}
+        run: node scripts/fetch-public-views.mjs
+
       - name: Commit topic history and content memory
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .topic-history.json .content-memory.json 2>/dev/null || true
+          git add .topic-history.json .content-memory.json blog/data/views.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "chore: update topic history and content memory"
 
       - name: Create Pull Request
