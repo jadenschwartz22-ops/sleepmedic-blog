@@ -63,6 +63,25 @@
     document.head.appendChild(s);
   }
 
+  // Fallback styles for CTAs on older posts that lack .app-cta/.nav-cta CSS.
+  // :where() = zero specificity, so any page-defined rule wins.
+  function injectCtaStyles() {
+    if (document.getElementById('sm-ai-cta-styles')) return;
+    const css = `
+      :where(.app-cta){display:flex;gap:16px;align-items:center;margin:40px 0;padding:24px;background:#141416;border:1px solid rgba(255,255,255,.1);border-radius:16px;}
+      :where(.app-cta-icon){flex:none;width:48px;height:48px;border-radius:12px;background:#a78bfa;color:#0a0a0c;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.05rem;}
+      :where(.app-cta-text p){margin:0 0 12px;color:#b0b0b8;font-size:.95rem;line-height:1.5;}
+      :where(.app-cta-text a){display:inline-block;padding:10px 18px;background:#a78bfa;color:#0a0a0c;border-radius:8px;font-weight:700;font-size:.85rem;text-decoration:none;}
+      :where(.app-cta-text a:hover){opacity:.85;}
+      :where(.nav-cta){padding:7px 14px;background:#a78bfa;color:#0a0a0c;border:none;border-radius:8px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;}
+      :where(.nav-cta:hover){opacity:.85;}
+    `;
+    const s = document.createElement('style');
+    s.id = 'sm-ai-cta-styles';
+    s.textContent = css;
+    document.head.appendChild(s);
+  }
+
   function openModal(location) {
     injectStyles();
 
@@ -127,6 +146,7 @@
   }
 
   function bind() {
+    injectCtaStyles();
     document.querySelectorAll('[data-app-interest]').forEach((el) => {
       if (el.__smBound) return;
       el.__smBound = true;
