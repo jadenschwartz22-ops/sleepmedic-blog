@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 06 Jul 2026 18:13:54 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 17:57:41 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Woke Up Drained? Damage Control for Athletes After Poor Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-06-woke-up-drained-damage-control-for-athletes-after-poor-sleep.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-06-woke-up-drained-damage-control-for-athletes-after-poor-sleep.html</guid>
+      <description>Woke up exhausted before a crucial event? Learn immediate protocols and tactical adjustments athletes can implement to prevent injury, salvage performance, and optimize recovery after one night of inadequate sleep.</description>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
+      <category>Life Stages</category>
+    </item>
+  
     <item>
       <title>ADHD Brain Won&apos;t Shut Off? Why &apos;Winding Down&apos; Fails</title>
       <link>https://sleepmedic.co/blog/posts/2026-07-02-adhd-brain-wont-shut-off-why-winding-down-fails.html</link>
@@ -183,15 +192,6 @@
       <description>Traditional CBT-I can feel impossible with a rotating schedule. Discover the precise adaptations—like anchor sleep and flexible restriction—that conquer shift work insomnia.</description>
       <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
       <category>shift-work</category>
-    </item>
-  
-    <item>
-      <title>Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol.html</guid>
-      <description>Physically drained but mentally wired after a night shift? Discover the precise 30-minute ritual to signal your brain it&apos;s time to switch off, helping you fall asleep faster and stay asleep longer during the day.</description>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 GMT</pubDate>
-      <category>Shift Work</category>
     </item>
   
   </channel>
