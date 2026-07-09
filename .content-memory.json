@@ -2223,6 +2223,58 @@
         }
       ],
       "wordCount": 1132
+    },
+    {
+      "id": "638d7ccffb9402f6",
+      "date": "2026-07-09",
+      "title": "Chronic Pain Won't Let You Sleep? A Field Manual for Relief",
+      "titleFingerprint": "2ccdeaaf4b38a1e1",
+      "excerpt": "Trapped in the relentless loop where pain prevents sleep and sleeplessness intensifies pain? Discover specific sleep strategies that reprogram your brain's pain response.",
+      "keywords": {
+        "chronic": 1,
+        "pain": 4,
+        "wont": 1,
+        "sleep": 3,
+        "field": 1,
+        "manual": 1,
+        "relief": 1,
+        "trapped": 1,
+        "relentless": 1,
+        "loop": 1,
+        "prevents": 1,
+        "sleeplessness": 1,
+        "intensifies": 1,
+        "discover": 1,
+        "specific": 1,
+        "strategies": 1,
+        "that": 1,
+        "reprogram": 1,
+        "brains": 1,
+        "response": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1134
     }
   ],
   "images": [
@@ -2572,6 +2624,11 @@
       "topic": "Sleep for athletes recovery and performance optimization",
       "usedIn": "daa5f6e7fcc0a89f",
       "date": "2026-07-06"
+    },
+    {
+      "topic": "Optimizing Sleep to Alleviate Chronic Pain: A Bidirectional Relationship",
+      "usedIn": "638d7ccffb9402f6",
+      "date": "2026-07-09"
     }
   ],
   "phrases": [
@@ -3294,7 +3351,30 @@
     "drained damage control for athletes",
     "damage control for athletes after",
     "control for athletes after poor",
-    "for athletes after poor sleep"
+    "for athletes after poor sleep",
+    "chronic pain wont",
+    "pain wont let",
+    "wont let you",
+    "let you sleep",
+    "you sleep a",
+    "sleep a field",
+    "a field manual",
+    "manual for relief",
+    "chronic pain wont let",
+    "pain wont let you",
+    "wont let you sleep",
+    "let you sleep a",
+    "you sleep a field",
+    "sleep a field manual",
+    "a field manual for",
+    "field manual for relief",
+    "chronic pain wont let you",
+    "pain wont let you sleep",
+    "wont let you sleep a",
+    "let you sleep a field",
+    "you sleep a field manual",
+    "sleep a field manual for",
+    "a field manual for relief"
   ],
   "titlePatterns": [
     {
@@ -3526,8 +3606,13 @@
       "pattern": "[QUESTION]",
       "example": "Woke Up Drained? Damage Control for Athletes After Poor Sleep",
       "date": "2026-07-06"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Chronic Pain Won't Let You Sleep? A Field Manual for Relief",
+      "date": "2026-07-09"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-06T18:13:54.675Z"
+  "lastUpdated": "2026-07-09T17:57:41.916Z"
 }
