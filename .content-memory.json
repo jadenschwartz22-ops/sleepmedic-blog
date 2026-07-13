@@ -2275,6 +2275,59 @@
         }
       ],
       "wordCount": 1134
+    },
+    {
+      "id": "d0b11b8237f2a522",
+      "date": "2026-07-13",
+      "title": "The Sleep Paradox: Why Trying to Sleep Keeps You Awake",
+      "titleFingerprint": "d708584c17551e01",
+      "excerpt": "Discover the frustrating truth: the harder you try to fall asleep, the more elusive it becomes. Learn to disengage from sleep anxiety and trust your body's natural rhythm.",
+      "keywords": {
+        "sleep": 3,
+        "paradox": 1,
+        "trying": 1,
+        "keeps": 1,
+        "awake": 1,
+        "discover": 1,
+        "frustrating": 1,
+        "truth": 1,
+        "harder": 1,
+        "fall": 1,
+        "asleep": 1,
+        "more": 1,
+        "elusive": 1,
+        "becomes": 1,
+        "learn": 1,
+        "disengage": 1,
+        "anxiety": 1,
+        "trust": 1,
+        "bodys": 1,
+        "natural": 1,
+        "rhythm": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 4
+        },
+        {
+          "theme": "warning",
+          "strength": 4
+        },
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        }
+      ],
+      "wordCount": 1349
     }
   ],
   "images": [
@@ -2629,6 +2682,11 @@
       "topic": "Optimizing Sleep to Alleviate Chronic Pain: A Bidirectional Relationship",
       "usedIn": "638d7ccffb9402f6",
       "date": "2026-07-09"
+    },
+    {
+      "topic": "Sleep anxiety and why worrying about sleep makes it worse",
+      "usedIn": "d0b11b8237f2a522",
+      "date": "2026-07-13"
     }
   ],
   "phrases": [
@@ -3374,7 +3432,28 @@
     "let you sleep a field",
     "you sleep a field manual",
     "sleep a field manual for",
-    "a field manual for relief"
+    "a field manual for relief",
+    "the sleep paradox",
+    "sleep paradox why",
+    "paradox why trying",
+    "why trying to",
+    "trying to sleep",
+    "to sleep keeps",
+    "sleep keeps you",
+    "keeps you awake",
+    "the sleep paradox why",
+    "sleep paradox why trying",
+    "paradox why trying to",
+    "why trying to sleep",
+    "trying to sleep keeps",
+    "to sleep keeps you",
+    "sleep keeps you awake",
+    "the sleep paradox why trying",
+    "sleep paradox why trying to",
+    "paradox why trying to sleep",
+    "why trying to sleep keeps",
+    "trying to sleep keeps you",
+    "to sleep keeps you awake"
   ],
   "titlePatterns": [
     {
@@ -3611,8 +3690,13 @@
       "pattern": "[QUESTION]",
       "example": "Chronic Pain Won't Let You Sleep? A Field Manual for Relief",
       "date": "2026-07-09"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "The Sleep Paradox: Why Trying to Sleep Keeps You Awake",
+      "date": "2026-07-13"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-09T17:57:41.916Z"
+  "lastUpdated": "2026-07-13T17:56:55.541Z"
 }

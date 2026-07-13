@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 09 Jul 2026 17:57:41 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 17:56:55 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Chronic Pain Won&apos;t Let You Sleep? A Field Manual for Relief</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-09-chronic-pain-wont-let-you-sleep-a-field-manual-for-relief.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-09-chronic-pain-wont-let-you-sleep-a-field-manual-for-relief.html</guid>
+      <description>Trapped in the relentless loop where pain prevents sleep and sleeplessness intensifies pain? Discover specific sleep strategies that reprogram your brain&apos;s pain response.</description>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
+      <category>conditions</category>
+    </item>
+  
     <item>
       <title>Woke Up Drained? Damage Control for Athletes After Poor Sleep</title>
       <link>https://sleepmedic.co/blog/posts/2026-07-06-woke-up-drained-damage-control-for-athletes-after-poor-sleep.html</link>
@@ -183,15 +192,6 @@
       <description>Long COVID insomnia isn&apos;t typical sleeplessness. Discover the neurological shifts behind wired-but-tired exhaustion and targeted strategies to gently reset your body.</description>
       <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
       <category>conditions</category>
-    </item>
-  
-    <item>
-      <title>Shift Work Insomnia: Adapting CBT-I for Irregular Schedules</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules.html</guid>
-      <description>Traditional CBT-I can feel impossible with a rotating schedule. Discover the precise adaptations—like anchor sleep and flexible restriction—that conquer shift work insomnia.</description>
-      <pubDate>Thu, 23 Apr 2026 00:00:00 GMT</pubDate>
-      <category>shift-work</category>
     </item>
   
   </channel>
