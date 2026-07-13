@@ -859,5 +859,19 @@
     "length_bucket": "long",
     "word_count": 1407,
     "tagged_at": "2026-07-06T18:15:28.080Z"
+  },
+  "2026-07-13-the-sleep-paradox-why-trying-to-sleep-keeps-you-awake": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "1.0",
+    "devices": [
+      "first_person_scene",
+      "extended_metaphor",
+      "list_structure"
+    ],
+    "length_bucket": "long",
+    "word_count": 1336,
+    "tagged_at": "2026-07-13T17:58:16.722Z"
   }
 }
