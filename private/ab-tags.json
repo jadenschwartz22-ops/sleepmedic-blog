@@ -873,5 +873,41 @@
     "length_bucket": "long",
     "word_count": 1336,
     "tagged_at": "2026-07-13T17:58:16.722Z"
+  },
+  "2026-07-16-what-can-i-eat-on-night-shift-to-stop-bloating": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "1.0",
+    "devices": [
+      "anaphora",
+      "extended_metaphor",
+      "first_person_scene",
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal"
+    ],
+    "topic_cluster": "shift_work",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "notes": "Effectively debunks common myths about shift work and gut health, offering a practical, warrior-like protocol.",
+    "length_bucket": "long",
+    "word_count": 1393,
+    "tagged_at": "2026-07-16T17:19:13.918Z"
+  },
+  "2026-07-09-chronic-pain-wont-let-you-sleep-a-field-manual-for-relief": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "list_structure",
+      "numbered_protocol"
+    ],
+    "length_bucket": "long",
+    "word_count": 1126,
+    "tagged_at": "2026-07-16T17:19:25.812Z"
   }
 }
