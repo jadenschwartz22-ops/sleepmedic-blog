@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Jul 2026 17:56:55 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Jul 2026 17:17:46 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>The Sleep Paradox: Why Trying to Sleep Keeps You Awake</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-13-the-sleep-paradox-why-trying-to-sleep-keeps-you-awake.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-13-the-sleep-paradox-why-trying-to-sleep-keeps-you-awake.html</guid>
+      <description>Discover the frustrating truth: the harder you try to fall asleep, the more elusive it becomes. Learn to disengage from sleep anxiety and trust your body&apos;s natural rhythm.</description>
+      <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
+      <category>Troubleshooting</category>
+    </item>
+  
     <item>
       <title>Chronic Pain Won&apos;t Let You Sleep? A Field Manual for Relief</title>
       <link>https://sleepmedic.co/blog/posts/2026-07-09-chronic-pain-wont-let-you-sleep-a-field-manual-for-relief.html</link>
@@ -183,15 +192,6 @@
       <description>Struggling to sleep through pregnancy despite every pillow and position? It&apos;s not just the bump; hormones are sabotaging your rest. Discover why and what actually works.</description>
       <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
       <category>Life Stages</category>
-    </item>
-  
-    <item>
-      <title>Why Long COVID Insomnia Isn&apos;t Just &apos;Bad Sleep&apos;: Unraveling the Puzzle</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-27-why-long-covid-insomnia-isnt-just-bad-sleep-unraveling-the-p.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-27-why-long-covid-insomnia-isnt-just-bad-sleep-unraveling-the-p.html</guid>
-      <description>Long COVID insomnia isn&apos;t typical sleeplessness. Discover the neurological shifts behind wired-but-tired exhaustion and targeted strategies to gently reset your body.</description>
-      <pubDate>Mon, 27 Apr 2026 00:00:00 GMT</pubDate>
-      <category>conditions</category>
     </item>
   
   </channel>
