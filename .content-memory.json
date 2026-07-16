@@ -2328,6 +2328,60 @@
         }
       ],
       "wordCount": 1349
+    },
+    {
+      "id": "f46cb9f9776a1356",
+      "date": "2026-07-16",
+      "title": "What Can I Eat on Night Shift to Stop Bloating?",
+      "titleFingerprint": "ee958f82400e5e3c",
+      "excerpt": "Shift work wreaks havoc on your gut. Discover specific meal timing and strategic food choices that can repair your digestion and boost energy, even with chaotic schedules.",
+      "keywords": {
+        "night": 1,
+        "shift": 2,
+        "stop": 1,
+        "bloating": 1,
+        "work": 1,
+        "wreaks": 1,
+        "havoc": 1,
+        "discover": 1,
+        "specific": 1,
+        "meal": 1,
+        "timing": 1,
+        "strategic": 1,
+        "food": 1,
+        "choices": 1,
+        "that": 1,
+        "repair": 1,
+        "digestion": 1,
+        "boost": 1,
+        "energy": 1,
+        "even": 1,
+        "chaotic": 1,
+        "schedules": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1402
     }
   ],
   "images": [
@@ -2687,6 +2741,11 @@
       "topic": "Sleep anxiety and why worrying about sleep makes it worse",
       "usedIn": "d0b11b8237f2a522",
       "date": "2026-07-13"
+    },
+    {
+      "topic": "Optimizing Gut Health for Shift Workers: Dietary Strategies for Disrupted Rhythms",
+      "usedIn": "f46cb9f9776a1356",
+      "date": "2026-07-16"
     }
   ],
   "phrases": [
@@ -3453,7 +3512,25 @@
     "paradox why trying to sleep",
     "why trying to sleep keeps",
     "trying to sleep keeps you",
-    "to sleep keeps you awake"
+    "to sleep keeps you awake",
+    "what can i",
+    "eat on night",
+    "on night shift",
+    "night shift to",
+    "shift to stop",
+    "to stop bloating",
+    "what can i eat",
+    "i eat on night",
+    "eat on night shift",
+    "on night shift to",
+    "night shift to stop",
+    "shift to stop bloating",
+    "what can i eat on",
+    "can i eat on night",
+    "i eat on night shift",
+    "eat on night shift to",
+    "on night shift to stop",
+    "night shift to stop bloating"
   ],
   "titlePatterns": [
     {
@@ -3695,8 +3772,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "The Sleep Paradox: Why Trying to Sleep Keeps You Awake",
       "date": "2026-07-13"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "What Can I Eat on Night Shift to Stop Bloating?",
+      "date": "2026-07-16"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-13T17:56:55.541Z"
+  "lastUpdated": "2026-07-16T17:17:46.718Z"
 }
