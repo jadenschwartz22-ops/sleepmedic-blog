@@ -2382,6 +2382,55 @@
         }
       ],
       "wordCount": 1402
+    },
+    {
+      "id": "5b3e1beae1d2472c",
+      "date": "2026-07-20",
+      "title": "L-theanine, GABA, Ashwagandha: What Clinical Trials Show for Anxiety & Sleep",
+      "titleFingerprint": "85df212130f2a7bb",
+      "excerpt": "Tired of restless nights and constant worry? We unpack the clinical evidence behind L-theanine, GABA, and Ashwagandha for stress and sleep.",
+      "keywords": {
+        "ltheanine": 2,
+        "gaba": 2,
+        "ashwagandha": 2,
+        "clinical": 2,
+        "trials": 1,
+        "show": 1,
+        "anxiety": 1,
+        "sleep": 2,
+        "tired": 1,
+        "restless": 1,
+        "nights": 1,
+        "constant": 1,
+        "worry": 1,
+        "unpack": 1,
+        "evidence": 1,
+        "behind": 1,
+        "stress": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "medical",
+          "strength": 4
+        },
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1330
     }
   ],
   "images": [
@@ -2746,6 +2795,11 @@
       "topic": "Optimizing Gut Health for Shift Workers: Dietary Strategies for Disrupted Rhythms",
       "usedIn": "f46cb9f9776a1356",
       "date": "2026-07-16"
+    },
+    {
+      "topic": "L-theanine GABA and ashwagandha what clinical trials actually show",
+      "usedIn": "5b3e1beae1d2472c",
+      "date": "2026-07-20"
     }
   ],
   "phrases": [
@@ -3530,7 +3584,28 @@
     "i eat on night shift",
     "eat on night shift to",
     "on night shift to stop",
-    "night shift to stop bloating"
+    "night shift to stop bloating",
+    "ltheanine gaba ashwagandha",
+    "gaba ashwagandha what",
+    "ashwagandha what clinical",
+    "what clinical trials",
+    "clinical trials show",
+    "trials show for",
+    "show for anxiety",
+    "for anxiety sleep",
+    "ltheanine gaba ashwagandha what",
+    "gaba ashwagandha what clinical",
+    "ashwagandha what clinical trials",
+    "what clinical trials show",
+    "clinical trials show for",
+    "trials show for anxiety",
+    "show for anxiety sleep",
+    "ltheanine gaba ashwagandha what clinical",
+    "gaba ashwagandha what clinical trials",
+    "ashwagandha what clinical trials show",
+    "what clinical trials show for",
+    "clinical trials show for anxiety",
+    "trials show for anxiety sleep"
   ],
   "titlePatterns": [
     {
@@ -3777,8 +3852,13 @@
       "pattern": "[QUESTION]",
       "example": "What Can I Eat on Night Shift to Stop Bloating?",
       "date": "2026-07-16"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "L-theanine, GABA, Ashwagandha: What Clinical Trials Show for Anxiety & Sleep",
+      "date": "2026-07-20"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-16T17:17:46.718Z"
+  "lastUpdated": "2026-07-20T18:03:44.377Z"
 }
