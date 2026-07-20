@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Jul 2026 17:17:46 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2026 18:03:44 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>What Can I Eat on Night Shift to Stop Bloating?</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-16-what-can-i-eat-on-night-shift-to-stop-bloating.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-16-what-can-i-eat-on-night-shift-to-stop-bloating.html</guid>
+      <description>Shift work wreaks havoc on your gut. Discover specific meal timing and strategic food choices that can repair your digestion and boost energy, even with chaotic schedules.</description>
+      <pubDate>Thu, 16 Jul 2026 00:00:00 GMT</pubDate>
+      <category>shift-work</category>
+    </item>
+  
     <item>
       <title>The Sleep Paradox: Why Trying to Sleep Keeps You Awake</title>
       <link>https://sleepmedic.co/blog/posts/2026-07-13-the-sleep-paradox-why-trying-to-sleep-keeps-you-awake.html</link>
@@ -183,15 +192,6 @@
       <description>Conventional sleep advice often fails neurodivergent brains. Discover precise strategies for ADHD and autism that align with your unique sensory and circadian needs.</description>
       <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
       <category>conditions</category>
-    </item>
-  
-    <item>
-      <title>Pregnancy Sleep: Hormones, Positions, and Real Solutions</title>
-      <link>https://sleepmedic.co/blog/posts/2026-04-30-pregnancy-sleep-hormones-positions-and-real-solutions.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-04-30-pregnancy-sleep-hormones-positions-and-real-solutions.html</guid>
-      <description>Struggling to sleep through pregnancy despite every pillow and position? It&apos;s not just the bump; hormones are sabotaging your rest. Discover why and what actually works.</description>
-      <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
-      <category>Life Stages</category>
     </item>
   
   </channel>
