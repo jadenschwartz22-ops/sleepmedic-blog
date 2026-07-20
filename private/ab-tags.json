@@ -909,5 +909,19 @@
     "length_bucket": "long",
     "word_count": 1126,
     "tagged_at": "2026-07-16T17:19:25.812Z"
+  },
+  "2026-07-20-l-theanine-gaba-ashwagandha-what-clinical-trials-show-for-an": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "list_structure",
+      "numbered_protocol"
+    ],
+    "length_bucket": "long",
+    "word_count": 1328,
+    "tagged_at": "2026-07-20T18:05:14.223Z"
   }
 }
