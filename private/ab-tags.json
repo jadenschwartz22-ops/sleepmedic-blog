@@ -923,5 +923,27 @@
     "length_bucket": "long",
     "word_count": 1328,
     "tagged_at": "2026-07-20T18:05:14.223Z"
+  },
+  "2026-07-23-how-to-get-functional-sleep-with-a-newborn": {
+    "energy": "hybrid",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "1.0",
+    "devices": [
+      "first_person_scene",
+      "anaphora",
+      "extended_metaphor",
+      "colon_reveal",
+      "em_dash_pivot",
+      "numbered_protocol"
+    ],
+    "topic_cluster": "parenting",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "Offers practical, science-backed strategies for new parents to achieve functional rest amidst severe sleep fragmentation.",
+    "length_bucket": "long",
+    "word_count": 1059,
+    "tagged_at": "2026-07-23T17:25:22.580Z"
   }
 }
