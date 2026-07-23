@@ -2431,6 +2431,47 @@
         }
       ],
       "wordCount": 1330
+    },
+    {
+      "id": "e9b5206a024b8ca2",
+      "date": "2026-07-23",
+      "title": "How to Get Functional Sleep with a Newborn",
+      "titleFingerprint": "2e91df265ebd3c04",
+      "excerpt": "Fragmented sleep with a newborn feels impossible. Learn science-backed strategies like micro-napping and strategic rest to reclaim energy and mental clarity.",
+      "keywords": {
+        "functional": 1,
+        "sleep": 2,
+        "newborn": 2,
+        "fragmented": 1,
+        "feels": 1,
+        "impossible": 1,
+        "learn": 1,
+        "sciencebacked": 1,
+        "strategies": 1,
+        "like": 1,
+        "micronapping": 1,
+        "strategic": 1,
+        "rest": 1,
+        "reclaim": 1,
+        "energy": 1,
+        "mental": 1,
+        "clarity": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1065
     }
   ],
   "images": [
@@ -2800,6 +2841,11 @@
       "topic": "L-theanine GABA and ashwagandha what clinical trials actually show",
       "usedIn": "5b3e1beae1d2472c",
       "date": "2026-07-20"
+    },
+    {
+      "topic": "New parent sleep survival strategies",
+      "usedIn": "e9b5206a024b8ca2",
+      "date": "2026-07-23"
     }
   ],
   "phrases": [
@@ -3605,7 +3651,21 @@
     "ashwagandha what clinical trials show",
     "what clinical trials show for",
     "clinical trials show for anxiety",
-    "trials show for anxiety sleep"
+    "trials show for anxiety sleep",
+    "to get functional",
+    "get functional sleep",
+    "functional sleep with",
+    "sleep with a",
+    "with a newborn",
+    "how to get functional",
+    "to get functional sleep",
+    "get functional sleep with",
+    "functional sleep with a",
+    "sleep with a newborn",
+    "how to get functional sleep",
+    "to get functional sleep with",
+    "get functional sleep with a",
+    "functional sleep with a newborn"
   ],
   "titlePatterns": [
     {
@@ -3857,8 +3917,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "L-theanine, GABA, Ashwagandha: What Clinical Trials Show for Anxiety & Sleep",
       "date": "2026-07-20"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "How to Get Functional Sleep with a Newborn",
+      "date": "2026-07-23"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-20T18:03:44.377Z"
+  "lastUpdated": "2026-07-23T17:24:00.499Z"
 }
