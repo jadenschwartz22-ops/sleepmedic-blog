@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 Jul 2026 18:03:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 17:24:00 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>L-theanine, GABA, Ashwagandha: What Clinical Trials Show for Anxiety &amp; Sleep</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-20-l-theanine-gaba-ashwagandha-what-clinical-trials-show-for-an.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-20-l-theanine-gaba-ashwagandha-what-clinical-trials-show-for-an.html</guid>
+      <description>Tired of restless nights and constant worry? We unpack the clinical evidence behind L-theanine, GABA, and Ashwagandha for stress and sleep.</description>
+      <pubDate>Mon, 20 Jul 2026 00:00:00 GMT</pubDate>
+      <category>Trending</category>
+    </item>
+  
     <item>
       <title>What Can I Eat on Night Shift to Stop Bloating?</title>
       <link>https://sleepmedic.co/blog/posts/2026-07-16-what-can-i-eat-on-night-shift-to-stop-bloating.html</link>
@@ -182,15 +191,6 @@
       <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-11-why-your-sleep-tracker-makes-you-anxious-and-how-to-fix-it.html</guid>
       <description>Are you meticulously optimizing sleep data, only to feel more anxious? Discover how orthosomnia makes your sleep worse and learn counter-intuitive strategies to reclaim natural rest.</description>
       <pubDate>Mon, 11 May 2026 00:00:00 GMT</pubDate>
-      <category>conditions</category>
-    </item>
-  
-    <item>
-      <title>Neurodivergent Sleep: Stop Fighting Your ADHD or Autistic Brain</title>
-      <link>https://sleepmedic.co/blog/posts/2026-05-07-neurodivergent-sleep-stop-fighting-your-adhd-or-autistic-bra.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-07-neurodivergent-sleep-stop-fighting-your-adhd-or-autistic-bra.html</guid>
-      <description>Conventional sleep advice often fails neurodivergent brains. Discover precise strategies for ADHD and autism that align with your unique sensory and circadian needs.</description>
-      <pubDate>Thu, 07 May 2026 00:00:00 GMT</pubDate>
       <category>conditions</category>
     </item>
   
