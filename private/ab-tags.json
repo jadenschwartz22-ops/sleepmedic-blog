@@ -945,5 +945,26 @@
     "length_bucket": "long",
     "word_count": 1059,
     "tagged_at": "2026-07-23T17:25:22.580Z"
+  },
+  "2026-07-30-low-sleep-tracker-score-what-to-change-tonight": {
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "list_structure",
+      "numbered_protocol",
+      "one_sentence_paragraph",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "tech",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Myth-Busting",
+    "length_bucket": "long",
+    "word_count": 1196,
+    "tagged_at": "2026-07-30T17:31:03.405Z"
   }
 }
