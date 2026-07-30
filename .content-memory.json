@@ -2472,6 +2472,55 @@
         }
       ],
       "wordCount": 1065
+    },
+    {
+      "id": "cc61af39f99fbcd8",
+      "date": "2026-07-30",
+      "title": "Low Sleep Tracker Score? What to Change Tonight.",
+      "titleFingerprint": "484cbd80f5f5d35c",
+      "excerpt": "Frustrated by cryptic sleep tracker scores? Learn to translate 'low REM' or 'poor quality' into immediate, actionable steps to improve your sleep, starting tonight.",
+      "keywords": {
+        "sleep": 3,
+        "tracker": 2,
+        "score": 1,
+        "change": 1,
+        "tonight": 2,
+        "frustrated": 1,
+        "cryptic": 1,
+        "scores": 1,
+        "learn": 1,
+        "translate": 1,
+        "poor": 1,
+        "quality": 1,
+        "immediate": 1,
+        "actionable": 1,
+        "steps": 1,
+        "improve": 1,
+        "starting": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 5
+        },
+        {
+          "theme": "medical",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "scientific",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1208
     }
   ],
   "images": [
@@ -2846,6 +2895,11 @@
       "topic": "New parent sleep survival strategies",
       "usedIn": "e9b5206a024b8ca2",
       "date": "2026-07-23"
+    },
+    {
+      "topic": "Decoding Your Sleep Tracker: Beyond the Scores to Actionable Insights",
+      "usedIn": "cc61af39f99fbcd8",
+      "date": "2026-07-30"
     }
   ],
   "phrases": [
@@ -3665,7 +3719,22 @@
     "how to get functional sleep",
     "to get functional sleep with",
     "get functional sleep with a",
-    "functional sleep with a newborn"
+    "functional sleep with a newborn",
+    "low sleep tracker",
+    "sleep tracker score",
+    "tracker score what",
+    "score what to",
+    "what to change",
+    "to change tonight",
+    "low sleep tracker score",
+    "sleep tracker score what",
+    "tracker score what to",
+    "score what to change",
+    "what to change tonight",
+    "low sleep tracker score what",
+    "sleep tracker score what to",
+    "tracker score what to change",
+    "score what to change tonight"
   ],
   "titlePatterns": [
     {
@@ -3922,8 +3991,13 @@
       "pattern": "[QUESTION_WORD] [TOPIC]",
       "example": "How to Get Functional Sleep with a Newborn",
       "date": "2026-07-23"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Low Sleep Tracker Score? What to Change Tonight.",
+      "date": "2026-07-30"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-07-23T17:24:00.499Z"
+  "lastUpdated": "2026-07-30T17:29:31.362Z"
 }
