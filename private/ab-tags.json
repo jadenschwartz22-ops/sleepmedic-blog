@@ -966,5 +966,26 @@
     "length_bucket": "long",
     "word_count": 1196,
     "tagged_at": "2026-07-30T17:31:03.405Z"
+  },
+  "2026-08-03-why-your-sleep-still-fails-after-a-viral-illness-the-hidden-": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "numbered_protocol",
+      "list_structure",
+      "colon_reveal",
+      "em_dash_pivot",
+      "one_sentence_paragraph"
+    ],
+    "topic_cluster": "conditions",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explores post-viral sleep dysfunction, detailing physiological causes and offering a science-backed protocol for recovery.",
+    "length_bucket": "long",
+    "word_count": 1010,
+    "tagged_at": "2026-08-03T17:53:55.832Z"
   }
 }
