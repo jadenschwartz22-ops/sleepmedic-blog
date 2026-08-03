@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jul 2026 17:29:31 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 03 Aug 2026 17:52:27 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Low Sleep Tracker Score? What to Change Tonight.</title>
+      <link>https://sleepmedic.co/blog/posts/2026-07-30-low-sleep-tracker-score-what-to-change-tonight.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-30-low-sleep-tracker-score-what-to-change-tonight.html</guid>
+      <description>Frustrated by cryptic sleep tracker scores? Learn to translate &apos;low REM&apos; or &apos;poor quality&apos; into immediate, actionable steps to improve your sleep, starting tonight.</description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <category>tools</category>
+    </item>
+  
     <item>
       <title>How to Get Functional Sleep with a Newborn</title>
       <link>https://sleepmedic.co/blog/posts/2026-07-23-how-to-get-functional-sleep-with-a-newborn.html</link>
@@ -183,15 +192,6 @@
       <description>Waking up tired despite enough sleep? Your daily medications, from allergy pills to blood pressure drugs, might be secretly sabotaging your rest. Discover how.</description>
       <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
       <category>conditions</category>
-    </item>
-  
-    <item>
-      <title>When Your Sleep Tracker Lies: Interpreting Data Without the Anxiety</title>
-      <link>https://sleepmedic.co/blog/posts/2026-05-14-when-your-sleep-tracker-lies-interpreting-data-without-the-a.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-14-when-your-sleep-tracker-lies-interpreting-data-without-the-a.html</guid>
-      <description>Feeling fine but your sleep tracker says otherwise? Learn to critically interpret wearable sleep data, distinguish real issues from noise, and reduce &apos;orthosomnia&apos; anxiety.</description>
-      <pubDate>Thu, 14 May 2026 00:00:00 GMT</pubDate>
-      <category>tools</category>
     </item>
   
   </channel>
