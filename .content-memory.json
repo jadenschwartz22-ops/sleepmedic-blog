@@ -2580,6 +2580,57 @@
         }
       ],
       "wordCount": 1018
+    },
+    {
+      "id": "f62dcf3ae0d493f2",
+      "date": "2026-08-10",
+      "title": "How to Quiet Racing Thoughts at 2 AM: The Cognitive Shuffling Method",
+      "titleFingerprint": "a941e936f601cf8b",
+      "excerpt": "Racing thoughts keeping you awake? Cognitive shuffling offers a science-backed way to interrupt anxious loops, guiding your mind to sleep without screens or medication.",
+      "keywords": {
+        "quiet": 1,
+        "racing": 2,
+        "thoughts": 2,
+        "cognitive": 2,
+        "shuffling": 2,
+        "method": 1,
+        "keeping": 1,
+        "awake": 1,
+        "offers": 1,
+        "sciencebacked": 1,
+        "interrupt": 1,
+        "anxious": 1,
+        "loops": 1,
+        "guiding": 1,
+        "mind": 1,
+        "sleep": 1,
+        "without": 1,
+        "screens": 1,
+        "medication": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "scientific",
+          "strength": 3
+        },
+        {
+          "theme": "practical",
+          "strength": 3
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 3
+        },
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1351
     }
   ],
   "images": [
@@ -2964,6 +3015,11 @@
       "topic": "Navigating Post-Viral Sleep Disturbances: Emerging Strategies for Recovery",
       "usedIn": "ac42f416aaea9efa",
       "date": "2026-08-03"
+    },
+    {
+      "topic": "Cognitive shuffling to quiet racing thoughts at bedtime",
+      "usedIn": "f62dcf3ae0d493f2",
+      "date": "2026-08-10"
     }
   ],
   "phrases": [
@@ -3824,7 +3880,31 @@
     "fails after a viral illness",
     "after a viral illness the",
     "a viral illness the hidden",
-    "viral illness the hidden mechanisms"
+    "viral illness the hidden mechanisms",
+    "how to quiet",
+    "to quiet racing",
+    "quiet racing thoughts",
+    "racing thoughts at",
+    "thoughts at 2",
+    "am the cognitive",
+    "the cognitive shuffling",
+    "cognitive shuffling method",
+    "how to quiet racing",
+    "to quiet racing thoughts",
+    "quiet racing thoughts at",
+    "racing thoughts at 2",
+    "thoughts at 2 am",
+    "2 am the cognitive",
+    "am the cognitive shuffling",
+    "the cognitive shuffling method",
+    "how to quiet racing thoughts",
+    "to quiet racing thoughts at",
+    "quiet racing thoughts at 2",
+    "racing thoughts at 2 am",
+    "thoughts at 2 am the",
+    "at 2 am the cognitive",
+    "2 am the cognitive shuffling",
+    "am the cognitive shuffling method"
   ],
   "titlePatterns": [
     {
@@ -4091,8 +4171,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Why Your Sleep Still Fails After a Viral Illness: The Hidden Mechanisms",
       "date": "2026-08-03"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "How to Quiet Racing Thoughts at 2 AM: The Cognitive Shuffling Method",
+      "date": "2026-08-10"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-08-03T17:52:27.665Z"
+  "lastUpdated": "2026-08-10T16:56:35.330Z"
 }
