@@ -987,5 +987,26 @@
     "length_bucket": "long",
     "word_count": 1010,
     "tagged_at": "2026-08-03T17:53:55.832Z"
+  },
+  "2026-08-10-how-to-quiet-racing-thoughts-at-2-am-the-cognitive-shuffling": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "catalog",
+      "list_structure",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "mental_health",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Field Manual",
+    "notes": "Explains cognitive shuffling with scientific backing and a step-by-step guide to address racing thoughts and insomnia.",
+    "length_bucket": "long",
+    "word_count": 1345,
+    "tagged_at": "2026-08-10T16:58:08.388Z"
   }
 }
