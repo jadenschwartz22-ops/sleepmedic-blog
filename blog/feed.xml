@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2026 16:56:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2026 16:58:45 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>How to Quiet Racing Thoughts at 2 AM: The Cognitive Shuffling Method</title>
+      <link>https://sleepmedic.co/blog/posts/2026-08-10-how-to-quiet-racing-thoughts-at-2-am-the-cognitive-shuffling.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-08-10-how-to-quiet-racing-thoughts-at-2-am-the-cognitive-shuffling.html</guid>
+      <description>Racing thoughts keeping you awake? Cognitive shuffling offers a science-backed way to interrupt anxious loops, guiding your mind to sleep without screens or medication.</description>
+      <pubDate>Mon, 10 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Tools</category>
+    </item>
+  
     <item>
       <title>Why Your Sleep Still Fails After a Viral Illness: The Hidden Mechanisms</title>
       <link>https://sleepmedic.co/blog/posts/2026-08-03-why-your-sleep-still-fails-after-a-viral-illness-the-hidden-.html</link>
@@ -183,15 +192,6 @@
       <description>Getting enough sleep isn&apos;t always enough. Discover how your brain truly cleans, consolidates memories, and recharges during sleep—and what happens when it doesn&apos;t.</description>
       <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
       <category>Science</category>
-    </item>
-  
-    <item>
-      <title>Magnesium, L-Theanine, Apigenin: Natural Sleep Aids Without Grogginess</title>
-      <link>https://sleepmedic.co/blog/posts/2026-05-21-magnesium-l-theanine-apigenin-natural-sleep-aids-without-gro.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-21-magnesium-l-theanine-apigenin-natural-sleep-aids-without-gro.html</guid>
-      <description>Tired of melatonin hangovers? Explore how Magnesium Threonate, L-Theanine, and Apigenin offer a new path to natural, deep sleep without morning grogginess.</description>
-      <pubDate>Thu, 21 May 2026 00:00:00 GMT</pubDate>
-      <category>supplements</category>
     </item>
   
   </channel>
