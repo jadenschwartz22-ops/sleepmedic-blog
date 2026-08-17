@@ -1008,5 +1008,41 @@
     "length_bucket": "long",
     "word_count": 1345,
     "tagged_at": "2026-08-10T16:58:08.388Z"
+  },
+  "2026-08-17-are-you-a-true-night-owl-or-just-misaligned": {
+    "energy": "scientist",
+    "opening_vehicle": "question",
+    "closing_vehicle": "reframe",
+    "voice_intensity": "0.7",
+    "devices": [
+      "anaphora",
+      "catalog",
+      "extended_metaphor",
+      "numbered_protocol",
+      "colon_reveal",
+      "em_dash_pivot"
+    ],
+    "topic_cluster": "circadian",
+    "hook_type": "pain",
+    "cta_type": "none",
+    "format": "Science-First",
+    "notes": "Explains chronotypes and social jet lag with scientific backing, offering a practical protocol for alignment.",
+    "length_bucket": "long",
+    "word_count": 1184,
+    "tagged_at": "2026-08-17T16:29:55.564Z"
+  },
+  "2026-08-13-conquer-morning-brain-fog-stop-sleep-inertia-fast": {
+    "energy": "scientist",
+    "opening_vehicle": "scene",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "0.7",
+    "devices": [
+      "first_person_scene",
+      "numbered_protocol",
+      "colon_reveal"
+    ],
+    "length_bucket": "long",
+    "word_count": 1405,
+    "tagged_at": "2026-08-17T16:30:07.330Z"
   }
 }
