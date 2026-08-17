@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Aug 2026 16:58:45 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 17 Aug 2026 16:28:35 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Conquer Morning Brain Fog: Stop Sleep Inertia Fast</title>
+      <link>https://sleepmedic.co/blog/posts/2026-08-13-conquer-morning-brain-fog-stop-sleep-inertia-fast.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-08-13-conquer-morning-brain-fog-stop-sleep-inertia-fast.html</guid>
+      <description>Waking up groggy, despite enough sleep? This &apos;sleep drunkenness&apos; isn&apos;t just annoying; it&apos;s a real neurological state. Uncover its science and beat it.</description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 GMT</pubDate>
+      <category>sleep-hygiene</category>
+    </item>
+  
     <item>
       <title>How to Quiet Racing Thoughts at 2 AM: The Cognitive Shuffling Method</title>
       <link>https://sleepmedic.co/blog/posts/2026-08-10-how-to-quiet-racing-thoughts-at-2-am-the-cognitive-shuffling.html</link>
@@ -183,15 +192,6 @@
       <description>Waking up exhausted despite a &apos;quiet&apos; room? Discover how subtle, low-frequency urban noise secretly fragments your deep sleep, leaving you chronically fatigued.</description>
       <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
       <category>sleep-hygiene</category>
-    </item>
-  
-    <item>
-      <title>Why 8 Hours of Sleep Still Leaves Your Brain Foggy</title>
-      <link>https://sleepmedic.co/blog/posts/2026-05-25-why-8-hours-of-sleep-still-leaves-your-brain-foggy.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-25-why-8-hours-of-sleep-still-leaves-your-brain-foggy.html</guid>
-      <description>Getting enough sleep isn&apos;t always enough. Discover how your brain truly cleans, consolidates memories, and recharges during sleep—and what happens when it doesn&apos;t.</description>
-      <pubDate>Mon, 25 May 2026 00:00:00 GMT</pubDate>
-      <category>Science</category>
     </item>
   
   </channel>
