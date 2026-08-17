@@ -2680,6 +2680,51 @@
         }
       ],
       "wordCount": 1408
+    },
+    {
+      "id": "4ed9ed5fddc4fb38",
+      "date": "2026-08-17",
+      "title": "Are You a True Night Owl or Just Misaligned?",
+      "titleFingerprint": "81d907ab24ee7b16",
+      "excerpt": "Feeling wired at 2 AM? Discover if your late nights are a true biological chronotype or a schedule mismatch. Stop blaming yourself and find your rhythm.",
+      "keywords": {
+        "true": 2,
+        "night": 1,
+        "misaligned": 1,
+        "feeling": 1,
+        "wired": 1,
+        "discover": 1,
+        "late": 1,
+        "nights": 1,
+        "biological": 1,
+        "chronotype": 1,
+        "schedule": 1,
+        "mismatch": 1,
+        "stop": 1,
+        "blaming": 1,
+        "yourself": 1,
+        "find": 1,
+        "rhythm": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "lifestyle",
+          "strength": 5
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        },
+        {
+          "theme": "warning",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1186
     }
   ],
   "images": [
@@ -3074,6 +3119,11 @@
       "topic": "Sleep Inertia: Why Waking Up Groggily Happens and How to Conquer It",
       "usedIn": "533d65c17246f22a",
       "date": "2026-08-13"
+    },
+    {
+      "topic": "Chronotypes and whether you are really a night owl",
+      "usedIn": "4ed9ed5fddc4fb38",
+      "date": "2026-08-17"
     }
   ],
   "phrases": [
@@ -3973,7 +4023,24 @@
     "conquer morning brain fog stop",
     "morning brain fog stop sleep",
     "brain fog stop sleep inertia",
-    "fog stop sleep inertia fast"
+    "fog stop sleep inertia fast",
+    "you a true",
+    "a true night",
+    "true night owl",
+    "night owl or",
+    "owl or just",
+    "or just misaligned",
+    "are you a true",
+    "you a true night",
+    "a true night owl",
+    "true night owl or",
+    "night owl or just",
+    "owl or just misaligned",
+    "are you a true night",
+    "you a true night owl",
+    "a true night owl or",
+    "true night owl or just",
+    "night owl or just misaligned"
   ],
   "titlePatterns": [
     {
@@ -4250,8 +4317,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Conquer Morning Brain Fog: Stop Sleep Inertia Fast",
       "date": "2026-08-13"
+    },
+    {
+      "pattern": "[QUESTION]",
+      "example": "Are You a True Night Owl or Just Misaligned?",
+      "date": "2026-08-17"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-08-13T16:58:45.153Z"
+  "lastUpdated": "2026-08-17T16:28:35.117Z"
 }
