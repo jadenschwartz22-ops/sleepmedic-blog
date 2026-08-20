@@ -1044,5 +1044,19 @@
     "length_bucket": "long",
     "word_count": 1405,
     "tagged_at": "2026-08-17T16:30:07.330Z"
+  },
+  "2026-08-20-why-deep-sleep-evades-you-in-perimenopause-and-how-to-find-i": {
+    "energy": "scientist",
+    "opening_vehicle": "image",
+    "closing_vehicle": "checklist",
+    "voice_intensity": "1.0",
+    "devices": [
+      "extended_metaphor",
+      "first_person_scene",
+      "anaphora"
+    ],
+    "length_bucket": "long",
+    "word_count": 1103,
+    "tagged_at": "2026-08-20T16:38:28.232Z"
   }
 }
