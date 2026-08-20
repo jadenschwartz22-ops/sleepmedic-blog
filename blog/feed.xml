@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 17 Aug 2026 16:28:35 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 16:36:59 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Are You a True Night Owl or Just Misaligned?</title>
+      <link>https://sleepmedic.co/blog/posts/2026-08-17-are-you-a-true-night-owl-or-just-misaligned.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-08-17-are-you-a-true-night-owl-or-just-misaligned.html</guid>
+      <description>Feeling wired at 2 AM? Discover if your late nights are a true biological chronotype or a schedule mismatch. Stop blaming yourself and find your rhythm.</description>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Science</category>
+    </item>
+  
     <item>
       <title>Conquer Morning Brain Fog: Stop Sleep Inertia Fast</title>
       <link>https://sleepmedic.co/blog/posts/2026-08-13-conquer-morning-brain-fog-stop-sleep-inertia-fast.html</link>
@@ -183,15 +192,6 @@
       <description>The crushing exhaustion of perimenopause sleep loss is real. Discover how fluctuating hormones disrupt sleep architecture and learn evidence-based strategies to reclaim your nights.</description>
       <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
       <category>life-stages</category>
-    </item>
-  
-    <item>
-      <title>Why You&apos;re Still Tired: The Hidden Impact of Noise on Deep Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-05-28-why-youre-still-tired-the-hidden-impact-of-noise-on-deep-sle.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-05-28-why-youre-still-tired-the-hidden-impact-of-noise-on-deep-sle.html</guid>
-      <description>Waking up exhausted despite a &apos;quiet&apos; room? Discover how subtle, low-frequency urban noise secretly fragments your deep sleep, leaving you chronically fatigued.</description>
-      <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
-      <category>sleep-hygiene</category>
     </item>
   
   </channel>
