@@ -2725,6 +2725,58 @@
         }
       ],
       "wordCount": 1186
+    },
+    {
+      "id": "339508481d812f02",
+      "date": "2026-08-20",
+      "title": "Why Deep Sleep Evades You in Perimenopause and How to Find It",
+      "titleFingerprint": "0e74362cca2869f8",
+      "excerpt": "Feeling restless, anxious, and drained in perimenopause? Discover the hidden hormonal shifts beyond hot flashes and implement targeted strategies to reclaim restorative deep sleep.",
+      "keywords": {
+        "deep": 2,
+        "sleep": 2,
+        "evades": 1,
+        "perimenopause": 2,
+        "find": 1,
+        "feeling": 1,
+        "restless": 1,
+        "anxious": 1,
+        "drained": 1,
+        "discover": 1,
+        "hidden": 1,
+        "hormonal": 1,
+        "shifts": 1,
+        "beyond": 1,
+        "flashes": 1,
+        "implement": 1,
+        "targeted": 1,
+        "strategies": 1,
+        "reclaim": 1,
+        "restorative": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "warning",
+          "strength": 3
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "practical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1108
     }
   ],
   "images": [
@@ -3124,6 +3176,11 @@
       "topic": "Chronotypes and whether you are really a night owl",
       "usedIn": "4ed9ed5fddc4fb38",
       "date": "2026-08-17"
+    },
+    {
+      "topic": "Perimenopause and Sleep: Hormonal Shifts and Strategies for Deep Rest",
+      "usedIn": "339508481d812f02",
+      "date": "2026-08-20"
     }
   ],
   "phrases": [
@@ -4040,7 +4097,33 @@
     "you a true night owl",
     "a true night owl or",
     "true night owl or just",
-    "night owl or just misaligned"
+    "night owl or just misaligned",
+    "why deep sleep",
+    "deep sleep evades",
+    "sleep evades you",
+    "evades you in",
+    "you in perimenopause",
+    "in perimenopause and",
+    "perimenopause and how",
+    "how to find",
+    "to find it",
+    "why deep sleep evades",
+    "deep sleep evades you",
+    "sleep evades you in",
+    "evades you in perimenopause",
+    "you in perimenopause and",
+    "in perimenopause and how",
+    "perimenopause and how to",
+    "and how to find",
+    "how to find it",
+    "why deep sleep evades you",
+    "deep sleep evades you in",
+    "sleep evades you in perimenopause",
+    "evades you in perimenopause and",
+    "you in perimenopause and how",
+    "in perimenopause and how to",
+    "perimenopause and how to find",
+    "and how to find it"
   ],
   "titlePatterns": [
     {
@@ -4322,8 +4405,13 @@
       "pattern": "[QUESTION]",
       "example": "Are You a True Night Owl or Just Misaligned?",
       "date": "2026-08-17"
+    },
+    {
+      "pattern": "[QUESTION_WORD] [TOPIC]",
+      "example": "Why Deep Sleep Evades You in Perimenopause and How to Find It",
+      "date": "2026-08-20"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-08-17T16:28:35.117Z"
+  "lastUpdated": "2026-08-20T16:36:59.722Z"
 }
