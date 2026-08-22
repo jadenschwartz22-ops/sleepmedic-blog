@@ -44,6 +44,17 @@
       --green: #34d399;
       --radius: 12px;
       --radius-lg: 16px;
+
+      /* 24h clock bands - site category colors, one per habit type */
+      --band-sleep: #4338ca;
+      --band-sleep-2: #6366f1;
+      --band-shift: #b45309;
+      --band-light: #fbbf24;
+      --band-caffeine: #34d399;
+      --band-meal: #fb923c;
+      --band-winddown: #38bdf8;
+      --band-nap: #a78bfa;
+      --band-avoid: rgba(255,255,255,0.16);
     }
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.6; -webkit-font-smoothing: antialiased; }
@@ -130,6 +141,54 @@
     .section > h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 6px; }
     .section > .when { font-size: 0.88rem; color: var(--text-3); margin-bottom: 18px; }
 
+    /* ── 24-hour clock ──────────────────────── */
+
+    .clock { margin-bottom: 26px; }
+    .clock-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; padding-bottom: 6px; scrollbar-width: thin; scrollbar-color: var(--surface-2) transparent; }
+    .clock-scroll::-webkit-scrollbar { height: 6px; }
+    .clock-scroll::-webkit-scrollbar-track { background: transparent; }
+    .clock-scroll::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 999px; }
+    .clock-inner { min-width: 640px; }
+
+    .clock-hours { position: relative; height: 15px; margin-bottom: 5px; }
+    .clock-hour { position: absolute; top: 0; font-size: 0.66rem; color: var(--text-3); font-weight: 600; transform: translateX(-50%); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .clock-hour:first-child { transform: none; }
+    .clock-hour:last-child { transform: translateX(-100%); }
+
+    .clock-grid { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .clock-tick { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(255,255,255,0.05); }
+    .clock-tick.major { background: rgba(255,255,255,0.10); }
+
+    .clock-lane { position: relative; height: 26px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .clock-lane:last-of-type { border-bottom: 0; }
+    .clock-lane.rail { height: 13px; }
+
+    .clock-band { position: absolute; top: 4px; bottom: 4px; border-radius: 4px; min-width: 2px; }
+    .clock-lane.rail .clock-band { top: 3px; bottom: 3px; border-radius: 3px; }
+    .clock-band .cap { position: absolute; left: 7px; top: 50%; transform: translateY(-50%); font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.92); white-space: nowrap; pointer-events: none; letter-spacing: -0.01em; }
+
+    .band-sleep { background: linear-gradient(180deg, var(--band-sleep-2), var(--band-sleep)); }
+    .band-shift { background: var(--band-shift); opacity: 0.55; }
+    .band-light { background: var(--band-light); }
+    .band-caffeine { background: var(--band-caffeine); }
+    .band-meal { background: var(--band-meal); }
+    .band-windDown { background: var(--band-winddown); }
+    .band-nap { background: var(--band-nap); }
+    .band-lightAvoid { background: repeating-linear-gradient(135deg, var(--band-avoid) 0 5px, transparent 5px 10px); border: 1px solid var(--band-avoid); }
+
+    .clock-marker { position: absolute; top: 0; bottom: 0; width: 2px; background: #fca5a5; z-index: 3; }
+    .clock-marker::after { content: ''; position: absolute; top: -3px; left: -2px; width: 6px; height: 6px; border-radius: 50%; background: #fca5a5; }
+    .clock-marker.anchor { background: var(--text); }
+    .clock-marker.anchor::after { background: var(--text); }
+
+    .clock-rowlabels { display: none; }
+    .clock-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 0.74rem; color: var(--text-3); }
+    .clock-legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .clock-legend i { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+    .clock-legend .swatch-cut { width: 2px; height: 11px; border-radius: 0; background: #fca5a5; }
+    .clock-legend .swatch-anchor { width: 2px; height: 11px; border-radius: 0; background: var(--text); }
+    .clock-caption { font-size: 0.78rem; color: var(--text-3); margin-top: 8px; }
+
     .timeline { border-left: 2px solid var(--surface-2); padding-left: 20px; display: grid; gap: 20px; }
     .tl-item { position: relative; }
     .tl-item::before { content: ''; position: absolute; left: -26px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
@@ -151,6 +210,15 @@
     .note-card .cite a { color: var(--text-3); text-decoration: underline; text-underline-offset: 2px; }
     .note-card .cite a:hover { color: var(--accent); }
     .note-card.flag { background: var(--accent-dim); border-color: rgba(167,139,250,0.22); }
+
+    .philosophy { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 30px 0; margin-bottom: 40px; }
+    .philosophy h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); letter-spacing: -0.025em; margin-bottom: 14px; }
+    .philosophy p { font-size: 1rem; color: var(--text-2); line-height: 1.75; margin-bottom: 14px; max-width: 62ch; }
+    .philosophy p:last-of-type { margin-bottom: 0; }
+    .philosophy p:first-of-type { color: var(--text); }
+    .philosophy .cite { font-size: 0.84rem; color: var(--text-3); margin-top: 16px; }
+    .philosophy .cite a { color: var(--text-3); text-decoration: underline; text-underline-offset: 2px; }
+    .philosophy .cite a:hover { color: var(--accent); }
 
     .plan-foot { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 10px; }
     .plan-foot h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
@@ -188,6 +256,41 @@
       .timeline { border-left-color: #ccc; }
       .tl-item::before { background: #666; border-color: #fff; }
       a { color: #000; }
+
+      /* The 24h clock is the point of the printout: keep the geometry,
+         swap to inked colors that survive a black-and-white printer. */
+      .clock { break-inside: avoid; page-break-inside: avoid; }
+      .clock-scroll { overflow: visible; }
+      .clock-inner { min-width: 0; }
+      .clock-hour { color: #333; }
+      .clock-grid { background: #fff; border-color: #999; }
+      .clock-tick { background: #e5e5e5; }
+      .clock-tick.major { background: #bbb; }
+      .clock-lane { border-bottom-color: #eee; }
+      .clock-legend, .clock-caption { color: #444; }
+      .clock-band .cap { color: #fff; }
+      .band-light .cap, .band-caffeine .cap, .band-nap .cap, .band-windDown .cap, .band-meal .cap { color: #1a1a1a; }
+      .band-sleep { background: #3730a3; }
+      .band-shift { background: #b45309; opacity: 0.5; }
+      .band-light { background: #fbbf24; }
+      .band-caffeine { background: #34d399; }
+      .band-meal { background: #fb923c; }
+      .band-windDown { background: #38bdf8; }
+      .band-nap { background: #c4b5fd; }
+      .band-lightAvoid { background: repeating-linear-gradient(135deg, #d4d4d8 0 5px, transparent 5px 10px); border-color: #d4d4d8; }
+      .clock-marker { background: #b91c1c; }
+      .clock-marker::after { background: #b91c1c; }
+      .clock-marker.anchor, .clock-marker.anchor::after { background: #111; }
+      .clock-legend .swatch-cut { background: #b91c1c; }
+      .clock-legend .swatch-anchor { background: #111; }
+      .philosophy { border-color: #ccc; break-inside: avoid; page-break-inside: avoid; }
+      .philosophy h2 { color: #000; }
+      .philosophy p, .philosophy p:first-of-type { color: #222; }
+      .philosophy .cite { color: #555; }
+      /* Backgrounds are the data here; ask the browser to print them. */
+      .clock-band, .clock-marker, .clock-marker::after, .clock-grid, .clock-tick {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
     }
   </style>
 </head>
@@ -428,11 +531,107 @@
       return `Why: <a href="${cite.url}" target="_blank" rel="noopener">${esc(cite.concept)}</a>`;
     }
 
+    // ── 24-hour clock ──────────────────────
+    // Every segment from the engine is already inside [0,1440] with
+    // midnight-crossing windows pre-split, so drawing is pure arithmetic:
+    // left = start/1440, width = (end-start)/1440. No wrap logic here.
+
+    const pct = (m) => (m / 1440 * 100).toFixed(4) + '%';
+    const clockTime = (m) => {
+      const h24 = Math.floor(m / 60) % 24, mm = m % 60;
+      const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+      return `${h12}:${String(mm).padStart(2, '0')} ${h24 < 12 ? 'AM' : 'PM'}`;
+    };
+
+    // Lane order top to bottom: the two things that own blocks of your day,
+    // then the habit rails that sit inside them.
+    const LANES = [
+      { types: ['sleep'],       rail: false },
+      { types: ['shift'],       rail: false },
+      { types: ['light', 'lightAvoid'], rail: true },
+      { types: ['caffeine'],    rail: true },
+      { types: ['meal'],        rail: true },
+      { types: ['nap'],         rail: true },
+      { types: ['windDown'],    rail: true }
+    ];
+
+    const LEGEND = [
+      ['sleep', 'Sleep opportunity'], ['shift', 'On shift'], ['light', 'Bright light'],
+      ['lightAvoid', 'No bright light'], ['caffeine', 'Caffeine OK'], ['meal', 'Eat before'],
+      ['nap', 'Nap window'], ['windDown', 'Wind-down']
+    ];
+
+    function bandHTML(s, wide) {
+      const w = s.endMin - s.startMin;
+      // Only caption a band wide enough to hold the words without clipping.
+      const cap = wide && w >= 165 && s.part === 1 ? `<span class="cap">${esc(s.label)}</span>` : '';
+      const title = `${s.label}, ${clockTime(s.startMin)} to ${clockTime(s.endMin % 1440)}`;
+      return `<div class="clock-band band-${s.type}" style="left:${pct(s.startMin)};width:${pct(w)}" title="${esc(title)}">${cap}</div>`;
+    }
+
+    function clockHTML(day) {
+      const t = day.timeline;
+      const present = new Set(t.segments.map(s => s.type));
+
+      const hours = Array.from({ length: 9 }, (_, i) => {
+        const h = i * 3;
+        const lbl = h === 0 ? '12a' : h === 12 ? '12p' : h < 12 ? `${h}a` : `${h - 12}p`;
+        return `<span class="clock-hour" style="left:${pct(h * 60)}">${lbl}</span>`;
+      }).join('');
+
+      const ticks = Array.from({ length: 24 }, (_, h) =>
+        `<div class="clock-tick${h % 6 === 0 ? ' major' : ''}" style="left:${pct(h * 60)}"></div>`
+      ).join('');
+
+      const lanes = LANES.map(lane => {
+        const segs = t.segments.filter(s => lane.types.includes(s.type));
+        if (!segs.length) return '';
+        return `<div class="clock-lane${lane.rail ? ' rail' : ''}">${segs.map(s => bandHTML(s, !lane.rail)).join('')}</div>`;
+      }).join('');
+
+      const markers = t.markers.map(m =>
+        `<div class="clock-marker${m.type === 'wakeAnchor' ? ' anchor' : ''}" style="left:${pct(m.atMin)}" title="${esc(m.label)}, ${clockTime(m.atMin)}"></div>`
+      ).join('');
+
+      const legend = LEGEND.filter(([type]) => present.has(type))
+        .map(([type, label]) => `<span><i class="band-${type}"></i>${esc(label)}</span>`).join('')
+        + `<span><i class="swatch-anchor"></i>Wake anchor</span>`
+        + `<span><i class="swatch-cut"></i>Caffeine cutoff, last meal</span>`;
+
+      const shiftNote = t.shift
+        ? ` The ${esc(t.shift.durationH)}-hour ${t.shift.durationH >= 24 ? 'tour' : 'shift'} is drawn up to the point your sleep opportunity opens.`
+        : '';
+
+      return `
+        <div class="clock">
+          <div class="clock-scroll">
+            <div class="clock-inner">
+              <div class="clock-hours">${hours}</div>
+              <div class="clock-grid" role="img" aria-label="${esc(clockAria(day))}">
+                ${ticks}
+                ${lanes}
+                ${markers}
+              </div>
+            </div>
+          </div>
+          <div class="clock-legend">${legend}</div>
+          <p class="clock-caption">Midnight to midnight. Wake anchor ${esc(day.wakeAnchor)}.${shiftNote} On a narrow screen, drag the bar sideways.</p>
+        </div>`;
+    }
+
+    function clockAria(day) {
+      const parts = day.timeline.segments
+        .filter(s => s.part === 1)
+        .map(s => `${s.label} ${clockTime(s.startMin)} to ${clockTime(s.endMin % 1440)}`);
+      return `Twenty-four hour plan for ${day.name}. ${parts.join('. ')}.`;
+    }
+
     function renderPlan(plan, mailed, email) {
       const dayHTML = plan.days.map(d => `
         <div class="section">
           <h2>${esc(d.name)}</h2>
           <p class="when">${esc(d.when)}</p>
+          ${clockHTML(d)}
           <div class="timeline">
             ${d.blocks.map(b => `
               <div class="tl-item">
@@ -496,6 +695,12 @@
             <p class="cite">${citeLine(plan.consistency.cite)}</p>
           </div>
         </div>
+
+        <section class="philosophy">
+          <h2>${esc(plan.philosophy.title)}</h2>
+          ${plan.philosophy.paragraphs.map(p => `<p>${esc(p)}</p>`).join('')}
+          <p class="cite">${citeLine(plan.philosophy.cite)}</p>
+        </section>
 
         <div class="plan-actions no-print">
           <button type="button" class="btn btn-primary" id="printBtn">Print this plan</button>

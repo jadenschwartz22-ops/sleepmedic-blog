@@ -175,59 +175,133 @@ function blocksForAnchor(wake, { sleepH = RULES.sleepNeedH, nap = false, labelWa
     });
   }
 
-  return { blocks: b, targetSleep, caffeineCutoff, windDownStart, light, firstCup, napWindow };
+  return { blocks: b, targetSleep, caffeineCutoff, windDownStart, windDownLate, lastMeal, lightAvoidFrom, light, firstCup, napWindow, sleepMins };
 }
 
-function day(id, name, when, wake, opts) {
-  const built = blocksForAnchor(wake, opts);
-  return { id, name, when, wakeAnchor: fmt(wake), wakeMins: wake, ...built };
+// ── Timeline: the same computed minutes, expressed as drawable segments ──
+//
+// Every window is [startMin, endMin) on a 24h clock. A window that runs past
+// midnight is emitted as two segments so a renderer can position both as plain
+// percentages of 1440 without any wrap logic of its own. Nothing here computes
+// a new time; it only reshapes what blocksForAnchor already produced.
+
+const MARKER_TYPES = new Set(['caffeineCutoff', 'wakeAnchor', 'mealEnd']);
+
+function span(type, label, startMin, endMin) {
+  const s = wrap(startMin), e = wrap(endMin);
+  const len = wrap(e - s) || (s === e ? 1440 : 0);   // equal ends = the whole day
+  if (s + len <= 1440) return [{ type, label, startMin: s, endMin: s + len, wrapped: false, part: 1 }];
+  return [
+    { type, label, startMin: s, endMin: 1440, wrapped: true, part: 1 },
+    { type, label, startMin: 0, endMin: s + len - 1440, wrapped: true, part: 2 }
+  ];
 }
+
+const point = (type, label, atMin) => ({ type, label, atMin: wrap(atMin) });
+
+/**
+ * Drawable 24h model for one day type.
+ *   segments: bands and rails, every one inside [0,1440], midnight-crossing split
+ *   markers:  zero-width instants (the caffeine cutoff, the anchor itself)
+ *   shift:    null, or the work shift this pattern defines for this day type
+ */
+function timelineFor(built, wake, shift) {
+  // A 24 is longer than the day it is drawn on. Clamp the drawn band to the
+  // waking span (anchor to sleep target) so the shift never paints over the
+  // sleep opportunity; shift.durationH still reports the real length.
+  if (shift) {
+    const awakeEnd = built.targetSleep;
+    const shiftLen = wrap(shift.endMin - shift.startMin) || 1440;
+    const roomLeft = wrap(awakeEnd - shift.startMin);
+    if (shiftLen > roomLeft) shift = { ...shift, endMin: awakeEnd, clamped: true };
+  }
+
+  const segments = [
+    ...span('sleep', 'Sleep opportunity', built.targetSleep, wake),
+    ...span('light', 'Bright light', built.light[0], built.light[1]),
+    ...span('caffeine', 'Caffeine window', built.firstCup[0], built.caffeineCutoff),
+    ...span('meal', 'Eat before this', wrap(built.lastMeal - 180), built.lastMeal),
+    ...span('windDown', 'Wind-down', built.windDownStart, built.targetSleep),
+    ...span('lightAvoid', 'No bright light', built.lightAvoidFrom, built.targetSleep)
+  ];
+  if (built.napWindow) segments.push(...span('nap', 'Nap window', built.napWindow[0], built.napWindow[1]));
+  if (shift) segments.push(...span('shift', shift.label, shift.startMin, shift.endMin));
+
+  return {
+    segments,
+    markers: [
+      point('wakeAnchor', 'Wake anchor', wake),
+      point('caffeineCutoff', 'Caffeine cutoff', built.caffeineCutoff),
+      point('mealEnd', 'Last real meal', built.lastMeal)
+    ],
+    shift: shift ? { ...shift, startMin: wrap(shift.startMin), endMin: wrap(shift.endMin) } : null
+  };
+}
+
+function day(id, name, when, wake, opts = {}) {
+  const { shift = null, ...blockOpts } = opts;
+  const built = blocksForAnchor(wake, blockOpts);
+  return {
+    id, name, when, wakeAnchor: fmt(wake), wakeMins: wake, ...built,
+    timeline: timelineFor(built, wake, shift)
+  };
+}
+
+// Shift geometry, expressed relative to the work-day wake anchor so it moves
+// with the answers instead of assuming a clock time. hoursAfterWake is when the
+// person goes on duty; durationH is how long they are on it.
+const shiftAfterWake = (label, hoursAfterWake, durationH, wake) => ({
+  label,
+  startMin: wrap(wake + hoursAfterWake * 60),
+  endMin: wrap(wake + (hoursAfterWake + durationH) * 60),
+  durationH
+});
 
 // ── Pattern geometry ─────────────────────────────────
 // Each entry returns the day-types the plan renders, built off the two anchors.
 
 const PATTERN_DAYS = {
   nights3x12: (w, r) => [
-    day('work', 'Work day (night shift)', 'The three nights you work, back to back', w, { nap: true, labelWake: 'Wake anchor (work block)' }),
+    day('work', 'Work day (night shift)', 'The three nights you work, back to back', w, { nap: true, labelWake: 'Wake anchor (work block)', shift: shiftAfterWake('On shift (12h)', 3, 12, w) }),
     day('transition', 'Last night into first day off', 'The morning you come off the block', w, { sleepH: 5, nap: true, labelWake: 'Short sleep after the last night' }),
     day('rest', 'Rest day', 'Your days off between blocks', r)
   ],
   days3x12: (w, r) => [
-    day('work', 'Work day', 'The three days you work', w, { labelWake: 'Wake anchor (work block)' }),
+    day('work', 'Work day', 'The three days you work', w, { labelWake: 'Wake anchor (work block)', shift: shiftAfterWake('On shift (12h)', 2, 12, w) }),
     day('rest', 'Rest day', 'Your days off', r)
   ],
   s24_48: (w, r) => [
-    day('work', 'Shift day (on the truck)', 'The 24 you are on duty', w, { nap: true, labelWake: 'Wake anchor (shift day)' }),
+    day('work', 'Shift day (on the truck)', 'The 24 you are on duty', w, { nap: true, labelWake: 'Wake anchor (shift day)', shift: shiftAfterWake('On duty (24h)', 2, 24, w) }),
     day('transition', 'Recovery day (off at shift change)', 'The day you come off the 24', w, { sleepH: 6, nap: true, labelWake: 'Post-shift sleep ends' }),
     day('rest', 'Reset day (second day off)', 'The second day off, before you go back', r, { labelWake: 'Wake anchor (reset day)' })
   ],
   s24_72: (w, r) => [
-    day('work', 'Shift day (on duty)', 'The 24 you are on duty', w, { nap: true, labelWake: 'Wake anchor (shift day)' }),
+    day('work', 'Shift day (on duty)', 'The 24 you are on duty', w, { nap: true, labelWake: 'Wake anchor (shift day)', shift: shiftAfterWake('On duty (24h)', 2, 24, w) }),
     day('transition', 'Recovery day', 'The day you come off the 24', w, { sleepH: 6, nap: true, labelWake: 'Post-shift sleep ends' }),
     day('rest', 'Rest day', 'The two clear days before you go back', r)
   ],
   s48_96: (w, r) => [
-    day('work', 'Shift day (both 24s)', 'Each of the two days on duty', w, { nap: true, labelWake: 'Wake anchor (shift day)' }),
+    day('work', 'Shift day (both 24s)', 'Each of the two days on duty', w, { nap: true, labelWake: 'Wake anchor (shift day)', shift: shiftAfterWake('On duty (24h of the 48)', 2, 24, w) }),
     day('transition', 'Recovery day (off the 48)', 'The day you come off the second 24', w, { sleepH: 7, nap: true, labelWake: 'Post-shift sleep ends' }),
     day('rest', 'Rest day', 'The remaining days of the 96', r)
   ],
   kelly: (w, r) => [
-    day('work', 'Shift day (on duty)', 'Each 24 in the Kelly cycle', w, { nap: true, labelWake: 'Wake anchor (shift day)' }),
+    day('work', 'Shift day (on duty)', 'Each 24 in the Kelly cycle', w, { nap: true, labelWake: 'Wake anchor (shift day)', shift: shiftAfterWake('On duty (24h)', 2, 24, w) }),
     day('transition', 'Single day off between shifts', 'The one day between two 24s', w, { sleepH: 7, nap: true, labelWake: 'Post-shift sleep ends' }),
     day('rest', 'Long break', 'The four-day break at the end of the cycle', r)
   ],
   dupont: (w, r) => [
-    day('work', 'Night block', 'The four nights of the cycle', w, { nap: true, labelWake: 'Wake anchor (night block)' }),
+    day('work', 'Night block', 'The four nights of the cycle', w, { nap: true, labelWake: 'Wake anchor (night block)', shift: shiftAfterWake('On shift (12h)', 3, 12, w) }),
     day('transition', 'Turnaround', 'Nights into days, or the last night into the break', w, { sleepH: 6, nap: true, labelWake: 'Short sleep on the turnaround' }),
     day('rest', 'Rest day', 'The three- and seven-day breaks', r)
   ],
   panama223: (w, r) => [
-    day('work', 'Work day', 'The two- and three-day runs', w, { nap: true, labelWake: 'Wake anchor (work run)' }),
+    day('work', 'Work day', 'The two- and three-day runs', w, { nap: true, labelWake: 'Wake anchor (work run)', shift: shiftAfterWake('On shift (12h)', 2, 12, w) }),
     day('transition', 'Two-day break inside the cycle', 'The short breaks between runs', w, { sleepH: 7, labelWake: 'Wake anchor (short break)' }),
     day('rest', 'Three-day break', 'The long break in the cycle', r)
   ],
   rotating: (w, r) => [
-    day('work', 'Work day (any rotation)', 'Every day inside a work block, whichever shift it is', w, { nap: true, labelWake: 'Wake anchor (work block)' }),
+    day('work', 'Work day (any rotation)', 'Every day inside a work block, whichever shift it is', w, { nap: true, labelWake: 'Wake anchor (work block)', shift: shiftAfterWake('On shift (12h)', 3, 12, w) }),
     day('transition', 'Rotation change', 'The day the shift type changes', w, { sleepH: 6, nap: true, labelWake: 'Wake anchor on the changeover' }),
     day('rest', 'Rest day', 'Days outside any work block', r)
   ]
@@ -387,6 +461,16 @@ export function buildPlan(answers = {}) {
     patternNote: PATTERN_NOTES[pattern],
     struggleSections,
     caffeineNote,
+    philosophy: {
+      title: 'Protecting it',
+      paragraphs: [
+        'You already know most of this. Dark room, cool room, caffeine earlier, light after waking. Almost nobody who works nights is short on advice. What you are short on is a world that will let you use it. Everything around you runs on a nine-to-five clock and none of it moves for your schedule. The work is not learning what to do. The work is protecting the sleep you have already decided to take.',
+        'So the anchor is the one non-negotiable. One wake time, held inside its thirty-minute window, on the days you work and the days you do not. Everything else here is a lever, not a law. Move the nap. Shift the light window an hour. Pull the last cup earlier on the hard days. The plan bends around your life; the anchor does not, because it is what holds the rest in place.',
+        'Score yourself on seven opportunities a week, not seven nights in a row. Hit the anchor and the opportunity counts. Miss one to a late call or a sick kid and that is one opportunity out of seven, not a streak you have to restart. Five of seven, held for a month, beats a perfect week you cannot repeat. There is no chain here to break.',
+        'And you get one life. Sometimes you skip the whole thing for a wedding, or your kid has a game at seven and you were supposed to be asleep. Go. Come back to the anchor the next day with no debt to pay off. Skipping the plan on purpose, for something that matters, is the plan working, not failing.'
+      ],
+      cite: CITATIONS.protocol
+    },
     consistency: {
       title: 'How to score this fairly',
       body: 'Seven sleep opportunities a week, not seven nights. Hit the anchor within thirty minutes and the opportunity counts. Miss one because of a late call or a bad turnaround and it is one missed opportunity, not a broken streak. Five of seven, held for a month, moves more than a perfect week you cannot repeat.',
