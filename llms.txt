@@ -63,7 +63,8 @@ pages by their canonical URL with the site name "SleepMedic".
 
 ## Contact / entity
 
-Published by TeachMeToLive LLC. Newsletter signup and contact via the site footer.
+Written by Jaden Schwartz, a working paramedic (almost five years in EMS across 10s,
+12s, 24s, 36s, 48s, nights and rotations). Published by TeachMeToLive LLC. Newsletter signup and contact via the site footer.
 
 ## Free tools
 
