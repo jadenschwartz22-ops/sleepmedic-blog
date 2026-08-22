@@ -31,7 +31,7 @@ Runs every Monday at 9am MT (`.github/workflows/weekly-blog-draft-auto.yml`).
 
 **12-stage multi-agent pipeline** (`scripts/generate-blog-post.mjs`):
 
-1. **Topic Selector** - 50/50 split: predefined buckets from `topics.yaml` or LLM-generated topics via search grounding.
+1. **Topic Selector** - 50/50 split: predefined buckets from `topics.yaml` or LLM-generated topics via search grounding. Both arms are constrained to the shift-worker audience (EMS, nurses, fire, dispatch, security, overnight retail/warehouse, residents, new parents).
 2. **Researcher** (Gemini + Google Search) - Real studies, stats, mechanisms. Identifies SEO angles.
 3. **Planner** (Gemini 2.5 Flash) - Outline with varied formats (Story-First, Myth-Busting, Q&A, etc.). Validates title SEO-token coverage and excerpt length (140-160 chars); retries once if either fails. Produces `cover_alt` and `inline_alt` descriptive alt text fields.
 4. **Section Writers** - One call per section, varied temperature.
@@ -73,7 +73,6 @@ RESEND_API_KEY=...               # newsletter sending
 FROM_EMAIL="SleepMedic <blog@sleepmedic.co>"
 ADMIN_KEY=...                    # gates /subscribers, /stats
 DISCORD_WEBHOOK_URL=...          # optional; enables Discord pings
-TWITTER_*                        # optional; posts to X on new post
 ```
 
 ### Install / run
@@ -198,7 +197,7 @@ sleepmedic.co/assets/         -> Shared JS (app-interest smokescreen)
 | `pi-service/server.mjs` | Pi service: newsletter + app-interest + RSS + Discord |
 | `scripts/generate-blog-post.mjs` | Main 12-stage pipeline |
 | `scripts/migrate-smokescreen.mjs` | One-off migrator for legacy posts |
-| `scripts/editorial/topics.yaml` | 6 topic buckets (~83 seed topics) |
+| `scripts/editorial/topics.yaml` | 5 shift-worker topic buckets (~62 seed topics) |
 | `scripts/editorial/style_guidelines.md` | Editorial voice, rules |
 | `scripts/content-memory-system.mjs` | Novelty scoring, phrase dedup |
 | `scripts/generate-posts-index.mjs` | Regenerates `blog/posts-index.json` |
@@ -253,7 +252,6 @@ node scripts/monitor-blog-health.mjs
 | `RESEND_API_KEY` | Pi `.env` | Newsletter sending |
 | `ADMIN_KEY` | Pi `.env` | Gates admin endpoints |
 | `DISCORD_WEBHOOK_URL` | Pi `.env` | Realtime notifications |
-| `TWITTER_*` | Pi `.env` | X posting (optional) |
 
 ## Cost
 
