@@ -6,7 +6,7 @@ attributed, always labeled as practice rather than research. See VOICE.md
 
 | Tip | Source | Status | Used in |
 |---|---|---|---|
-| 15-minute nap, feet elevated. Short enough to stay shallow, and the feet-up position is the point of the ritual: same posture, same duration, the body learns the drill. | Jocko Willink (public record - his podcast and posts; verify exact phrasing before quoting) | approved by Jaden 2026-08-22 | pending: nap calculator, manual nap card, Nap Menu essay |
+| 6-8 minute power naps, feet elevated above the heart (his own words, verified: x.com/jockowillink/status/770453227305365504). The fixed ritual - same posture, same short duration - is the point. | Jocko Willink | VERIFIED 2026-08-22 (Jaden's recalled "15 min" corrected to Jocko's actual 6-8) | manual nap card, nap calculator, Nap Menu essay |
 | Alarm placed high up / across the room, so the only way to silence it is to get out of bed. Then the rule: do not get back in. The trick is not waking up - it is making the return trip harder than staying up. | Jaden (founder practice) | approved 2026-08-22 | pending: manual anchor card or wake section |
 
 Rules of use:

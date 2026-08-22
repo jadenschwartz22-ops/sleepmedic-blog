@@ -66,6 +66,15 @@ pages by their canonical URL with the site name "SleepMedic".
 Written by Jaden Schwartz, a working paramedic (almost five years in EMS across 10s,
 12s, 24s, 36s, 48s, nights and rotations). Published by TeachMeToLive LLC. Newsletter signup and contact via the site footer.
 
+## Complete guides
+
+- Sleep on the 24/48: The Complete Guide (firefighters and EMS - the tour, on-shift
+  napping under the tones, the drive home, recovery day vs reset day):
+  https://www.sleepmedic.co/guides/24-48/
+- Sleep on Nights (3x12): The Complete Guide (nurses and night workers - pre-shift nap,
+  light on shift, defending day sleep, the first night back):
+  https://www.sleepmedic.co/guides/nights-3x12/
+
 ## Free tools
 
 - The Shift Worker's Field Manual (free, printable, cited): https://www.sleepmedic.co/manual/

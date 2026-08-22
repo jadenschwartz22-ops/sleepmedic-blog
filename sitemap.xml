@@ -16,6 +16,56 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sleepmedic.co/blog/shift-workers/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/blog/new-parents/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/blog/nurses/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/blog/paramedics/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/manual/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/plan/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/schedule/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/guides/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/guides/24-48/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/guides/nights-3x12/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://sleepmedic.co/schedules/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -66,53 +116,24 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sleepmedic.co/blog/shift-workers/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sleepmedic.co/blog/new-parents/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sleepmedic.co/blog/nurses/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sleepmedic.co/blog/paramedics/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://sleepmedic.co/app/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://sleepmedic.co/tools/caffeine-cutoff/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://sleepmedic.co/tools/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://sleepmedic.co/schedule/</loc>
-    <lastmod>2026-08-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://sleepmedic.co/tools/</loc>
-    <lastmod>2026-08-22</lastmod>
+    <loc>https://sleepmedic.co/tools/caffeine-cutoff/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://sleepmedic.co/tools/nap/</loc>
-    <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/app/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://sleepmedic.co/privacy/</loc>
@@ -121,6 +142,18 @@
   </url>
   <url>
     <loc>https://sleepmedic.co/blog/posts/2026-08-22-eat-on-day-hours-even-when-you-work-nights.html</loc>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/blog/posts/2026-08-22-sleep-protection-not-sleep-advice.html</loc>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sleepmedic.co/blog/posts/2026-08-22-the-nap-menu.html</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
