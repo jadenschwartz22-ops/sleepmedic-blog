@@ -28,7 +28,7 @@ The base voice is the writer's own (see VOICE.md). These are light trims - if a 
 - Hunt adverbs: "improved by a third" beats "significantly improved." Concrete nouns over abstractions.
 - Insider clock and nouns where earned: 0130, the dock, the till count, the tones. Medicine is ONE shift-work world among many, not the default - rotate examples across warehouse, retail, plant floor, dispatch, ward. Never scold; name the tradeoff and hand over the lever.
 - Plath-as-scientist for biology: record the exact observation first, let it mean something second. Images earned by accuracy, never pasted on for mood. Exact is not clinical: plain words at full precision beat anatomy terms; name the molecule only when it helps the reader.
-- Figurative dial at 8.5/10: one image per paragraph max; when two compete, keep the sharper, state the other plainly.
+- Figurative dial at 8.5/10, and plain English outranks the dial: one image per paragraph max; one example where one will do (ration the list-of-three); the conclusion/instruction is ALWAYS said plainly - if a line needs decoding, it is not the closing line.
 
 ## Voice (with examples)
 
