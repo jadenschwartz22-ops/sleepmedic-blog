@@ -237,6 +237,11 @@
         return;
       }
 
+      if (!render.tracked) {
+        render.tracked = true;
+        gtag('event', 'tool_result', { tool: 'nap', on_call: onCall });
+      }
+
       let doseMin, doseLabel, alarmMin, explain, extra = '', warn = '';
 
       if (onCall) {
