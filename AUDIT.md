@@ -15,7 +15,7 @@ Run date: 2026-04-15
 | 7 | Pi `/app-interest` E2E (POST -> stored -> Discord ping) | PASS | Smoke test `{"ok":true,"clicks":2}` |
 | 8 | Discord webhook alive | PASS | Pi -> Discord POST returns 204 |
 | 9 | pm2 + cloudflared survive reboot (systemd enabled) | PASS | Both services `enabled` in systemd |
-| 10 | Weekly pipeline autonomous (cron + failure notifications) | PASS | GH Actions cron Mon+Thu 9am MT; failure path opens issue + emails |
+| 10 | Weekly pipeline autonomous (cron + failure notifications) | PASS | GH Actions cron Mon 9am MT; failure path opens issue + emails |
 
 ## Known gaps (non-blocking)
 

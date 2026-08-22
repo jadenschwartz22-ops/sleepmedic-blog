@@ -14,6 +14,7 @@
   <meta property="og:url" content="https://sleepmedic.co/about/" />
   <meta property="og:site_name" content="SleepMedic" />
 
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
 
@@ -105,7 +106,7 @@
 <body>
 
   <nav class="site-nav site-nav--narrow">
-    <a href="/" class="nav-brand">SleepMedic</a>
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/><path d="M7 45 H17 L21.5 34.5 L26.5 52.5 L30 45 H34.5 C37 39.5 40.5 39.5 43 45 C45.5 50.5 48.5 50.5 51 45 C53 40.8 55.5 40.8 57.5 45" fill="none" stroke="#a78bfa" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/manual/">Manual</a>
@@ -130,6 +131,11 @@
       <p>The underlying biology does not change between a day worker and a night worker. Circadian timing, sleep pressure, light, core temperature, arousal: same mechanisms, same research. What changes is which levers you can actually reach. If you cannot control when you sleep, you can still control light exposure, caffeine timing, wind-down, and how you recover between shifts. That is the subject here.</p>
 
       <p>Shift workers and first responders get the most attention on this site because they are the hardest case. Protocols that hold up across a 48 hold up for everyone else too.</p>
+
+      <figure style="margin:36px auto;max-width:340px;text-align:center;">
+        <img src="/about/ambulance.jpg" alt="The original SleepMedic mark: an ambulance parked under a crescent moon" style="width:100%;border-radius:var(--radius-lg);border:1px solid var(--border);" loading="lazy" />
+        <figcaption style="font-size:0.82rem;color:var(--text-3);margin-top:10px;line-height:1.5;">The original SleepMedic mark. This started as an app sketched between calls, and the ambulance under the moon is where the name comes from.</figcaption>
+      </figure>
 
       <!-- ==================================================================
            TODO (WS4): FOUNDER STORY - PLACEHOLDER SECTION
@@ -226,7 +232,7 @@
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, leadMagnet: f.dataset.smLeadMagnet })
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'post', leadMagnet: f.dataset.smLeadMagnet })
           });
           const d = await r.json();
           if (d.ok) {

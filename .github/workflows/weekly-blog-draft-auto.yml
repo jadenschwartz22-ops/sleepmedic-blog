@@ -2,8 +2,8 @@ name: Weekly Blog - Fully Automated
 
 on:
   schedule:
-    # Monday and Thursday at 9:00 AM Mountain Time (16:00 UTC)
-    - cron: "0 16 * * 1,4"
+    # Monday at 9:00 AM Mountain Time (16:00 UTC)
+    - cron: "0 16 * * 1"
   workflow_dispatch: {}
 
 permissions:
@@ -170,7 +170,7 @@ jobs:
               '',
               `Cover image: ${imageStatus} | PR: #${prNumber} | File: \`${filename}\``,
               '',
-              'Next post publishes Monday or Thursday at 9:00 AM MT.'
+              'Next post publishes Monday at 9:00 AM MT.'
             ].join('\n');
 
             const resp = await github.rest.issues.create({

@@ -207,7 +207,7 @@
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <button type="button" class="nav-cta" data-app-interest="post-nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
+      <a href="/plan/" class="nav-cta" data-cta="post-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
     </div>
   </nav>
 
@@ -424,7 +424,7 @@
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, leadMagnet: f.dataset.smLeadMagnet })
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'post', leadMagnet: f.dataset.smLeadMagnet })
           });
           const d = await r.json();
           if (d.ok) {

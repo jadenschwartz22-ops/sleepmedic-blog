@@ -921,11 +921,12 @@ async function stage8_5_validateLinks(html) {
     return hasStat && !hasLink;
   });
   if (uncited.length) {
-    console.warn(chalk.yellow(`  WARNING: ${uncited.length} paragraph(s) contain numeric/research claims with no inline citation:`));
-    uncited.slice(0, 3).forEach(p => console.warn(chalk.gray(`    "${p.replace(/<[^>]+>/g, '').slice(0, 100)}..."`)));
+    console.error(chalk.red(`  FATAL: ${uncited.length} paragraph(s) contain numeric/research claims with no inline citation -- refusing to publish uncited content:`));
+    uncited.forEach(p => console.error(chalk.gray(`    "${p.replace(/<[^>]+>/g, '').slice(0, 100)}..."`)));
+    process.exit(1);
   }
 
-  if (!broken.length && !genericLinks.length && !uncited.length) {
+  if (!broken.length && !genericLinks.length) {
     logDetail(`All ${checks.length} external links valid; all stats cited`);
   }
   return cleaned;

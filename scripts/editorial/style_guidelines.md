@@ -1,10 +1,9 @@
 # SleepMedic Editorial Guidelines
 
-## Audience (layered)
-- **Primary**: Anyone struggling with sleep -- insomnia, schedule chaos, anxiety, bad habits.
-- **Core niche**: Shift workers (EMTs, medics, nurses, firefighters) who can't follow rigid sleep advice.
-- **Secondary**: Health optimizers, wearable users, parents, students, travelers.
-- Write for the broadest relevant audience first. Add shift-worker-specific advice where it genuinely applies (don't force it).
+## Audience
+- **The reader is a shift worker.** EMTs, medics, nurses, firefighters, dispatch, security, overnight crews, and new parents running a shift-shaped life. Permanently and exclusively.
+- Assume they cannot choose their bedtime. Say "after waking," never "in the morning." Time habits from wake anchors, not clock times.
+- If a topic's advice would read the same on a generic sleep blog, reframe it for the schedule (nights, rotations, 24s/48s) or drop it.
 
 ## What good looks like
 - Useful first, poetic second. Real help for real people.

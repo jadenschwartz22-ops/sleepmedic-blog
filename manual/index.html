@@ -14,6 +14,7 @@
   <meta property="og:url" content="https://sleepmedic.co/manual/" />
   <meta property="og:site_name" content="SleepMedic" />
 
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
 
@@ -93,6 +94,22 @@
     .cite { font-size: 0.8rem; color: var(--text-3); }
     .cite a { color: var(--text-3); text-decoration-color: var(--border-hover); }
 
+    .manual-body p a {
+      color: var(--text-2);
+      text-decoration: underline;
+      text-decoration-color: var(--border-hover);
+      text-underline-offset: 3px;
+    }
+    .manual-body p a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+    .figure { margin: 26px 0 30px; }
+    .figure svg { display: block; width: 100%; max-width: 640px; height: auto; }
+    .figure figcaption {
+      font-size: 0.8rem; color: var(--text-3); line-height: 1.6;
+      margin-top: 10px; max-width: 60ch;
+    }
+    .foundation .figure { margin: 18px 0 10px; }
+
     .plan-cta-block {
       background: var(--accent-dim); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
       padding: 26px 26px; margin: 40px 0;
@@ -114,13 +131,30 @@
       .manual-hero h1, .manual-body h2, .manual-body h3, .foundation h3 { color: #000; }
       .foundation .when, .part-label { color: #444; }
       a { color: #222; text-decoration: none; }
+
+      /* Diagrams: keep every stroke and label legible on white paper. */
+      .figure { break-inside: avoid; }
+      .figure figcaption { color: #444; }
+      .figure svg .dg-frame { stroke: #999 !important; }
+      .figure svg .dg-label { fill: #333 !important; }
+      .figure svg .dg-pressure { stroke: #6d43e0 !important; }
+      .figure svg .dg-circadian { stroke: #1f6fd0 !important; }
+      .figure svg .dg-pressure-t { fill: #6d43e0 !important; }
+      .figure svg .dg-circadian-t { fill: #1f6fd0 !important; }
+      .figure svg .dg-align { fill: #6d43e0 !important; fill-opacity: 0.13 !important; }
+      .figure svg .dg-gap { stroke: #b45309 !important; }
+      .figure svg .dg-gap-t { fill: #b45309 !important; }
+      .figure svg .dg-sleep { fill: #6d43e0 !important; fill-opacity: 0.22 !important; stroke: #6d43e0 !important; }
+      .figure svg .dg-anchor { stroke: #1f6fd0 !important; }
+      .figure svg .dg-tol { fill: #1f6fd0 !important; fill-opacity: 0.14 !important; }
+      .figure svg .dg-row { stroke: #ccc !important; }
     }
   </style>
 </head>
 <body>
 
   <nav class="site-nav site-nav--narrow">
-    <a href="/" class="nav-brand">SleepMedic</a>
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/><path d="M7 45 H17 L21.5 34.5 L26.5 52.5 L30 45 H34.5 C37 39.5 40.5 39.5 43 45 C45.5 50.5 48.5 50.5 51 45 C53 40.8 55.5 40.8 57.5 45" fill="none" stroke="#a78bfa" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/manual/">Manual</a>
@@ -135,8 +169,8 @@
       <h1>The Shift Worker's <span class="serif">Field Manual</span></h1>
       <p>How to sleep when your schedule refuses to cooperate. The systems that actually control your sleep, the handful of habits that survive any rotation, and how to protect them without giving up your life. Free, printable, cited to source.</p>
       <div class="manual-meta">
-        <span>Updated August 2026</span>
-        <span>12 minute read</span>
+        <span>Updated August 2026, current through the 2025 AASM guideline</span>
+        <span>13 minute read</span>
         <button onclick="window.print()">Print this manual</button>
       </div>
     </header>
@@ -152,6 +186,60 @@
 
       <p><strong>The circadian rhythm.</strong> Separately, an internal 24-hour clock decides when your body expects to be asleep or awake, regardless of how tired you are. It is set mostly by light. When both systems agree, sleep comes easily. Walker describes them as dance partners; when they are in sync, everything works. <span class="cite">(Walker, Huberman Lab Guest Series Ep. 1, 2:37:33)</span></p>
 
+      <figure class="figure">
+        <svg viewBox="0 0 640 380" role="img" aria-label="A 24-hour chart running from 7 a.m. to 7 a.m. with two curves. Sleep pressure climbs steadily the whole time you are awake and peaks around 4 a.m. The circadian rhythm rises through the afternoon and falls to its lowest point at the same 4 a.m. hour. A shaded band across the small hours marks where both systems point the same direction and sleep comes easily. A dashed marker at 4 a.m. shows the hour a night worker is on shift: maximum sleep pressure meeting the bottom of the circadian curve." xmlns="http://www.w3.org/2000/svg">
+          <!-- legend -->
+          <g font-family="Inter, system-ui, sans-serif" font-size="19" font-weight="600">
+            <line class="dg-pressure" x1="56" y1="20" x2="86" y2="20" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+            <text class="dg-pressure-t" x="94" y="26" fill="#a78bfa">Sleep pressure</text>
+            <line class="dg-circadian" x1="300" y1="20" x2="330" y2="20" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+            <text class="dg-circadian-t" x="338" y="26" fill="#60a5fa">Circadian rhythm</text>
+          </g>
+
+          <!-- alignment band: late evening through early morning -->
+          <rect class="dg-align" x="425" y="76" width="167" height="220" fill="#a78bfa" fill-opacity="0.10" rx="3"/>
+          <text class="dg-label" x="508" y="66" fill="#6b6b76" font-family="Inter, system-ui, sans-serif" font-size="18" text-anchor="middle">Both say sleep</text>
+
+          <!-- axes -->
+          <line class="dg-frame" x1="56" y1="296" x2="616" y2="296" stroke="#3a3a44" stroke-width="1.5"/>
+          <line class="dg-frame" x1="56" y1="76" x2="56" y2="296" stroke="#3a3a44" stroke-width="1.5"/>
+
+          <!-- hour ticks -->
+          <g class="dg-frame" stroke="#3a3a44" stroke-width="1.5">
+            <line x1="56" y1="296" x2="56" y2="304"/>
+            <line x1="196" y1="296" x2="196" y2="304"/>
+            <line x1="336" y1="296" x2="336" y2="304"/>
+            <line x1="472" y1="296" x2="472" y2="304"/>
+            <line x1="616" y1="296" x2="616" y2="304"/>
+          </g>
+          <g class="dg-label" fill="#6b6b76" font-family="Inter, system-ui, sans-serif" font-size="18" text-anchor="middle">
+            <text x="60" y="326">7 am</text>
+            <text x="196" y="326">1 pm</text>
+            <text x="336" y="326">7 pm</text>
+            <text x="472" y="326">1 am</text>
+            <text x="606" y="326">7 am</text>
+          </g>
+
+          <!-- circadian rhythm: peaks late afternoon, troughs at 4 a.m. (x=544) -->
+          <path class="dg-circadian" d="M56 210 C 110 176, 180 150, 260 148 C 340 146, 400 186, 452 232 C 490 264, 516 278, 544 278 C 570 278, 592 260, 616 226"
+                fill="none" stroke="#60a5fa" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- sleep pressure: builds the whole time awake, peaks at 4 a.m., then drains -->
+          <path class="dg-pressure" d="M56 280 C 150 262, 250 224, 340 184 C 410 152, 480 124, 544 112 C 566 108, 592 116, 616 132"
+                fill="none" stroke="#a78bfa" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- the 4 a.m. marker: widest vertical gap between the two -->
+          <line class="dg-gap" x1="544" y1="112" x2="544" y2="278" stroke="#fb923c" stroke-width="1.75" stroke-dasharray="5 5"/>
+          <circle class="dg-gap-t" cx="544" cy="112" r="4.5" fill="#fb923c"/>
+          <circle class="dg-gap-t" cx="544" cy="278" r="4.5" fill="#fb923c"/>
+
+          <!-- callout, routed clear of the 1 am and 7 am tick labels -->
+          <path class="dg-gap" d="M544 284 L 544 344" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="5 5"/>
+          <text class="dg-gap-t" x="616" y="368" fill="#fb923c" font-family="Inter, system-ui, sans-serif" font-size="18" text-anchor="end">4 a.m. &#8212; where you are working</text>
+        </svg>
+        <figcaption>Two systems, one night. Pressure builds the whole time you are awake; the rhythm swings on its own schedule and bottoms out around four in the morning. Inside the shaded band they finally want the same thing, which is exactly the stretch a night worker spends upright.</figcaption>
+      </figure>
+
       <p>Shift work is what happens when the partners are forced apart. High sleep pressure at a circadian phase that expects daylight is why you can be exhausted at 9 in the morning after a night shift and still lie there wide awake. Nothing is wrong with you. The two systems disagree, and this manual is about getting them to disagree less.</p>
 
       <p>Two more facts worth owning. Sleep runs in cycles, but the "90-minute cycle" is an average, not a law: real cycles range from about 75 to 120 minutes and vary far more between people than within one person, so treat cycle-counting apps as folklore. <span class="cite">(Walker, Ep. 1, 11:35)</span> And a useful frame for judging your own sleep is QQRT: quality, quantity, regularity, and timing. Shift work mostly attacks the last two, which is why this manual is obsessed with them. <span class="cite">(Walker &amp; Huberman, Ep. 1, 1:32)</span></p>
@@ -161,17 +249,60 @@
 
       <p>Everything below is timed from one of two anchors: <strong>when you wake</strong> and <strong>when you intend to sleep</strong>. Never from clock time. "Morning" means nothing on nights, so we say <em>after waking</em>, and everything follows from that.</p>
 
+      <p>One thing before the foundations, because it sits above all of them and most people never get a vote on it: the direction your rotation turns. If you have any say at all in how the schedule is built, ask for it to move forward — days, then evenings, then nights — rather than backward. Your internal clock drifts a little longer than 24 hours on its own, so a forward rotation asks it to do what it already wants to do, and a backward one fights it every cycle. This is no longer folk wisdom among schedulers. Forward rotation is now guideline-level advice (<a href="https://aasm.org/wp-content/uploads/2025/08/Extrinsic-CRSWD-SR_SWD_May2025.pdf">AASM clinical practice guideline, 2025</a>), and a cohort of 144 nurses working both directions found the forward group less sleepy and measurably better at sustained attention (<a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2785077">Lammers-van der Holst et al., JAMA Network Open, 2021</a>). If you sit on a scheduling committee, this is the cheapest intervention on the list. Nobody has to buy anything.</p>
+
       <div class="foundation">
         <h3>1. The anchor</h3>
         <p class="when">One fixed wake time per day-type, protected within 30 minutes</p>
         <p>Walker's first protocol, in his words: regularity is king. A consistent wake time is the single strongest signal you can send both clocks, and it is the one number the rest of your plan is computed from. <span class="cite">(Walker, Guest Series Ep. 2, 6:53)</span></p>
         <p>A rotating schedule cannot hold one wake time, so hold one per day-type: a work-day anchor and a rest-day anchor, as close together as your life allows. Land within 30 minutes of the anchor and count it as a win.</p>
+
+        <figure class="figure">
+          <svg viewBox="0 0 640 300" role="img" aria-label="Three rows, one per day type: work night, work night, and rest day. Each row has a sleep block of a different length starting at a different time, but all three blocks end at the same vertical line marked as the wake anchor. A narrow shaded band around that line marks the plus or minus thirty minute tolerance. The start of sleep moves; the anchor does not." xmlns="http://www.w3.org/2000/svg">
+            <!-- start-of-sleep annotation -->
+            <text class="dg-label" x="130" y="24" fill="#6b6b76" font-family="Inter, system-ui, sans-serif" font-size="18">Sleep can start anywhere</text>
+            <path class="dg-row" d="M186 34 L 186 52 L 214 52 M 206 46 L 214 52 L 206 58" fill="none" stroke="#4a4a56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- tolerance band around the anchor -->
+            <rect class="dg-tol" x="482" y="46" width="40" height="184" fill="#60a5fa" fill-opacity="0.14" rx="3"/>
+
+            <!-- rows -->
+            <g class="dg-row" stroke="#2c2c34" stroke-width="1.5">
+              <line x1="130" y1="76" x2="560" y2="76"/>
+              <line x1="130" y1="138" x2="560" y2="138"/>
+              <line x1="130" y1="200" x2="560" y2="200"/>
+            </g>
+
+            <!-- sleep blocks: different starts, all ending on the anchor -->
+            <g class="dg-sleep" fill="#a78bfa" fill-opacity="0.28" stroke="#a78bfa" stroke-width="1.75">
+              <rect x="214" y="58" width="288" height="36" rx="6"/>
+              <rect x="166" y="120" width="336" height="36" rx="6"/>
+              <rect x="262" y="182" width="240" height="36" rx="6"/>
+            </g>
+
+            <!-- the anchor line, drawn over the blocks so it stays visible -->
+            <line class="dg-anchor" x1="502" y1="40" x2="502" y2="238" stroke="#60a5fa" stroke-width="2.5"/>
+
+            <!-- row labels -->
+            <g class="dg-label" fill="#6b6b76" font-family="Inter, system-ui, sans-serif" font-size="18" text-anchor="end">
+              <text x="116" y="82">Work night</text>
+              <text x="116" y="144">Work night</text>
+              <text x="116" y="206">Rest day</text>
+            </g>
+
+            <!-- anchor label -->
+            <text class="dg-circadian-t" x="502" y="264" fill="#60a5fa" font-family="Inter, system-ui, sans-serif" font-size="19" font-weight="600" text-anchor="middle">Wake anchor</text>
+            <text class="dg-label" x="502" y="290" fill="#6b6b76" font-family="Inter, system-ui, sans-serif" font-size="17" text-anchor="middle">&#177;30 minutes</text>
+          </svg>
+          <figcaption>The start of sleep is negotiable. The end of it is not. Every day-type gets a block of whatever length the shift left you, all of them landing on the same wake time, with half an hour of grace on either side.</figcaption>
+        </figure>
       </div>
 
       <div class="foundation">
         <h3>2. Light, on purpose</h3>
         <p class="when">Bright light within 90 minutes after waking; dim everything in the last 3 hours before sleep</p>
         <p>Light is the lever that sets the circadian clock. Get bright light soon after waking, whatever the sun is doing: real daylight if it exists, bright indoor light if it does not. Then invert it: for the last stretch before your sleep target, treat light as a drug you are tapering. Sunglasses on the drive home after a night shift are not a style choice; they keep daylight from telling your clock the day is starting just as you need it to end.</p>
+        <p>There is a dose, and most people underdo it. Pooling the trials, the effect belongs to sustained brightness: somewhere between 900 and 6,000 lux for at least an hour during the shift did the most work, and a lamp glanced at for ten minutes did almost none (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11696139/">Scientific Reports meta-analysis, 2024</a>). The same analysis carries a warning worth hearing before you spend money: light therapy during the shift helps permanent night workers substantially more than it helps rotators. If your schedule turns over every few days, your clock never gets far enough in one direction for the light to have something to hold onto. Rotators still get the alerting benefit on shift. They just should not expect their rhythm to move.</p>
       </div>
 
       <div class="foundation">
@@ -185,12 +316,15 @@
         <h3>4. Food timing</h3>
         <p class="when">Last real meal at least 3 hours before wind-down</p>
         <p>Digestion raises core temperature and competes with sleep. Big meals late in a night shift are the classic trap: you are bored, it is 4 a.m., and the food is there. Eat your real meal earlier in the shift and keep the end light.</p>
+        <p>The newer finding is bigger than heartburn, and it reframes what the food card is even for. Researchers put people through simulated night shifts and changed exactly one variable: whether they ate during their biological daytime or around the clock like a normal night worker. Same calories, same food, same shifts. The daytime-eating group did not develop the internal circadian misalignment the other group did, and their cardiovascular risk markers stayed flat where the others' climbed (<a href="https://www.nature.com/articles/s41467-025-57846-y">Chellappa, Scheer et al., Nature Communications, 2025</a>). Timing was the whole intervention. Not macros, not clean eating, not a supplement. When you eat.</p>
+        <p>Which is a lovely finding and a hard ask, because a twelve-hour night with no food is not a plan, it is a fantasy. So here is the fallback, and it is better than it sounds: in a crossover trial in night-shift nurses, a single low-glycemic-index meal on shift left glucose profiles close to what they looked like when the nurses ate nothing at all (<a href="https://pubmed.ncbi.nlm.nih.gov/38042350/">Soltani et al., J Nutr, 2024</a>). One meal, low GI, early in the shift. Not three, not the vending machine at four.</p>
       </div>
 
       <div class="foundation">
         <h3>5. The planned nap</h3>
         <p class="when">4 to 5.5 hours after waking, kept short</p>
         <p>A nap is a tool, not a failure. Used deliberately it pays down sleep pressure before a long night; used accidentally at hour 20 it is a warning sign. Keep planned naps short enough to avoid waking from deep sleep groggy, and never nap close to your main sleep window, where it steals pressure you need.</p>
+        <p>If your shift is long enough that a nap is on the table but broken enough that one long break never happens, split it. Across a simulated sixteen-hour night, a 90-minute nap plus a later 30-minute nap held alertness as well as a single 120-minute block, and on some measures better (<a href="https://www.nature.com/articles/s41598-023-37061-9">Scientific Reports, 2023</a>). That matters because the two-hour break is the one nobody actually gets. Two smaller windows you can defend beat one perfect window you cannot.</p>
       </div>
 
       <div class="foundation">
@@ -208,12 +342,16 @@
       <p class="part-label">Part three</p>
       <h2>Getting home</h2>
 
-      <p>The most dangerous part of a night shift is the drive after it. Drowsy driving impairs you the way drinking does, and the crash risk is real enough that it belongs in a sleep manual more than any supplement does. If your eyes are heavy at the wheel: pull over and take a 20-minute nap before continuing, use caffeine as an emergency tool knowing it will cost you day sleep, or find another way home. Arriving 40 minutes later beats not arriving. The federal safety agencies that study night work say the same thing without hedging: treat post-shift driving as the risk it is.</p>
+      <p>The most dangerous part of a night shift is the drive after it. Drowsy driving impairs you the way drinking does, and the crash risk is real enough that it belongs in a sleep manual more than any supplement does. Put a number on it: when researchers ran nurses through a driving simulator on their real commute after a real shift, the night-shift group crashed on 11 percent of drives against 7 percent for the day-shift group, with more drifting out of lane and more of the hard braking that means you saw it late (<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10054033/">James &amp; James, Nursing Reports, 2023</a>). That is a simulator, so nobody got hurt. On the interstate you do not get the version where nobody gets hurt. If your eyes are heavy at the wheel: pull over and take a 20-minute nap before continuing, use caffeine as an emergency tool knowing it will cost you day sleep, or find another way home. Arriving 40 minutes later beats not arriving. The federal safety agencies that study night work say the same thing without hedging: treat post-shift driving as the risk it is.</p>
 
       <p class="part-label">Part four</p>
       <h2>When it is more than shift work</h2>
 
-      <p>Some sleep problems are not schedule problems. If you are consistently unable to sleep even with the window protected, if you are falling asleep involuntarily on shift, if you snore hard and wake unrefreshed, or if the dread of not sleeping has become its own thing keeping you awake, that is worth a real evaluation. Shift work sleep disorder is a recognized diagnosis, sleep apnea does not care what shift you work, and the best-evidenced treatment for chronic insomnia is not a pill, it is CBT-I, a structured behavioral program. A sleep clinician can sort out which one you are dealing with. This manual is education, not medical advice, and the strongest move available sometimes is asking for help.</p>
+      <p>Some sleep problems are not schedule problems. If you are consistently unable to sleep even with the window protected, if you are falling asleep involuntarily on shift, if you snore hard and wake unrefreshed, or if the dread of not sleeping has become its own thing keeping you awake, that is worth a real evaluation. Shift work sleep disorder is a recognized diagnosis, sleep apnea does not care what shift you work, and the best-evidenced treatment for chronic insomnia is not a pill, it is CBT-I, a structured behavioral program. A sleep clinician can sort out which one you are dealing with.</p>
+
+      <p>As of May 2025 that clinician has something they did not have before. The American Academy of Sleep Medicine published its first clinical practice guideline devoted to shift work disorder, which means the advice above stopped being a collection of good studies and became a document a physician can point at (<a href="https://aasm.org/wp-content/uploads/2025/08/Extrinsic-CRSWD-SR_SWD_May2025.pdf">AASM clinical practice guideline, 2025</a>). It suggests bright light during the shift, caffeine before or during it, and a nap before the shift for the sleepiness side; CBT-I for the insomnia side. For the specific problem of not being able to sleep during the day, melatonin taken before daytime sleep is offered as an option, and the honest framing matters: that recommendation is conditional and rests on low-certainty evidence, so treat it as something to try under guidance, not a dose to go buy. And one recommendation runs the other way. The guideline suggests against benzodiazepines for shift work disorder insomnia. If that is what you were handed, that is a conversation to reopen.</p>
+
+      <p>This manual is education, not medical advice, and the strongest move available sometimes is asking for help.</p>
 
       <p class="part-label">Part five</p>
       <h2>Protecting it</h2>
@@ -232,7 +370,8 @@
       <ul class="sources">
         <li>Matthew Walker, PhD, on the Huberman Lab Guest Series on Sleep: Episode 1 (The Biology of Sleep &amp; Your Unique Sleep Needs) at 1:32, 11:35, 2:36:48, and 2:37:33; Episode 2 (Protocols to Improve Your Sleep) at 6:53 and 59:25.</li>
         <li>Matthew Walker, PhD, on The Drive with Peter Attia, MD (clip: "Do THC and CBD help you sleep?"), on thermoregulation and sleep, at 7:40.</li>
-        <li>Concept references: the two-process model of sleep regulation; circadian phase response to light; adenosine antagonism by caffeine; sleep inertia; shift work sleep disorder and CBT-I as first-line insomnia treatment. NIOSH training materials for nurses and emergency responders on shift work and long hours cover the occupational side, free and in the public domain.</li>
+        <li>Peer-reviewed sources are linked inline where the claim is made: the <a href="https://aasm.org/wp-content/uploads/2025/08/Extrinsic-CRSWD-SR_SWD_May2025.pdf">AASM clinical practice guideline on shift work disorder (2025)</a>; <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2785077">Lammers-van der Holst et al. on rotation direction (JAMA Network Open, 2021)</a>; <a href="https://www.nature.com/articles/s41467-025-57846-y">Chellappa, Scheer et al. on meal timing and circadian misalignment (Nature Communications, 2025)</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/38042350/">Soltani et al. on low-GI meals on shift (J Nutr, 2024)</a>; <a href="https://www.nature.com/articles/s41598-023-37061-9">the split-nap trial (Scientific Reports, 2023)</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11696139/">the light-therapy meta-analysis (Scientific Reports, 2024)</a>; and <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10054033/">James &amp; James on post-shift driving (Nursing Reports, 2023)</a>.</li>
+        <li>Concept references: the two-process model of sleep regulation; circadian phase response to light; adenosine antagonism by caffeine; sleep inertia. <a href="https://www.cdc.gov/niosh/work-hour-training-for-nurses/default.html">NIOSH training materials for nurses and emergency responders</a> on shift work and long hours cover the occupational side, free and in the public domain.</li>
         <li>Where a claim is ours, the reasoning is shown inline. Nothing on this page is sponsored, and nothing here sells anything.</li>
       </ul>
 
@@ -284,7 +423,7 @@
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, source: f.dataset.smSource || 'manual' })
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'manual', leadMagnet: f.dataset.smLeadMagnet })
           });
           const j = await r.json();
           if (msg) msg.textContent = j.ok ? 'Subscribed. Check your inbox.' : (j.error || 'Something went wrong.');

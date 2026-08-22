@@ -69,12 +69,15 @@ async function addSubscriber(email, opts = {}) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: 'invalid email' };
   const subs = await loadSubscribers();
   if (subs.find(s => s.email === email)) return { ok: true, already: true };
-  subs.push({ email, subscribedAt: new Date().toISOString(), source: opts.source || 'newsletter' });
+  const source = String(opts.source || 'newsletter').slice(0, 40);
+  const entry = { email, subscribedAt: new Date().toISOString(), source };
+  if (opts.leadMagnet) entry.leadMagnet = String(opts.leadMagnet).slice(0, 40);
+  subs.push(entry);
   await saveSubscribers(subs);
-  console.log(`+ subscriber: ${email} (total: ${subs.length})`);
-  notifyDiscord(`**[NEWSLETTER] New subscriber** \`${email}\` \u2014 **total: ${subs.length}**`);
+  console.log(`+ subscriber: ${email} via ${source} (total: ${subs.length})`);
+  notifyDiscord(`**[NEWSLETTER] New subscriber** \`${email}\` via \`${source}\` \u2014 **total: ${subs.length}**`);
   if (!opts.skipWelcome) {
-    sendWelcomeEmail(email).catch(err => console.error(`Welcome email failed for ${email}: ${err.message}`));
+    sendWelcomeEmail(email, source).catch(err => console.error(`Welcome email failed for ${email}: ${err.message}`));
   }
   return { ok: true };
 }
@@ -165,21 +168,38 @@ function unsubFooter(email) {
   return `<p style="font-size:12px;color:#999;">You signed up at sleepmedic.co. <a href="${PUBLIC_BASE}/unsubscribe?email=${encodeURIComponent(email)}" style="color:#999;">Unsubscribe</a></p>`;
 }
 
-async function sendWelcomeEmail(email) {
-  const html = `
+// Welcome varies by signup source: someone on the manual page has already read
+// it, so point them at the print version and the plan instead.
+async function sendWelcomeEmail(email, source = 'newsletter') {
+  const wrap = (inner) => `
     <div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">
-      <h2 style="margin-bottom:8px;">You're in.</h2>
-      <p style="font-size:16px;line-height:1.6;">SleepMedic is sleep science for people who sleep against the clock &mdash; shift workers, night crews, new parents. No 9-to-5 assumptions, every claim cited.</p>
-      <p style="font-size:16px;line-height:1.6;">Start with the manual. It is free, printable, and cited to source:</p>
-      <a href="https://www.sleepmedic.co/manual/" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">The Shift Worker's Field Manual</a>
-      <p style="font-size:16px;line-height:1.6;margin-top:24px;">When you want it built around your actual schedule, the <a href="https://www.sleepmedic.co/plan/" style="color:#a78bfa;">free plan builder</a> computes your anchors, caffeine cutoff, and light windows for every kind of day you work.</p>
+      ${inner}
       <p style="font-size:16px;line-height:1.6;">From here: one short brief when there's something worth your time. No filler, no daily drip.</p>
       <hr style="margin:32px 0;border:none;border-top:1px solid #eee;">
       ${unsubFooter(email)}
     </div>
   `;
-  await sendEmail(email, 'Welcome to SleepMedic', html);
-  console.log(`Welcome email sent to ${email}`);
+  const btn = (href, label) => `<a href="${href}" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">${label}</a>`;
+
+  let subject = 'Welcome to SleepMedic';
+  let body;
+  if (source === 'manual') {
+    subject = 'Your Field Manual, and what comes next';
+    body = `
+      <h2 style="margin-bottom:8px;">You're in.</h2>
+      <p style="font-size:16px;line-height:1.6;">Keep the manual where you can reach it &mdash; it prints clean, so a copy in your bag or on the station fridge works:</p>
+      ${btn('https://www.sleepmedic.co/manual/', 'Open the manual (print from there)')}
+      <p style="font-size:16px;line-height:1.6;margin-top:24px;">The next step is making it yours. The <a href="https://www.sleepmedic.co/plan/" style="color:#a78bfa;">free plan builder</a> takes the same rules and computes your anchors, caffeine cutoff, and light windows against the shifts you actually work. Two minutes, printable, no account.</p>`;
+  } else {
+    body = `
+      <h2 style="margin-bottom:8px;">You're in.</h2>
+      <p style="font-size:16px;line-height:1.6;">SleepMedic is sleep science for people who sleep against the clock &mdash; shift workers, night crews, new parents. No 9-to-5 assumptions, every claim cited.</p>
+      <p style="font-size:16px;line-height:1.6;">Start with the manual. It is free, printable, and cited to source:</p>
+      ${btn('https://www.sleepmedic.co/manual/', "The Shift Worker's Field Manual")}
+      <p style="font-size:16px;line-height:1.6;margin-top:24px;">When you want it built around your actual schedule, the <a href="https://www.sleepmedic.co/plan/" style="color:#a78bfa;">free plan builder</a> computes your anchors, caffeine cutoff, and light windows for every kind of day you work.</p>`;
+  }
+  await sendEmail(email, subject, wrap(body));
+  console.log(`Welcome email (${source}) sent to ${email}`);
 }
 
 // ── Plan Leads (quiz -> free personalized plan) ──────
@@ -423,7 +443,7 @@ const server = http.createServer(async (req, res) => {
   if (url.pathname === '/subscribe' && req.method === 'POST') {
     const body = await parseBody(req);
     if (!body.email) { json(res, 400, { error: 'email required' }); return; }
-    const result = await addSubscriber(body.email);
+    const result = await addSubscriber(body.email, { source: body.source, leadMagnet: body.leadMagnet });
     json(res, result.ok ? 200 : 400, result);
     return;
   }

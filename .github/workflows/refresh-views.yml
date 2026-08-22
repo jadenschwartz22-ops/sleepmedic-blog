@@ -3,7 +3,7 @@ name: Refresh Public View Counts
 on:
   workflow_dispatch: {}
   schedule:
-    # Daily at 13:00 UTC (independent of the Mon/Thu publish cadence)
+    # Daily at 13:00 UTC (independent of the Monday publish cadence)
     - cron: "0 13 * * *"
 
 permissions:

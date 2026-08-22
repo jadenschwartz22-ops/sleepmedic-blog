@@ -79,6 +79,8 @@ async function generatePostsIndex() {
       if (prev.audience) metadata.audience = prev.audience;
       if (prev.redirectTo) metadata.redirectTo = prev.redirectTo;
       posts.push(metadata);
+    } else {
+      console.warn(`WARNING: could not extract metadata from ${file} -- excluded from index/RSS/sitemap`);
     }
   }
 

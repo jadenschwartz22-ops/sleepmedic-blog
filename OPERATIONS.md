@@ -5,7 +5,7 @@
 | Layer | What | Where | How it runs |
 |---|---|---|---|
 | Blog site | Static HTML + GA4 | `sleepmedic.co` via GitHub Pages | Push to `main` deploys |
-| Weekly pipeline | 12-stage Gemini blog generator | GitHub Actions | `weekly-blog-draft-auto.yml` cron Mon+Thu 9am MT |
+| Weekly pipeline | 12-stage Gemini blog generator | GitHub Actions | `weekly-blog-draft-auto.yml` cron Mon 9am MT |
 | Pi service | Newsletter + app-interest + RSS watcher + Discord | `raspberrypi.local:3847` | pm2 + systemd |
 | Public API | Cloudflare Tunnel | `pi.sleepmedic.co` | cloudflared systemd service |
 | Email | Resend | `blog@sleepmedic.co` | API, domain verified |
