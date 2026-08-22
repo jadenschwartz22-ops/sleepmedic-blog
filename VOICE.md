@@ -24,6 +24,8 @@ The base is the writer's own voice, as documented in the rest of this file. Ever
 
 **Advice is offered as what worked in the evidence, not decreed.** "In the trials, these are the naps that helped people" beats an invented taxonomy delivered from a podium. The menu, the rule, the protocol — attribute them to what the research found, then add judgment openly where judgment fills a gap.
 
+**Sprinkle field practice, labeled as field practice.** Alongside the trial evidence, the site carries practitioner tips — Jocko Willink's 15-minute nap with feet up, the founder's alarm placed across the room so getting up is the only option. These are gold, on two conditions: they are attributed (a named person actually does this — "Jocko swears by," "I do this"), and they are never dressed up as research. "No trial behind this one; it works anyway" is a perfectly good sentence. One or two per piece, where they land naturally. The inventory lives in docs/field-tips.md — add to it whenever Jaden hands over another one.
+
 **Vignettes rotate their wells.** Churchill and the B-17 cockpit both landed, and they are both war. History, sport, aviation, factory floors, music, space, animals, science's own bloopers — spread the anecdotes across all of it. Two war stories in a row means the third opener comes from somewhere else.
 
 **A combo, not a costume.** Clear and Holiday are influences to metabolize, not templates to fill in. If a piece reads like an imitation of either, it gets rewritten until it reads like the writer.
