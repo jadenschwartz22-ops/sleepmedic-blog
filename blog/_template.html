@@ -65,54 +65,34 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
-  <!-- Inter Font -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../_shared-styles.css">
 
   <style>
-    /* ── Reading Progress ── */
     .reading-progress {
       position: fixed; top: 0; left: 0;
-      width: 0%; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      width: 0%; height: 2px;
+      background: var(--accent);
       z-index: 1000;
-      transition: width 50ms linear;
+      transition: width 80ms linear;
     }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 24px;
-      max-width: 720px;
-      margin: 0 auto;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 16px; align-items: center; }
-    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta { padding: 7px 14px; background: rgba(167,139,250,0.10); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
-    .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
 
     .post-container {
-      max-width: 720px;
+      max-width: var(--measure);
       margin: 0 auto;
-      padding: 48px 24px 40px;
+      padding: 44px 24px 40px;
     }
 
     .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      display: inline-flex; align-items: center; gap: 6px;
       color: var(--text-3);
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.85rem; font-weight: 500;
       margin-bottom: 32px;
-      transition: color 0.2s;
+      transition: color 0.2s var(--ease);
     }
     .back-link:hover { color: var(--text); }
     .back-link::before { content: "\2190"; }
@@ -122,257 +102,62 @@
       padding-bottom: 28px;
       border-bottom: 1px solid var(--border);
     }
-
     .post-category-badge {
       display: inline-block;
-      padding: 4px 12px;
-      border-radius: 6px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
       background: var(--accent-dim);
+      border: 1px solid var(--accent-line);
       color: var(--accent);
-      font-weight: 700;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
+      font-weight: 700; font-size: 0.68rem;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 18px;
     }
-
     .post-header h1 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-size: clamp(1.9rem, 4.4vw, 2.6rem);
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
       margin-bottom: 16px;
-      letter-spacing: -0.02em;
     }
-
     .post-meta {
       color: var(--text-3);
       font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      display: flex; align-items: center; gap: 10px;
       flex-wrap: wrap;
     }
+    .post-meta a { color: var(--text-2); font-weight: 500; }
+    .post-meta a:hover { color: var(--accent); }
     .post-meta-sep { color: var(--border-hover); }
 
-    .post-content {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: var(--text-2);
-    }
-    .post-content h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-top: 48px;
-      margin-bottom: 16px;
-      letter-spacing: -0.01em;
-    }
-    .post-content h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-top: 36px;
-      margin-bottom: 12px;
-    }
-    .post-content p { margin-bottom: 20px; }
-    .post-content ul, .post-content ol {
-      margin-bottom: 20px;
-      padding-left: 24px;
-    }
-    .post-content li { margin-bottom: 8px; }
-    .post-content a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-color: rgba(167,139,250,0.35);
-      text-underline-offset: 3px;
-    }
-    .post-content a:hover { text-decoration-color: var(--accent); color: var(--accent-2); }
-    .post-content strong { font-weight: 600; color: var(--text); }
-    .post-content blockquote {
-      border-left: 3px solid var(--accent);
-      padding: 16px 20px;
-      margin: 24px 0;
-      background: var(--accent-dim);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      font-style: italic;
-      color: var(--text-3);
-    }
-    .post-content figure {
-      margin: 32px 0;
-    }
-    .post-content figure img {
-      width: 100%;
-      border-radius: 16px;
-      max-height: 360px;
-      object-fit: cover;
-    }
-
-    /* ── Newsletter CTA (in-post) ── */
-    .newsletter-cta {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px 28px;
-      margin: 48px 0;
-      text-align: center;
-    }
-    .newsletter-cta h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin: 0 0 8px;
-      color: var(--text);
-    }
-    .newsletter-cta p {
-      font-size: 0.88rem;
-      color: var(--text-3);
-      margin: 0 0 16px;
-      line-height: 1.5;
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 8px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    .newsletter-form input {
-      flex: 1;
-      padding: 10px 14px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 0.88rem;
-      font-family: inherit;
-    }
-    .newsletter-form input::placeholder { color: var(--text-3); }
-    .newsletter-form input:focus { outline: none; border-color: var(--accent); }
-    .newsletter-form button {
-      padding: 10px 20px;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      cursor: pointer;
-      font-family: inherit;
-      white-space: nowrap;
-    }
-    .newsletter-form button:hover { opacity: 0.85; }
-    .newsletter-msg {
-      font-size: 0.8rem;
-      margin-top: 8px;
-      color: var(--accent);
-      display: none;
-    }
-
-    @media (max-width: 480px) {
-      .newsletter-form { flex-direction: column; }
-    }
-
-    /* ── App CTA ── */
-    .app-cta {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px 28px;
-      margin: 48px 0 0;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .app-cta:hover { border-color: var(--border-hover); }
-    .app-cta-icon { font-size: 1.2rem; font-weight: 800; color: var(--accent); flex-shrink: 0; }
-    .app-cta-text { flex: 1; }
-    .app-cta-text p {
-      margin: 0 0 10px;
-      font-size: 0.9rem;
-      color: var(--text-2);
-      line-height: 1.5;
-    }
-    .app-cta-text a {
-      display: inline-block;
-      padding: 8px 18px;
-      background: var(--accent);
-      color: var(--bg);
-      font-weight: 700;
-      font-size: 0.82rem;
-      border-radius: 8px;
-      text-decoration: none;
-    }
-    .app-cta-text a:hover { opacity: 0.85; color: var(--bg); }
-
-    @media (max-width: 480px) {
-      .app-cta { flex-direction: column; text-align: center; }
-    }
-
-    /* ── Related Posts ── */
-    .related-posts {
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .related-posts h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 12px;
-    }
+    /* ── Related ── */
+    .related-posts { margin-top: var(--space-section); padding-top: 32px; border-top: 1px solid var(--border); }
+    .related-posts h2 { font-size: 1rem; margin-bottom: 16px; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
     .related-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
       padding: 16px;
-      text-decoration: none;
       color: inherit;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s var(--ease);
     }
-    .related-card:hover { border-color: var(--border-hover); }
-    .related-card h4 {
-      font-size: 0.88rem;
-      font-weight: 600;
-      line-height: 1.4;
-      margin-bottom: 6px;
-    }
-    .related-card span {
-      font-size: 0.75rem;
-      color: var(--text-3);
-    }
+    .related-card:hover { border-color: var(--border-hover); color: inherit; }
+    .related-card h3 { font-size: 0.88rem; font-weight: 600; line-height: 1.4; margin-bottom: 6px; }
+    .related-card span { font-size: 0.75rem; color: var(--text-3); }
 
-    /* ── Comments ── */
-    .comments-section {
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ── Footer ── */
-    footer {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 32px 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-3);
-      font-size: 0.78rem;
-      margin-top: 60px;
-    }
-    footer a { color: var(--text-3); }
-    footer a:hover { color: var(--text); }
+    .comments-section { margin-top: var(--space-section); padding-top: 32px; border-top: 1px solid var(--border); }
   </style>
 </head>
 <body>
   <div class="reading-progress" id="reading-progress"></div>
 
-  <nav>
+  <nav class="site-nav site-nav--narrow">
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <button type="button" class="nav-cta" data-app-interest="post-nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
+      <a href="/plan/" class="nav-cta" data-cta="post-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
     </div>
   </nav>
 
@@ -380,11 +165,15 @@
     <div class="post-container">
       <a href="../" class="back-link">All posts</a>
 
+      <!-- Tag names here are load-bearing: scripts/backfill-images.mjs matches
+           `<article class="post-header">` and generate-blog-post.mjs /
+           manual-auto-publish.mjs match `<div class="post-content">` to inject
+           the cover image. Do not change these two opening tags. -->
       <article class="post-header">
         <span class="post-category-badge">{{CATEGORY}}</span>
         <h1>{{TITLE}}</h1>
         <div class="post-meta">
-          <!-- TODO: replace with real name --><a href="/about/" style="color:inherit;text-decoration:none;" rel="author">SleepMedic Editorial</a>
+          <!-- TODO: replace with real name --><a href="/about/" rel="author">SleepMedic Editorial</a>
           <span class="post-meta-sep">|</span>
           <time datetime="{{DATE_ISO}}">{{DATE_FORMATTED}}</time>
           <span class="post-meta-sep">|</span>
@@ -398,28 +187,45 @@
         {{CONTENT}}
       </div>
 
-      <!-- Newsletter CTA -->
-      <div class="newsletter-cta">
-        <h3>Weekly sleep science, no fluff</h3>
-        <p>One email a week. Evidence-based advice for people who actually want to sleep better.</p>
-        <form class="newsletter-form" data-sm-newsletter>
-          <input type="email" name="email" required placeholder="you@email.com" />
+      <!-- MID_ARTICLE_CAPTURE
+           The generator moves this block to just after the first h2 section.
+           Target this comment and its sibling .capture--inline element.
+           If it is left in place, it still reads correctly as a post-body CTA. -->
+      <aside class="capture capture--inline" data-sm-capture-slot="mid">
+        <h3>Your schedule isn't general. Your plan shouldn't be.</h3>
+        <p class="capture-copy">Six questions, about two minutes, and the timings come back computed for the rotation you actually work.</p>
+        <a href="/plan/" class="btn btn-primary" data-cta="post-mid">Build my free sleep plan</a>
+      </aside>
+      <!-- /MID_ARTICLE_CAPTURE -->
+
+      <!-- Author box. Structured so a real name, credential, and photo drop in
+           without touching layout. TODO: founder bio pending. -->
+      <aside class="author-box">
+        <div class="author-avatar" aria-hidden="true">SM</div>
+        <div>
+          <p class="author-name">Written by the SleepMedic team</p>
+          <p class="author-bio">We write sleep science for people whose schedules don't cooperate. Every claim here is traced to a source, and where the research disagrees with itself, we say so.</p>
+          <a class="author-link" href="/about/">About SleepMedic &rarr;</a>
+        </div>
+      </aside>
+
+      <!-- End-of-article capture -->
+      <section class="capture" style="margin-top:var(--space-section);">
+        <p class="capture-eyebrow">Free, no account</p>
+        <h2>The weekly brief</h2>
+        <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+        <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" data-sm-source="post">
+          <label class="visually-hidden" for="post-email">Email address</label>
+          <input type="email" id="post-email" name="email" required autocomplete="email" placeholder="you@email.com" />
           <button type="submit">Subscribe</button>
         </form>
-        <div class="newsletter-msg" data-sm-newsletter-msg></div>
-      </div>
-
-      <div class="app-cta">
-        <div class="app-cta-icon">SM</div>
-        <div class="app-cta-text">
-          <p>SleepMedic adapts to your actual schedule -- not a rigid ideal. Track consistency, get smart reminders, and see what's really working.</p>
-          <a href="#" data-app-interest="post-cta">Download App</a>
-        </div>
-      </div>
+        <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+        <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+      </section>
 
       <!-- Related Posts (populated by JS) -->
       <div class="related-posts" id="related-posts" style="display:none;">
-        <h3>Keep reading</h3>
+        <h2>Keep reading</h2>
         <div class="related-grid" id="related-grid"></div>
       </div>
 
@@ -444,16 +250,16 @@
     </div>
   </main>
 
-  <footer>
-    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
-    <p style="margin-top:6px;">
-      <a href="/">Home</a> &middot;
-      <a href="/blog/">Blog</a> &middot;
+  <footer class="site-footer site-footer--narrow">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
       <a href="/blog/feed.xml">RSS</a>
-    </p>
+    </div>
   </footer>
-
-  <script src="/assets/app-interest.js" data-pi="https://pi.sleepmedic.co/app-interest"></script>
 
   <script>
     // GA4 enriched blog post view event
@@ -483,49 +289,71 @@
       }, { passive: true });
     })();
 
+    // Plan CTA tracking
+    document.addEventListener('click', (e) => {
+      const cta = e.target.closest('[data-cta]');
+      if (cta && window.gtag) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta, slug: '{{SLUG}}' });
+    });
+
     // Newsletter submit (Pi + Resend)
-    (function() {
-      const f = document.querySelector('[data-sm-newsletter]');
-      const msg = document.querySelector('[data-sm-newsletter-msg]');
-      if (!f) return;
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
       f.addEventListener('submit', async (e) => {
         e.preventDefault();
         const input = f.querySelector('input[name="email"]');
         const email = (input?.value || '').trim();
         if (!email) return;
-        msg.textContent = 'Subscribing...';
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
         try {
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ email, leadMagnet: f.dataset.smLeadMagnet })
           });
           const d = await r.json();
           if (d.ok) {
-            msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
             input.value = '';
             if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'post', slug: '{{SLUG}}' });
-          } else {
+          } else if (msg) {
             msg.textContent = d.error || 'Subscription failed.';
           }
         } catch {
-          msg.textContent = 'Network error. Try again.';
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
         }
       });
-    })();
+    });
 
     // Reading progress bar
-    const progress = document.getElementById('reading-progress');
-    const article = document.querySelector('.post-content');
-    if (article) {
+    (function() {
+      const progress = document.getElementById('reading-progress');
+      const article = document.querySelector('.post-content');
+      if (!article || !progress) return;
       window.addEventListener('scroll', () => {
         const rect = article.getBoundingClientRect();
         const total = article.scrollHeight;
         const scrolled = Math.max(0, -rect.top);
-        const pct = Math.min(100, (scrolled / (total - window.innerHeight)) * 100);
+        const pct = Math.min(100, Math.max(0, (scrolled / Math.max(1, total - window.innerHeight)) * 100));
         progress.style.width = pct + '%';
       }, { passive: true });
-    }
+    })();
+
+    // Style the generated Sources heading + list as a citation block.
+    (function() {
+      const heads = [...document.querySelectorAll('.post-content h2, .post-content h3')];
+      const srcHead = heads.find((h) => /^(sources|references|citations)\b/i.test(h.textContent.trim()));
+      if (!srcHead) return;
+      const list = srcHead.nextElementSibling;
+      if (!list || !/^(UL|OL)$/.test(list.tagName)) return;
+      const box = document.createElement('section');
+      box.className = 'sources';
+      srcHead.after(box);
+      box.append(srcHead, list);
+    })();
 
     // Related posts
     (async () => {
@@ -535,18 +363,17 @@
         const current = window.location.pathname.split('/').pop().replace('.html', '');
         const others = posts.filter(p => p.slug !== current).slice(0, 3);
         if (!others.length) return;
-        const grid = document.getElementById('related-grid');
-        grid.innerHTML = others.map(p => `
-          <a href="${p.slug}.html" class="related-card">
-            <h4>${p.title}</h4>
-            <span>${p.dateFormatted} | ${p.readTime} min</span>
+        const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+          ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        document.getElementById('related-grid').innerHTML = others.map(p => `
+          <a href="${esc(p.slug)}.html" class="related-card">
+            <h3>${esc(p.title)}</h3>
+            <span>${esc(p.dateFormatted)} | ${esc(p.readTime)} min</span>
           </a>
         `).join('');
         document.getElementById('related-posts').style.display = '';
       } catch {}
     })();
-
-    
 
     // View count from a static GA4 snapshot (blog/data/views.json), refreshed on publish.
     (async () => {
