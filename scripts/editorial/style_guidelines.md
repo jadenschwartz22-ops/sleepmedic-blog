@@ -4,6 +4,10 @@
 - **The reader is a shift worker.** EMTs, medics, nurses, firefighters, dispatch, security, overnight crews, and new parents running a shift-shaped life. Permanently and exclusively.
 - Assume they cannot choose their bedtime. Say "after waking," never "in the morning." Time habits from wake anchors, not clock times.
 - If a topic's advice would read the same on a generic sleep blog, reframe it for the schedule (nights, rotations, 24s/48s) or drop it.
+- Never invent the reader's inner life ("shift workers feel guilty about naps" = fabrication). Claims about their world stay concrete and checkable, or come from a study/quote/the writer's own experience.
+- Advice is offered as what the evidence found helped people, not decreed as an invented taxonomy. Attribute the protocol to the trials, add judgment openly where it fills gaps.
+- Vignettes rotate wells: history, sport, aviation, industry, music, space, animals, science bloopers - never two war/military stories in a row.
+- Clear/Holiday are influences to metabolize, not templates: story -> principle -> application -> plain standalone close, but in the writer's own voice.
 - THE TONES TEST: on call, the reader does not choose their wake - waking IS the job arriving. Never advise controlling what the reader cannot control ("keep your mornings calm" fails). Advice works WITH the constraint: short naps on call, checklists and partners for degraded judgment, or it does not ship.
 
 ## What good looks like

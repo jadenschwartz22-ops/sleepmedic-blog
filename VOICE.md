@@ -20,6 +20,14 @@ The base is the writer's own voice, as documented in the rest of this file. Ever
 
 **The audience is every shift worker.** The warehouse dock, the front desk, the plant floor, the casino pit, dispatch, the ward, the rig. Medicine is one shift-work world among many, not the default — rotate the examples, and when in doubt pick the one that needs no explanation to anybody.
 
+**Never invent the reader's inner life.** "Shift workers feel guilty about napping" is fabrication unless we actually know it. Claims about the reader's world stay concrete and checkable — the schedule, the policy, the recliner — or they stay out. If the piece needs the reader's experience, use a real one: a study, a quote, the writer's own.
+
+**Advice is offered as what worked in the evidence, not decreed.** "In the trials, these are the naps that helped people" beats an invented taxonomy delivered from a podium. The menu, the rule, the protocol — attribute them to what the research found, then add judgment openly where judgment fills a gap.
+
+**Vignettes rotate their wells.** Churchill and the B-17 cockpit both landed, and they are both war. History, sport, aviation, factory floors, music, space, animals, science's own bloopers — spread the anecdotes across all of it. Two war stories in a row means the third opener comes from somewhere else.
+
+**A combo, not a costume.** Clear and Holiday are influences to metabolize, not templates to fill in. If a piece reads like an imitation of either, it gets rewritten until it reads like the writer.
+
 **Every piece of advice must survive the tones test.** The reader may not choose their bedtime, and on call they do not choose their wake either — waking up IS the job arriving. Before any "what to do" ships, ask: can the reader actually do this at work, tonight, on their schedule? "Keep your first twenty minutes boring" fails the test for anyone who wakes to a radio. The honest version works with the constraint instead of wishing it away — nap short on call so the wake comes from shallow sleep, lean on the checklist and the partner because that is what they are for. This is the site's founding complaint about sleep advice; never write a sentence that commits the same crime.
 
 **The figurative dial sits at 8.5, not 10 — and plain English outranks the dial.** Rich, not lush. One image can carry a paragraph; two images compete, so keep the sharper one and let the other stand as plain statement. Every metaphor answers one question — is this observation or decoration? — and decoration goes. Two hard rules on top:
