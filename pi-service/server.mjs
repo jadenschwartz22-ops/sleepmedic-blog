@@ -515,14 +515,16 @@ const server = http.createServer(async (req, res) => {
     const subCount = (await loadSubscribers()).length;
     notifyDiscord(
       `**[BRIEF] Awaiting your approval** (${subCount} recipients)\n**Subject:** ${body.subject}\n\n${preview}\n\n` +
-      `✅ Approve & send: ${PUBLIC_BASE}/brief-approve?token=${token}\n` +
-      `❌ Reject: ${PUBLIC_BASE}/brief-reject?token=${token}`
+      `Review and send (or reject): <${PUBLIC_BASE}/brief-approve?token=${token}>`
     );
     json(res, 200, { ok: true, pending: true });
     return;
   }
 
-  if (url.pathname === '/brief-approve' || url.pathname === '/brief-reject') {
+  // GET shows a confirm page; only the POST buttons act. Never send on GET:
+  // Discord's link-preview crawler fetches URLs in messages (it fired the old
+  // one-tap link and mailed a test brief). Crawlers do not POST forms.
+  if (url.pathname === '/brief-approve') {
     let pending = null;
     try { pending = JSON.parse(await fs.readFile(PENDING_BRIEF_PATH, 'utf8')); } catch { /* none */ }
     const token = url.searchParams.get('token');
@@ -531,16 +533,28 @@ const server = http.createServer(async (req, res) => {
       res.end('<h2>Nothing pending</h2><p>No brief is waiting, or this link was already used.</p>');
       return;
     }
-    await fs.unlink(PENDING_BRIEF_PATH).catch(() => {});
-    if (url.pathname === '/brief-reject') {
-      notifyDiscord(`**[BRIEF] Rejected** "${pending.subject}" — not sent.`);
+    if (req.method === 'POST') {
+      await fs.unlink(PENDING_BRIEF_PATH).catch(() => {});
+      if (url.searchParams.get('do') === 'reject') {
+        notifyDiscord(`**[BRIEF] Rejected** "${pending.subject}" — not sent.`);
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(`<h2>Rejected</h2><p>"${pending.subject}" was discarded. Nothing was sent.</p>`);
+        return;
+      }
+      const { sent, failed } = await deliverBrief(pending.subject, pending.html);
       res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(`<h2>Rejected</h2><p>"${pending.subject}" was discarded. Nothing was sent.</p>`);
+      res.end(`<h2>Sent</h2><p>"${pending.subject}" went to ${sent} subscriber${sent === 1 ? '' : 's'}${failed ? ` (${failed} failed)` : ''}.</p>`);
       return;
     }
-    const { sent, failed } = await deliverBrief(pending.subject, pending.html);
+    const subCount = (await loadSubscribers()).length;
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(`<h2>Sent</h2><p>"${pending.subject}" went to ${sent} subscriber${sent === 1 ? '' : 's'}${failed ? ` (${failed} failed)` : ''}.</p>`);
+    res.end(`<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><body style="font-family:system-ui;max-width:560px;margin:40px auto;padding:0 16px;color:#222;">
+      <h2 style="margin-bottom:4px;">Send this brief?</h2>
+      <p style="color:#666;">"${pending.subject}" to ${subCount} subscriber${subCount === 1 ? '' : 's'}.</p>
+      <div style="border:1px solid #ddd;border-radius:8px;padding:16px;margin:16px 0;">${pending.html}</div>
+      <form method="POST" action="/brief-approve?token=${token}&do=send" style="display:inline"><button style="padding:12px 24px;background:#7c5ce0;color:#fff;border:none;border-radius:8px;font-size:16px;font-weight:600;">Send it</button></form>
+      <form method="POST" action="/brief-approve?token=${token}&do=reject" style="display:inline;margin-left:10px"><button style="padding:12px 24px;background:#fff;color:#666;border:1px solid #ccc;border-radius:8px;font-size:16px;">Reject</button></form>
+    </body>`);
     return;
   }
 
