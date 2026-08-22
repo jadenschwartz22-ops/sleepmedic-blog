@@ -445,13 +445,15 @@ RULES:
 
   let research;
   try {
-    // Try with google_search grounding first
     research = await gemini(researchPrompt, { json: true, temp: 0.3, search: true, maxTokens: 4096 });
   } catch (err) {
-    logDetail(`Search grounding failed: ${err.message.slice(0, 100)}`);
-    logDetail('Falling back to non-search research...');
-    // Fallback: no search tool, just use model knowledge with JSON mode
-    research = await gemini(researchPrompt, { json: true, temp: 0.3, maxTokens: 4096 });
+    logDetail(`Grounded research failed, retrying once: ${err.message.slice(0, 100)}`);
+    try {
+      research = await gemini(researchPrompt, { json: true, temp: 0.3, search: true, maxTokens: 4096 });
+    } catch (err2) {
+      console.error(chalk.red(`FATAL: grounded research failed twice, refusing to publish from model memory: ${err2.message.slice(0, 200)}`));
+      process.exit(1);
+    }
   }
 
   logDetail(`Found ${research.studies?.length || 0} studies, ${research.key_stats?.length || 0} stats`);
