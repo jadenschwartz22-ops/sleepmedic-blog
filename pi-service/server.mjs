@@ -26,6 +26,7 @@ import fs from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
 import { buildPlan } from '../plan/engine.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -44,6 +45,7 @@ const POLL_INTERVAL = 30 * 60 * 1000; // 30 minutes
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
 
 const SUBS_PATH = path.join(__dirname, 'subscribers.json');
+const PENDING_BRIEF_PATH = path.join(__dirname, 'pending-brief.json');
 const LAST_POST_PATH = path.join(__dirname, '.last-post-guid.txt');
 const APP_INTEREST_PATH = path.join(__dirname, 'app-interest.json');
 const PLAN_LEADS_PATH = path.join(__dirname, 'plan-leads.json');
@@ -475,24 +477,70 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // Admin: send the weekly brief. Body: { subject, html }. The html is the
-  // brief body only; the per-recipient unsubscribe footer is appended here.
-  if (url.pathname === '/send-brief' && req.method === 'POST') {
-    if (url.searchParams.get('key') !== ADMIN_KEY) { json(res, 403, { error: 'forbidden' }); return; }
-    const body = await parseBody(req);
-    if (!body.subject || !body.html) { json(res, 400, { error: 'subject and html required' }); return; }
+  // ── The weekly brief: propose -> Jaden taps Approve in Discord -> it sends ──
+
+  async function deliverBrief(subject, html) {
     const subs = await loadSubscribers();
     let sent = 0, failed = 0;
     for (const sub of subs) {
       try {
-        await sendEmail(sub.email, body.subject,
-          `<div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">${body.html}<hr style="margin:32px 0;border:none;border-top:1px solid #eee;">${unsubFooter(sub.email)}</div>`);
+        await sendEmail(sub.email, subject,
+          `<div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">${html}<hr style="margin:32px 0;border:none;border-top:1px solid #eee;">${unsubFooter(sub.email)}</div>`);
         sent++;
       } catch (err) { failed++; console.error(`Brief failed for ${sub.email}: ${err.message}`); }
     }
-    console.log(`Brief "${body.subject}" sent: ${sent} ok, ${failed} failed`);
-    notifyDiscord(`**[BRIEF] Sent** "${body.subject}" — ${sent} ok, ${failed} failed`);
-    json(res, 200, { ok: true, sent, failed });
+    console.log(`Brief "${subject}" sent: ${sent} ok, ${failed} failed`);
+    notifyDiscord(`**[BRIEF] Sent** "${subject}" — ${sent} ok, ${failed} failed`);
+    return { sent, failed };
+  }
+
+  // Direct send (admin key). Kept for manual use.
+  if (url.pathname === '/send-brief' && req.method === 'POST') {
+    if (url.searchParams.get('key') !== ADMIN_KEY) { json(res, 403, { error: 'forbidden' }); return; }
+    const body = await parseBody(req);
+    if (!body.subject || !body.html) { json(res, 400, { error: 'subject and html required' }); return; }
+    json(res, 200, { ok: true, ...(await deliverBrief(body.subject, body.html)) });
+    return;
+  }
+
+  // Propose: stores the draft, drops an Approve/Reject card in Discord.
+  // One tap on Approve from the phone sends it to the whole list.
+  if (url.pathname === '/brief-propose' && req.method === 'POST') {
+    if (url.searchParams.get('key') !== ADMIN_KEY) { json(res, 403, { error: 'forbidden' }); return; }
+    const body = await parseBody(req);
+    if (!body.subject || !body.html) { json(res, 400, { error: 'subject and html required' }); return; }
+    const token = crypto.randomBytes(24).toString('hex');
+    await fs.writeFile(PENDING_BRIEF_PATH, JSON.stringify({ token, subject: body.subject, html: body.html, proposedAt: new Date().toISOString() }));
+    const preview = body.html.replace(/<[^>]+>/g, ' ').replace(/&mdash;/g, '-').replace(/&[a-z]+;/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 900);
+    const subCount = (await loadSubscribers()).length;
+    notifyDiscord(
+      `**[BRIEF] Awaiting your approval** (${subCount} recipients)\n**Subject:** ${body.subject}\n\n${preview}\n\n` +
+      `✅ Approve & send: ${PUBLIC_BASE}/brief-approve?token=${token}\n` +
+      `❌ Reject: ${PUBLIC_BASE}/brief-reject?token=${token}`
+    );
+    json(res, 200, { ok: true, pending: true });
+    return;
+  }
+
+  if (url.pathname === '/brief-approve' || url.pathname === '/brief-reject') {
+    let pending = null;
+    try { pending = JSON.parse(await fs.readFile(PENDING_BRIEF_PATH, 'utf8')); } catch { /* none */ }
+    const token = url.searchParams.get('token');
+    if (!pending || !token || token !== pending.token) {
+      res.writeHead(404, { 'Content-Type': 'text/html' });
+      res.end('<h2>Nothing pending</h2><p>No brief is waiting, or this link was already used.</p>');
+      return;
+    }
+    await fs.unlink(PENDING_BRIEF_PATH).catch(() => {});
+    if (url.pathname === '/brief-reject') {
+      notifyDiscord(`**[BRIEF] Rejected** "${pending.subject}" — not sent.`);
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(`<h2>Rejected</h2><p>"${pending.subject}" was discarded. Nothing was sent.</p>`);
+      return;
+    }
+    const { sent, failed } = await deliverBrief(pending.subject, pending.html);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end(`<h2>Sent</h2><p>"${pending.subject}" went to ${sent} subscriber${sent === 1 ? '' : 's'}${failed ? ` (${failed} failed)` : ''}.</p>`);
     return;
   }
 
