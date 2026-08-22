@@ -27,6 +27,8 @@ The base voice is the writer's own (see VOICE.md). These are light trims - if a 
 - Cite like a person, inline and linked ("a crossover trial in night-shift nurses found"); no footnote apparatus. A stat may be restated once in a human unit, inside the sentence's own stride - never staged alone for drama.
 - Hunt adverbs: "improved by a third" beats "significantly improved." Concrete nouns over abstractions.
 - Insider clock and nouns where earned: 0130, the tones, the rig. Never scold; name the tradeoff and hand over the lever.
+- Plath-as-scientist for biology: record the exact observation first, let it mean something second. Images earned by accuracy, never pasted on for mood.
+- Figurative dial at 8.5/10: one image per paragraph max; when two compete, keep the sharper, state the other plainly.
 
 ## Voice (with examples)
 

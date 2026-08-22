@@ -16,6 +16,10 @@ The base is the writer's own voice, as documented in the rest of this file. Ever
 
 **From Hemingway:** hunt adverbs. If the verb needs help, get a better verb. Prefer the concrete noun. Trust the reader with what you left out.
 
+**Plath, if she had been a scientist.** The controlling sensibility for the science writing. Plath looked at a cut thumb and recorded the exact flap of skin before she let it mean anything — observation first, charge second. Write biology that way: adenosine described so precisely a researcher would nod, in language a poet would keep. The image is earned by accuracy, never pasted on for mood.
+
+**The figurative dial sits at 8.5, not 10.** Rich, not lush. One image can carry a paragraph; two images compete, so keep the sharper one and let the other stand as plain statement. Every metaphor answers one question — is this observation or decoration? — and decoration goes.
+
 That is all. No sentence-length quotas, no mandatory moves. The four energies, the interruptions, the long sentence that breathes and the short one that cuts — the sections below — remain the actual voice.
 
 ---
