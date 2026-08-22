@@ -32,12 +32,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3847;
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const ADMIN_KEY = process.env.ADMIN_KEY || 'change-me';
-const TWITTER_BEARER = process.env.TWITTER_BEARER_TOKEN || '';
-const TWITTER_API_KEY = process.env.TWITTER_API_KEY || '';
-const TWITTER_API_SECRET = process.env.TWITTER_API_SECRET || '';
-const TWITTER_ACCESS_TOKEN = process.env.TWITTER_ACCESS_TOKEN || '';
-const TWITTER_ACCESS_SECRET = process.env.TWITTER_ACCESS_SECRET || '';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'SleepMedic <blog@sleepmedic.co>';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || ''; // receives daily subscriber-list backups
+const PUBLIC_BASE = 'https://pi.sleepmedic.co';
 const RSS_URL = 'https://sleepmedic.co/blog/feed.xml';
 const POLL_INTERVAL = 30 * 60 * 1000; // 30 minutes
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
@@ -66,6 +63,7 @@ async function addSubscriber(email) {
   await saveSubscribers(subs);
   console.log(`+ subscriber: ${email} (total: ${subs.length})`);
   notifyDiscord(`**[NEWSLETTER] New subscriber** \`${email}\` \u2014 **total: ${subs.length}**`);
+  sendWelcomeEmail(email).catch(err => console.error(`Welcome email failed for ${email}: ${err.message}`));
   return { ok: true };
 }
 
@@ -151,19 +149,59 @@ async function sendEmail(to, subject, html) {
   }
 }
 
+function unsubFooter(email) {
+  return `<p style="font-size:12px;color:#999;">You signed up at sleepmedic.co. <a href="${PUBLIC_BASE}/unsubscribe?email=${encodeURIComponent(email)}" style="color:#999;">Unsubscribe</a></p>`;
+}
+
+async function sendWelcomeEmail(email) {
+  const html = `
+    <div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">
+      <h2 style="margin-bottom:8px;">You're in.</h2>
+      <p style="font-size:16px;line-height:1.6;">SleepMedic is sleep science for people who sleep against the clock &mdash; shift workers, night crews, new parents. No 9-to-5 assumptions, every claim cited.</p>
+      <p style="font-size:16px;line-height:1.6;">Start with the page readers use most:</p>
+      <a href="https://www.sleepmedic.co/blog/posts/shift-worker-sleep-protocol.html" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">The Shift Worker Sleep Protocol</a>
+      <p style="font-size:16px;line-height:1.6;margin-top:24px;">From here: one short brief when there's something worth your time. No filler, no daily drip.</p>
+      <hr style="margin:32px 0;border:none;border-top:1px solid #eee;">
+      ${unsubFooter(email)}
+    </div>
+  `;
+  await sendEmail(email, 'Welcome to SleepMedic', html);
+  console.log(`Welcome email sent to ${email}`);
+}
+
+// Daily off-card backup: email the subscriber list to ADMIN_EMAIL when it changes.
+let lastBackupHash = '';
+async function backupSubscribers() {
+  if (!ADMIN_EMAIL) return;
+  try {
+    const subs = await loadSubscribers();
+    const payload = JSON.stringify(subs, null, 2);
+    const hash = String(payload.length) + ':' + subs.length;
+    if (hash === lastBackupHash) return;
+    await sendEmail(ADMIN_EMAIL, `[backup] SleepMedic subscribers (${subs.length})`,
+      `<p>Daily subscriber-list backup. Save this email; it is the off-device copy.</p><pre style="font-size:12px">${payload.replace(/</g, '&lt;')}</pre>`);
+    lastBackupHash = hash;
+    console.log(`Subscriber backup emailed (${subs.length} subs)`);
+  } catch (err) {
+    console.error(`Backup failed: ${err.message}`);
+  }
+}
+setInterval(backupSubscribers, 24 * 60 * 60 * 1000);
+setTimeout(backupSubscribers, 60 * 1000); // once shortly after boot
+
 async function sendNewsletter(post) {
   const subs = await loadSubscribers();
   if (!subs.length) { console.log('No subscribers, skipping newsletter'); return; }
 
   const subject = `New from SleepMedic: ${post.title}`;
-  const html = `
+  const htmlFor = (email) => `
     <div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">
       <h2 style="margin-bottom:8px;">${post.title}</h2>
       <p style="color:#666;font-size:14px;margin-bottom:16px;">${post.date}</p>
       <p style="font-size:16px;line-height:1.6;margin-bottom:24px;">${post.excerpt}</p>
       <a href="${post.link}" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">Read the full post</a>
       <hr style="margin:32px 0;border:none;border-top:1px solid #eee;">
-      <p style="font-size:12px;color:#999;">You signed up at sleepmedic.co. <a href="https://your-pi.sleepmedic.co/unsubscribe?email=${encodeURIComponent('{{email}}')}" style="color:#999;">Unsubscribe</a></p>
+      ${unsubFooter(email)}
     </div>
   `;
 
@@ -171,7 +209,7 @@ async function sendNewsletter(post) {
   let sent = 0;
   for (const sub of subs) {
     try {
-      await sendEmail(sub.email, subject, html.replace('{{email}}', sub.email));
+      await sendEmail(sub.email, subject, htmlFor(sub.email));
       sent++;
       // Resend free tier: 2 emails/second
       if (sent % 2 === 0) await new Promise(r => setTimeout(r, 1100));
@@ -180,40 +218,6 @@ async function sendNewsletter(post) {
     }
   }
   console.log(`Newsletter sent to ${sent}/${subs.length}`);
-}
-
-// ── Twitter/X Post ───────────────────────────────────
-
-async function postToTwitter(post) {
-  if (!TWITTER_ACCESS_TOKEN) { console.log('Twitter not configured, skipping'); return; }
-
-  // OAuth 1.0a is complex -- use the v2 endpoint with Bearer or OAuth
-  // For simplicity, using the npm twitter-api-v2 would be better,
-  // but here we use the v2 REST API with OAuth 2.0 User Context
-  // In practice, install twitter-api-v2 and use it.
-  // This is a placeholder for the API call structure.
-
-  const text = `${post.title}\n\n${post.excerpt}\n\n${post.link}`;
-
-  try {
-    // You'll want to use twitter-api-v2 package for proper OAuth 1.0a
-    // npm install twitter-api-v2
-    // This is the call structure:
-    console.log(`Would post to X: "${text.slice(0, 100)}..."`);
-    console.log('Install twitter-api-v2 and uncomment the Twitter code to enable');
-
-    // const { TwitterApi } = await import('twitter-api-v2');
-    // const client = new TwitterApi({
-    //   appKey: TWITTER_API_KEY,
-    //   appSecret: TWITTER_API_SECRET,
-    //   accessToken: TWITTER_ACCESS_TOKEN,
-    //   accessSecret: TWITTER_ACCESS_SECRET
-    // });
-    // await client.v2.tweet(text);
-    // console.log('Posted to X successfully');
-  } catch (err) {
-    console.error(`Twitter post failed: ${err.message}`);
-  }
 }
 
 // ── RSS Watcher ──────────────────────────────────────
@@ -266,9 +270,6 @@ async function distribute(post) {
 
   // Send newsletter
   await sendNewsletter(post);
-
-  // Post to X
-  await postToTwitter(post);
 
   console.log('Distribution complete\n');
 }
