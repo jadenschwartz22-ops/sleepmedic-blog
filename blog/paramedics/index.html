@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://sleepmedic.co/blog/paramedics/" />
   <meta name="robots" content="index,follow" />
   <meta property="og:title" content="Sleep for Paramedics and EMTs | SleepMedic" />
-  <meta property="og:description" content="Sleep and fatigue science for paramedics and EMTs: 24-hour shifts, post-call recovery, hypervigilance wind-down, and circadian protocols." />
+  <meta property="og:description" content="Sleep and fatigue science for paramedics and EMTs. Managing 24-hour shifts, post-call recovery, hypervigilance wind-down, and circadian disruption on unpredictable schedules." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sleepmedic.co/blog/paramedics/" />
   <meta property="og:site_name" content="SleepMedic" />
@@ -24,7 +24,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "Sleep for Paramedics and EMTs",
-    "description": "Sleep and fatigue science for paramedics and EMTs on 24-hour shifts: post-call recovery, hypervigilance wind-down, and circadian protocols for unpredictable schedules.",
+    "description": "Sleep and fatigue science for paramedics and EMTs. Managing 24-hour shifts, post-call recovery, hypervigilance wind-down, and circadian disruption on unpredictable schedules.",
     "url": "https://sleepmedic.co/blog/paramedics/",
     "publisher": {
       "@type": "Organization",
@@ -43,227 +43,192 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../_shared-styles.css">
 
   <style>
-    .page { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 24px; max-width: 1080px; margin: 0 auto;
-      border-bottom: 1px solid var(--border);
+    .hub-hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(28px, 5vw, 60px);
+      align-items: center;
+      padding: clamp(40px, 6vw, 68px) 0 var(--space-section);
     }
-    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta { padding: 7px 14px; background: rgba(167,139,250,0.10); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
-    .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
-
-    .hero { padding: 72px 0 40px; text-align: center; margin-bottom: 40px; }
-    .hero h1 {
-      font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em;
+    .hub-hero h1 {
+      font-size: clamp(2rem, 4.4vw, 2.9rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.04em;
       margin-bottom: 16px;
-      background: linear-gradient(135deg, #fff 30%, var(--accent) 70%, var(--accent-2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-      line-height: 1.1;
     }
-    .hero p { font-size: 1.05rem; color: var(--text-3); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+    .hub-hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; }
+    .hub-hero p { font-size: 1.02rem; color: var(--text-3); line-height: 1.65; max-width: 48ch; }
+    @media (max-width: 860px) { .hub-hero { grid-template-columns: 1fr; gap: 32px; } }
 
-    .pillar-card {
-      background: var(--surface); border: 1px solid var(--accent);
-      border-radius: var(--radius-lg); padding: 32px 36px;
-      margin-bottom: 40px; text-decoration: none; color: inherit;
-      transition: border-color 0.2s, transform 0.15s; display: block;
+    .pillar {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--accent-line);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 4vw, 34px);
+      margin-bottom: var(--space-section);
+      color: inherit;
+      transition: border-color 0.2s var(--ease), transform 0.15s var(--ease);
     }
-    .pillar-card:hover { border-color: var(--accent-2); transform: translateY(-2px); }
-    .pillar-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-2); margin-bottom: 10px; }
-    .pillar-card h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; letter-spacing: -0.02em; }
-    .pillar-card p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; margin: 0; }
-
-    .posts-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px; margin-bottom: 48px;
+    .pillar:hover { border-color: var(--accent); transform: translateY(-2px); color: inherit; }
+    .pillar-label {
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      color: var(--accent); margin-bottom: 10px;
     }
-    .card {
-      display: flex; flex-direction: column; background: var(--surface);
-      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
-      transition: border-color 0.2s, transform 0.15s; text-decoration: none; color: inherit;
+    .pillar h2 { font-size: clamp(1.25rem, 2.6vw, 1.5rem); line-height: 1.3; margin-bottom: 10px; }
+    .pillar p { font-size: 0.92rem; color: var(--text-3); line-height: 1.6; }
+
+    .section { margin-bottom: var(--space-section); }
+    .section-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap; margin-bottom: 20px;
     }
-    .card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
-    .card-img { width: 100%; height: 190px; background-size: cover; background-position: center; background-color: var(--surface-2); }
-    .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
-    .card-cat { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; color: var(--accent); }
-    .card-body h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.4; margin-bottom: 8px; letter-spacing: -0.01em; }
-    .card-excerpt { font-size: 0.85rem; color: var(--text-3); line-height: 1.55; flex: 1; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .card-meta { font-size: 0.75rem; color: var(--text-3); padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
-    .no-posts { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-3); }
-
-    @media (max-width: 700px) { .posts-grid { grid-template-columns: 1fr; } }
-
-    .app-banner {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 28px 32px;
-      display: flex; align-items: center; gap: 20px; margin-bottom: 48px;
-    }
-    .app-banner-text { flex: 1; }
-    .app-banner-text p { margin: 0 0 12px; font-size: 0.92rem; color: var(--text-2); line-height: 1.5; }
-    .app-banner-text a { display: inline-block; padding: 9px 20px; background: var(--accent); color: var(--bg); font-weight: 700; font-size: 0.85rem; border-radius: 8px; text-decoration: none; }
-    .app-banner-text a:hover { opacity: 0.85; }
-    .app-banner-icon { font-size: 1.2rem; font-weight: 800; color: var(--accent); flex-shrink: 0; }
-    @media (max-width: 480px) { .app-banner { flex-direction: column; text-align: center; } }
-
-    .newsletter {
-      text-align: center; padding: 48px 32px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 64px;
-    }
-    .newsletter h2 { font-size: 1.4rem; margin-bottom: 8px; font-weight: 700; }
-    .newsletter p { color: var(--text-3); margin-bottom: 24px; font-size: 0.92rem; max-width: 420px; margin-left: auto; margin-right: auto; line-height: 1.5; }
-    .nl-form { display: flex; gap: 8px; max-width: 400px; margin: 0 auto 12px; }
-    .nl-form input { flex: 1; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.88rem; font-family: inherit; }
-    .nl-form input::placeholder { color: var(--text-3); }
-    .nl-form input:focus { outline: none; border-color: var(--accent); }
-    .nl-form button { padding: 12px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; font-family: inherit; white-space: nowrap; }
-    .nl-form button:hover { opacity: 0.85; }
-    .nl-msg { font-size: 0.82rem; color: var(--accent); min-height: 1.2em; }
-    @media (max-width: 480px) { .nl-form { flex-direction: column; } }
-
-    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 0.78rem; }
-    footer a { color: var(--text-3); }
-    footer a:hover { color: var(--text); }
+    .no-posts { grid-column: 1 / -1; padding: 32px 0; color: var(--text-3); font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
-  <nav>
+  <nav class="site-nav">
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <a href="/blog/feed.xml">RSS</a>
-      <button type="button" class="nav-cta" data-app-interest="paramedics-nav">Download App</button>
+      <a href="/plan/" class="nav-cta" data-cta="paramedics-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
     </div>
   </nav>
 
   <div class="page">
 
-    <div class="hero">
-      <h1>Sleep for Paramedics and EMTs</h1>
-      <p>24-hour shifts, unpredictable call volume, post-adrenaline insomnia. Sleep science written for the specific demands of emergency medical work.</p>
-    </div>
+    <header class="hub-hero">
+      <div>
+        <h1>Sleep plans that survive <span class="serif">24s and 48s.</span></h1>
+        <p>You do not get to pick when the tones drop. What you can control is the light you see after, when the last cup lands, and how you spend the 48. That is what these are about.</p>
+      </div>
 
-    <a href="/blog/posts/shift-worker-sleep-protocol.html" class="pillar-card">
-      <div class="pillar-label">Complete Guide</div>
-      <h2>The Shift Worker Sleep Protocol</h2>
-      <p>The full evidence-based protocol: post-shift wind-down, circadian anchoring between 24s, strategic napping on shift, and long-rotation recovery.</p>
+      <div class="capture">
+        <p class="capture-eyebrow">Built for 24s, 48s, and rotating</p>
+        <h2>Get the plan for your rotation</h2>
+        <p class="capture-copy">Six questions about your pattern and your wake anchors. The plan comes back with caffeine cutoff, light timing, and a planned nap placed against the shift you actually work.</p>
+        <a href="/plan/" class="btn btn-primary" data-cta="paramedics-hero">Build my free sleep plan</a>
+      </div>
+    </header>
+
+    <a href="/blog/posts/shift-worker-sleep-protocol.html" class="pillar">
+      <p class="pillar-label">The complete guide</p>
+      <h2>The Shift Worker Sleep Protocol: A Complete Evidence-Based Guide</h2>
+      <p>A full protocol for shift workers to protect sleep, manage circadian disruption, and recover faster between rotations.</p>
     </a>
 
-    <div class="posts-grid" id="posts-grid">
-      <div class="no-posts">Loading articles...</div>
-    </div>
-    <noscript>
-      <ul style="list-style:none;padding:0;margin:0 0 48px;">
-        <li style="padding:10px 0;border-bottom:1px solid #333;"><a href="/blog/posts/shift-worker-sleep-protocol.html">The Shift Worker Sleep Protocol (Complete Guide)</a></li>
-        <li style="padding:10px 0;border-bottom:1px solid #333;"><a href="/blog/posts/2025-07-10-shift-workers-wake-up-consistency.html">Shift Workers: How to Get Sleep Like Your Life Depends on It</a></li>
-        <li style="padding:10px 0;border-bottom:1px solid #333;"><a href="/blog/posts/2025-12-15-adjust-your-schedule-without-chaos-a-shift-work-guide.html">Adjust Your Schedule Without Chaos: A Shift Work Guide</a></li>
-        <li style="padding:10px 0;"><a href="/blog/posts/2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html">Protecting Sleep as a Shift Worker: Evidence-Based Tactics</a></li>
-      </ul>
-    </noscript>
-
-    <div class="app-banner">
-      <div class="app-banner-icon">SM</div>
-      <div class="app-banner-text">
-        <p>SleepMedic understands 24-hour shifts and unpredictable schedules. Log sleep around your call schedule, track fatigue debt across rotations, and see which recovery habits actually move the needle.</p>
-        <a href="#" data-app-interest="category-paramedics">Download App</a>
-      </div>
-    </div>
-
-    <div class="newsletter">
-      <h2>Get the free Shift Worker Sleep Protocol</h2>
-      <p>A one-page reference guide for 24-hour shifts and unpredictable schedules. Plus weekly sleep science.</p>
-      <form data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit">
-        <div class="nl-form">
-          <input type="email" name="email" required placeholder="you@email.com" />
-          <button type="submit">Subscribe</button>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Start here</h2>
+          <p class="section-desc">The four posts that carry the most weight for this schedule.</p>
         </div>
+      </div>
+      <div class="cards">
+        <a href="../posts/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol.html" class="card">
+          <div class="card-img" style="background-image:url('../posts/images/2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol-cover.jpg')"></div>
+          <div class="card-body">
+            <p class="card-cat cat-special">Shift Work</p>
+            <h3>Unwiring Your Brain: The 30-Minute Night Shift Sleep Protocol</h3>
+            <p class="card-excerpt">Physically drained but mentally wired after a night shift? Discover the precise 30-minute ritual to signal your brain it's time to switch off, helping you fall asleep faster and stay asleep longer during the day.</p>
+            <p class="card-meta"><span>April 20, 2026</span><span>6 min read</span></p>
+          </div>
+        </a>
+        <a href="../posts/2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep.html" class="card">
+          <div class="card-img" style="background-image:url('../posts/images/2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep-cover.jpg')"></div>
+          <div class="card-body">
+            <p class="card-cat cat-special">Shift Work</p>
+            <h3>Rapid Rest: Firefighter's Field Manual for On-Shift Deep Sleep</h3>
+            <p class="card-excerpt">For firefighters and first responders, deep sleep between calls seems impossible. This field manual offers practical strategies and quick relaxation techniques to achieve restorative rest amidst unpredictable schedules.</p>
+            <p class="card-meta"><span>June 11, 2026</span><span>5 min read</span></p>
+          </div>
+        </a>
+        <a href="../posts/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules.html" class="card">
+          <div class="card-img" style="background-image:url('../posts/images/2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules-cover.jpg')"></div>
+          <div class="card-body">
+            <p class="card-cat cat-science">shift-work</p>
+            <h3>Shift Work Insomnia: Adapting CBT-I for Irregular Schedules</h3>
+            <p class="card-excerpt">Traditional CBT-I can feel impossible with a rotating schedule. Discover the precise adaptations—like anchor sleep and flexible restriction—that conquer shift work insomnia.</p>
+            <p class="card-meta"><span>April 23, 2026</span><span>6 min read</span></p>
+          </div>
+        </a>
+        <a href="../posts/2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics.html" class="card">
+          <div class="card-img" style="background-image:url('../posts/images/2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics-cover.jpg')"></div>
+          <div class="card-body">
+            <p class="card-cat cat-special">Special</p>
+            <h3>Protecting Sleep as a Shift Worker: Evidence-Based Tactics</h3>
+            <p class="card-excerpt">Shift work can disrupt sleep and health. Learn evidence-based strategies to protect your sleep and manage circadian disruption effectively.</p>
+            <p class="card-meta"><span>January 12, 2026</span><span>3 min read</span></p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="latest-section" hidden>
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">More for this schedule</h2>
+        </div>
+        <a href="/blog/" class="link-more">All posts &rarr;</a>
+      </div>
+      <div class="cards" id="posts-grid"></div>
+    </section>
+
+    <section class="capture">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" data-sm-source="paramedics">
+        <label class="visually-hidden" for="paramedics-email">Email address</label>
+        <input type="email" id="paramedics-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
       </form>
-      <div class="nl-msg" data-sm-newsletter-msg></div>
-    </div>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </section>
 
   </div>
 
-  <footer>
-    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
-    <p style="margin-top:6px;">
-      <a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; <a href="/blog/feed.xml">RSS</a> &middot; <a href="#" data-app-interest="paramedics-footer">Download App</a>
-    </p>
+  <footer class="site-footer">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
   </footer>
 
-  <script src="/assets/app-interest.js" data-pi="https://pi.sleepmedic.co/app-interest"></script>
-
   <script>
-    async function loadPosts() {
-      try {
-        const res = await fetch('../posts-index.json');
-        const posts = await res.json();
-        const filtered = posts.filter(p => p.audience === 'paramedics' && !p.pillar);
+    document.addEventListener('click', (e) => {
+      if (!window.gtag) return;
+      const a = e.target.closest('a.card, a.pillar');
+      if (a) { window.gtag('event', 'blog_card_click', { link_url: a.getAttribute('href') || '', location: 'paramedics' }); return; }
+      const cta = e.target.closest('[data-cta]');
+      if (cta) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
 
-        const ldEl = document.querySelector('script[type="application/ld+json"]');
-        if (ldEl && filtered.length) {
-          try {
-            const ld = JSON.parse(ldEl.textContent);
-            ld.hasPart = filtered.map(p => ({
-              '@type': 'BlogPosting',
-              headline: p.title,
-              url: 'https://sleepmedic.co/blog/posts/' + p.slug + '.html'
-            }));
-            ldEl.textContent = JSON.stringify(ld, null, 2);
-          } catch {}
-        }
-
-        const grid = document.getElementById('posts-grid');
-        if (!filtered.length) {
-          grid.innerHTML = '<div class="no-posts"><p>EMS-specific articles coming soon. The shift worker guides above are directly applicable to your schedule.</p></div>';
-          return;
-        }
-        grid.innerHTML = filtered.map(post => {
-          const img = post.coverImage
-            ? `<div class="card-img" style="background-image:url('../${post.coverImage}')"></div>`
-            : '';
-          return `
-            <a href="../posts/${post.slug}.html" class="card">
-              ${img}
-              <div class="card-body">
-                <div class="card-cat">${post.categoryLabel}</div>
-                <h3>${post.title}</h3>
-                <p class="card-excerpt">${post.excerpt}</p>
-                <div class="card-meta">
-                  <span>${post.dateFormatted}</span>
-                  <span>${post.readTime} min read</span>
-                </div>
-              </div>
-            </a>
-          `;
-        }).join('');
-      } catch {
-        document.getElementById('posts-grid').innerHTML = '<div class="no-posts"><p>Could not load articles.</p></div>';
-      }
-    }
-
-    (function() {
-      const f = document.querySelector('[data-sm-newsletter]');
-      const msg = document.querySelector('[data-sm-newsletter-msg]');
-      if (!f) return;
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
       f.addEventListener('submit', async (e) => {
         e.preventDefault();
         const input = f.querySelector('input[name="email"]');
         const email = (input?.value || '').trim();
         if (!email) return;
-        msg.textContent = 'Subscribing...';
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
         try {
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
@@ -272,19 +237,62 @@
           });
           const d = await r.json();
           if (d.ok) {
-            msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
             input.value = '';
-            if (window.gtag) window.gtag('event', 'newsletter_subscribe', { source: 'paramedics' });
-          } else {
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'paramedics' });
+          } else if (msg) {
             msg.textContent = d.error || 'Subscription failed.';
           }
         } catch {
-          msg.textContent = 'Network error. Try again.';
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
         }
       });
-    })();
+    });
 
-    loadPosts();
+    // Posts tagged for this audience, layered on top of the curated set above.
+    // Curated slugs are skipped so nothing shows twice.
+    (async function loadAudiencePosts() {
+      const CURATED = ["2026-04-20-unwiring-your-brain-the-30-minute-night-shift-sleep-protocol","2026-06-11-rapid-rest-firefighters-field-manual-for-on-shift-deep-sleep","2026-04-23-shift-work-insomnia-adapting-cbt-i-for-irregular-schedules","2026-01-12-protecting-sleep-as-a-shift-worker-evidence-based-tactics"];
+      const CAT_CLASS = {"science":"cat-science","tools":"cat-tools","timing":"cat-timing","special":"cat-special","trending":"cat-trending","troubleshooting":"cat-troubleshooting","philosophy":"cat-philosophy"};
+      const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      try {
+        const res = await fetch('../posts-index.json');
+        const posts = await res.json();
+        const filtered = posts.filter(p => p.audience === 'paramedics' && !p.pillar && !CURATED.includes(p.slug));
+
+        const ldEl = document.querySelector('script[type="application/ld+json"]');
+        if (ldEl) {
+          try {
+            const ld = JSON.parse(ldEl.textContent);
+            const featured = posts.filter(p => CURATED.includes(p.slug)).concat(filtered);
+            if (featured.length) {
+              ld.hasPart = featured.map(p => ({
+                '@type': 'BlogPosting',
+                headline: p.title,
+                url: 'https://sleepmedic.co/blog/posts/' + p.slug + '.html'
+              }));
+              ldEl.textContent = JSON.stringify(ld, null, 2);
+            }
+          } catch {}
+        }
+
+        if (!filtered.length) return;
+        document.getElementById('posts-grid').innerHTML = filtered.map(p => `
+          <a href="../posts/${esc(p.slug)}.html" class="card">
+            ${p.coverImage ? `<div class="card-img" style="background-image:url('../${esc(p.coverImage)}')"></div>` : ''}
+            <div class="card-body">
+              <p class="card-cat ${CAT_CLASS[p.category] || 'cat-science'}">${esc(p.categoryLabel || '')}</p>
+              <h3>${esc(p.title)}</h3>
+              <p class="card-excerpt">${esc(p.excerpt || '')}</p>
+              <p class="card-meta"><span>${esc(p.dateFormatted)}</span><span>${esc(p.readTime)} min read</span></p>
+            </div>
+          </a>`).join('');
+        document.getElementById('latest-section').hidden = false;
+      } catch {}
+    })();
   </script>
 </body>
 </html>
