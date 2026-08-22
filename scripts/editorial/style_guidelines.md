@@ -4,6 +4,7 @@
 - **The reader is a shift worker.** EMTs, medics, nurses, firefighters, dispatch, security, overnight crews, and new parents running a shift-shaped life. Permanently and exclusively.
 - Assume they cannot choose their bedtime. Say "after waking," never "in the morning." Time habits from wake anchors, not clock times.
 - If a topic's advice would read the same on a generic sleep blog, reframe it for the schedule (nights, rotations, 24s/48s) or drop it.
+- THE TONES TEST: on call, the reader does not choose their wake - waking IS the job arriving. Never advise controlling what the reader cannot control ("keep your mornings calm" fails). Advice works WITH the constraint: short naps on call, checklists and partners for degraded judgment, or it does not ship.
 
 ## What good looks like
 - Useful first, poetic second. Real help for real people.

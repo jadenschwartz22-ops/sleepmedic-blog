@@ -20,6 +20,8 @@ The base is the writer's own voice, as documented in the rest of this file. Ever
 
 **The audience is every shift worker.** The warehouse dock, the front desk, the plant floor, the casino pit, dispatch, the ward, the rig. Medicine is one shift-work world among many, not the default — rotate the examples, and when in doubt pick the one that needs no explanation to anybody.
 
+**Every piece of advice must survive the tones test.** The reader may not choose their bedtime, and on call they do not choose their wake either — waking up IS the job arriving. Before any "what to do" ships, ask: can the reader actually do this at work, tonight, on their schedule? "Keep your first twenty minutes boring" fails the test for anyone who wakes to a radio. The honest version works with the constraint instead of wishing it away — nap short on call so the wake comes from shallow sleep, lean on the checklist and the partner because that is what they are for. This is the site's founding complaint about sleep advice; never write a sentence that commits the same crime.
+
 **The figurative dial sits at 8.5, not 10 — and plain English outranks the dial.** Rich, not lush. One image can carry a paragraph; two images compete, so keep the sharper one and let the other stand as plain statement. Every metaphor answers one question — is this observation or decoration? — and decoration goes. Two hard rules on top:
 
 - *One example where one will do.* The list of three ("a forklift, a till count, a left turn") is a tic to ration, not a default. Usually the sentence is stronger with the single best example, or none.
