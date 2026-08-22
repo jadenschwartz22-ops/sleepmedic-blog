@@ -20,6 +20,17 @@
 - Instead: "The real mechanism behind why people feel better after X is Y. Here is how to get that benefit reliably."
 - We are thoughtful and substantive. If a fad has no science, we say so plainly and move on to what works.
 
+## Voice mechanics (the blend - added 2026-08-22)
+Clear's skeleton, Easter's pacing, the founder's blood, Hemingway's edit.
+- Median sentence ~13 words. Mix a long build with a hard 4-word stop. NO exclamation points.
+- One sustained example carried through the piece; never a stack of mini-studies.
+- "You" sits inside a conditional or imperative; it never spectates.
+- A load-bearing stat gets its own one-sentence paragraph, then a beat, then the implication. Restate it once in a more human unit.
+- Attribution inline and casual ("a crossover trial in night-shift nurses found"), linked; no footnote apparatus.
+- Aphorisms stand alone as their own paragraph. Coin at most one named concept per piece and repeat it.
+- Hunt adverbs: "improved by a third" beats "significantly improved." Concrete nouns over abstractions.
+- Insider clock and nouns where earned: 0130, the tones, the rig. Never scold; name the tradeoff and hand over the lever.
+
 ## Voice (with examples)
 
 Write like a knowledgeable human who is genuinely invested in the topic. Not a content machine. Not a wellness brand. Someone who has actually read the studies and thought about them.

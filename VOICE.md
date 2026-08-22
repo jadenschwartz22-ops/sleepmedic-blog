@@ -1,8 +1,24 @@
 # SleepMedic Voice Guide
 
-One writer. Four dials. Read across nineteen documents of the writer's own work and synthesized with five literary bloodlines: Ryan Holiday, Mary Roach, Michael Easter, James Clear, Allen Ginsberg.
+One writer. Four dials. Read across nineteen documents of the writer's own work and synthesized with five literary bloodlines: Ryan Holiday, Mary Roach, Michael Easter, James Clear, Allen Ginsberg. Sharpened 2026-08-22 with a stylometric pass on Clear's and Easter's actual published text, and a Hemingway compression rule.
 
 This is not a template. A SleepMedic post is an argument pulled through a single thread from a single specific image to a single un-closed question. The voice is warm, literate, a little self-interrupting, comfortable with long sentences that breathe and short ones that cut.
+
+---
+
+## 0. The blend — the recipe
+
+Four ingredients. The Clear and Easter rules below are measured from their published text (three full Clear essays, five Easter posts), not from reputation.
+
+**Clear gives the skeleton.** Median sentence about 13 words. One sustained example per piece — a single case study carried all the way through, never a stack of mini-studies. "You" always does work: it sits inside a conditional or an imperative ("If you run 24s, your anchor is the one thing you own"), never spectates. Coin a named concept — two to four words — once per piece, then repeat it as a refrain. The aphorism gets its own paragraph, alone. Transitions are invisible: But. So. Which is the interesting part. Citations never clutter the prose.
+
+**Easter gives the pacing.** The stat stands alone as its own paragraph. Then a beat. Then what it means. Restate the number in a second, more visceral unit — "an 11% collision rate on the drive home; day shift ran 7%" becomes "one wrecked commute in nine." Attribution is casual and inline — "a driving-simulator study out of Washington State found" — never a footnote apparatus. "I" may open the piece when the writer has lived it, and the strongest opening move is the belief reversal: "I used to think the nap was optional. Then I worked a 48." One parenthetical aside per piece, tops. The "In short / The details" module belongs on reference pages (manual, pillars), never in essays.
+
+**Jaden gives the blood.** Insider clock and insider nouns: 0130, the tones, the rig, the recliner the supervisor hates. The no-preach rule: name the tradeoff, hand over the lever, never scold. "One life is also worth living" — the voice knows when to tell the reader to skip the protocol and go to the wedding. Protection, not information: assume the reader already knows what to do and write about how to defend it. The high-low braid — Aurelius and "sko" in the same piece — and the self-interruption ("Probably." "Go figure.") stay. They are his.
+
+**Hemingway is the knife.** Concrete nouns. Cut the adverb — if the verb needs help, get a better verb. Write the tip of the iceberg and trust the reader with the mass underneath: omit what can be inferred and let the omission do the work. Never explain the emotion — show the hand shaking at the IV and stop. When a sentence must run long, let it run on "and," not on stacked clauses.
+
+The mix, by feel: Clear's skeleton, Easter's pacing, Jaden's blood, Hemingway's edit. When two rules collide, Hemingway wins the sentence, Clear wins the paragraph, Jaden wins the piece.
 
 ---
 
@@ -91,9 +107,13 @@ Worth. Permission. Warmth. For the reader who feels guilty for resting — the n
 
 **Closings.** Tension, not resolution. A reframe, a small question, a refusal to wrap it up, or the reader's own turn. The closing line is the reader's door out.
 
-**Sentence length.** Mix. A 50-word clause-stack that builds, then a 4-word stop. Never two long sentences in a row without a short one to break.
+**Sentence length.** Mix, anchored short. Median lands near 13 words. A 50-word clause-stack that builds, then a 4-word stop. Never two long sentences in a row without a short one to break. No exclamation points, ever — if the sentence needs one, the sentence failed.
 
-**Paragraphs.** Short paragraphs are allowed — one sentence if it earns it. But an argument that builds deserves breath; do not chop everything into tweets.
+**Paragraphs.** The one-sentence paragraph is a structural unit, not a garnish — use it for the aphorism, the stat, the turn. But an argument that builds deserves breath; do not chop everything into tweets. Essays sit between Clear (about 2 sentences per paragraph) and a full block; reference pages can run denser.
+
+**Numbers.** A load-bearing stat gets its own paragraph, then a beat, then the implication. Restate it once in a second, more human unit. Never two stats in one sentence.
+
+**Adverbs.** Hunt them. "Significantly improved" is a worse sentence than "improved by a third." If the verb needs an adverb, the verb is wrong.
 
 **Allowed tics (do not over-use, but they are yours):**
 - "Sure."
@@ -137,5 +157,7 @@ Read the opening and the closing aloud. Then ask:
 - Would Michael Easter feel first-person stakes?
 - Would James Clear cut anything? If yes, cut it before he does.
 - Would Ginsberg hear a breath in at least one passage?
+- Did Hemingway already cut the adverb? Check anyway.
+- Is there one stat standing alone on its own line, restated once in a human unit?
 
 If no, revise. If yes, ship.
