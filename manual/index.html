@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Shift Worker's Field Manual - SleepMedic</title>
+  <meta name="description" content="A free, printable field manual for sleeping against the clock: the two systems that control sleep, the foundations that survive any schedule, and how to protect them. Cited to source." />
+
+  <link rel="canonical" href="https://sleepmedic.co/manual/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="The Shift Worker's Field Manual" />
+  <meta property="og:description" content="How to sleep when your schedule refuses to cooperate. Free, printable, every claim cited." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sleepmedic.co/manual/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Shift Worker's Field Manual",
+    "description": "A free reference for sleeping on shift schedules: the two-process model, anchor-based habit timing, and sleep protection for irregular hours.",
+    "author": { "@type": "Organization", "name": "SleepMedic" },
+    "publisher": { "@type": "Organization", "name": "SleepMedic", "url": "https://sleepmedic.co" },
+    "mainEntityOfPage": "https://sleepmedic.co/manual/"
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    .manual-hero { padding: clamp(40px, 6vw, 68px) 0 28px; }
+    .manual-hero h1 {
+      font-size: clamp(2rem, 4.6vw, 2.9rem);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.04em;
+      margin-bottom: 18px;
+    }
+    .manual-hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; }
+    .manual-hero p { font-size: 1.05rem; color: var(--text-3); line-height: 1.7; max-width: 62ch; }
+    .manual-meta {
+      display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center;
+      margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border);
+      font-size: 0.85rem; color: var(--text-3);
+    }
+    .manual-meta button {
+      background: none; border: 1px solid var(--border-hover); color: var(--text-2);
+      padding: 7px 16px; border-radius: var(--radius-pill); font: inherit; cursor: pointer;
+    }
+    .manual-meta button:hover { border-color: var(--accent-line); color: var(--text); }
+
+    .manual-body h2 {
+      font-size: clamp(1.35rem, 3vw, 1.7rem); font-weight: 700; letter-spacing: -0.02em;
+      margin: 52px 0 14px; line-height: 1.2;
+    }
+    .manual-body h3 { font-size: 1.05rem; font-weight: 700; margin: 30px 0 8px; }
+    .manual-body p { color: var(--text-2); line-height: 1.75; margin: 0 0 16px; max-width: 68ch; }
+    .manual-body p strong { color: var(--text); }
+    .manual-body ul { color: var(--text-2); line-height: 1.75; margin: 0 0 16px; padding-left: 22px; }
+    .manual-body li { margin-bottom: 6px; }
+
+    .part-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin: 52px 0 -44px;
+    }
+
+    .foundation {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+      padding: 22px 24px; margin: 0 0 14px;
+    }
+    .foundation h3 { margin: 0 0 4px; }
+    .foundation .when {
+      font-size: 0.82rem; color: var(--accent-2); font-weight: 600; margin-bottom: 10px;
+    }
+    .foundation p { margin-bottom: 8px; }
+    .foundation p:last-child { margin-bottom: 0; }
+
+    .cite { font-size: 0.8rem; color: var(--text-3); }
+    .cite a { color: var(--text-3); text-decoration-color: var(--border-hover); }
+
+    .plan-cta-block {
+      background: var(--accent-dim); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
+      padding: 26px 26px; margin: 40px 0;
+    }
+    .plan-cta-block h2 { margin-top: 0 !important; }
+    .plan-cta-block .btn-primary {
+      display: inline-block; background: var(--accent); color: #0a0a0c; font-weight: 700;
+      padding: 12px 24px; border-radius: var(--radius-pill); text-decoration: none; margin-top: 6px;
+    }
+
+    .sources { font-size: 0.88rem; color: var(--text-3); line-height: 1.8; }
+    .sources li { margin-bottom: 8px; }
+
+    @media print {
+      .site-nav, .site-footer, .capture, .plan-cta-block, .manual-meta button { display: none !important; }
+      body { background: #fff; color: #111; }
+      .manual-body p, .manual-body ul, .foundation p { color: #222; }
+      .foundation { border: 1px solid #bbb; background: #fff; break-inside: avoid; }
+      .manual-hero h1, .manual-body h2, .manual-body h3, .foundation h3 { color: #000; }
+      .foundation .when, .part-label { color: #444; }
+      a { color: #222; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav site-nav--narrow">
+    <a href="/" class="nav-brand">SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="manual-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <div class="page page--narrow">
+
+    <header class="manual-hero">
+      <h1>The Shift Worker's <span class="serif">Field Manual</span></h1>
+      <p>How to sleep when your schedule refuses to cooperate. The systems that actually control your sleep, the handful of habits that survive any rotation, and how to protect them without giving up your life. Free, printable, cited to source.</p>
+      <div class="manual-meta">
+        <span>Updated August 2026</span>
+        <span>12 minute read</span>
+        <button onclick="window.print()">Print this manual</button>
+      </div>
+    </header>
+
+    <div class="manual-body">
+
+      <p class="part-label">Part one</p>
+      <h2>The two clocks you are actually managing</h2>
+
+      <p>Every piece of sleep advice you have ever ignored was built on two systems working underneath you. Understand them and the rest of this manual stops being rules and starts being obvious.</p>
+
+      <p><strong>Sleep pressure.</strong> From the moment you wake, a chemical called adenosine accumulates in your brain, and the more of it that builds up, the sleepier you feel. After roughly sixteen hours awake there is enough of it to pull you under. Sleep clears it; nothing else truly does. <span class="cite">(Walker, Huberman Lab Guest Series Ep. 1, 2:36:48)</span></p>
+
+      <p><strong>The circadian rhythm.</strong> Separately, an internal 24-hour clock decides when your body expects to be asleep or awake, regardless of how tired you are. It is set mostly by light. When both systems agree, sleep comes easily. Walker describes them as dance partners; when they are in sync, everything works. <span class="cite">(Walker, Huberman Lab Guest Series Ep. 1, 2:37:33)</span></p>
+
+      <p>Shift work is what happens when the partners are forced apart. High sleep pressure at a circadian phase that expects daylight is why you can be exhausted at 9 in the morning after a night shift and still lie there wide awake. Nothing is wrong with you. The two systems disagree, and this manual is about getting them to disagree less.</p>
+
+      <p>Two more facts worth owning. Sleep runs in cycles, but the "90-minute cycle" is an average, not a law: real cycles range from about 75 to 120 minutes and vary far more between people than within one person, so treat cycle-counting apps as folklore. <span class="cite">(Walker, Ep. 1, 11:35)</span> And a useful frame for judging your own sleep is QQRT: quality, quantity, regularity, and timing. Shift work mostly attacks the last two, which is why this manual is obsessed with them. <span class="cite">(Walker &amp; Huberman, Ep. 1, 1:32)</span></p>
+
+      <p class="part-label">Part two</p>
+      <h2>The foundations, whatever you work</h2>
+
+      <p>Everything below is timed from one of two anchors: <strong>when you wake</strong> and <strong>when you intend to sleep</strong>. Never from clock time. "Morning" means nothing on nights, so we say <em>after waking</em>, and everything follows from that.</p>
+
+      <div class="foundation">
+        <h3>1. The anchor</h3>
+        <p class="when">One fixed wake time per day-type, protected within 30 minutes</p>
+        <p>Walker's first protocol, in his words: regularity is king. A consistent wake time is the single strongest signal you can send both clocks, and it is the one number the rest of your plan is computed from. <span class="cite">(Walker, Guest Series Ep. 2, 6:53)</span></p>
+        <p>A rotating schedule cannot hold one wake time, so hold one per day-type: a work-day anchor and a rest-day anchor, as close together as your life allows. Land within 30 minutes of the anchor and count it as a win.</p>
+      </div>
+
+      <div class="foundation">
+        <h3>2. Light, on purpose</h3>
+        <p class="when">Bright light within 90 minutes after waking; dim everything in the last 3 hours before sleep</p>
+        <p>Light is the lever that sets the circadian clock. Get bright light soon after waking, whatever the sun is doing: real daylight if it exists, bright indoor light if it does not. Then invert it: for the last stretch before your sleep target, treat light as a drug you are tapering. Sunglasses on the drive home after a night shift are not a style choice; they keep daylight from telling your clock the day is starting just as you need it to end.</p>
+      </div>
+
+      <div class="foundation">
+        <h3>3. The caffeine window</h3>
+        <p class="when">First cup 60-90 minutes after waking; last cup 8 hours before your sleep target</p>
+        <p>Caffeine works by blocking adenosine, the sleep-pressure chemical. It does not remove the pressure; it hides it, and the debt is waiting when it wears off. Its half-life is about five to six hours on average, faster for some and slower for others depending on a liver-enzyme gene, which is why your partner can have an espresso at dinner and you cannot. <span class="cite">(Walker, Guest Series Ep. 2, 59:25)</span></p>
+        <p>Working backward from a five-to-six-hour half-life, we cut caffeine 8 hours before the sleep target. On a night shift that usually means the last cup lands mid-shift, not at the end when the wall hits. Plan for it.</p>
+      </div>
+
+      <div class="foundation">
+        <h3>4. Food timing</h3>
+        <p class="when">Last real meal at least 3 hours before wind-down</p>
+        <p>Digestion raises core temperature and competes with sleep. Big meals late in a night shift are the classic trap: you are bored, it is 4 a.m., and the food is there. Eat your real meal earlier in the shift and keep the end light.</p>
+      </div>
+
+      <div class="foundation">
+        <h3>5. The planned nap</h3>
+        <p class="when">4 to 5.5 hours after waking, kept short</p>
+        <p>A nap is a tool, not a failure. Used deliberately it pays down sleep pressure before a long night; used accidentally at hour 20 it is a warning sign. Keep planned naps short enough to avoid waking from deep sleep groggy, and never nap close to your main sleep window, where it steals pressure you need.</p>
+      </div>
+
+      <div class="foundation">
+        <h3>6. Wind-down and temperature</h3>
+        <p class="when">The last 60-90 minutes before your sleep target</p>
+        <p>Your body has to drop its core temperature to initiate sleep; raise it, and sleep quality falls. <span class="cite">(Walker on The Drive with Peter Attia, 7:40)</span> The wind-down is where you engineer the drop: a warm shower that ends in cooling, a cold and dark room, screens down, and the same short routine every time so the routine itself becomes the signal. This is also where the day sleeper's blackout setup earns its money.</p>
+      </div>
+
+      <div class="foundation">
+        <h3>7. Defending day sleep</h3>
+        <p class="when">Your entire sleep window, against a world that is awake</p>
+        <p>Daytime sleep loses to lawnmowers, doorbells, group texts, and guilt. Treat the defenses as equipment: true blackout, ears covered or masked with steady noise, phone on do-not-disturb with the exceptions you actually need, and the people you live with told plainly that this window is your night. Nobody guards it for you.</p>
+      </div>
+
+      <p class="part-label">Part three</p>
+      <h2>Getting home</h2>
+
+      <p>The most dangerous part of a night shift is the drive after it. Drowsy driving impairs you the way drinking does, and the crash risk is real enough that it belongs in a sleep manual more than any supplement does. If your eyes are heavy at the wheel: pull over and take a 20-minute nap before continuing, use caffeine as an emergency tool knowing it will cost you day sleep, or find another way home. Arriving 40 minutes later beats not arriving. The federal safety agencies that study night work say the same thing without hedging: treat post-shift driving as the risk it is.</p>
+
+      <p class="part-label">Part four</p>
+      <h2>When it is more than shift work</h2>
+
+      <p>Some sleep problems are not schedule problems. If you are consistently unable to sleep even with the window protected, if you are falling asleep involuntarily on shift, if you snore hard and wake unrefreshed, or if the dread of not sleeping has become its own thing keeping you awake, that is worth a real evaluation. Shift work sleep disorder is a recognized diagnosis, sleep apnea does not care what shift you work, and the best-evidenced treatment for chronic insomnia is not a pill, it is CBT-I, a structured behavioral program. A sleep clinician can sort out which one you are dealing with. This manual is education, not medical advice, and the strongest move available sometimes is asking for help.</p>
+
+      <p class="part-label">Part five</p>
+      <h2>Protecting it</h2>
+
+      <p>Here is the part most sleep content will not say. You already knew half of the foundations above. Knowing was never the problem. The problem is that the world runs on a 9-to-5 clock you do not live by, so every birthday dinner, every mandatory overtime, every daycare pickup lands on top of your sleep window like it is empty space. Shift workers do not have a sleep information problem. They have a sleep protection problem.</p>
+
+      <p>So hold the anchor as the one non-negotiable and treat everything else as levers, not laws. Score yourself the fair way: not a daily streak that dies the first rough night, but a rolling look at your last seven sleep opportunities, with grace built in for the ones the tones took from you. And sometimes you will skip the plan for a wedding, a game, a friend who needs you at a bad hour, because sleep is in service of your life and not the other way around. Done deliberately, that is the plan working.</p>
+
+      <div class="plan-cta-block">
+        <h2>This manual is general. Your schedule is not.</h2>
+        <p>The free plan builder takes your actual pattern, whether that is 24/48, three twelves on nights, Kelly, or chaos, and computes your anchors, light windows, caffeine cutoff, and wind-down as a visual timeline for each kind of day you have.</p>
+        <a class="btn-primary" href="/plan/" data-cta="manual-body">Build my free sleep plan</a>
+      </div>
+
+      <h2>Sources</h2>
+      <ul class="sources">
+        <li>Matthew Walker, PhD, on the Huberman Lab Guest Series on Sleep: Episode 1 (The Biology of Sleep &amp; Your Unique Sleep Needs) at 1:32, 11:35, 2:36:48, and 2:37:33; Episode 2 (Protocols to Improve Your Sleep) at 6:53 and 59:25.</li>
+        <li>Matthew Walker, PhD, on The Drive with Peter Attia, MD (clip: "Do THC and CBD help you sleep?"), on thermoregulation and sleep, at 7:40.</li>
+        <li>Concept references: the two-process model of sleep regulation; circadian phase response to light; adenosine antagonism by caffeine; sleep inertia; shift work sleep disorder and CBT-I as first-line insomnia treatment. NIOSH training materials for nurses and emergency responders on shift work and long hours cover the occupational side, free and in the public domain.</li>
+        <li>Where a claim is ours, the reasoning is shown inline. Nothing on this page is sponsored, and nothing here sells anything.</li>
+      </ul>
+
+    </div>
+
+    <section class="capture" style="margin-top:var(--space-section);">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>Keep the manual, get the brief</h2>
+      <p class="capture-copy">One short email a week for people who work while everyone sleeps: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="field-manual" data-sm-source="manual">
+        <label class="visually-hidden" for="manual-email">Email address</label>
+        <input type="email" id="manual-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </section>
+
+  </div>
+
+  <footer class="site-footer site-footer--narrow">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('click', (e) => {
+      const cta = e.target.closest('[data-cta]');
+      if (cta && window.gtag) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'manual' })
+          });
+          const j = await r.json();
+          if (msg) msg.textContent = j.ok ? 'Subscribed. Check your inbox.' : (j.error || 'Something went wrong.');
+          if (j.ok && input) input.value = '';
+        } catch {
+          if (msg) msg.textContent = 'Could not reach the server. Try again in a minute.';
+        }
+        if (btn) btn.disabled = false;
+      });
+    });
+  </script>
+
+</body>
+</html>

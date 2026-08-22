@@ -170,9 +170,10 @@ async function sendWelcomeEmail(email) {
     <div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">
       <h2 style="margin-bottom:8px;">You're in.</h2>
       <p style="font-size:16px;line-height:1.6;">SleepMedic is sleep science for people who sleep against the clock &mdash; shift workers, night crews, new parents. No 9-to-5 assumptions, every claim cited.</p>
-      <p style="font-size:16px;line-height:1.6;">Start with the page readers use most:</p>
-      <a href="https://www.sleepmedic.co/blog/posts/shift-worker-sleep-protocol.html" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">The Shift Worker Sleep Protocol</a>
-      <p style="font-size:16px;line-height:1.6;margin-top:24px;">From here: one short brief when there's something worth your time. No filler, no daily drip.</p>
+      <p style="font-size:16px;line-height:1.6;">Start with the manual. It is free, printable, and cited to source:</p>
+      <a href="https://www.sleepmedic.co/manual/" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">The Shift Worker's Field Manual</a>
+      <p style="font-size:16px;line-height:1.6;margin-top:24px;">When you want it built around your actual schedule, the <a href="https://www.sleepmedic.co/plan/" style="color:#a78bfa;">free plan builder</a> computes your anchors, caffeine cutoff, and light windows for every kind of day you work.</p>
+      <p style="font-size:16px;line-height:1.6;">From here: one short brief when there's something worth your time. No filler, no daily drip.</p>
       <hr style="margin:32px 0;border:none;border-top:1px solid #eee;">
       ${unsubFooter(email)}
     </div>

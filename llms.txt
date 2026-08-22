@@ -40,3 +40,9 @@ pages by their canonical URL with the site name "SleepMedic".
 ## Contact / entity
 
 Published by TeachMeToLive LLC. Newsletter signup and contact via the site footer.
+
+## Free tools
+
+- The Shift Worker's Field Manual (free, printable, cited): https://www.sleepmedic.co/manual/
+- Free personalized sleep plan builder (quiz, computes a visual daily timeline per shift
+  pattern - 24/48, 48/96, Kelly, DuPont, nights 3x12, rotating): https://www.sleepmedic.co/plan/

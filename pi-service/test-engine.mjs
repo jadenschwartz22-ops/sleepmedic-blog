@@ -150,6 +150,102 @@ for (const { name, answers } of CASES) {
     }
   });
 
+  test('timeline segments are drawable: inside 0-1440, forward, non-empty', () => {
+    for (const d of plan.days) {
+      assert.ok(d.timeline && Array.isArray(d.timeline.segments), `${d.id} has no timeline`);
+      assert.ok(d.timeline.segments.length >= 6, `${d.id} too few segments`);
+      for (const s of d.timeline.segments) {
+        assert.ok(Number.isInteger(s.startMin) && Number.isInteger(s.endMin), `${d.id}/${s.type} non-integer bounds`);
+        assert.ok(s.startMin >= 0 && s.startMin < 1440, `${d.id}/${s.type} start ${s.startMin} out of range`);
+        assert.ok(s.endMin > 0 && s.endMin <= 1440, `${d.id}/${s.type} end ${s.endMin} out of range`);
+        assert.ok(s.endMin > s.startMin, `${d.id}/${s.type} runs backward`);
+        assert.ok(s.label, `${d.id}/${s.type} unlabelled`);
+      }
+    }
+  });
+
+  test('every day type carries the required band types', () => {
+    for (const d of plan.days) {
+      const types = new Set(d.timeline.segments.map(s => s.type));
+      for (const need of ['sleep', 'light', 'caffeine', 'meal', 'windDown', 'lightAvoid']) {
+        assert.ok(types.has(need), `${d.id} missing ${need} band`);
+      }
+      assert.strictEqual(types.has('nap'), !!d.napWindow, `${d.id} nap band disagrees with napWindow`);
+      assert.strictEqual(types.has('shift'), !!d.timeline.shift, `${d.id} shift band disagrees with shift`);
+    }
+  });
+
+  test('midnight-crossing windows split into exactly two abutting segments', () => {
+    for (const d of plan.days) {
+      const byType = {};
+      for (const s of d.timeline.segments) (byType[s.type] ||= []).push(s);
+      for (const [type, parts] of Object.entries(byType)) {
+        const wrapped = parts.filter(p => p.wrapped);
+        if (!wrapped.length) {
+          assert.strictEqual(parts.length, 1, `${d.id}/${type} unwrapped but split`);
+          continue;
+        }
+        assert.strictEqual(wrapped.length, 2, `${d.id}/${type} wrapped into ${wrapped.length} parts`);
+        const [a, b] = wrapped.sort((x, y) => x.part - y.part);
+        assert.strictEqual(a.endMin, 1440, `${d.id}/${type} part 1 does not reach midnight`);
+        assert.strictEqual(b.startMin, 0, `${d.id}/${type} part 2 does not start at midnight`);
+        assert.ok(b.endMin <= a.startMin, `${d.id}/${type} split parts overlap`);
+      }
+    }
+  });
+
+  test('the sleep band spans exactly the sleep opportunity, ending at the anchor', () => {
+    for (const d of plan.days) {
+      const parts = d.timeline.segments.filter(s => s.type === 'sleep');
+      const total = parts.reduce((n, s) => n + (s.endMin - s.startMin), 0);
+      assert.strictEqual(total, d.sleepMins, `${d.id} sleep band is ${total} min, expected ${d.sleepMins}`);
+      const first = parts.find(s => s.part === 1);
+      assert.strictEqual(first.startMin, d.targetSleep, `${d.id} sleep band does not start at the target`);
+      const last = parts[parts.length - 1];
+      assert.strictEqual(wrap(last.endMin), d.wakeMins, `${d.id} sleep band does not end at the anchor`);
+    }
+  });
+
+  test('where the pattern defines a shift, it never overlaps the sleep band', () => {
+    const covers = (parts) => {
+      const set = new Set();
+      for (const s of parts) for (let m = s.startMin; m < s.endMin; m++) set.add(m);
+      return set;
+    };
+    for (const d of plan.days) {
+      if (!d.timeline.shift) continue;
+      const sleep = covers(d.timeline.segments.filter(s => s.type === 'sleep'));
+      const shift = covers(d.timeline.segments.filter(s => s.type === 'shift'));
+      for (const m of shift) assert.ok(!sleep.has(m), `${d.id}: on duty at ${fmt(m)} inside the sleep opportunity`);
+      assert.ok(shift.size > 0, `${d.id}: shift band is empty`);
+    }
+  });
+
+  test('markers are instants on the clock that match the computed times', () => {
+    for (const d of plan.days) {
+      const m = Object.fromEntries(d.timeline.markers.map(x => [x.type, x]));
+      assert.strictEqual(m.wakeAnchor.atMin, d.wakeMins, `${d.id} wake marker`);
+      assert.strictEqual(m.caffeineCutoff.atMin, d.caffeineCutoff, `${d.id} caffeine cutoff marker`);
+      assert.strictEqual(m.mealEnd.atMin, d.lastMeal, `${d.id} meal marker`);
+      for (const x of d.timeline.markers) {
+        assert.ok(Number.isInteger(x.atMin) && x.atMin >= 0 && x.atMin < 1440, `${d.id}/${x.type} out of range`);
+        assert.ok(x.label, `${d.id}/${x.type} unlabelled`);
+      }
+    }
+  });
+
+  test('timeline agrees with the block times it is drawn from', () => {
+    for (const d of plan.days) {
+      const seg = (t) => d.timeline.segments.filter(s => s.type === t).sort((a, b) => a.part - b.part);
+      assert.strictEqual(seg('light')[0].startMin, d.light[0], `${d.id} light start`);
+      assert.strictEqual(wrap(seg('light').at(-1).endMin), d.light[1], `${d.id} light end`);
+      assert.strictEqual(seg('caffeine')[0].startMin, d.firstCup[0], `${d.id} caffeine start`);
+      assert.strictEqual(wrap(seg('caffeine').at(-1).endMin), d.caffeineCutoff, `${d.id} caffeine end`);
+      assert.strictEqual(seg('windDown')[0].startMin, d.windDownStart, `${d.id} wind-down start`);
+      if (d.napWindow) assert.strictEqual(seg('nap')[0].startMin, d.napWindow[0], `${d.id} nap start`);
+    }
+  });
+
   test('no emoji or hype markers in rendered copy', () => {
     const s = JSON.stringify(plan);
     assert.ok(!/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(s), 'emoji found');
@@ -186,6 +282,28 @@ test('every pattern x struggle x occupation builds cleanly', () => {
     n++;
   }
   assert.strictEqual(n, PATTERNS.length * STRUGGLES.length * OCCUPATIONS.length);
+});
+test('timeline holds for every pattern at every wake minute of the day', () => {
+  for (const pat of PATTERNS) {
+    for (let w = 0; w < 1440; w += 37) {           // 39 anchors per pattern, coprime stride
+      const hhmm = `${String(Math.floor(w / 60)).padStart(2, '0')}:${String(w % 60).padStart(2, '0')}`;
+      const p = buildPlan({ occupation: 'ems', pattern: pat.id, struggle: 'all', workWake: hhmm, restWake: '08:00' });
+      for (const d of p.days) {
+        for (const s of d.timeline.segments) {
+          assert.ok(s.startMin >= 0 && s.endMin <= 1440 && s.endMin > s.startMin,
+            `${pat.id}@${hhmm} ${d.id}/${s.type}: ${s.startMin}-${s.endMin}`);
+        }
+        if (!d.timeline.shift) continue;
+        const sleepParts = d.timeline.segments.filter(s => s.type === 'sleep');
+        for (const sh of d.timeline.segments.filter(s => s.type === 'shift')) {
+          for (const sl of sleepParts) {
+            assert.ok(sh.startMin >= sl.endMin || sh.endMin <= sl.startMin,
+              `${pat.id}@${hhmm} ${d.id}: shift ${sh.startMin}-${sh.endMin} overlaps sleep ${sl.startMin}-${sl.endMin}`);
+          }
+        }
+      }
+    }
+  }
 });
 test('midnight-crossing anchors do not produce negative times', () => {
   for (const w of ['00:00', '00:30', '23:45', '12:00']) {
