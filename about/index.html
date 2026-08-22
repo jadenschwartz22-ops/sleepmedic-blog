@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About SleepMedic - Evidence-Based Sleep Science</title>
-  <meta name="description" content="SleepMedic publishes evidence-based sleep science for shift workers, first responders, and anyone who struggles with sleep. Learn who writes here and why." />
+  <meta name="description" content="SleepMedic publishes evidence-based sleep science for shift workers, first responders, and anyone whose schedule makes ordinary sleep advice useless. How we source, and what we will not claim." />
 
   <link rel="canonical" href="https://sleepmedic.co/about/" />
   <meta name="robots" content="index,follow" />
   <meta property="og:title" content="About SleepMedic" />
-  <meta property="og:description" content="Evidence-based sleep science for shift workers, first responders, and anyone who struggles with sleep." />
+  <meta property="og:description" content="Evidence-based sleep science for people whose schedules don't cooperate." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sleepmedic.co/about/" />
   <meta property="og:site_name" content="SleepMedic" />
@@ -17,21 +17,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
 
-  <!-- Structured Data: Person -->
+  <!-- Structured Data
+       TODO: when the founder's name goes on the site, replace the Person
+       block below with the real name and credential (WS4). Do not add
+       jobTitle or credential claims that are not verifiable. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "SleepMedic Editorial", <!-- TODO: replace with real name -->
-    "url": "https://sleepmedic.co/about/",
-    "jobTitle": "Sleep Science Writer",
-    "sameAs": ["https://sleepmedic.co"],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "TeachMeToLive LLC",
-      "url": "https://sleepmedic.co"
-    },
-    "knowsAbout": ["sleep science", "circadian biology", "shift work", "sleep medicine", "fatigue management"]
+    "@type": "Organization",
+    "name": "SleepMedic",
+    "url": "https://sleepmedic.co",
+    "logo": { "@type": "ImageObject", "url": "https://sleepmedic.co/favicon-32.png" },
+    "parentOrganization": { "@type": "Organization", "name": "TeachMeToLive LLC" },
+    "knowsAbout": ["sleep science", "circadian biology", "shift work", "sleep medicine", "fatigue management"],
+    "sameAs": []
   }
   </script>
 
@@ -43,165 +42,184 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/blog/_shared-styles.css">
 
   <style>
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 24px; max-width: 720px; margin: 0 auto;
-      border-bottom: 1px solid var(--border);
+    .about-hero { padding: clamp(40px, 6vw, 68px) 0 var(--space-group); }
+    .about-hero h1 {
+      font-size: clamp(2rem, 4.4vw, 2.8rem);
+      font-weight: 800; line-height: 1.12; letter-spacing: -0.04em;
+      margin-bottom: 18px;
     }
-    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 20px; align-items: center; }
-    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta { padding: 7px 14px; background: rgba(167,139,250,0.10); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
-    .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
+    .about-hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; }
+    .about-hero p { font-size: 1.05rem; color: var(--text-3); line-height: 1.7; max-width: 60ch; }
 
-    .page {
-      max-width: 720px; margin: 0 auto;
-      padding: 64px 24px 40px;
-    }
-
-    .page h1 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800;
-      letter-spacing: -0.02em; margin-bottom: 24px; line-height: 1.15;
-    }
-
-    .about-body {
-      font-size: 1.05rem; line-height: 1.85; color: var(--text-2);
-    }
+    .about-body { font-size: 1.02rem; line-height: 1.8; color: var(--text-2); }
+    .about-body > * { max-width: 68ch; }
     .about-body h2 {
-      font-size: 1.3rem; font-weight: 700; margin-top: 48px; margin-bottom: 14px;
-      letter-spacing: -0.01em; color: var(--text);
+      font-size: 1.22rem; margin: var(--space-section) 0 14px;
     }
-    .about-body p { margin-bottom: 20px; }
-    .about-body a { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(167,139,250,0.35); text-underline-offset: 3px; }
-    .about-body a:hover { text-decoration-color: var(--accent); }
+    .about-body p { margin-bottom: 18px; }
+    .about-body a {
+      text-decoration: underline;
+      text-decoration-color: var(--accent-line);
+      text-underline-offset: 3px;
+    }
 
-    .credential-block {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 28px 32px; margin: 40px 0;
+    /* Standards list: a table of practice, not decoration. */
+    .standards { list-style: none; margin: 0 0 18px; padding: 0; max-width: 68ch; }
+    .standards li {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.94rem;
     }
-    .credential-block h3 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 16px; }
-    .credential-block ul { list-style: none; padding: 0; margin: 0; }
-    .credential-block li { font-size: 0.9rem; color: var(--text-3); padding: 6px 0; border-bottom: 1px solid var(--border); }
-    .credential-block li:last-child { border-bottom: none; }
+    .standards li:last-child { border-bottom: none; }
+    .standards dfn {
+      font-style: normal; font-weight: 600; color: var(--text);
+      font-size: 0.86rem;
+    }
+    @media (max-width: 560px) {
+      .standards li { grid-template-columns: 1fr; gap: 4px; }
+    }
 
-    .newsletter {
-      text-align: center; padding: 48px 32px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: var(--radius-lg); margin: 48px 0 64px;
+    .note {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      font-size: 0.92rem;
+      color: var(--text-3);
+      max-width: 68ch;
+      margin-bottom: 18px;
     }
-    .newsletter h2 { font-size: 1.3rem; margin-bottom: 8px; font-weight: 700; }
-    .newsletter p { color: var(--text-3); margin-bottom: 24px; font-size: 0.92rem; line-height: 1.5; }
-    .nl-form { display: flex; gap: 8px; max-width: 400px; margin: 0 auto 12px; }
-    .nl-form input { flex: 1; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.88rem; font-family: inherit; }
-    .nl-form input::placeholder { color: var(--text-3); }
-    .nl-form input:focus { outline: none; border-color: var(--accent); }
-    .nl-form button { padding: 12px 24px; background: var(--accent); color: var(--bg); border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; font-family: inherit; white-space: nowrap; }
-    .nl-form button:hover { opacity: 0.85; }
-    .nl-msg { font-size: 0.82rem; color: var(--accent); min-height: 1.2em; }
-    @media (max-width: 480px) { .nl-form { flex-direction: column; } }
-
-    footer {
-      max-width: 720px; margin: 0 auto;
-      text-align: center; padding: 32px 24px;
-      border-top: 1px solid var(--border); color: var(--text-3); font-size: 0.78rem;
-    }
-    footer a { color: var(--text-3); }
-    footer a:hover { color: var(--text); }
   </style>
 </head>
 <body>
 
-  <nav>
+  <nav class="site-nav site-nav--narrow">
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <button type="button" class="nav-cta" data-app-interest="about-nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
+      <a href="/plan/" class="nav-cta" data-cta="about-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
     </div>
   </nav>
 
-  <div class="page">
-    <h1>About SleepMedic</h1>
+  <div class="page page--narrow">
+
+    <header class="about-hero">
+      <h1>Written for the people <span class="serif">the advice forgets.</span></h1>
+      <p>Most sleep guidance assumes you choose your bedtime. SleepMedic is for everyone else: 24s and 48s, three twelves in a row, rotating nights, and the months after a baby arrives.</p>
+    </header>
 
     <div class="about-body">
 
-      <p>Most sleep advice is written for people who already sleep reasonably well. Go to bed at 10. Wake up at 6. Avoid caffeine after 2. It works fine if your life cooperates. It doesn't work at all if your schedule rotates every few weeks, if you're coming off a night shift, if you have a newborn, or if "going to bed earlier" is not a thing you're allowed to do.</p>
+      <h2>Why this exists</h2>
 
-      <p>SleepMedic is sleep science for everyone — but written by someone who got frustrated that the standard sleep science advice ignores how real schedules actually work.</p>
+      <p>Go to bed at ten. Wake at six. No caffeine after two. That advice is fine, and it is useless if your schedule rotates every few weeks, if you are driving home as the sun comes up, or if going to bed earlier is simply not something you are allowed to do.</p>
 
-      <h2>Who this is for</h2>
+      <p>The underlying biology does not change between a day worker and a night worker. Circadian timing, sleep pressure, light, core temperature, arousal: same mechanisms, same research. What changes is which levers you can actually reach. If you cannot control when you sleep, you can still control light exposure, caffeine timing, wind-down, and how you recover between shifts. That is the subject here.</p>
 
-      <p>Anyone who wants to sleep better. That's the honest answer. The underlying biology — circadian rhythm, sleep pressure, light and melatonin, core temperature, stress and arousal — is the same for everyone. The mechanics here apply whether you work 9-to-5, pull night shifts, rotate between the two, or haven't slept through the night since your kid was born.</p>
+      <p>Shift workers and first responders get the most attention on this site because they are the hardest case. Protocols that hold up across a 48 hold up for everyone else too.</p>
 
-      <p>The reason the site leans toward shift workers, first responders, and people with irregular schedules is that those are the hardest cases. If the protocols hold up there, they hold up for everyone else too.</p>
+      <!-- ==================================================================
+           TODO (WS4): FOUNDER STORY - PLACEHOLDER SECTION
 
-      <h2>Why this site exists</h2>
+           Blocked on Jaden. The raw story does not exist in writing
+           anywhere yet, and nothing here may be invented in the meantime.
 
-      <p>The good sleep research lives in journals, behind paywalls, written in clinical language. The popular sleep advice gets watered down until it only fits a narrow slice of people — the ones with predictable schedules and flexible lives. Everyone in the middle gets advice that doesn't fit their reality, and then blames themselves when it doesn't work.</p>
+           When his story lands, this section becomes first person and
+           should carry: that he is a working paramedic, the schedules he
+           has actually run (12s, 24s, 48s, nights, rotating), and why the
+           lived credential is the differentiator.
 
-      <p>This site tries to close that gap. Real mechanisms, plain language, and protocols that bend to your actual schedule instead of a theoretical ideal.</p>
+           Two open decisions before this ships:
+             1. Real name on the site? (north-star doc recommends yes)
+             2. If yes, add Person JSON-LD with the credential and update
+                the article byline + author box from "the SleepMedic team"
+                to the real name, in blog/_template.html.
 
-      <h2>What we cover</h2>
+           Until then the copy below stays deliberately modest. Do not add
+           credentials, licenses, years of experience, or clinical
+           affiliations that have not been verified.
+           ================================================================== -->
+      <h2>Who writes it</h2>
 
-      <p>Circadian biology, sleep architecture, fatigue management, and the practical protocols that come out of them. How light shifts the clock, how sleep pressure builds and breaks, why core body temperature matters for sleep onset, how to manage rotating shifts without destroying yourself, what the research actually says about melatonin / magnesium / breathing techniques / naps.</p>
+      <p>SleepMedic is written and published by a small team working under TeachMeToLive LLC. It started because the standard sleep advice did not survive contact with a real emergency-services schedule.</p>
 
-      <p>If you can't control your schedule, you can still control your light exposure, sleep timing, pre-sleep environment, and recovery tactics. That's the focus: what's within your control, and what the evidence says about using it.</p>
+      <div class="note">
+        A fuller introduction, including the founder's background and the schedules behind this work, is being written and will appear here. Until it does, this page makes no claims about credentials rather than guessing at them.
+      </div>
 
-      <h2>The app</h2>
+      <p>Nobody here is your doctor. This site covers population-level research and general protocols. If you have a diagnosed sleep disorder, a medical condition affecting your sleep, or a fatigue-related safety concern at work, talk to a provider who knows your history.</p>
 
-      <p>The <a href="#" data-app-interest="about-body">SleepMedic app</a> extends the same approach: it adapts to your actual schedule, not a theoretical 8-hour ideal. Log sleep around your shifts, track consistency across rotations, and see which habits are actually moving your numbers -- not which ones are supposed to, according to advice written for a different kind of schedule.</p>
+      <h2>How we source</h2>
 
-      <h2>Editorial standards</h2>
+      <p>The value of this site rests entirely on whether the citations hold up. So:</p>
 
-      <p>Every claim on this site traces back to a source. Studies are cited inline with links to the original publication or authoritative summary. When research is mixed or context-dependent, that's stated rather than smoothed over. Primary sources are preferred: peer-reviewed journals, CDC data, AASM guidelines, NIH publications. Secondary coverage is used only when it accurately represents the underlying research.</p>
+      <ul class="standards">
+        <li><dfn>Primary first</dfn><span>Peer-reviewed journals, CDC data, AASM guidelines, and NIH publications before secondary coverage. Secondary sources are used only where they represent the underlying research accurately.</span></li>
+        <li><dfn>Cited inline</dfn><span>Every substantive claim links to the study or the authoritative summary it came from, so you can check the work rather than take our word for it.</span></li>
+        <li><dfn>Disagreement stated</dfn><span>Where the evidence is mixed, thin, or context-dependent, we say so instead of smoothing it into a confident recommendation. Where a popular claim conflicts with the primary literature, we say that too.</span></li>
+        <li><dfn>No paid placement</dfn><span>No sponsored content and no affiliate arrangements that influence what gets covered or recommended. If a commercial relationship ever exists, it gets disclosed in the post.</span></li>
+        <li><dfn>Corrections kept</dfn><span>When something here turns out to be wrong, it gets fixed in place and the change is noted rather than quietly deleted.</span></li>
+      </ul>
 
-      <p>This site does not accept sponsored content or affiliate arrangements that influence editorial decisions. Where any commercial relationship exists, it is disclosed.</p>
+      <h2>What you can get from it</h2>
 
-      <p>Nothing on this site is medical advice. If you have a sleep disorder, a medical condition affecting your sleep, or concerns about fatigue-related safety, talk to a provider. This site covers population-level research and general protocols -- your situation may differ.</p>
+      <p>Two things, both free. A <a href="/plan/">personalized sleep plan</a> built from six questions about your actual rotation, with the timings computed rather than generated. And a weekly email that covers one piece of research and what to do with it.</p>
 
     </div>
 
-    <div class="newsletter">
-      <h2>Weekly sleep science, no fluff</h2>
-      <p>One email a week. Evidence-based advice for people who need sleep to function.</p>
-      <form data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit">
-        <div class="nl-form">
-          <input type="email" name="email" required placeholder="you@email.com" />
-          <button type="submit">Subscribe</button>
-        </div>
+    <section class="capture" style="margin-top:var(--space-section);">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" data-sm-source="about">
+        <label class="visually-hidden" for="about-email">Email address</label>
+        <input type="email" id="about-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
       </form>
-      <div class="nl-msg" data-sm-newsletter-msg></div>
-    </div>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </section>
 
   </div>
 
-  <footer>
-    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
-    <p style="margin-top:6px;">
-      <a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; <a href="/blog/feed.xml">RSS</a>
-    </p>
+  <footer class="site-footer site-footer--narrow">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
   </footer>
 
-  <script src="/assets/app-interest.js" data-pi="https://pi.sleepmedic.co/app-interest"></script>
-
   <script>
-    (function() {
-      const f = document.querySelector('[data-sm-newsletter]');
-      const msg = document.querySelector('[data-sm-newsletter-msg]');
-      if (!f) return;
+    document.addEventListener('click', (e) => {
+      const cta = e.target.closest('[data-cta]');
+      if (cta && window.gtag) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
       f.addEventListener('submit', async (e) => {
         e.preventDefault();
         const input = f.querySelector('input[name="email"]');
         const email = (input?.value || '').trim();
         if (!email) return;
-        msg.textContent = 'Subscribing...';
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
         try {
           const r = await fetch('https://pi.sleepmedic.co/subscribe', {
             method: 'POST',
@@ -210,17 +228,19 @@
           });
           const d = await r.json();
           if (d.ok) {
-            msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
             input.value = '';
-            if (window.gtag) window.gtag('event', 'newsletter_subscribe', { source: 'about' });
-          } else {
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', { email_domain: (email.split('@')[1] || '').toLowerCase(), source: 'about' });
+          } else if (msg) {
             msg.textContent = d.error || 'Subscription failed.';
           }
         } catch {
-          msg.textContent = 'Network error. Try again.';
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
         }
       });
-    })();
+    });
   </script>
 </body>
 </html>
