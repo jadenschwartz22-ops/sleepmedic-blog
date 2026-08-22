@@ -4,7 +4,7 @@
  * Runs on Pi as a persistent Node.js service. Three jobs:
  * 1. Newsletter: accepts email signups, stores in subscribers.json, sends via Resend
  * 2. RSS Watcher: polls RSS feed every 30min, detects new posts, triggers distribution
- * 3. Distribution: on new post -> send newsletter + post to X (Twitter)
+ * 3. Distribution: on new post -> send newsletter
  *
  * Setup:
  *   npm install

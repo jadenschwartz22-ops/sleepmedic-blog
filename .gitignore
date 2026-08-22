@@ -27,3 +27,8 @@ Thumbs.db
 pi-service/subscribers.json
 pi-service/app-interest.json
 pi-service/.last-post-guid.txt
+
+# Research corpus (copyright: transcripts stay local/runner-only, never
+# committed to this public repo). Tooling + metadata index are committed;
+# transcript text and the local index are not. See scripts/research/README.md
+research/
