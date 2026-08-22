@@ -475,6 +475,27 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Admin: send the weekly brief. Body: { subject, html }. The html is the
+  // brief body only; the per-recipient unsubscribe footer is appended here.
+  if (url.pathname === '/send-brief' && req.method === 'POST') {
+    if (url.searchParams.get('key') !== ADMIN_KEY) { json(res, 403, { error: 'forbidden' }); return; }
+    const body = await parseBody(req);
+    if (!body.subject || !body.html) { json(res, 400, { error: 'subject and html required' }); return; }
+    const subs = await loadSubscribers();
+    let sent = 0, failed = 0;
+    for (const sub of subs) {
+      try {
+        await sendEmail(sub.email, body.subject,
+          `<div style="max-width:560px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">${body.html}<hr style="margin:32px 0;border:none;border-top:1px solid #eee;">${unsubFooter(sub.email)}</div>`);
+        sent++;
+      } catch (err) { failed++; console.error(`Brief failed for ${sub.email}: ${err.message}`); }
+    }
+    console.log(`Brief "${body.subject}" sent: ${sent} ok, ${failed} failed`);
+    notifyDiscord(`**[BRIEF] Sent** "${body.subject}" — ${sent} ok, ${failed} failed`);
+    json(res, 200, { ok: true, sent, failed });
+    return;
+  }
+
   // Unsubscribe
   if (url.pathname === '/unsubscribe') {
     const email = url.searchParams.get('email');
