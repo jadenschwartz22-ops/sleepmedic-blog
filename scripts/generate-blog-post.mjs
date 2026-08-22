@@ -324,25 +324,34 @@ async function stage1_selectTopic() {
 
     const generated = await gemini(
       `You are the editorial director for SleepMedic, a sleep science blog.
-Your audience: anyone with sleep problems, with a core niche of shift workers.
+Your audience, permanently and exclusively: people who sleep against the clock --
+EMS, nurses, firefighters, dispatch, security, overnight retail/warehouse workers,
+medical residents, and new parents. Every topic must pass this test: would a
+night-shift worker forward this to a coworker?
 
 EXISTING TOPIC BUCKETS (for reference, not a constraint): ${bucketNames}
 RECENTLY COVERED (avoid overlap): ${recentList || 'none yet'}
 
-Generate a completely ORIGINAL blog topic that goes BEYOND the predefined buckets above.
-Consider:
-- Emerging sleep science research or findings from the last 1-2 years
-- Underserved questions people ask about sleep that lack authoritative answers online
-- Niche intersections (sleep + specific professions, sleep + mental health conditions, sleep + medications, sleep + age groups, sleep + seasons/travel/altitude)
-- What sleep-related questions have HIGH SEARCH INTEREST but FEW authoritative answers?
-- Topics trending in sleep medicine forums, Reddit r/sleep, or health Q&A sites
+Generate a completely ORIGINAL blog topic that goes BEYOND the predefined buckets above,
+while staying strictly inside the shift-worker sleep audience. Consider:
+- Specific shift patterns or transitions not already listed (new rotations, niche
+  schedules, industry-specific quirks)
+- Underserved questions shift workers ask about sleep that lack authoritative answers
+- Niche intersections within the audience (shift work + pregnancy, + menopause,
+  + PTSD/trauma exposure, + specific meds, + seasons/travel/deployment)
+- What shift-work sleep questions have HIGH SEARCH INTEREST but FEW authoritative answers?
+- Topics trending in r/nightshift, r/ems, r/nursing, or shift-work forums
+
+Do NOT generate general-audience sleep topics (supplements, sleep trackers, insomnia
+in the general population, sleep science explainers with no shift-work angle). If it
+would not help someone who works nights, rotating shifts, or 24s, it is off-brand.
 
 The topic must be specific enough for a focused 800-1200 word article. Not a broad overview.
 
 Return JSON:
 {
-  "topic": "the specific topic (5-12 words)",
-  "tag": "closest category tag: shift-work | circadian | sleep-hygiene | conditions | supplements | tools",
+  "topic": "the specific topic (5-12 words), must be shift-work-audience specific",
+  "tag": "closest category tag: shift-patterns | hard-transitions | day-sleep-environment | caffeine-light-timing | life-on-shift",
   "bucketName": "closest bucket name"
 }`,
       { json: true, temp: 0.9, search: true }
@@ -471,9 +480,10 @@ async function stage3_plan(topicInfo, research, guidelines) {
   const format = getTemplateFormat();
 
   const system = `You are a blog editor for SleepMedic, a sleep science publication.
-Primary audience: anyone struggling with sleep.
-Core niche: shift workers (EMTs, nurses, firefighters).
-Secondary: health optimizers, wearable users, parents, students.
+Audience, permanently: people who sleep against the clock -- EMS, nurses,
+firefighters, dispatch, security, overnight retail/warehouse workers, medical
+residents, and new parents. Every post must pass: would a night-shift worker
+forward this to a coworker?
 
 ${guidelines}
 

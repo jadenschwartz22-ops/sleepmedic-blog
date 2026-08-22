@@ -1,116 +1,95 @@
 # SleepMedic Blog Editorial Calendar
-# 6 buckets, ~12-15 topics each, rotated weekly by isoWeek % 6
-# Topics are phrased as search-intent keywords for SEO alignment
+# 5 buckets, ~10-14 topics each, rotated weekly by isoWeek % 5
+# Audience, permanently: people who sleep against the clock -- EMS, nurses,
+# firefighters, dispatch, security, overnight retail/warehouse, residents,
+# new parents. Topics are phrased as search-intent keywords for SEO alignment.
 
 core_tags:
-  - Science
-  - Tools
-  - Troubleshooting
-  - Trending
-  - Shift Work
-  - Life Stages
+  - Shift Patterns
+  - Hard Transitions
+  - Day Sleep Environment
+  - Caffeine Light Timing
+  - Life on Shift
 
 buckets:
-  - name: Sleep science & how it works
-    tag: Science
+  - name: Sleeping by shift pattern
+    tag: Shift Patterns
     topics:
-      - How much deep sleep do you actually need
-      - REM sleep vs deep sleep and which matters more
-      - What happens to your brain while you sleep
-      - Sleep cycles explained and the 90-minute myth
-      - Why do we dream and what dreams mean
-      - Chronotypes and whether you are really a night owl
-      - How sleep affects memory consolidation and learning
-      - Sleep and your immune system
-      - How sleep regulates metabolism and weight
-      - Testosterone, growth hormone, and cortisol during sleep
-      - How sleep cleans your brain through the glymphatic system
-      - The connection between sleep and heart disease
-      - Sleep deprivation effects on decision making and reaction time
-      - Circadian rhythm explained and why light matters
+      - How to sleep on a 24/48 schedule
+      - Sleeping through a 48/96 cycle
+      - Nights 3x12 sleep schedule that actually works
+      - Rotating shift sleep strategy when your clock keeps changing
+      - Kelly schedule sleep plan for firefighters
+      - Surviving the DuPont schedule without wrecking your sleep
+      - How to survive your first night shift ever
+      - Panama 2-2-3 schedule sleep plan
+      - Sleeping on a 24/72 schedule
+      - Days 3x12 sleep schedule for nurses
+      - How paramedics sleep on 12-hour shifts
+      - Irregular shift schedule sleep plan when there is no pattern
+      - Dispatcher sleep schedule for rotating shifts
+      - Sleeping around a swing shift
 
-  - name: Sleep tools & techniques
-    tag: Tools
+  - name: The hard transitions
+    tag: Hard Transitions
     topics:
-      - How to fall asleep in 5 minutes with evidence-ranked methods
-      - The military 2-minute sleep technique from WWII
-      - Box breathing and 4-7-8 technique for falling asleep
-      - Non-sleep deep rest (NSDR) and Yoga Nidra protocols
-      - Progressive muscle relaxation the Jacobson technique
-      - Cognitive shuffling to quiet racing thoughts at bedtime
-      - Cold exposure and body temperature for deeper sleep
-      - The 10-3-2-1 sleep protocol explained
-      - Pink noise vs white noise vs brown noise for sleep
-      - Weighted blankets and the science of pressure therapy
-      - The ideal bedroom setup for better sleep
-      - Mouth taping for sleep science and safety
-      - Sleep restriction therapy for chronic insomnia
-      - Acupressure points for sleep Shenmen and Anmian
-      - How to build a wind-down routine that works
+      - How to sleep the first night back after days off
+      - Flipping from nights to days for a weekend
+      - Sleeping after the last night shift of a stretch
+      - On-call sleep with interruptions all night
+      - Post-24-hour-shift recovery sleep protocol
+      - Why the first night back is the hardest night in shift work
+      - Recovering sleep after a bad call or trauma shift
+      - Switching from day shift to night shift for the first time
+      - Sleeping before an early morning shift after a late night
+      - How long it takes to reset your body clock after nights
+      - Sleep debt recovery after a run of night shifts
+      - Getting back on schedule after a vacation broke your sleep
 
-  - name: Sleep troubleshooting
-    tag: Troubleshooting
+  - name: Day sleep environment
+    tag: Day Sleep Environment
     topics:
-      - Why you can't sleep at night and what to do about it
-      - Why you keep waking up at 3am
-      - How to fix a destroyed sleep schedule
-      - Sunday night insomnia why it happens and how to beat it
-      - Sleep anxiety and why worrying about sleep makes it worse
-      - Revenge bedtime procrastination why you stay up too late
-      - Racing thoughts at bedtime evidence-based solutions
-      - Why you are tired but can't fall asleep
-      - How to stop hitting snooze every morning
-      - Jet lag recovery fast reset protocols
-      - Waking up tired after 8 hours why it happens
-      - How to know if you are getting enough sleep
-      - Why you sleep worse on Sunday nights
-      - Can't sleep after exercise and what to do
+      - Best blackout setup for daytime sleep
+      - How to sleep through daytime noise
+      - Ideal bedroom temperature for day sleep
+      - How to tell your family or kids you sleep during the day
+      - Apartment day-sleep setup on a budget
+      - Blocking out sunlight when you work nights
+      - White noise vs earplugs for day sleeping
+      - Sleeping during the day in a noisy household
+      - Signs on the door to protect day sleep from roommates
+      - How to day-sleep in a hot climate without AC all day
+      - Best sleep mask for shift workers who sleep days
+      - Soundproofing a bedroom for night shift workers on a budget
 
-  - name: Popular claims vs real science
-    tag: Trending
+  - name: Caffeine, light, and timing
+    tag: Caffeine Light Timing
     topics:
-      - Magnesium for sleep separating supplement marketing from clinical evidence
-      - The real science behind viral sleep trends from sleepmaxxing to sleepy girl mocktails
-      - Melatonin dosage why less is more and when to skip it entirely
-      - When your sleep tracker becomes the problem orthosomnia and data anxiety
-      - L-theanine GABA and ashwagandha what clinical trials actually show
-      - Tart cherry juice and sleep the anthocyanin mechanism vs the hype
-      - Magnesium forms compared glycinate threonate citrate and what absorption data says
-      - Rest vs avoidance how to tell when staying in bed helps and when it hurts
-      - Morning cortisol spikes why waking anxious is biological not personal failure
-      - Cycle-based sleep how hormonal shifts change sleep architecture across the month
-      - Sleep advice from influencers what holds up and what falls apart under scrutiny
-      - The six-hour sleep myth why genetic short sleepers are rarer than you think
-      - Sleep trackers as tools not judges how to use wearable data without obsessing
+      - Caffeine cutoff time for night shift workers
+      - How to use light on purpose during night shifts
+      - Melatonin for shift work what the evidence actually shows
+      - Strategic napping on shift without feeling worse after
+      - Best eating window for night shift workers
+      - How much caffeine is too much on a night shift
+      - Blue light glasses for night shift workers do they help
+      - When to stop drinking coffee before a day sleep
+      - Bright light therapy for adjusting to night shift
+      - Napping before a night shift good idea or bad idea
+      - Eating on a 24-hour shift without ruining your sleep
+      - Sunglasses on the drive home after a night shift
 
-  - name: Shift worker & schedule sleep
-    tag: Shift Work
+  - name: Shift work and the rest of life
+    tag: Life on Shift
     topics:
-      - How to sleep after a night shift
-      - Forward vs backward rotating shifts circadian optimization
-      - The firefighter paradox sleep between calls
-      - ICU nurse recovery the 3-day reset protocol
-      - 24-hour shift sleep strategy for EMS and fire
-      - Night shift meal timing for better sleep
-      - Protecting circadian rhythm during rotating shifts
-      - Strategic napping for shift workers
-      - Light management for night shift workers
-      - How shift work affects your long-term health
-      - Building sleep consistency with a chaotic schedule
-      - Night shift and weight gain the circadian connection
-
-  - name: Life stages & special populations
-    tag: Life Stages
-    topics:
-      - Sleep during pregnancy positions hormones and solutions
-      - Perimenopause night sweats and thermoregulation strategies
-      - Menstrual cycle effects on sleep architecture
-      - ADHD and sleep why your brain won't shut off
-      - Sleep for athletes recovery and performance optimization
-      - New parent sleep survival strategies
-      - Sleep changes after 40 what is normal and what isn't
-      - Trauma-informed sleep practices for first responders
-      - Anxiety and insomnia breaking the cycle
-      - Couples sleep different schedules same bed
-      - Student sleep managing exams caffeine and all-nighters
-      - Sleep and aging what changes and what you can do
+      - Surviving night shifts with a newborn
+      - Relationships when you and your partner work opposite schedules
+      - How to drive home safely after a night shift
+      - Signs of shift work sleep disorder
+      - When to see a doctor about shift work sleep problems
+      - Protecting your workouts on a rotating shift schedule
+      - How night shift affects your marriage
+      - Staying awake for the drive home after a 24
+      - Shift work sleep disorder vs normal shift work fatigue
+      - Parenting on a night shift schedule
+      - Long-term health risks of working night shift
+      - Fitting exercise into a 24/48 or 48/96 schedule
