@@ -80,7 +80,7 @@
         "name": "Can I put this on my phone calendar?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The calendar export downloads a standard .ics file holding your shifts and your planned sleep blocks for the next fourteen days, which imports into Apple Calendar, Google Calendar and Outlook. The times are floating local times, so they stay correct if you travel. You can also print the page as a one-page schedule."
+          "text": "Yes, and it only takes what you ask for. The export asks first - shifts, sleep blocks, or both, over the next seven or fourteen days - and downloads just that as a standard .ics file for Apple Calendar, Google Calendar and Outlook. The default is shifts only, so it never floods a calendar. Times are floating local times, so they stay correct if you travel. Printing the page gives you a one-page table instead."
         }
       }
     ]
@@ -174,6 +174,19 @@
     .mgr-head .sub { font-size: 0.92rem; color: var(--text-3); max-width: 56ch; }
     .mgr-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .mgr-actions .btn { padding: 10px 16px; font-size: 0.85rem; }
+
+    /* Export chooser: what lands on the calendar is chosen, never imposed. */
+    .ics-opts {
+      display: flex; align-items: center; gap: 10px 20px; flex-wrap: wrap;
+      padding: 14px 18px; margin-bottom: 22px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+      font-size: 0.86rem; color: var(--text-2);
+    }
+    .ics-opts label { display: inline-flex; align-items: center; gap: 7px; cursor: pointer; }
+    .ics-opts input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--accent); cursor: pointer; }
+    .ics-opts select { width: auto; padding: 7px 10px; font-size: 0.84rem; }
+    .ics-opts .count { color: var(--text-3); font-variant-numeric: tabular-nums; }
+    .ics-opts .btn { padding: 8px 14px; font-size: 0.82rem; margin-left: auto; }
 
     .anchors { display: flex; gap: 26px; flex-wrap: wrap; padding: 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 26px; }
     .anchors .a { min-width: 118px; }
@@ -269,52 +282,46 @@
       .mgr-head { align-items: flex-start; }
     }
 
-    /* ── Print: this is the fridge printout ──────────── */
+    /* ── Print: one page on the fridge, nothing else ── */
+
+    .print-sheet { display: none; }
 
     @media print {
-      .site-nav, .site-footer, .setup, .mgr-actions, .capture-block,
-      .next-steps, .faq, .no-print { display: none !important; }
+      /* The screen UI disappears entirely; the sheet is the printout. */
+      .site-nav, .site-footer, .setup, .manager > *:not(.print-sheet),
+      .capture-block, .faq, .no-print { display: none !important; }
       body { background: #fff; color: #1a1a1a; }
       .page { max-width: 100%; padding: 0; }
       .manager { padding: 0; }
-      .mgr-head { padding-top: 0; border-color: #bbb; }
-      .mgr-head h1 { color: #000; }
-      .mgr-head .sub, .anchors .lbl, .anchors .note, .legend, .updated { color: #444; }
-      .anchors { background: #fff; border-color: #bbb; break-inside: avoid; }
-      .anchors .val { color: #000; }
 
-      .days { gap: 5px; }
-      .day {
-        background: #fff; border-color: #ccc;
-        padding: 9px 12px; break-inside: avoid; page-break-inside: avoid;
+      .print-sheet { display: block; font-size: 9.5pt; }
+      .ps-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+      .ps-head .ps-title { font-size: 12pt; font-weight: 800; color: #000; letter-spacing: -0.01em; }
+      .ps-head .ps-meta { font-size: 8pt; color: #555; text-align: right; }
+
+      .print-sheet table { width: 100%; border-collapse: collapse; }
+      .print-sheet th {
+        text-align: left; font-size: 7pt; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.05em; color: #555; padding: 3px 6px; border-bottom: 1.5px solid #000;
       }
-      .day.today { background: #f5f3ff; border-color: #7c5cf5; }
-      .t-work .day-pos::before { background: #b45309; }
-      .t-transition .day-pos::before { background: #1f6fd0; }
-      .t-rest .day-pos::before { background: #0f9d6f; }
-      .now-strip { background: #fff; border-color: #bbb; break-inside: avoid; }
-      .now-strip .now-day { color: #000; }
-      .now-strip .now-times { color: #222; }
-      .day-dow { color: #000; }
-      .day-date, .row dt, .row .qual { color: #555; }
-      .day-pos, .t-work .day-pos { color: #7a3c05; }
-      .t-transition .day-pos { color: #14508f; }
-      .t-rest .day-pos { color: #0b6f4e; }
-      .row dd { color: #222; }
-      .row dd b, .row.shift dd b, .row.sleep dd b { color: #000; }
-      .day-today-tag { background: #7c5cf5; color: #fff; }
-      .legend i { border: 1px solid #999; }
-      .mgr-note { background: #fff; border-color: #bbb; break-inside: avoid; }
-      .mgr-note h3 { color: #000; }
-      .mgr-note p { color: #222; }
-      .mgr-note .cite { color: #555; }
-      a { color: #222; text-decoration: none; }
+      .print-sheet td {
+        padding: 3.5px 6px; border-bottom: 1px solid #ddd; color: #222;
+        font-variant-numeric: tabular-nums; white-space: nowrap;
+      }
+      .print-sheet td.ps-day { font-weight: 700; color: #000; }
+      .print-sheet td.ps-type { font-size: 8pt; font-weight: 700; }
+      .print-sheet tr.ps-work td { background: #f6efe6; }
+      .print-sheet tr.ps-work td.ps-type { color: #7a3c05; }
+      .print-sheet tr.ps-transition td.ps-type { color: #14508f; }
+      .print-sheet tr.ps-rest td.ps-type { color: #0b6f4e; }
+      .print-sheet tr.ps-today td { background: #ece7fb; }
+      .print-sheet td b { font-weight: 700; color: #000; }
+      .ps-foot { margin-top: 6px; font-size: 7pt; color: #666; display: flex; justify-content: space-between; gap: 12px; }
 
-      /* The left rules and the today block carry meaning; ask for them. */
-      .day, .day-today-tag, .legend i, .day-pos::before {
+      .print-sheet tr.ps-work td, .print-sheet tr.ps-today td {
         -webkit-print-color-adjust: exact; print-color-adjust: exact;
       }
-      @page { margin: 12mm; }
+      @page { margin: 10mm; size: portrait; }
     }
   </style>
 </head>
@@ -456,7 +463,7 @@
       </details>
       <details>
         <summary>Can I put this on my phone calendar?</summary>
-        <p>Yes. The calendar export downloads a standard .ics file holding your shifts and your planned sleep blocks for the next fourteen days, which imports into Apple Calendar, Google Calendar and Outlook. The times are floating local times, so they stay correct if you travel. You can also print the page as a one-page schedule.</p>
+        <p>Yes, and it only takes what you ask for. The export asks first - shifts, sleep blocks, or both, over the next seven or fourteen days - and downloads just that as a standard .ics file for Apple Calendar, Google Calendar and Outlook. The default is shifts only, so it never floods a calendar. Times are floating local times, so they stay correct if you travel. Printing the page gives you a one-page table instead.</p>
       </details>
       <p class="updated">Updated August 2026. General guidance for healthy adults, not medical advice.</p>
     </section>
@@ -733,6 +740,39 @@
       const horizon = days.length;
       const workCount = days.filter(d => d.onDuty).length;
 
+      // Compact clock for the print sheet: 7a, 10:30p.
+      const fmtC = (m) => {
+        m = ((m % 1440) + 1440) % 1440;
+        const h24 = Math.floor(m / 60), mm = m % 60;
+        return (h24 % 12 || 12) + (mm ? ':' + String(mm).padStart(2, '0') : '') + (h24 >= 12 ? 'p' : 'a');
+      };
+      const TYPE_WORD = { work: 'On duty', transition: 'Recovery', rest: 'Off' };
+      const printRows = days.map(day => {
+        const dp = dayPlanFor(plan, day.dayType);
+        const sw = shiftWindow(day, cfg);
+        const dnum = day.date.toLocaleDateString(undefined, { weekday: 'short', month: 'numeric', day: 'numeric' });
+        return `<tr class="ps-${day.dayType}${day.iso === todayISO ? ' ps-today' : ''}">
+          <td class="ps-day">${esc(dnum)}</td>
+          <td class="ps-type">${TYPE_WORD[day.dayType] || ''}</td>
+          <td>${sw ? `<b>${fmtC(sw.startMin)}</b>&ndash;${fmtC(sw.endMin)} (${sw.lenH}h)` : ''}</td>
+          <td><b>${fmtC(dp.targetSleep)}</b>&ndash;${fmtC(dp.wakeMins)}</td>
+          <td>${fmtC(dp.caffeineCutoff)}</td>
+          <td>${fmtC(dp.windDownStart)}</td>
+          <td>${dp.napWindow ? `${fmtC(dp.napWindow[0])}&ndash;${fmtC(dp.napWindow[1])}` : ''}</td>
+        </tr>`;
+      }).join('');
+      const printSheet = `<div class="print-sheet" aria-hidden="true">
+        <div class="ps-head">
+          <span class="ps-title">SleepMedic &middot; ${esc(cycle.label)}</span>
+          <span class="ps-meta">Anchors: ${esc(plan.anchors.work)} work / ${esc(plan.anchors.rest)} rest.<br>Land within 30 min of the anchor and it counts.</span>
+        </div>
+        <table>
+          <thead><tr><th>Day</th><th></th><th>On duty</th><th>Sleep</th><th>Caffeine off</th><th>Wind-down</th><th>Nap window</th></tr></thead>
+          <tbody>${printRows}</tbody>
+        </table>
+        <div class="ps-foot"><span>Shaded rows are duty days. Boxed row is today.</span><span>sleepmedic.co/schedule</span></div>
+      </div>`;
+
       // Today, pulled to the top: the row a returning visitor came back for.
       const todayDay = days.find(d => d.iso === todayISO);
       let nowStrip = '';
@@ -762,6 +802,15 @@
             <button type="button" class="btn btn-ghost" id="icsBtn">Add to calendar (.ics)</button>
             <button type="button" class="btn btn-ghost" id="changeBtn">Change schedule</button>
           </div>
+        </div>
+
+        <div class="ics-opts no-print" id="icsOpts" hidden>
+          <label><input type="checkbox" id="icsShifts" checked /> Shifts <span class="count" id="icsShiftCount"></span></label>
+          <label><input type="checkbox" id="icsSleep" /> Sleep blocks <span class="count" id="icsSleepCount"></span></label>
+          <label>Days
+            <select id="icsHorizon"><option value="7">next 7</option><option value="14" selected>all ${horizon}</option></select>
+          </label>
+          <button type="button" class="btn btn-primary" id="icsGoBtn">Download <span id="icsTotal"></span></button>
         </div>
 
         ${nowStrip}
@@ -798,6 +847,8 @@
         </div>
 
         <p class="updated">Updated August 2026. Times are calculated, not advice for a specific medical condition. If you fall asleep at the wheel, stop breathing in your sleep, or stay exhausted after weeks of protected sleep, that is a doctor's problem rather than a schedule problem.</p>
+
+        ${printSheet}
       `;
 
       $('setup').classList.remove('active');
@@ -812,9 +863,32 @@
         gtag('event', 'schedule_change', { pattern: cfg.pattern });
         editSchedule(cfg);
       });
+      // Export chooser: nobody wants twenty unasked-for events. Default is
+      // shifts only; sleep blocks and the horizon are the person's call.
+      const icsCount = () => {
+        const n = parseInt($('icsHorizon').value, 10);
+        const chosen = days.slice(0, n);
+        const shiftN = $('icsShifts').checked ? chosen.filter(d => d.onDuty).length : 0;
+        const sleepN = $('icsSleep').checked ? chosen.length : 0;
+        $('icsShiftCount').textContent = `(${chosen.filter(d => d.onDuty).length})`;
+        $('icsSleepCount').textContent = `(${chosen.length})`;
+        const total = shiftN + sleepN;
+        $('icsTotal').textContent = total === 1 ? '1 event' : `${total} events`;
+        $('icsGoBtn').disabled = total === 0;
+        return { chosen, total };
+      };
       $('icsBtn').addEventListener('click', () => {
-        downloadICS(buildICS(days, (t) => dayPlanFor(plan, t), (d) => shiftWindow(d, cfg)));
-        gtag('event', 'schedule_ics_export', { pattern: cfg.pattern });
+        const p = $('icsOpts');
+        p.hidden = !p.hidden;
+        if (!p.hidden) icsCount();
+      });
+      ['icsShifts', 'icsSleep', 'icsHorizon'].forEach(id => $(id).addEventListener('change', icsCount));
+      $('icsGoBtn').addEventListener('click', () => {
+        const { chosen, total } = icsCount();
+        if (!total) return;
+        const opts = { shifts: $('icsShifts').checked, sleep: $('icsSleep').checked };
+        downloadICS(buildICS(chosen, (t) => dayPlanFor(plan, t), (d) => shiftWindow(d, cfg), new Date(), opts));
+        gtag('event', 'schedule_ics_export', { pattern: cfg.pattern, shifts: opts.shifts, sleep: opts.sleep, days: chosen.length, events: total });
       });
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

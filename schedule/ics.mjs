@@ -56,8 +56,12 @@ const TYPE_WORD = { work: 'On duty', transition: 'Recovery day', rest: 'Day off'
  *   planFor  - (dayType) => the engine day object for that type
  *   shiftFor - (day) => { startMin, lenH } or null
  *   now      - Date used for DTSTAMP, injectable so tests are deterministic
+ *   opts     - { shifts, sleep } event-type toggles; both default on.
+ *              A calendar full of unasked-for events is spam - the page lets
+ *              the person choose, and this honors the choice.
  */
-export function buildICS(days, planFor, shiftFor, now = new Date()) {
+export function buildICS(days, planFor, shiftFor, now = new Date(), opts = {}) {
+  const { shifts: wantShifts = true, sleep: wantSleep = true } = opts;
   const stamp = icsStampUTC(now);
   const host = 'sleepmedic.co';
   const lines = [
@@ -74,7 +78,7 @@ export function buildICS(days, planFor, shiftFor, now = new Date()) {
     const dp = planFor(day.dayType);
     const sw = shiftFor(day);
 
-    if (sw) {
+    if (sw && wantShifts) {
       lines.push(
         'BEGIN:VEVENT',
         `UID:shift-${day.iso}-${i}@${host}`,
@@ -90,6 +94,7 @@ export function buildICS(days, planFor, shiftFor, now = new Date()) {
 
     // The sleep opportunity ends at the anchor on this date, so it starts
     // sleepMins earlier - the day before, when it crosses midnight.
+    if (!wantSleep) return;
     lines.push(
       'BEGIN:VEVENT',
       `UID:sleep-${day.iso}-${i}@${host}`,
