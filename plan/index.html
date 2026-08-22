@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build Your Free Sleep Plan - SleepMedic</title>
+  <meta name="description" content="Six questions about your schedule, then a complete personalized sleep plan built around your wake anchors. Free, printable, no paywall." />
+
+  <link rel="canonical" href="https://www.sleepmedic.co/plan/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Build Your Free Sleep Plan" />
+  <meta property="og:description" content="A personalized shift-schedule sleep protocol, built from your own wake times. Free and complete." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.sleepmedic.co/plan/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --surface: #141416;
+      --surface-2: #1c1c1f;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.14);
+      --text: #f5f5f5;
+      --text-2: #b0b0b8;
+      --text-3: #6b6b76;
+      --accent: #a78bfa;
+      --accent-2: #60a5fa;
+      --accent-dim: rgba(167,139,250,0.10);
+      --green: #34d399;
+      --radius: 12px;
+      --radius-lg: 16px;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; max-width: 1080px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 16px; align-items: center; }
+    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    @media (max-width: 480px) { nav { padding: 14px 16px; } .nav-links { gap: 12px; } }
+
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Quiz ───────────────────────────────── */
+
+    .quiz { padding: 40px 0 80px; }
+    .quiz-intro { text-align: center; margin-bottom: 36px; }
+    .quiz-intro h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.035em; color: var(--text); margin-bottom: 14px; }
+    .quiz-intro h1 .grad { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .quiz-intro p { color: var(--text-3); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+
+    .progress { margin-bottom: 28px; }
+    .progress-track { height: 3px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius: 999px; width: 0; transition: width 0.28s ease; }
+    .progress-label { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.78rem; color: var(--text-3); font-weight: 500; }
+
+    .step { display: none; }
+    .step.active { display: block; animation: stepIn 0.24s ease; }
+    @keyframes stepIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .step h2 { font-size: 1.35rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 8px; }
+    .step .hint { font-size: 0.92rem; color: var(--text-3); margin-bottom: 22px; }
+
+    .options { display: grid; gap: 8px; }
+    .opt { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 15px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-2); font-family: inherit; font-size: 0.98rem; font-weight: 500; cursor: pointer; transition: border-color 0.16s, background 0.16s, color 0.16s; }
+    .opt:hover { border-color: var(--border-hover); background: var(--surface-2); color: var(--text); }
+    .opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .opt[aria-pressed="true"] { border-color: rgba(167,139,250,0.45); background: var(--accent-dim); color: var(--text); }
+    .opt .key { flex: none; width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 6px; font-size: 0.7rem; color: var(--text-3); font-weight: 600; }
+    .opt[aria-pressed="true"] .key { border-color: rgba(167,139,250,0.45); color: var(--accent); }
+
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .field .sub { font-size: 0.85rem; color: var(--text-3); margin-bottom: 10px; }
+    input[type="time"], input[type="email"] {
+      width: 100%; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text); font-family: inherit; font-size: 1rem;
+      color-scheme: dark; transition: border-color 0.16s;
+    }
+    input:focus { outline: none; border-color: var(--accent); }
+
+    .actions { display: flex; gap: 10px; align-items: center; margin-top: 26px; }
+    .btn { padding: 13px 22px; border-radius: var(--radius); font-family: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; transition: opacity 0.16s, background 0.16s, border-color 0.16s; }
+    .btn-primary { background: var(--accent); color: #14121c; }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-ghost { background: transparent; border-color: var(--border); color: var(--text-3); }
+    .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .privacy-line { font-size: 0.82rem; color: var(--text-3); margin-top: 14px; }
+    .err { color: #fca5a5; font-size: 0.88rem; margin-top: 12px; min-height: 1.2em; }
+
+    /* ── Plan ───────────────────────────────── */
+
+    .plan { display: none; padding: 40px 0 80px; }
+    .plan.active { display: block; }
+
+    .plan-head { border-bottom: 1px solid var(--border); padding-bottom: 26px; margin-bottom: 30px; }
+    .plan-head h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 10px; }
+    .plan-head .sub { color: var(--text-3); font-size: 0.98rem; }
+    .mail-note { display: none; margin-top: 18px; padding: 12px 14px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.22); border-radius: var(--radius); font-size: 0.9rem; color: var(--text-2); }
+    .mail-note.show { display: block; }
+
+    .anchor-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; margin-bottom: 34px; }
+    .anchor-row { display: flex; gap: 28px; flex-wrap: wrap; margin-bottom: 14px; }
+    .anchor { min-width: 130px; }
+    .anchor .lbl { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; margin-bottom: 3px; }
+    .anchor .val { font-size: 1.6rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+    .anchor-card p { font-size: 0.92rem; color: var(--text-3); }
+
+    .section { margin-bottom: 40px; }
+    .section > h2 { font-size: 1.25rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 6px; }
+    .section > .when { font-size: 0.88rem; color: var(--text-3); margin-bottom: 18px; }
+
+    .timeline { border-left: 2px solid var(--surface-2); padding-left: 20px; display: grid; gap: 20px; }
+    .tl-item { position: relative; }
+    .tl-item::before { content: ''; position: absolute; left: -26px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+    .tl-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 4px; }
+    .tl-title { font-size: 0.98rem; font-weight: 600; color: var(--text); }
+    .tl-time { font-size: 0.88rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .tl-detail { font-size: 0.95rem; color: var(--text-2); margin-bottom: 6px; }
+    .tl-why { font-size: 0.88rem; color: var(--text-3); border-left: 2px solid var(--border); padding-left: 12px; }
+    .tl-why a { color: var(--text-3); text-decoration: underline; text-underline-offset: 2px; }
+    .tl-why a:hover { color: var(--accent); }
+
+    .note-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; margin-bottom: 20px; }
+    .note-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .note-card p { font-size: 0.95rem; color: var(--text-2); margin-bottom: 10px; }
+    .note-card ul { list-style: none; display: grid; gap: 7px; margin: 12px 0; }
+    .note-card li { font-size: 0.93rem; color: var(--text-2); padding-left: 18px; position: relative; }
+    .note-card li::before { content: ''; position: absolute; left: 3px; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .note-card .cite { font-size: 0.84rem; color: var(--text-3); }
+    .note-card .cite a { color: var(--text-3); text-decoration: underline; text-underline-offset: 2px; }
+    .note-card .cite a:hover { color: var(--accent); }
+    .note-card.flag { background: var(--accent-dim); border-color: rgba(167,139,250,0.22); }
+
+    .plan-foot { border-top: 1px solid var(--border); padding-top: 24px; margin-top: 10px; }
+    .plan-foot h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .plan-foot ul { list-style: none; display: grid; gap: 6px; }
+    .plan-foot li { font-size: 0.88rem; color: var(--text-3); }
+    .plan-foot a { color: var(--text-3); text-decoration: underline; text-underline-offset: 2px; }
+    .plan-foot a:hover { color: var(--accent); }
+    .plan-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 28px 0 10px; }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; color: var(--text-3); font-size: 0.82rem; max-width: 1080px; margin: 0 auto; }
+    .footer-links { display: flex; gap: 18px; justify-content: center; margin-top: 12px; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: var(--text-2); }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 18px; }
+      .actions { flex-wrap: wrap; }
+      .btn { flex: 1 1 auto; }
+    }
+
+    /* ── Print ──────────────────────────────── */
+
+    @media print {
+      nav, footer, .quiz, .plan-actions, .mail-note, .no-print { display: none !important; }
+      body { background: #fff; color: #1a1a1a; }
+      .container { max-width: 100%; padding: 0; }
+      .plan { padding: 0; }
+      .plan-head h1, .section > h2, .note-card h3, .tl-title, .plan-foot h3 { color: #000; }
+      .plan-head .sub, .section > .when, .tl-why, .note-card .cite, .plan-foot li, .anchor-card p, .anchor .lbl { color: #555; }
+      .tl-detail, .note-card p, .note-card li { color: #222; }
+      .tl-time, .anchor .val { color: #000; }
+      .anchor-card, .note-card { background: #fff; border: 1px solid #ccc; break-inside: avoid; }
+      .note-card.flag { background: #f5f3ff; }
+      .section { break-inside: avoid; }
+      .timeline { border-left-color: #ccc; }
+      .tl-item::before { background: #666; border-color: #fff; }
+      a { color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="no-print">
+    <a href="/" class="nav-brand">SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- ── Quiz ────────────────────────────── -->
+    <section class="quiz" id="quiz">
+      <div class="quiz-intro">
+        <h1>Build your <span class="grad">free sleep plan</span></h1>
+        <p>Six questions about how you actually work. Then a complete plan built around your own wake times. Free, printable, no paywall.</p>
+      </div>
+
+      <div class="progress">
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-label">
+          <span id="progressStep">Question 1 of 6</span>
+          <span id="progressPct">0%</span>
+        </div>
+      </div>
+
+      <form id="quizForm" novalidate>
+
+        <!-- 1. Occupation -->
+        <div class="step" data-step="0">
+          <h2>What do you do?</h2>
+          <p class="hint">This sets the assumptions, not the plan. The plan comes from your schedule.</p>
+          <div class="options" data-q="occupation"></div>
+        </div>
+
+        <!-- 2. Pattern -->
+        <div class="step" data-step="1">
+          <h2>What schedule do you work?</h2>
+          <p class="hint">Pick the closest match. If yours changes constantly, that is rotating or irregular.</p>
+          <div class="options" data-q="pattern"></div>
+        </div>
+
+        <!-- 3. Struggle -->
+        <div class="step" data-step="2">
+          <h2>What is the hardest part?</h2>
+          <p class="hint">One answer. The plan adds a section for whichever you pick.</p>
+          <div class="options" data-q="struggle"></div>
+        </div>
+
+        <!-- 4. Anchors -->
+        <div class="step" data-step="3">
+          <h2>When do you wake up?</h2>
+          <p class="hint">The one number the whole plan revolves around. Not when your alarm goes off in a perfect week — when you actually get up.</p>
+          <div class="field">
+            <label for="workWake">On a work day</label>
+            <p class="sub">The wake time on the days you are on shift.</p>
+            <input type="time" id="workWake" name="workWake" required />
+          </div>
+          <div class="field">
+            <label for="restWake">On a rest day</label>
+            <p class="sub">The wake time on your days off, honestly.</p>
+            <input type="time" id="restWake" name="restWake" required />
+          </div>
+        </div>
+
+        <!-- 5. Caffeine -->
+        <div class="step" data-step="4">
+          <h2>When is your last cup?</h2>
+          <p class="hint">Coffee, energy drink, pre-workout, soda. Roughly is fine. Skip it if you do not drink caffeine.</p>
+          <div class="field">
+            <label for="lastCaffeine">Last caffeine of the day</label>
+            <input type="time" id="lastCaffeine" name="lastCaffeine" />
+          </div>
+        </div>
+
+        <!-- 6. Email -->
+        <div class="step" data-step="5">
+          <h2>Where should we send your plan?</h2>
+          <p class="hint">Your plan appears on this page either way. The email is so you still have it next month.</p>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+          </div>
+          <p class="privacy-line">One short brief a week for people who work while everyone sleeps. Unsubscribe anytime. We do not sell or share your address.</p>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="btn btn-ghost" id="backBtn">Back</button>
+          <button type="submit" class="btn btn-primary" id="nextBtn">Next</button>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- ── Plan ────────────────────────────── -->
+    <section class="plan" id="plan" aria-live="polite"></section>
+
+  </div>
+
+  <footer class="no-print">
+    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a href="/blog/feed.xml">RSS</a>
+      <a href="/privacy/">Privacy</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { buildPlan, OCCUPATIONS, PATTERNS, STRUGGLES } from './engine.mjs';
+
+    const PI_ENDPOINT = 'https://pi.sleepmedic.co/plan-lead';
+    const TOTAL = 6;
+
+    const $ = (id) => document.getElementById(id);
+    const steps = [...document.querySelectorAll('.step')];
+    const answers = { occupation: '', pattern: '', struggle: '', workWake: '', restWake: '', lastCaffeine: '' };
+    let current = 0;
+
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    // ── Render option buttons ──────────────
+    const OPTS = { occupation: OCCUPATIONS, pattern: PATTERNS, struggle: STRUGGLES };
+    for (const [q, list] of Object.entries(OPTS)) {
+      const host = document.querySelector(`.options[data-q="${q}"]`);
+      host.innerHTML = list.map((o, i) =>
+        `<button type="button" class="opt" data-val="${o.id}" aria-pressed="false"><span class="key">${i + 1}</span>${esc(o.label)}</button>`
+      ).join('');
+      host.addEventListener('click', (e) => {
+        const btn = e.target.closest('.opt');
+        if (!btn) return;
+        answers[q] = btn.dataset.val;
+        host.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        $('err').textContent = '';
+        setTimeout(() => go(current + 1), 130); // one question per screen: advance on choice
+      });
+    }
+
+    // ── Step navigation ────────────────────
+    function render() {
+      steps.forEach((s, i) => s.classList.toggle('active', i === current));
+      $('progressFill').style.width = `${Math.round((current / TOTAL) * 100)}%`;
+      $('progressStep').textContent = `Question ${current + 1} of ${TOTAL}`;
+      $('progressPct').textContent = `${Math.round((current / TOTAL) * 100)}%`;
+      $('backBtn').style.visibility = current === 0 ? 'hidden' : 'visible';
+      $('nextBtn').textContent = current === TOTAL - 1 ? 'Build my plan' : 'Next';
+      const focusable = steps[current].querySelector('input, .opt');
+      if (focusable) focusable.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function valid(step) {
+      if (step === 0) return answers.occupation ? true : 'Pick the closest match.';
+      if (step === 1) return answers.pattern ? true : 'Pick the closest match.';
+      if (step === 2) return answers.struggle ? true : 'Pick one.';
+      if (step === 3) {
+        answers.workWake = $('workWake').value;
+        answers.restWake = $('restWake').value;
+        if (!answers.workWake) return 'Enter your work-day wake time.';
+        if (!answers.restWake) return 'Enter your rest-day wake time.';
+        return true;
+      }
+      if (step === 4) { answers.lastCaffeine = $('lastCaffeine').value; return true; }
+      if (step === 5) {
+        const email = $('email').value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'That email does not look right.';
+        return true;
+      }
+      return true;
+    }
+
+    function go(next) {
+      if (next > current) {
+        const v = valid(current);
+        if (v !== true) { $('err').textContent = v; return; }
+      }
+      $('err').textContent = '';
+      current = Math.max(0, Math.min(TOTAL - 1, next));
+      render();
+    }
+
+    $('backBtn').addEventListener('click', () => go(current - 1));
+
+    $('quizForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (current < TOTAL - 1) { go(current + 1); return; }
+      const v = valid(current);
+      if (v !== true) { $('err').textContent = v; return; }
+      submit($('email').value.trim().toLowerCase());
+    });
+
+    // Number keys pick options on choice steps.
+    document.addEventListener('keydown', (e) => {
+      if (document.activeElement && ['INPUT'].includes(document.activeElement.tagName)) return;
+      const opts = steps[current].querySelectorAll('.opt');
+      if (!opts.length) return;
+      const n = parseInt(e.key, 10);
+      if (n >= 1 && n <= opts.length) { e.preventDefault(); opts[n - 1].click(); }
+    });
+
+    // ── Submit: fire the lead, render regardless ──
+    async function submit(email) {
+      const btn = $('nextBtn');
+      btn.disabled = true;
+      btn.textContent = 'Building your plan';
+
+      const payload = { email, answers: { ...answers } };
+      let mailed = false;
+      try {
+        const res = await fetch(PI_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        mailed = res.ok;
+      } catch { mailed = false; }
+
+      gtag('event', 'plan_completed', { pattern: answers.pattern, occupation: answers.occupation, emailed: mailed });
+
+      // The plan is free and complete. Email delivery never gates it.
+      const plan = buildPlan(answers);
+      if (!plan.ok) {
+        btn.disabled = false;
+        btn.textContent = 'Build my plan';
+        $('err').textContent = 'Something in the answers did not come through. Go back and check the wake times.';
+        return;
+      }
+      renderPlan(plan, mailed, email);
+    }
+
+    // ── Plan rendering ─────────────────────
+    function citeLine(cite) {
+      return `Why: <a href="${cite.url}" target="_blank" rel="noopener">${esc(cite.concept)}</a>`;
+    }
+
+    function renderPlan(plan, mailed, email) {
+      const dayHTML = plan.days.map(d => `
+        <div class="section">
+          <h2>${esc(d.name)}</h2>
+          <p class="when">${esc(d.when)}</p>
+          <div class="timeline">
+            ${d.blocks.map(b => `
+              <div class="tl-item">
+                <div class="tl-head">
+                  <span class="tl-title">${esc(b.title)}</span>
+                  <span class="tl-time">${esc(b.time)}</span>
+                </div>
+                <p class="tl-detail">${esc(b.detail)}</p>
+                <p class="tl-why">${esc(b.why)} ${citeLine(b.cite)}</p>
+              </div>`).join('')}
+          </div>
+        </div>`).join('');
+
+      const struggleHTML = plan.struggleSections.map(s => `
+        <div class="note-card">
+          <h3>${esc(s.title)}</h3>
+          <p>${esc(s.body)}</p>
+          <ul>${s.steps.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+          <p class="cite">${citeLine(s.cite)}</p>
+        </div>`).join('');
+
+      const caffHTML = plan.caffeineNote
+        ? `<div class="note-card flag"><h3>Your caffeine, checked against the plan</h3><p>${esc(plan.caffeineNote.text)}</p></div>`
+        : '';
+
+      $('plan').innerHTML = `
+        <div class="plan-head">
+          <h1>${esc(plan.headline)}</h1>
+          <p class="sub">${esc(plan.subhead)}</p>
+          <div class="mail-note ${mailed ? 'show' : ''}">Your plan was emailed to ${esc(email)}. It is on this page either way, and you can print it.</div>
+        </div>
+
+        <div class="anchor-card">
+          <div class="anchor-row">
+            <div class="anchor"><div class="lbl">Work day anchor</div><div class="val">${esc(plan.anchors.work)}</div></div>
+            <div class="anchor"><div class="lbl">Rest day anchor</div><div class="val">${esc(plan.anchors.rest)}</div></div>
+          </div>
+          <p>${esc(plan.anchors.note)}</p>
+        </div>
+
+        ${dayHTML}
+
+        <div class="section">
+          <h2>${esc(plan.patternNote.title)}</h2>
+          <div class="note-card">
+            <p>${esc(plan.patternNote.body)}</p>
+            <p class="cite">${citeLine(plan.patternNote.cite)}</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>The part you said is hardest</h2>
+          ${struggleHTML}
+          ${caffHTML}
+        </div>
+
+        <div class="section">
+          <h2>${esc(plan.consistency.title)}</h2>
+          <div class="note-card">
+            <p>${esc(plan.consistency.body)}</p>
+            <p class="cite">${citeLine(plan.consistency.cite)}</p>
+          </div>
+        </div>
+
+        <div class="plan-actions no-print">
+          <button type="button" class="btn btn-primary" id="printBtn">Print this plan</button>
+          <a class="btn btn-ghost" href="/blog/posts/shift-worker-sleep-protocol.html" style="text-decoration:none;display:inline-block;">Read the full protocol</a>
+        </div>
+
+        <div class="plan-foot">
+          <h3>What this is built from</h3>
+          <ul>${plan.citations.map(c => `<li><a href="${c.url}" target="_blank" rel="noopener">${esc(c.concept)}</a></li>`).join('')}</ul>
+          <p style="margin-top:14px;font-size:0.85rem;color:var(--text-3);">Every time above is calculated from the two wake times you entered. This is general guidance for healthy adults, not medical advice. If you fall asleep at the wheel, stop breathing in your sleep, or stay exhausted after weeks of protected sleep, that is a doctor's problem, not a schedule problem.</p>
+        </div>
+      `;
+
+      $('quiz').style.display = 'none';
+      $('plan').classList.add('active');
+      $('printBtn').addEventListener('click', () => window.print());
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.replaceState(null, '', '#plan');
+    }
+
+    render();
+  </script>
+</body>
+</html>
