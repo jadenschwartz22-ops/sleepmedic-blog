@@ -219,3 +219,14 @@ sleep" class queries.
 4. Repo location: still on iCloud-synced Desktop (source of " 2" dupes). Move to
    ~/dev like PQ-B2C?
 5. Keep the Pi as the email backbone for now (fine at this scale), revisit at 1k subs?
+
+## Status addendum (2026-08-22, end of day)
+
+Every workstream shipped same-day except the ongoing rhythms:
+WS0-WS3 complete (trust, editorial, funnel, quiz+plan - plus unplanned additions:
+Schedule Manager, tools, schedules matrix, guides). WS4 complete including the real
+name. WS5 partially (thesis essay + Nap Menu live; three named-concept essays remain).
+WS6 two of six pillars live (24/48, Nights 3x12). WS7 live (brief No. 1 sent; Discord
+approval flow verified). WS8 live (llms.txt, GSC verified, IndexNow). WS9 staged but
+ON HOLD (Reddit drafts written, not posted - Jaden's call).
+Open: remaining essays/pillars on cadence, Reddit go/no-go, Pi password rotation.
