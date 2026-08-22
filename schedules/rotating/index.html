@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rotating and irregular shifts: a sleep plan with a moving anchor - SleepMedic</title>
+  <meta name="description" content="A worked sleep plan for rotating and irregular schedules, where the anchor moves with the work block rather than the calendar. Computed light, caffeine, meal, wind-down and nap windows." />
+
+  <link rel="canonical" href="https://sleepmedic.co/schedules/rotating/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Rotating and irregular shifts: a sleep plan with a moving anchor" />
+  <meta property="og:description" content="A worked sleep plan for rotating and irregular schedules, where the anchor moves with the work block rather than the calendar. Computed light, caffeine, meal, wind-down and nap windows." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sleepmedic.co/schedules/rotating/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "SleepMedic",
+          "item": "https://sleepmedic.co/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Schedules",
+          "item": "https://sleepmedic.co/schedules/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Rotating and irregular schedules",
+          "item": "https://sleepmedic.co/schedules/rotating/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When should I stop drinking coffee on a rotating schedule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eight hours before the sleep opportunity you are protecting. In the worked example on this page, a 3:00 PM wake anchor on a work day puts the sleep target at 7:00 AM, so the last caffeine of any kind lands at 11:00 PM. Move the anchor and the cutoff moves with it — the eight hours is the rule, not the clock time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What time should I go to sleep on a rotating schedule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The plan sets the sleep target backward from the wake anchor rather than forward from the end of a shift. In the example here, a 3:00 PM work-day anchor gives a 7:00 AM sleep target, with wind-down starting at 5:30 AM. On a rest day the 8:00 AM anchor gives a 12:00 AM target."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I get bright light on a rotating schedule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Within 90 minutes of waking, whatever the sun is doing. In the worked example that is 3:00 PM to 4:30 PM on a work day. Ten to fifteen minutes is enough. Then keep bright light off you in the three hours before the sleep target."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I nap on a rotating schedule?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One nap, taken on purpose, four to five and a half hours after waking — 7:00 PM to 8:30 PM in the worked example on this page. Twenty to thirty minutes, or a full ninety. Anything in between leaves you groggy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I handle the day the rotation changes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rotation change is planned as its own kind of day rather than a normal one. In the example, it runs on a shorter sleep opportunity ending at 3:00 PM, with the caffeine cutoff at 1:00 AM and the last real meal by 4:30 AM."
+          }
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    .sched-hero { padding: clamp(36px, 5.5vw, 60px) 0 26px; }
+    .sched-hero .crumb { font-size: 0.8rem; color: var(--text-3); margin-bottom: 14px; }
+    .sched-hero .crumb a { color: var(--text-3); }
+    .sched-hero .crumb a:hover { color: var(--accent); }
+    .sched-hero h1 {
+      font-size: clamp(1.9rem, 4.4vw, 2.7rem); font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 16px;
+    }
+    .sched-hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; }
+    .sched-hero .lede { font-size: 1.03rem; color: var(--text-2); line-height: 1.75; max-width: 66ch; }
+    .sched-meta {
+      display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+      margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 0.83rem; color: var(--text-3);
+    }
+
+    .sched-body h2 {
+      font-size: clamp(1.3rem, 2.9vw, 1.6rem); font-weight: 700;
+      letter-spacing: -0.02em; margin: 48px 0 12px; line-height: 1.2;
+    }
+    .sched-body p { color: var(--text-2); line-height: 1.75; margin: 0 0 16px; max-width: 68ch; }
+    .sched-body p a { text-decoration: underline; text-decoration-color: var(--accent-line); text-underline-offset: 3px; }
+
+    .example-note {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 16px 18px; margin: 0 0 26px;
+      font-size: 0.9rem; color: var(--text-3); line-height: 1.65; max-width: 68ch;
+    }
+    .example-note b { color: var(--text-2); font-weight: 600; }
+
+    .daytype { margin: 0 0 26px; }
+    .daytype h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 3px; }
+    .daytype .when { font-size: 0.85rem; color: var(--text-3); margin-bottom: 12px; }
+    .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    table.sched { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 460px; }
+    table.sched th, table.sched td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    table.sched tr:last-child th, table.sched tr:last-child td { border-bottom: 0; }
+    table.sched th {
+      font-weight: 600; color: var(--text); width: 38%;
+      background: var(--surface); white-space: nowrap;
+    }
+    table.sched td { color: var(--text-2); font-variant-numeric: tabular-nums; }
+    table.sched caption {
+      caption-side: top; text-align: left; padding: 12px 16px;
+      background: var(--surface-2); color: var(--text-3);
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    }
+
+    .plan-cta-block {
+      background: var(--accent-dim); border: 1px solid var(--accent-line);
+      border-radius: var(--radius-lg); padding: 26px; margin: 44px 0 0;
+    }
+    .plan-cta-block h2 { margin-top: 0 !important; font-size: 1.3rem; }
+    .plan-cta-block p { color: var(--text-2); }
+    .plan-cta-block .btn-primary {
+      display: inline-block; background: var(--accent); color: var(--bg); font-weight: 700;
+      padding: 12px 24px; border-radius: var(--radius-pill); margin-top: 6px;
+    }
+    .plan-cta-block .btn-primary:hover { color: var(--bg); }
+
+    .faq-list { margin: 0; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
+    .faq-item:last-child { border-bottom: 0; }
+    .faq-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .faq-item p { margin: 0; font-size: 0.94rem; }
+
+    .other-schedules { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .other-schedules a {
+      padding: 8px 15px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-pill); color: var(--text-2); font-size: 0.84rem; font-weight: 500;
+      transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+    }
+    .other-schedules a:hover { border-color: var(--accent-line); color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav site-nav--narrow">
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="schedule-rotating-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <div class="page page--narrow">
+
+    <header class="sched-hero">
+      <p class="crumb"><a href="/">SleepMedic</a> / <a href="/schedules/">Schedules</a></p>
+      <h1>Rotating and irregular schedules</h1>
+      <p class="lede">No fixed cycle. The shift type changes between blocks — days one week, nights the next, or a schedule posted a fortnight at a time with no pattern to it at all. What holds constant is the shape of a block: a run of shifts of one type, then time off, then a run of a different type.</p>
+      <div class="sched-meta">
+        <span>Updated August 2026</span>
+        <span>Times computed by the SleepMedic plan engine</span>
+      </div>
+    </header>
+
+    <div class="sched-body">
+
+      <h2>A worked example</h2>
+
+      <p class="example-note"><b>These are example times, not your times.</b> Everything below is computed from a single pair of wake anchors: 3:00 PM on a work day and 8:00 AM on a rest day. A 3:00 PM wake is the harder case — a night block — and the one worth working through. On a day block the same plan runs off an earlier anchor and every window moves with it. If your anchors are different, every window below shifts with them, which is what the <a href="/plan/">plan builder</a> does with your own numbers.</p>
+
+      <p>The plan works backward from the wake anchor rather than forward from bedtime, because bedtime is the part your schedule takes away from you. The sleep target on each day is the anchor minus the sleep opportunity; the caffeine cutoff is eight hours before that target; the last real meal is three hours before wind-down starts. So the anchor is the only number you set, and the rest falls out of it.</p>
+
+        <div class="daytype">
+          <h3>Work day (any rotation)</h3>
+          <p class="when">Every day inside a work block, whichever shift it is. 12 hours on duty, going on shift at 6:00 PM.</p>
+          <div class="table-scroll">
+            <table class="sched">
+              <caption>Computed from a 3:00 PM wake anchor</caption>
+              <tbody>
+            <tr><th scope="row">Wake anchor</th><td>3:00 PM</td></tr>
+            <tr><th scope="row">Bright light</th><td>3:00 PM to 4:30 PM</td></tr>
+            <tr><th scope="row">Caffeine</th><td>4:00 PM to 4:30 PM (first cup), stop by 11:00 PM</td></tr>
+            <tr><th scope="row">Planned nap</th><td>7:00 PM to 8:30 PM</td></tr>
+            <tr><th scope="row">Last real meal</th><td>by 2:30 AM</td></tr>
+            <tr><th scope="row">Wind-down</th><td>5:30 AM to 6:00 AM</td></tr>
+            <tr><th scope="row">Sleep target</th><td>7:00 AM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="daytype">
+          <h3>Rotation change</h3>
+          <p class="when">The day the shift type changes.</p>
+          <div class="table-scroll">
+            <table class="sched">
+              <caption>Computed from a 3:00 PM wake anchor</caption>
+              <tbody>
+            <tr><th scope="row">Wake anchor</th><td>3:00 PM</td></tr>
+            <tr><th scope="row">Bright light</th><td>3:00 PM to 4:30 PM</td></tr>
+            <tr><th scope="row">Caffeine</th><td>4:00 PM to 4:30 PM (first cup), stop by 1:00 AM</td></tr>
+            <tr><th scope="row">Planned nap</th><td>7:00 PM to 8:30 PM</td></tr>
+            <tr><th scope="row">Last real meal</th><td>by 4:30 AM</td></tr>
+            <tr><th scope="row">Wind-down</th><td>7:30 AM to 8:00 AM</td></tr>
+            <tr><th scope="row">Sleep target</th><td>9:00 AM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="daytype">
+          <h3>Rest day</h3>
+          <p class="when">Days outside any work block.</p>
+          <div class="table-scroll">
+            <table class="sched">
+              <caption>Computed from a 8:00 AM wake anchor</caption>
+              <tbody>
+            <tr><th scope="row">Wake anchor</th><td>8:00 AM</td></tr>
+            <tr><th scope="row">Bright light</th><td>8:00 AM to 9:30 AM</td></tr>
+            <tr><th scope="row">Caffeine</th><td>9:00 AM to 9:30 AM (first cup), stop by 4:00 PM</td></tr>
+            <tr><th scope="row">Last real meal</th><td>by 7:30 PM</td></tr>
+            <tr><th scope="row">Wind-down</th><td>10:30 PM to 11:00 PM</td></tr>
+            <tr><th scope="row">Sleep target</th><td>12:00 AM</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      <h2>The hard part of a rotating schedule</h2>
+
+      <p>A fixed pattern gives you one thing an irregular one does not: a wake anchor that means the same thing next week. Without that, the anchor has to move, and the only structure left to attach it to is the block itself rather than the days of the week. So the plan sets the anchor when the block is posted, holds it for every day inside the block, and changes it only on the changeover. The changeover is where the pattern costs you — it is a sleep aligned to the block you are leaving, followed immediately by a shift belonging to the block you are entering. The engine builds that day as its own type: a shorter sleep aligned to where you are going, with the light window right after it doing the work of pulling the clock along.</p>
+
+      <h2>What the pattern asks of you</h2>
+
+      <p>When the schedule changes constantly, the anchor moves with the work block instead of with the days of the week. Set it as soon as you know the block, hold it for every day inside the block, and change it only on the changeover day. On the changeover, take a shorter sleep aligned to the new block rather than a full sleep aligned to the old one, and get bright light immediately after waking to pull the clock with you.</p>
+
+      <h2>Common questions</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <h3>When should I stop drinking coffee on a rotating schedule?</h3>
+          <p>Eight hours before the sleep opportunity you are protecting. In the worked example on this page, a 3:00 PM wake anchor on a work day puts the sleep target at 7:00 AM, so the last caffeine of any kind lands at 11:00 PM. Move the anchor and the cutoff moves with it — the eight hours is the rule, not the clock time.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What time should I go to sleep on a rotating schedule?</h3>
+          <p>The plan sets the sleep target backward from the wake anchor rather than forward from the end of a shift. In the example here, a 3:00 PM work-day anchor gives a 7:00 AM sleep target, with wind-down starting at 5:30 AM. On a rest day the 8:00 AM anchor gives a 12:00 AM target.</p>
+        </div>
+        <div class="faq-item">
+          <h3>When should I get bright light on a rotating schedule?</h3>
+          <p>Within 90 minutes of waking, whatever the sun is doing. In the worked example that is 3:00 PM to 4:30 PM on a work day. Ten to fifteen minutes is enough. Then keep bright light off you in the three hours before the sleep target.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Should I nap on a rotating schedule?</h3>
+          <p>One nap, taken on purpose, four to five and a half hours after waking — 7:00 PM to 8:30 PM in the worked example on this page. Twenty to thirty minutes, or a full ninety. Anything in between leaves you groggy.</p>
+        </div>
+        <div class="faq-item">
+          <h3>How do I handle the day the rotation changes?</h3>
+          <p>Rotation change is planned as its own kind of day rather than a normal one. In the example, it runs on a shorter sleep opportunity ending at 3:00 PM, with the caffeine cutoff at 1:00 AM and the last real meal by 4:30 AM.</p>
+        </div>
+      </div>
+
+      <div class="plan-cta-block">
+        <h2>This example assumes a 3:00 PM wake. Yours is computed from your own anchors.</h2>
+        <p>The plan builder takes six questions — your pattern, your two wake times, your last cup of coffee — and computes the same windows against the schedule you actually work, as a visual timeline for each kind of day. Free, printable, no account.</p>
+        <a class="btn-primary" href="/plan/" data-cta="schedule-rotating-body">Build my free sleep plan</a>
+      </div>
+
+      <h2>The reasoning behind the numbers</h2>
+
+      <p>Every window on this page comes from one of a handful of rules, and <a href="/manual/">the Shift Worker's Field Manual</a> is where those rules are laid out with their sources: why the wake anchor is the lever rather than bedtime, what light does to the body clock and when, the eight-hour caffeine cutoff and where it comes from, and what to do when the problem is bigger than a schedule.</p>
+
+      <h2>Other schedules</h2>
+
+      <div class="other-schedules">
+        <a href="/schedules/nights-3x12/">Nights, three 12s</a>
+        <a href="/schedules/days-3x12/">Days, three 12s</a>
+        <a href="/schedules/24-48/">24 on, 48 off</a>
+        <a href="/schedules/48-96/">48 on, 96 off</a>
+        <a href="/schedules/kelly/">Kelly schedule</a>
+        <a href="/schedules/dupont/">DuPont</a>
+        <a href="/schedules/panama/">Panama 2-2-3</a>
+        <a href="/schedules/24-72/">24 on, 72 off</a>
+      </div>
+
+    </div>
+
+    <section class="capture" style="margin-top:var(--space-section);">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="schedule-guide" data-sm-source="schedules">
+        <label class="visually-hidden" for="rotating-email">Email address</label>
+        <input type="email" id="rotating-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </section>
+
+  </div>
+
+  <footer class="site-footer site-footer--narrow">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/manual/">Manual</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('click', (e) => {
+      const cta = e.target.closest('[data-cta]');
+      if (cta && window.gtag) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'schedules', leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const j = await r.json();
+          if (msg) msg.textContent = j.ok ? (j.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.') : (j.error || 'Something went wrong.');
+          if (j.ok && input) input.value = '';
+        } catch {
+          if (msg) msg.textContent = 'Could not reach the server. Try again in a minute.';
+        }
+        if (btn) btn.disabled = false;
+      });
+    });
+  </script>
+
+</body>
+</html>

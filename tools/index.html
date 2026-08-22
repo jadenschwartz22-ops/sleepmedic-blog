@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Free Sleep Tools - SleepMedic</title>
+  <meta name="description" content="Free calculators and builders for sleeping against the clock: a full sleep plan, a schedule manager, a caffeine cutoff, and a nap calculator. No accounts, no paywall." />
+
+  <link rel="canonical" href="https://sleepmedic.co/tools/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Free Sleep Tools" />
+  <meta property="og:description" content="Calculators and builders for sleeping against the clock. No accounts, no paywall." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/tools/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    .tool { max-width: var(--page); margin: 0 auto; padding: clamp(36px, 6vw, 56px) 24px 0; }
+    .tool-head { margin-bottom: 34px; max-width: var(--measure); }
+    .tool-head h1 { font-size: clamp(1.9rem, 4.5vw, 2.5rem); letter-spacing: -0.035em; line-height: 1.12; margin-bottom: 10px; }
+    .tool-head p { color: var(--text-3); font-size: 1rem; max-width: 52ch; }
+    .stamp { font-size: 0.78rem; color: var(--text-3); margin-top: 10px; }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .tool-card {
+      display: flex; flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(20px, 3vw, 26px);
+      color: inherit;
+      transition: border-color 0.2s var(--ease), transform 0.15s var(--ease);
+    }
+    .tool-card:hover { border-color: var(--border-hover); transform: translateY(-2px); color: inherit; }
+    .tool-card-cat {
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.07em;
+      margin-bottom: 12px;
+      color: var(--cat-tools);
+    }
+    .tool-card h2 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.015em; }
+    .tool-card p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+    .tool-card .go { font-size: 0.85rem; font-weight: 600; color: var(--accent); }
+    .tool-card:hover .go { color: var(--accent-2); }
+
+    .cta {
+      max-width: var(--measure);
+      background: var(--accent-dim); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
+      padding: clamp(22px, 4vw, 28px); margin-bottom: 24px;
+    }
+    .cta h2 { font-size: 1.1rem; margin-bottom: 8px; }
+    .cta p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; margin-bottom: 16px; max-width: 50ch; }
+
+    .links-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .capture { max-width: var(--measure); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <main class="tool">
+    <div class="tool-head">
+      <h1>Free tools</h1>
+      <p>Calculators and builders for sleeping against the clock. Everything here is free, computed in your browser, and does not require an account.</p>
+      <p class="stamp">Updated August 2026</p>
+    </div>
+
+    <div class="tools-grid">
+      <a href="/plan/" class="tool-card" data-cta="tools-index">
+        <span class="tool-card-cat">Builder</span>
+        <h2>Sleep Plan Builder</h2>
+        <p>Six questions about the schedule you actually work. Get a complete plan back: wake anchor, caffeine cutoff, light windows, meals, and naps, all computed from your answers. Free and printable.</p>
+        <span class="go">Build my plan &rarr;</span>
+      </a>
+
+      <a href="/schedule/" class="tool-card" data-cta="tools-index">
+        <span class="tool-card-cat">Builder</span>
+        <h2>Schedule Manager</h2>
+        <p>Your rotation laid out on real calendar dates, not a generic pattern. See which days are work days, recovery days, and rest days, and what to do on each one.</p>
+        <span class="go">Manage my schedule &rarr;</span>
+      </a>
+
+      <a href="/tools/caffeine-cutoff/" class="tool-card" data-cta="tools-index">
+        <span class="tool-card-cat">Calculator</span>
+        <h2>Caffeine Cutoff</h2>
+        <p>Enter when you plan to sleep next. Get your last-coffee cutoff and your first-cup window, computed from caffeine's half-life. Instant, no signup.</p>
+        <span class="go">Get my cutoff &rarr;</span>
+      </a>
+
+      <a href="/tools/nap/" class="tool-card" data-cta="tools-index">
+        <span class="tool-card-cat">Calculator</span>
+        <h2>Nap Calculator</h2>
+        <p>Enter how long you have and whether the job can wake you. Get the nap length that fits, the alarm to set, and why, including the 40-to-60-minute danger zone to avoid.</p>
+        <span class="go">Get my nap dose &rarr;</span>
+      </a>
+    </div>
+
+    <div class="cta">
+      <h2>Not sure where to start?</h2>
+      <p>The Sleep Plan Builder covers everything the calculators do individually, mapped onto your actual rotation. Start there if you only have time for one.</p>
+      <div class="links-row">
+        <a href="/plan/" class="btn btn-primary" data-cta="tools-cta">Build my free sleep plan</a>
+        <a href="/manual/" class="btn btn-ghost">Read the field manual</a>
+      </div>
+    </div>
+
+    <div class="capture">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="tools-index" data-sm-source="tools">
+        <label class="visually-hidden" for="tool-email">Email address</label>
+        <input type="email" id="tool-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'tools', leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const d = await r.json();
+          if (d.ok) {
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            input.value = '';
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', {
+              email_domain: (email.split('@')[1] || '').toLowerCase(),
+              source: f.dataset.smSource || 'tools'
+            });
+          } else if (msg) {
+            msg.textContent = d.error || 'Subscription failed.';
+          }
+        } catch {
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!window.gtag) return;
+      const cta = e.target.closest('[data-cta]');
+      if (cta) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+  </script>
+</body>
+</html>

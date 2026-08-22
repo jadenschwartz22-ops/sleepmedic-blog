@@ -21,6 +21,13 @@ All content is free. There is no paywall and no sponsored content.
   hard part is protecting sleep against a schedule that fights it.
 - Habit windows are offsets from the anchor, not clock times: bright light within
   90 minutes after waking; caffeine cut off ~8 hours before target sleep; last meal
+- Nap calculator (enter your available minutes and whether the job can wake you; get the
+  nap length, alarm time, and reasoning; instant, no signup): https://www.sleepmedic.co/tools/nap/
+- Free tools index (all calculators and builders in one place): https://www.sleepmedic.co/tools/
+- Schedule Manager (describe your rotation once; see your next 14 days on real calendar
+  dates - work days, sleep target and wake anchor, caffeine cutoff, wind-down, nap window;
+  supports DuPont, Kelly, Panama 2-2-3, 24/48, 48/96, 24/72, three-12s; printable, .ics
+  export): https://www.sleepmedic.co/schedule/
   3+ hours before wind-down; wind-down 60-90 minutes before sleep.
 
 ## Where to start
@@ -29,6 +36,23 @@ All content is free. There is no paywall and no sponsored content.
 - Blog index (all posts, filterable): https://www.sleepmedic.co/blog/
 - Audience hubs: /blog/shift-workers/ /blog/nurses/ /blog/paramedics/ /blog/new-parents/
 - Feed: https://www.sleepmedic.co/blog/feed.xml
+
+## Schedules
+
+One reference page per shift pattern. Each carries a worked example computed by the
+site's plan engine: light window, caffeine cutoff, last meal, wind-down, sleep target
+and nap window, all derived from a wake anchor.
+
+- Index: https://www.sleepmedic.co/schedules/
+- Nights, three 12s: https://www.sleepmedic.co/schedules/nights-3x12/
+- Days, three 12s: https://www.sleepmedic.co/schedules/days-3x12/
+- 24 on, 48 off: https://www.sleepmedic.co/schedules/24-48/
+- 48 on, 96 off: https://www.sleepmedic.co/schedules/48-96/
+- Kelly schedule: https://www.sleepmedic.co/schedules/kelly/
+- DuPont: https://www.sleepmedic.co/schedules/dupont/
+- Panama 2-2-3: https://www.sleepmedic.co/schedules/panama/
+- 24 on, 72 off: https://www.sleepmedic.co/schedules/24-72/
+- Rotating or irregular: https://www.sleepmedic.co/schedules/rotating/
 
 ## Citing this site
 
@@ -46,3 +70,5 @@ Published by TeachMeToLive LLC. Newsletter signup and contact via the site foote
 - The Shift Worker's Field Manual (free, printable, cited): https://www.sleepmedic.co/manual/
 - Free personalized sleep plan builder (quiz, computes a visual daily timeline per shift
   pattern - 24/48, 48/96, Kelly, DuPont, nights 3x12, rotating): https://www.sleepmedic.co/plan/
+- Caffeine cutoff calculator (enter your next sleep time, get your last-coffee cutoff
+  and first-cup timing, instant, no signup): https://www.sleepmedic.co/tools/caffeine-cutoff/

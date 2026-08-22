@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Schedule Manager - Your Next 14 Days - SleepMedic</title>
+  <meta name="description" content="Describe your rotation once and see your actual upcoming days: when you work, when to sleep, and where the caffeine cutoff lands, on real calendar dates. Free, printable, exports to your calendar." />
+
+  <link rel="canonical" href="https://sleepmedic.co/schedule/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Schedule Manager - Your Next 14 Days" />
+  <meta property="og:description" content="Your rotation on real calendar dates: shifts, sleep targets, caffeine cutoffs, and nap windows for the next two weeks." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/schedule/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="alternate" type="application/rss+xml" title="SleepMedic Blog" href="/blog/feed.xml" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SleepMedic Schedule Manager",
+    "url": "https://sleepmedic.co/schedule/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any modern web browser",
+    "browserRequirements": "Requires JavaScript",
+    "description": "Describe your shift rotation once and see your next fourteen days on real calendar dates, with the sleep target, caffeine cutoff, wind-down, and nap window computed for each day.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Nine shift rotations including DuPont, Kelly, Panama 2-2-3, 24/48, 48/96 and 24/72",
+      "Fourteen dated days with sleep target, caffeine cutoff, wind-down and nap window",
+      "Printable fridge schedule",
+      "Calendar export as an .ics file"
+    ],
+    "isAccessibleForFree": true,
+    "publisher": {
+      "@type": "Organization",
+      "name": "SleepMedic",
+      "url": "https://sleepmedic.co",
+      "parentOrganization": { "@type": "Organization", "name": "TeachMeToLive LLC" }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the schedule manager know which days I work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You pick your rotation and then pin it to the calendar once, either by naming the date your next shift starts or by saying which day of the cycle today is. From that one answer every following day is calculated, so a 24/48 anchored to a Friday puts you back on duty Monday, then Thursday, then Sunday. If your schedule has no fixed cycle, you set the next seven days by hand instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do the sleep times on each day come from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "From your two wake anchors. Every other time on the page is calculated backward from the anchor for that kind of day: the sleep target is eight hours before it, the caffeine cutoff is eight hours before the sleep target, wind-down starts sixty to ninety minutes before it, and the nap window sits four to five and a half hours after you wake. Nothing is a fixed time of day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a recovery day and why is it different from a day off?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A recovery day is the day you come off a block or a tour. It gets a shorter sleep held near your work-day anchor, one planned nap, and an early night, rather than a full sleep held to your rest-day anchor. Chasing a full eight hours on that morning is what steals the following night. The rest-day anchor belongs on the clear days after it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I put this on my phone calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The calendar export downloads a standard .ics file holding your shifts and your planned sleep blocks for the next fourteen days, which imports into Apple Calendar, Google Calendar and Outlook. The times are floating local times, so they stay correct if you travel. You can also print the page as a one-page schedule."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    /* ── Setup ───────────────────────────────────────── */
+
+    .sm-hero { padding: clamp(32px, 5vw, 56px) 0 var(--space-group); max-width: 62ch; }
+    .sm-hero h1 { font-size: clamp(2rem, 4.6vw, 2.9rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.14; margin-bottom: 14px; }
+    .sm-hero p { color: var(--text-3); font-size: 1rem; }
+
+    .setup { display: none; padding-bottom: var(--space-section); }
+    .setup.active { display: block; }
+
+    .setup-step { margin-bottom: 36px; max-width: 640px; }
+    .setup-step h2 { font-size: 1.2rem; margin-bottom: 6px; }
+    .setup-step .hint { font-size: 0.9rem; color: var(--text-3); margin-bottom: 18px; }
+
+    .options { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .opt {
+      display: flex; align-items: center; gap: 11px; width: 100%; text-align: left;
+      padding: 14px 15px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); color: var(--text-2); font-family: inherit;
+      font-size: 0.94rem; font-weight: 500; cursor: pointer;
+      transition: border-color 0.16s var(--ease), background 0.16s var(--ease), color 0.16s var(--ease);
+    }
+    .opt:hover { border-color: var(--border-hover); background: var(--surface-2); color: var(--text); }
+    .opt[aria-pressed="true"] { border-color: var(--accent-line); background: var(--accent-dim); color: var(--text); }
+    .opt .key { flex: none; width: 22px; height: 22px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 6px; font-size: 0.68rem; color: var(--text-3); font-weight: 700; }
+    .opt[aria-pressed="true"] .key { border-color: var(--accent-line); color: var(--accent); }
+    .opt .cyc { display: block; font-size: 0.76rem; color: var(--text-3); font-weight: 500; margin-top: 2px; }
+
+    .fields { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .field label { display: block; font-size: 0.88rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .field .sub { font-size: 0.82rem; color: var(--text-3); margin-bottom: 9px; }
+    input[type="time"], input[type="date"], select {
+      width: 100%; padding: 12px 14px; background: var(--bg);
+      border: 1px solid var(--border-hover); border-radius: var(--radius-sm);
+      color: var(--text); font-family: inherit; font-size: 0.95rem; color-scheme: dark;
+      transition: border-color 0.16s var(--ease);
+    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); }
+
+    /* Manual week picker, for rotating schedules */
+    .manual-week { display: grid; gap: 8px; }
+    .manual-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); }
+    .manual-row .mday { font-size: 0.88rem; font-weight: 600; color: var(--text); min-width: 118px; font-variant-numeric: tabular-nums; }
+    .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      padding: 7px 13px; background: transparent; border: 1px solid var(--border);
+      border-radius: var(--radius-pill); color: var(--text-3); font-family: inherit;
+      font-size: 0.8rem; font-weight: 600; cursor: pointer;
+      transition: border-color 0.16s var(--ease), color 0.16s var(--ease), background 0.16s var(--ease);
+    }
+    .chip:hover { border-color: var(--border-hover); color: var(--text); }
+    .chip[aria-pressed="true"] { border-color: var(--accent-line); background: var(--accent-dim); color: var(--text); }
+
+    .setup-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+    .err { color: #fca5a5; font-size: 0.86rem; margin-top: 12px; min-height: 1.2em; }
+
+    /* ── Manager ─────────────────────────────────────── */
+
+    .manager { display: none; padding-bottom: var(--space-section); }
+    .manager.active { display: block; }
+
+    .mgr-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 18px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+      padding: clamp(28px, 4vw, 44px) 0 20px; margin-bottom: 24px;
+    }
+    .mgr-head h1 { font-size: clamp(1.6rem, 3.6vw, 2.1rem); letter-spacing: -0.03em; margin-bottom: 8px; }
+    .mgr-head .sub { font-size: 0.92rem; color: var(--text-3); max-width: 56ch; }
+    .mgr-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .mgr-actions .btn { padding: 10px 16px; font-size: 0.85rem; }
+
+    .anchors { display: flex; gap: 26px; flex-wrap: wrap; padding: 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 26px; }
+    .anchors .a { min-width: 118px; }
+    .anchors .lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-3); margin-bottom: 3px; }
+    .anchors .val { font-size: 1.3rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+    .anchors .note { flex: 1 1 260px; font-size: 0.84rem; color: var(--text-3); align-self: center; }
+
+    .days { display: grid; gap: 8px; }
+
+    .day {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      gap: 18px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+    .day.t-work { border-left-color: #b45309; }
+    .day.t-transition { border-left-color: var(--accent-2); }
+    .day.t-rest { border-left-color: var(--success); }
+    .day.today { border-color: var(--accent-line); background: var(--accent-dim); }
+
+    .day-when { min-width: 0; }
+    .day-dow { font-size: 0.92rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+    .day-date { font-size: 0.8rem; color: var(--text-3); font-variant-numeric: tabular-nums; margin-bottom: 7px; }
+    .day-today-tag { display: inline-block; margin-top: 5px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--accent); color: var(--bg); font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; }
+    .day-pos { font-size: 0.78rem; font-weight: 600; line-height: 1.35; }
+    .t-work .day-pos { color: #f0a552; }
+    .t-transition .day-pos { color: var(--accent-2); }
+    .t-rest .day-pos { color: var(--success); }
+
+    .day-rows { display: grid; gap: 5px; align-content: start; min-width: 0; }
+    .row { display: grid; grid-template-columns: 112px 1fr; gap: 12px; font-size: 0.87rem; align-items: baseline; }
+    .row dt { color: var(--text-3); font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .row dd { color: var(--text-2); font-variant-numeric: tabular-nums; }
+    .row dd b { color: var(--text); font-weight: 600; }
+    .row.shift dd b { color: #f0a552; }
+    .row.sleep dd b { color: var(--accent); }
+    .row .qual { color: var(--text-3); font-variant-numeric: normal; }
+
+    .legend { display: flex; gap: 6px 18px; flex-wrap: wrap; margin: 18px 0 0; font-size: 0.76rem; color: var(--text-3); }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
+    .legend i { width: 3px; height: 13px; border-radius: 2px; flex: none; }
+
+    .mgr-note { margin-top: 26px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .mgr-note h3 { font-size: 1rem; margin-bottom: 8px; }
+    .mgr-note p { font-size: 0.9rem; color: var(--text-2); margin-bottom: 10px; }
+    .mgr-note p:last-child { margin-bottom: 0; }
+    .mgr-note .cite { font-size: 0.82rem; color: var(--text-3); }
+
+    .next-steps { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-top: var(--space-group); }
+    .next-card { display: block; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); color: inherit; transition: border-color 0.2s var(--ease); }
+    .next-card:hover { border-color: var(--border-hover); color: inherit; }
+    .next-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .next-card p { font-size: 0.86rem; color: var(--text-3); }
+
+    .capture-block { margin-top: var(--space-section); }
+
+    .faq { margin-top: var(--space-section); }
+    .faq h2 { font-size: 1.35rem; margin-bottom: 18px; }
+    .faq details { border-bottom: 1px solid var(--border); padding: 14px 0; }
+    .faq summary { font-size: 0.95rem; font-weight: 600; color: var(--text); cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; color: var(--text-3); font-weight: 400; font-size: 1.2rem; line-height: 1; }
+    .faq details[open] summary::after { content: '\2212'; }
+    .faq details p { font-size: 0.92rem; color: var(--text-2); margin-top: 10px; max-width: 68ch; }
+
+    .updated { font-size: 0.78rem; color: var(--text-3); margin-top: var(--space-group); }
+
+    @media (max-width: 640px) {
+      .day { grid-template-columns: 1fr; gap: 10px; }
+      .day-date { margin-bottom: 0; }
+      .row { grid-template-columns: 96px 1fr; }
+      .mgr-head { align-items: flex-start; }
+    }
+
+    /* ── Print: this is the fridge printout ──────────── */
+
+    @media print {
+      .site-nav, .site-footer, .setup, .mgr-actions, .capture-block,
+      .next-steps, .faq, .no-print { display: none !important; }
+      body { background: #fff; color: #1a1a1a; }
+      .page { max-width: 100%; padding: 0; }
+      .manager { padding: 0; }
+      .mgr-head { padding-top: 0; border-color: #bbb; }
+      .mgr-head h1 { color: #000; }
+      .mgr-head .sub, .anchors .lbl, .anchors .note, .legend, .updated { color: #444; }
+      .anchors { background: #fff; border-color: #bbb; break-inside: avoid; }
+      .anchors .val { color: #000; }
+
+      .days { gap: 5px; }
+      .day {
+        background: #fff; border-color: #ccc; border-left-width: 3px;
+        padding: 9px 12px; break-inside: avoid; page-break-inside: avoid;
+      }
+      .day.today { background: #f5f3ff; border-color: #7c5cf5; }
+      .day.t-work { border-left-color: #b45309; }
+      .day.t-transition { border-left-color: #1f6fd0; }
+      .day.t-rest { border-left-color: #0f9d6f; }
+      .day-dow { color: #000; }
+      .day-date, .row dt, .row .qual { color: #555; }
+      .day-pos, .t-work .day-pos { color: #7a3c05; }
+      .t-transition .day-pos { color: #14508f; }
+      .t-rest .day-pos { color: #0b6f4e; }
+      .row dd { color: #222; }
+      .row dd b, .row.shift dd b, .row.sleep dd b { color: #000; }
+      .day-today-tag { background: #7c5cf5; color: #fff; }
+      .legend i { border: 1px solid #999; }
+      .mgr-note { background: #fff; border-color: #bbb; break-inside: avoid; }
+      .mgr-note h3 { color: #000; }
+      .mgr-note p { color: #222; }
+      .mgr-note .cite { color: #555; }
+      a { color: #222; text-decoration: none; }
+
+      /* The left rules and the today block carry meaning; ask for them. */
+      .day, .day-today-tag, .legend i {
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      @page { margin: 12mm; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- ── Setup ─────────────────────────────── -->
+    <section class="setup active" id="setup">
+      <header class="sm-hero">
+        <h1>Your rotation, <span class="serif">on real dates.</span></h1>
+        <p>Describe your schedule once. The page then shows your next fourteen days: which ones you work, when to be asleep, and where the caffeine cutoff lands on each. Free, printable, and it stays on this device.</p>
+      </header>
+
+      <form id="setupForm" novalidate>
+
+        <div class="setup-step">
+          <h2>What rotation do you work?</h2>
+          <p class="hint">Pick the closest match. If yours changes week to week, choose rotating and set the days by hand.</p>
+          <div class="options" id="patternOpts"></div>
+        </div>
+
+        <div class="setup-step">
+          <h2>When do you wake up?</h2>
+          <p class="hint">The one number the schedule revolves around. Not the alarm in a perfect week - when you actually get up.</p>
+          <div class="fields">
+            <div class="field">
+              <label for="workWake">On a work day</label>
+              <p class="sub">The wake time on the days you are on shift.</p>
+              <input type="time" id="workWake" required />
+            </div>
+            <div class="field">
+              <label for="restWake">On a rest day</label>
+              <p class="sub">The wake time on your days off, honestly.</p>
+              <input type="time" id="restWake" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-step" id="anchorStep" hidden>
+          <h2 id="anchorTitle">When does your next shift start?</h2>
+          <p class="hint" id="anchorHint">This is what pins the rotation to the calendar. Everything after it is counted forward from that date.</p>
+
+          <div class="fields" id="anchorNextShift" hidden>
+            <div class="field">
+              <label for="nextShiftDate">Date your next shift starts</label>
+              <p class="sub">The first day of your next block, or the day you next go on duty.</p>
+              <input type="date" id="nextShiftDate" />
+            </div>
+            <div class="field">
+              <label for="nextShiftTime">Report time</label>
+              <p class="sub">When you go on duty that day.</p>
+              <input type="time" id="nextShiftTime" />
+            </div>
+          </div>
+
+          <div class="fields" id="anchorCyclePos" hidden>
+            <div class="field" style="grid-column: 1 / -1; max-width: 460px;">
+              <label for="cyclePos">Which day of your cycle is today?</label>
+              <p class="sub">The long rotations do not repeat weekly, so naming today's position is the clearest way to pin them.</p>
+              <select id="cyclePos"></select>
+            </div>
+          </div>
+
+          <div id="anchorManual" hidden>
+            <div class="manual-week" id="manualWeek"></div>
+            <p class="hint" style="margin-top:12px;margin-bottom:0;">Set the next seven days. You can change them any time from the schedule.</p>
+          </div>
+        </div>
+
+        <div class="setup-actions">
+          <button type="submit" class="btn btn-primary" id="buildBtn">Show my schedule</button>
+          <button type="button" class="btn btn-ghost" id="cancelBtn" hidden>Cancel</button>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+      </form>
+    </section>
+
+    <!-- ── Manager ───────────────────────────── -->
+    <section class="manager" id="manager" aria-live="polite"></section>
+
+    <!-- ── Newsletter ────────────────────────── -->
+    <section class="capture capture-block no-print">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says about sleeping around a rotation, and what to do with it before your next shift.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="schedule-manager" data-sm-source="schedule">
+        <label class="visually-hidden" for="sched-email">Email address</label>
+        <input type="email" id="sched-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </section>
+
+    <!-- ── FAQ ───────────────────────────────── -->
+    <section class="faq no-print">
+      <h2>Questions about the schedule</h2>
+      <details>
+        <summary>How does the schedule manager know which days I work?</summary>
+        <p>You pick your rotation and then pin it to the calendar once, either by naming the date your next shift starts or by saying which day of the cycle today is. From that one answer every following day is calculated, so a 24/48 anchored to a Friday puts you back on duty Monday, then Thursday, then Sunday. If your schedule has no fixed cycle, you set the next seven days by hand instead.</p>
+      </details>
+      <details>
+        <summary>Where do the sleep times on each day come from?</summary>
+        <p>From your two wake anchors. Every other time on the page is calculated backward from the anchor for that kind of day: the sleep target is eight hours before it, the caffeine cutoff is eight hours before the sleep target, wind-down starts sixty to ninety minutes before it, and the nap window sits four to five and a half hours after you wake. Nothing here is a fixed time of day.</p>
+      </details>
+      <details>
+        <summary>What is a recovery day and why is it different from a day off?</summary>
+        <p>A recovery day is the day you come off a block or a tour. It gets a shorter sleep held near your work-day anchor, one planned nap, and an early night, rather than a full sleep held to your rest-day anchor. Chasing a full eight hours on that morning is what steals the following night. The rest-day anchor belongs on the clear days after it.</p>
+      </details>
+      <details>
+        <summary>Can I put this on my phone calendar?</summary>
+        <p>Yes. The calendar export downloads a standard .ics file holding your shifts and your planned sleep blocks for the next fourteen days, which imports into Apple Calendar, Google Calendar and Outlook. The times are floating local times, so they stay correct if you travel. You can also print the page as a one-page schedule.</p>
+      </details>
+      <p class="updated">Updated August 2026. General guidance for healthy adults, not medical advice.</p>
+    </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { buildPlan, PATTERNS, parseTime, fmt, wrap } from '../plan/engine.mjs';
+    import {
+      CYCLES, MANUAL_DAYS, expandCycle, expandManual, offsetFromAnchorDate,
+      startOfDay, addDays, isoDate, parseISODate
+    } from '../plan/cycles.mjs';
+    import { buildICS } from './ics.mjs';
+
+    const STORE_KEY = 'sm_schedule_v1';
+    const HORIZON = 14, MANUAL_HORIZON = 7;
+
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    // ── State ────────────────────────────────
+    const draft = { pattern: '', workWake: '', restWake: '', anchorISO: '', shiftTime: '', cyclePos: 0, manual: [] };
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORE_KEY);
+        if (!raw) return null;
+        const s = JSON.parse(raw);
+        if (!s || !CYCLES[s.pattern] || !parseTime(s.workWake) || !parseTime(s.restWake)) return null;
+        return s;
+      } catch { return null; }
+    }
+    function save(s) {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch { /* private mode: the page still works */ }
+    }
+
+    // ── Setup: pattern options ───────────────
+    const CYCLE_SUMMARY = {
+      nights3x12: 'Three 12s, then four off', days3x12: 'Three 12s, then four off',
+      s24_48: 'One 24, then two days off', s48_96: 'Two days on, then four off',
+      kelly: '24 on, 24 off, three times, then 96 off', dupont: '4 nights, 3 off, 3 days, 1 off, 3 nights, 3 off, 4 days, 7 off',
+      panama223: '2 on, 2 off, 3 on, 2 off, 2 on, 3 off', s24_72: 'One 24, then three days off',
+      rotating: 'No fixed cycle - you set the days'
+    };
+
+    $('patternOpts').innerHTML = PATTERNS.map((p, i) =>
+      `<button type="button" class="opt" data-val="${p.id}" aria-pressed="false"><span class="key">${i + 1}</span><span>${esc(p.label)}<span class="cyc">${esc(CYCLE_SUMMARY[p.id])}</span></span></button>`
+    ).join('');
+
+    $('patternOpts').addEventListener('click', (e) => {
+      const btn = e.target.closest('.opt');
+      if (!btn) return;
+      draft.pattern = btn.dataset.val;
+      $('patternOpts').querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      $('err').textContent = '';
+      renderAnchorStep();
+    });
+
+    // ── Setup: the anchoring question ────────
+    // Short cycles get "when does your next shift start" - a person always knows
+    // that. Long cycles (DuPont at 28 days, Panama at 14) do not repeat weekly, so
+    // naming today's position is the only unambiguous answer.
+
+    function renderAnchorStep() {
+      const cycle = CYCLES[draft.pattern];
+      if (!cycle) { $('anchorStep').hidden = true; return; }
+      $('anchorStep').hidden = false;
+      const ask = cycle.anchorAsk;
+
+      $('anchorNextShift').hidden = ask !== 'nextShift';
+      $('anchorCyclePos').hidden = ask !== 'cyclePos';
+      $('anchorManual').hidden = ask !== 'manual';
+
+      if (ask === 'nextShift') {
+        $('anchorTitle').textContent = 'When does your next shift start?';
+        $('anchorHint').textContent = 'This is what pins the rotation to the calendar. If you are on duty right now, use the day this tour started.';
+        const first = cycle.days[cycle.anchorIndex ?? 0];
+        if (!$('nextShiftDate').value) $('nextShiftDate').value = isoDate(new Date());
+        if (!$('nextShiftTime').value) $('nextShiftTime').value = first.shiftStart || '07:00';
+      } else if (ask === 'cyclePos') {
+        $('anchorTitle').textContent = 'Which day of your cycle is today?';
+        $('anchorHint').textContent = `Your rotation runs ${cycle.period} days before it repeats, so the calendar cannot tell us where you are. Pick today's position.`;
+        $('cyclePos').innerHTML = cycle.days.map((d, i) =>
+          `<option value="${i}">Day ${i + 1} - ${esc(d.label)}</option>`
+        ).join('');
+        $('cyclePos').value = String(draft.cyclePos || 0);
+      } else {
+        $('anchorTitle').textContent = 'Set your next seven days';
+        $('anchorHint').textContent = 'No two weeks are the same on a rotating schedule, so tell us this one. Set it again whenever the roster changes.';
+        renderManualWeek();
+      }
+    }
+
+    function renderManualWeek() {
+      const today = startOfDay(new Date());
+      if (draft.manual.length !== MANUAL_HORIZON) draft.manual = Array(MANUAL_HORIZON).fill('off');
+      $('manualWeek').innerHTML = draft.manual.map((val, i) => {
+        const d = addDays(today, i);
+        const when = i === 0 ? 'Today' : d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+        return `<div class="manual-row">
+          <span class="mday">${esc(when)}</span>
+          <span class="chips">${MANUAL_DAYS.map(m =>
+            `<button type="button" class="chip" data-i="${i}" data-val="${m.id}" aria-pressed="${String(m.id === val)}">${esc(m.label)}</button>`
+          ).join('')}</span>
+        </div>`;
+      }).join('');
+    }
+
+    $('manualWeek').addEventListener('click', (e) => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      draft.manual[+chip.dataset.i] = chip.dataset.val;
+      renderManualWeek();
+    });
+
+    // ── Setup submit ─────────────────────────
+    $('setupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const cycle = CYCLES[draft.pattern];
+      if (!cycle) return fail('Pick the rotation closest to what you work.');
+
+      draft.workWake = $('workWake').value;
+      draft.restWake = $('restWake').value;
+      if (parseTime(draft.workWake) === null) return fail('Enter your work-day wake time.');
+      if (parseTime(draft.restWake) === null) return fail('Enter your rest-day wake time.');
+
+      const cfg = { pattern: draft.pattern, workWake: draft.workWake, restWake: draft.restWake };
+
+      if (cycle.anchorAsk === 'nextShift') {
+        const dt = parseISODate($('nextShiftDate').value);
+        if (!dt) return fail('Enter the date your next shift starts.');
+        const t = $('nextShiftTime').value;
+        if (parseTime(t) === null) return fail('Enter the time you go on duty.');
+        cfg.anchorISO = isoDate(dt);
+        cfg.shiftTime = t;
+      } else if (cycle.anchorAsk === 'cyclePos') {
+        const pos = parseInt($('cyclePos').value, 10);
+        if (!Number.isInteger(pos)) return fail('Pick where you are in the cycle today.');
+        cfg.anchorISO = isoDate(new Date());
+        cfg.cyclePos = pos;
+      } else {
+        cfg.anchorISO = isoDate(new Date());
+        cfg.manual = draft.manual.slice();
+      }
+
+      save(cfg);
+      gtag('event', 'schedule_configured', { pattern: cfg.pattern });
+      show(cfg);
+    });
+
+    function fail(msg) { $('err').textContent = msg; return false; }
+
+    $('cancelBtn').addEventListener('click', () => {
+      const cfg = load();
+      if (cfg) show(cfg);
+    });
+
+    // ── Building the dated days ──────────────
+    // buildPlan is called once per config: it returns one plan object per day
+    // type, and each dated day picks the one matching its dayType. No rule is
+    // recomputed here - the cycle supplies the calendar, the engine the times.
+
+    function planFor(cfg) {
+      return buildPlan({
+        occupation: 'other',
+        pattern: cfg.pattern,
+        struggle: 'all',
+        workWake: cfg.workWake,
+        restWake: cfg.restWake
+      });
+    }
+
+    function datedDays(cfg, today) {
+      const cycle = CYCLES[cfg.pattern];
+      if (cycle.manual) {
+        return expandManual(parseISODate(cfg.anchorISO) || today, cfg.manual || []);
+      }
+      let offset;
+      if (cycle.anchorAsk === 'cyclePos') {
+        // The stored position was true on the day it was saved; carry it forward.
+        const saved = parseISODate(cfg.anchorISO) || today;
+        offset = offsetFromAnchorDateAt(cfg.pattern, saved, cfg.cyclePos || 0, today);
+      } else {
+        offset = offsetFromAnchorDate(cfg.pattern, parseISODate(cfg.anchorISO) || today, today);
+      }
+      return expandCycle(cfg.pattern, today, offset, HORIZON);
+    }
+
+    // Same arithmetic as offsetFromAnchorDate, but the known index is an
+    // arbitrary position rather than the cycle's own anchorIndex.
+    function offsetFromAnchorDateAt(patternId, savedDate, savedIndex, today) {
+      const period = CYCLES[patternId].period;
+      const delta = Math.round((startOfDay(today) - startOfDay(savedDate)) / 86400000);
+      return (((savedIndex + delta) % period) + period) % period;
+    }
+
+    // The engine's day objects, keyed by id, with a fallback so a cycle day type
+    // a pattern does not define still renders something correct.
+    function dayPlanFor(plan, dayType) {
+      const byId = Object.fromEntries(plan.days.map(d => [d.id, d]));
+      return byId[dayType] || byId.rest || plan.days[plan.days.length - 1];
+    }
+
+    // The shift band comes from the cycle, which knows the real report time,
+    // not from the engine's generic geometry.
+    function shiftWindow(day, cfg) {
+      if (!day.onDuty) return null;
+      const start = parseTime(day.shiftStart);
+      if (start === null) return null;
+      // A "next shift" anchor lets the person name their own report time.
+      const cycle = CYCLES[cfg.pattern];
+      const startMin = (cycle.anchorAsk === 'nextShift' && parseTime(cfg.shiftTime) !== null)
+        ? parseTime(cfg.shiftTime) : start;
+      return { startMin, lenH: day.shiftLen, endMin: wrap(startMin + day.shiftLen * 60) };
+    }
+
+    // ── Render ───────────────────────────────
+    const DOW = (d) => d.toLocaleDateString(undefined, { weekday: 'long' });
+    const DATE = (d) => d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+
+    function rowsFor(dp, sw) {
+      const rows = [];
+      if (sw) {
+        const over = sw.lenH >= 24 ? ` <span class="qual">(${sw.lenH}-hour tour, off at ${fmt(sw.endMin)})</span>`
+                                   : ` <span class="qual">(off at ${fmt(sw.endMin)})</span>`;
+        rows.push(['shift', 'On duty', `<b>${fmt(sw.startMin)}</b>${over}`]);
+      }
+      rows.push(['sleep', 'Sleep', `<b>${fmt(dp.targetSleep)}</b> to <b>${dp.wakeAnchor}</b> <span class="qual">(${Math.round(dp.sleepMins / 60 * 10) / 10}h opportunity)</span>`]);
+      rows.push(['', 'Caffeine off', `by <b>${fmt(dp.caffeineCutoff)}</b>`]);
+      rows.push(['', 'Wind-down', `<b>${fmt(dp.windDownStart)}</b> to ${fmt(dp.windDownLate)}`]);
+      if (dp.napWindow) rows.push(['', 'Nap window', `${fmt(dp.napWindow[0])} to ${fmt(dp.napWindow[1])} <span class="qual">(if you get the chance)</span>`]);
+      return rows;
+    }
+
+    function show(cfg) {
+      const plan = planFor(cfg);
+      if (!plan.ok) { $('err').textContent = 'That schedule did not come through. Check the wake times.'; return; }
+
+      const today = startOfDay(new Date());
+      const todayISO = isoDate(today);
+      const days = datedDays(cfg, today);
+      const cycle = CYCLES[cfg.pattern];
+
+      const dayHTML = days.map(day => {
+        const dp = dayPlanFor(plan, day.dayType);
+        const sw = shiftWindow(day, cfg);
+        const isToday = day.iso === todayISO;
+        const rows = rowsFor(dp, sw).map(([cls, dt, dd]) =>
+          `<div class="row ${cls}"><dt>${esc(dt)}</dt><dd>${dd}</dd></div>`
+        ).join('');
+        return `<article class="day t-${day.dayType}${isToday ? ' today' : ''}">
+          <div class="day-when">
+            <div class="day-dow">${esc(DOW(day.date))}</div>
+            <div class="day-date">${esc(DATE(day.date))}</div>
+            <div class="day-pos">${esc(day.label)}</div>
+            ${isToday ? '<span class="day-today-tag">Today</span>' : ''}
+          </div>
+          <dl class="day-rows">${rows}</dl>
+        </article>`;
+      }).join('');
+
+      const horizon = days.length;
+      const workCount = days.filter(d => d.onDuty).length;
+
+      $('manager').innerHTML = `
+        <div class="mgr-head">
+          <div>
+            <h1>Your next ${horizon} days</h1>
+            <p class="sub">${esc(cycle.label)}. ${workCount} of the ${horizon} are on duty. Every time below is computed from your ${esc(plan.anchors.work)} work-day anchor and your ${esc(plan.anchors.rest)} rest-day anchor.</p>
+          </div>
+          <div class="mgr-actions no-print">
+            <button type="button" class="btn btn-primary" id="printBtn">Print</button>
+            <button type="button" class="btn btn-ghost" id="icsBtn">Add to calendar (.ics)</button>
+            <button type="button" class="btn btn-ghost" id="changeBtn">Change schedule</button>
+          </div>
+        </div>
+
+        <div class="anchors">
+          <div class="a"><div class="lbl">Work day anchor</div><div class="val">${esc(plan.anchors.work)}</div></div>
+          <div class="a"><div class="lbl">Rest day anchor</div><div class="val">${esc(plan.anchors.rest)}</div></div>
+          <p class="note">${esc(plan.anchors.note)}</p>
+        </div>
+
+        <div class="days">${dayHTML}</div>
+
+        <div class="legend">
+          <span><i style="background:#b45309"></i>On duty</span>
+          <span><i style="background:var(--accent-2)"></i>Recovery day, off a block</span>
+          <span><i style="background:var(--success)"></i>Clear day off</span>
+        </div>
+
+        <div class="mgr-note">
+          <h3>${esc(plan.patternNote.title)}</h3>
+          <p>${esc(plan.patternNote.body)}</p>
+          <p class="cite">Why: <a href="${esc(plan.patternNote.cite.url)}" target="_blank" rel="noopener">${esc(plan.patternNote.cite.concept)}</a></p>
+        </div>
+
+        <div class="next-steps no-print">
+          <a class="next-card" href="/plan/">
+            <h3>The written plan</h3>
+            <p>The same times, with the reasoning behind each one and a section for whichever part of sleeping around this schedule is hardest for you.</p>
+          </a>
+          <a class="next-card" href="/manual/">
+            <h3>The manual</h3>
+            <p>How the two systems behind all of this work, and why a fixed wake time does more for a shift worker than any bedtime rule.</p>
+          </a>
+        </div>
+
+        <p class="updated">Updated August 2026. Times are calculated, not advice for a specific medical condition. If you fall asleep at the wheel, stop breathing in your sleep, or stay exhausted after weeks of protected sleep, that is a doctor's problem rather than a schedule problem.</p>
+      `;
+
+      $('setup').classList.remove('active');
+      $('manager').classList.add('active');
+      $('err').textContent = '';
+
+      $('printBtn').addEventListener('click', () => window.print());
+      $('changeBtn').addEventListener('click', () => editSchedule(cfg));
+      $('icsBtn').addEventListener('click', () => {
+        downloadICS(buildICS(days, (t) => dayPlanFor(plan, t), (d) => shiftWindow(d, cfg)));
+        gtag('event', 'schedule_ics_export', { pattern: cfg.pattern });
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function editSchedule(cfg) {
+      draft.pattern = cfg.pattern;
+      draft.cyclePos = cfg.cyclePos || 0;
+      draft.manual = (cfg.manual || []).slice();
+      $('workWake').value = cfg.workWake;
+      $('restWake').value = cfg.restWake;
+      if (cfg.anchorISO) $('nextShiftDate').value = cfg.anchorISO;
+      if (cfg.shiftTime) $('nextShiftTime').value = cfg.shiftTime;
+      $('patternOpts').querySelectorAll('.opt').forEach(b =>
+        b.setAttribute('aria-pressed', String(b.dataset.val === cfg.pattern)));
+      renderAnchorStep();
+      $('cancelBtn').hidden = false;
+      $('buildBtn').textContent = 'Update my schedule';
+      $('manager').classList.remove('active');
+      $('setup').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── ICS export ───────────────────────────
+    // The generator lives in ./ics.mjs so Node can test the exact text this
+    // button downloads. CRLF, folded at 75 octets, floating local times.
+
+    function downloadICS(text) {
+      const blob = new Blob([text], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sleepmedic-schedule.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+    }
+
+    // ── Boot ─────────────────────────────────
+    const saved = load();
+    if (saved) {
+      draft.pattern = saved.pattern;
+      show(saved);
+    } else {
+      $('nextShiftDate').value = isoDate(new Date());
+    }
+  </script>
+
+  <script>
+    // Email capture. Same fetch contract as every other page.
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'schedule', leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const d = await r.json();
+          if (d.ok) {
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            input.value = '';
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', {
+              email_domain: (email.split('@')[1] || '').toLowerCase(),
+              source: f.dataset.smSource || 'schedule'
+            });
+          } else if (msg) {
+            msg.textContent = d.error || 'Subscription failed.';
+          }
+        } catch {
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

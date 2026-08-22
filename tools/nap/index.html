@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What Nap Do I Have Time For? - SleepMedic</title>
+  <meta name="description" content="Enter how long you have and whether the job can wake you. Get the nap length that fits, the alarm to set, and why - computed from the site's evidence-backed nap rules." />
+
+  <link rel="canonical" href="https://sleepmedic.co/tools/nap/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="What Nap Do I Have Time For?" />
+  <meta property="og:description" content="Enter how long you have and whether the job can wake you. Get the nap length that fits, the alarm to set, and why." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/tools/nap/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    .tool { max-width: var(--measure); margin: 0 auto; padding: clamp(36px, 6vw, 56px) 24px 0; }
+    .tool-head { margin-bottom: 30px; }
+    .tool-head h1 { font-size: clamp(1.9rem, 4.5vw, 2.5rem); letter-spacing: -0.035em; line-height: 1.12; margin-bottom: 10px; }
+    .tool-head p { color: var(--text-3); font-size: 1rem; max-width: 52ch; }
+    .stamp { font-size: 0.78rem; color: var(--text-3); margin-top: 10px; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(22px, 4vw, 30px); margin-bottom: 24px; }
+
+    .field { margin-bottom: 4px; }
+    .field label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    .field-hint { font-size: 0.8rem; color: var(--text-3); margin-top: 6px; }
+    input[type="number"] {
+      width: 100%; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border-hover);
+      border-radius: var(--radius-md); color: var(--text); font-family: inherit; font-size: 1.05rem;
+      transition: border-color 0.2s var(--ease);
+    }
+    input[type="number"]:focus { outline: none; border-color: var(--accent); }
+
+    .toggle-row { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+    .toggle-row input { width: 17px; height: 17px; accent-color: var(--accent); cursor: pointer; flex: none; }
+    .toggle-row label { font-size: 0.9rem; color: var(--text-2); cursor: pointer; }
+
+    .result { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); }
+    .result .placeholder { font-size: 0.94rem; color: var(--text-3); }
+
+    .answer-dose { font-size: clamp(1.7rem, 5vw, 2.2rem); font-weight: 800; color: var(--accent); letter-spacing: -0.03em; margin-bottom: 6px; line-height: 1.2; }
+    .answer-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; margin-bottom: 4px; }
+    .answer-alarm { font-size: 0.95rem; color: var(--text-2); margin-bottom: 14px; }
+    .answer-alarm strong { color: var(--text); }
+    .answer-explain { font-size: 0.95rem; color: var(--text-2); line-height: 1.6; max-width: 56ch; }
+
+    .warn {
+      display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; padding: 14px 16px;
+      background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.25); border-radius: var(--radius-md);
+    }
+    .warn .dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--cat-troubleshooting); margin-top: 7px; }
+    .warn p { font-size: 0.88rem; color: var(--text-2); line-height: 1.55; }
+    .warn strong { color: var(--text); font-weight: 600; }
+
+    .secondary { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); }
+    .secondary .dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); margin-top: 7px; }
+    .secondary p { font-size: 0.88rem; color: var(--text-3); line-height: 1.55; }
+    .secondary strong { color: var(--text-2); font-weight: 600; }
+
+    .cta {
+      background: var(--accent-dim); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
+      padding: clamp(22px, 4vw, 28px); margin-bottom: 24px;
+    }
+    .cta h2 { font-size: 1.1rem; margin-bottom: 8px; }
+    .cta p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; margin-bottom: 16px; max-width: 50ch; }
+
+    .links-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .faq { margin: 40px 0; }
+    .faq h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .faq-item { padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 0.98rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .faq-item p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <main class="tool">
+    <div class="tool-head">
+      <h1>What nap do I have time for?</h1>
+      <p>Say how long you have. Get the nap that fits it, the alarm to set, and why the length matters more than the sleep does.</p>
+      <p class="stamp">Updated August 2026</p>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <label for="minutesAvail">How many minutes do you have?</label>
+        <input type="number" id="minutesAvail" name="minutesAvail" min="1" max="240" step="1" inputmode="numeric" placeholder="e.g. 25" />
+        <p class="field-hint">From lying down to when you need to be up and functional.</p>
+      </div>
+      <div class="toggle-row">
+        <input type="checkbox" id="onCallToggle" />
+        <label for="onCallToggle">The job can wake me (tones, pager, call bell)</label>
+      </div>
+
+      <div class="result" id="result">
+        <p class="placeholder" id="placeholder">Enter your available minutes above to see your dose.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>This is one nap. The full plan is the whole shift.</h2>
+      <p>The free plan puts a nap window into your actual rotation, alongside your wake anchor, caffeine cutoff, and light timing, not just one number in isolation.</p>
+      <div class="links-row">
+        <a href="/plan/" class="btn btn-primary" data-cta="tool-body">Build my free sleep plan</a>
+        <a href="/manual/" class="btn btn-ghost">Read the field manual</a>
+      </div>
+    </div>
+
+    <div class="capture">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="nap-calculator" data-sm-source="tools">
+        <label class="visually-hidden" for="tool-email">Email address</label>
+        <input type="email" id="tool-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </div>
+
+    <p style="font-size:0.88rem;color:var(--text-3);border-left:2px solid var(--accent-line);padding-left:12px;margin:28px 0;line-height:1.6;">From the field: Jocko Willink's version is a 15-minute nap with his feet up. Short enough to stay shallow, and the fixed ritual &mdash; same posture, same duration &mdash; is part of why it works. Practice, not a trial; it sits comfortably inside the short-dose logic above.</p>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <div class="faq-item">
+        <h3>Why is 40 to 60 minutes the worst option?</h3>
+        <p>Most people drop into slow-wave (deep) sleep around the 30-minute mark. Wake out of the middle of it and you get 20 to 30 minutes of genuine sleep inertia: slower reaction time, worse decisions, a fog that shows up right when you need to be sharp. A 40- to 60-minute nap is long enough to reach that deep water and too short to surface back out of it on its own.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Why does being on call force the short nap?</h3>
+        <p>If tones or a pager can end the nap at any second, deep sleep is the risk, not the benefit. A 20- to 30-minute nap keeps you in lighter sleep stages, so however the wake-up arrives, you come out of it functional instead of impaired. Waking clean is the job; a 90-minute nap only pays off when someone else is covering the first call.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What is a coffee nap and when should I use it?</h3>
+        <p>Drink caffeine, then lie down for 20 minutes. Caffeine takes 20 to 30 minutes to reach peak effect, so you wake right as it starts working. It is a solid option any time your window is short, and it is specifically useful before the drive home after a shift, when drowsy driving is the real risk and a short window is often all you have.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is 40 to 60 minutes the worst option?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most people drop into slow-wave (deep) sleep around the 30-minute mark. Wake out of the middle of it and you get 20 to 30 minutes of genuine sleep inertia: slower reaction time, worse decisions, a fog that shows up right when you need to be sharp. A 40- to 60-minute nap is long enough to reach that deep water and too short to surface back out of it on its own."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does being on call force the short nap?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If tones or a pager can end the nap at any second, deep sleep is the risk, not the benefit. A 20- to 30-minute nap keeps you in lighter sleep stages, so however the wake-up arrives, you come out of it functional instead of impaired. Waking clean is the job; a 90-minute nap only pays off when someone else is covering the first call."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a coffee nap and when should I use it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Drink caffeine, then lie down for 20 minutes. Caffeine takes 20 to 30 minutes to reach peak effect, so you wake right as it starts working. It is a solid option any time your window is short, and it is specifically useful before the drive home after a shift, when drowsy driving is the real risk and a short window is often all you have."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="module">
+    const $ = (id) => document.getElementById(id);
+    const minutesInput = $('minutesAvail');
+    const onCallToggle = $('onCallToggle');
+    const result = $('result');
+
+    function alarmFrom(mins) {
+      const d = new Date(Date.now() + mins * 60000);
+      return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function render() {
+      const avail = parseInt(minutesInput.value, 10);
+      const onCall = onCallToggle.checked;
+
+      if (!avail || avail <= 0) {
+        result.innerHTML = '<p class="placeholder" id="placeholder">Enter your available minutes above to see your dose.</p>';
+        return;
+      }
+
+      let doseMin, doseLabel, alarmMin, explain, extra = '', warn = '';
+
+      if (onCall) {
+        doseMin = avail < 20 ? avail : 25;
+        doseLabel = avail < 20 ? `${avail}-minute nap` : '20 to 30 minute nap';
+        alarmMin = avail < 20 ? avail : Math.min(30, avail);
+        explain = `The job can wake you, so waking clean is the whole point. A short nap keeps you in light sleep, so however the call comes in, you come out functional. A full 90-minute nap only pays off when someone else is catching the first call.`;
+      } else if (avail < 20) {
+        doseMin = avail;
+        doseLabel = `${avail}-minute nap (that's what you've got)`;
+        alarmMin = avail;
+        explain = `Under 20 minutes is not enough to reach deep sleep, so there is no danger zone to worry about here. Take what you have; it still knocks down some sleep pressure.`;
+      } else if (avail <= 39) {
+        doseMin = Math.min(30, avail);
+        doseLabel = '20 to 30 minute nap';
+        alarmMin = Math.min(30, avail);
+        explain = `20 to 30 minutes keeps you in shallow sleep, so you wake fast and clear. That is the on-call dose, and it fits your window. If caffeine is on the table, drink it first: it takes 20 to 30 minutes to kick in, so you wake right as it starts working.`;
+      } else if (avail <= 60) {
+        doseMin = 25;
+        doseLabel = '20 to 30 minute nap';
+        alarmMin = 25;
+        warn = `Your window (${avail} minutes) lands in the 40-to-60-minute danger zone. Most people drop into deep sleep around the 30-minute mark, so a nap sized to fill this window would end mid-deep-sleep and leave you groggy for the next 20 to 30 minutes. Set the alarm for 25, not for the full window.`;
+        explain = `Take less than you have. 20 to 30 minutes wakes you from shallow sleep, clear-headed, with time left over. Stretching it to fill the window is the one move that backfires here.`;
+      } else {
+        doseMin = 90;
+        doseLabel = '90 minute nap (a full cycle)';
+        alarmMin = 90;
+        explain = `You have room for a full 90-minute cycle: it carries you through light sleep into slow-wave and back up, so you surface out of light sleep instead of the middle of deep sleep. That's the dose that actually repays sleep debt, and your ${avail}-minute window covers it with margin to spare.`;
+        extra = avail - 90;
+      }
+
+      const alarm = alarmFrom(alarmMin);
+
+      result.innerHTML = `
+        <p class="answer-label">Recommended dose</p>
+        <div class="answer-dose">${doseLabel}</div>
+        <p class="answer-alarm">Set your alarm for <strong>${alarm}</strong> (${alarmMin} minutes from now).</p>
+        ${warn ? `<div class="warn"><span class="dot"></span><p><strong>Danger zone:</strong> ${warn}</p></div>` : ''}
+        <p class="answer-explain">${explain}</p>
+        ${extra ? `<div class="secondary"><span class="dot"></span><p><strong>Left over:</strong> you have about ${extra} minutes of slack after the nap. Use it for the 5 minutes of grace on waking (water, light, no decisions yet) rather than stretching the nap itself.</p></div>` : ''}
+      `;
+    }
+
+    minutesInput.addEventListener('input', render);
+    onCallToggle.addEventListener('change', render);
+    render();
+  </script>
+
+  <script>
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'tools', leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const d = await r.json();
+          if (d.ok) {
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            input.value = '';
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', {
+              email_domain: (email.split('@')[1] || '').toLowerCase(),
+              source: f.dataset.smSource || 'tools'
+            });
+          } else if (msg) {
+            msg.textContent = d.error || 'Subscription failed.';
+          }
+        } catch {
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!window.gtag) return;
+      const cta = e.target.closest('[data-cta]');
+      if (cta) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+  </script>
+</body>
+</html>

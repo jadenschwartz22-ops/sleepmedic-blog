@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Find your schedule - SleepMedic</title>
+  <meta name="description" content="Nine shift patterns, each with a worked sleep plan: light window, caffeine cutoff, meal timing, wind-down, sleep target and nap window computed from a wake anchor. 24/48, 48/96, Kelly, DuPont, Panama 2-2-3, nights and days on 12s, 24/72, and rotating." />
+
+  <link rel="canonical" href="https://sleepmedic.co/schedules/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Find your schedule" />
+  <meta property="og:description" content="Nine shift patterns, each with a worked sleep plan: light window, caffeine cutoff, meal timing, wind-down, sleep target and nap window computed from a wake anchor. 24/48, 48/96, Kelly, DuPont, Panama 2-2-3, nights and days on 12s, 24/72, and rotating." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://sleepmedic.co/schedules/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "SleepMedic",
+          "item": "https://sleepmedic.co/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Schedules",
+          "item": "https://sleepmedic.co/schedules/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Shift schedules",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Nights, three 12s",
+          "url": "https://sleepmedic.co/schedules/nights-3x12/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Days, three 12s",
+          "url": "https://sleepmedic.co/schedules/days-3x12/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "24 on, 48 off",
+          "url": "https://sleepmedic.co/schedules/24-48/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "48 on, 96 off",
+          "url": "https://sleepmedic.co/schedules/48-96/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Kelly schedule",
+          "url": "https://sleepmedic.co/schedules/kelly/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "DuPont",
+          "url": "https://sleepmedic.co/schedules/dupont/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Panama 2-2-3",
+          "url": "https://sleepmedic.co/schedules/panama/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "24 on, 72 off",
+          "url": "https://sleepmedic.co/schedules/24-72/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Rotating or irregular",
+          "url": "https://sleepmedic.co/schedules/rotating/"
+        }
+      ]
+    }
+  ]
+  </script>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    .sched-hero { padding: clamp(36px, 5.5vw, 60px) 0 26px; }
+    .sched-hero h1 {
+      font-size: clamp(2rem, 4.6vw, 2.9rem); font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 16px;
+    }
+    .sched-hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; }
+    .sched-hero p { font-size: 1.03rem; color: var(--text-3); line-height: 1.7; max-width: 62ch; }
+    .sched-meta {
+      margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);
+      font-size: 0.83rem; color: var(--text-3);
+    }
+    .sched-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px; margin-top: 30px;
+    }
+    .sched-card {
+      display: block; background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px 22px; color: inherit;
+      transition: border-color 0.2s var(--ease), transform 0.15s var(--ease);
+    }
+    .sched-card:hover { border-color: var(--border-hover); transform: translateY(-2px); color: inherit; }
+    .sched-card h2 { font-size: 1.02rem; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.015em; }
+    .sched-card p { font-size: 0.86rem; color: var(--text-3); line-height: 1.55; margin: 0; }
+    .sched-body h2 { font-size: clamp(1.3rem, 2.9vw, 1.6rem); margin: 52px 0 12px; }
+    .sched-body p { color: var(--text-2); line-height: 1.75; margin: 0 0 16px; max-width: 68ch; }
+    .plan-cta-block {
+      background: var(--accent-dim); border: 1px solid var(--accent-line);
+      border-radius: var(--radius-lg); padding: 26px; margin: 44px 0 0;
+    }
+    .plan-cta-block h2 { margin-top: 0 !important; font-size: 1.3rem; }
+    .plan-cta-block p { color: var(--text-2); }
+    .plan-cta-block .btn-primary {
+      display: inline-block; background: var(--accent); color: var(--bg); font-weight: 700;
+      padding: 12px 24px; border-radius: var(--radius-pill); margin-top: 6px;
+    }
+    .plan-cta-block .btn-primary:hover { color: var(--bg); }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav site-nav--narrow">
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="schedules-index-nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <div class="page page--narrow">
+
+    <header class="sched-hero">
+      <h1>Find your <span class="serif">schedule.</span></h1>
+      <p>Nine patterns, one page each. Every page carries a worked example — light window, caffeine cutoff, last meal, wind-down, sleep target and nap window — computed from a wake anchor by the same engine that builds the free plan.</p>
+      <div class="sched-meta">Updated August 2026</div>
+      <p style="margin-top:16px;"><a href="/schedule/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Already know your rotation? The Schedule Manager puts it on real calendar dates &rarr;</a></p>
+    </header>
+
+    <div class="sched-grid">
+        <a class="sched-card" href="/schedules/nights-3x12/">
+          <h2>Nights, three 12s</h2>
+          <p>Three 12-hour nights back to back, then four days off.</p>
+        </a>
+        <a class="sched-card" href="/schedules/days-3x12/">
+          <h2>Days, three 12s</h2>
+          <p>Three 12-hour days back to back, then four days off.</p>
+        </a>
+        <a class="sched-card" href="/schedules/24-48/">
+          <h2>24 on, 48 off</h2>
+          <p>24 hours on duty, 48 off, on a three-day cycle.</p>
+        </a>
+        <a class="sched-card" href="/schedules/48-96/">
+          <h2>48 on, 96 off</h2>
+          <p>Two days on duty, then four days clear, on a six-day cycle.</p>
+        </a>
+        <a class="sched-card" href="/schedules/kelly/">
+          <h2>Kelly schedule</h2>
+          <p>Three 24s split by single days off, then a four-day break.</p>
+        </a>
+        <a class="sched-card" href="/schedules/dupont/">
+          <h2>DuPont</h2>
+          <p>Four weeks of 12s that turn from nights to days and back.</p>
+        </a>
+        <a class="sched-card" href="/schedules/panama/">
+          <h2>Panama 2-2-3</h2>
+          <p>Two on, two off, three on. Every other weekend free.</p>
+        </a>
+        <a class="sched-card" href="/schedules/24-72/">
+          <h2>24 on, 72 off</h2>
+          <p>24 hours on duty, then three clear days.</p>
+        </a>
+        <a class="sched-card" href="/schedules/rotating/">
+          <h2>Rotating or irregular</h2>
+          <p>No fixed cycle. The anchor moves with the block.</p>
+        </a>
+    </div>
+
+    <div class="sched-body">
+
+      <h2>Why the pages are built this way</h2>
+
+      <p>Sleep advice usually starts at bedtime, which is the one thing a shift schedule takes away from you. So these pages start at the wake anchor instead: one fixed wake time per kind of day, held within thirty minutes. From that single number the rest falls out — bright light in the ninety minutes after waking, the last caffeine eight hours before the sleep target, the last real meal three hours before wind-down, wind-down sixty to ninety minutes before the target.</p>
+
+      <p>The times on each page are computed, not written. They come from the plan engine that powers the free plan builder, run against a sensible example anchor for that pattern and labelled as an example everywhere it appears. Change the anchor and every window moves with it.</p>
+
+      <p>If your rotation is not on this list, it is closer to one of these than you think — and if it genuinely changes week to week, <a href="/schedules/rotating/">the rotating page</a> is written for exactly that.</p>
+
+      <div class="plan-cta-block">
+        <h2>Your schedule is not an example.</h2>
+        <p>Six questions — your pattern, your two wake times, your last cup of coffee — and the same engine computes these windows against the shift you actually work, as a visual timeline for each kind of day. Free, printable, no account.</p>
+        <a class="btn-primary" href="/plan/" data-cta="schedules-index-body">Build my free sleep plan</a>
+      </div>
+
+    </div>
+
+    <section class="capture" style="margin-top:var(--space-section);">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="schedule-guide" data-sm-source="schedules">
+        <label class="visually-hidden" for="schedules-email">Email address</label>
+        <input type="email" id="schedules-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </section>
+
+  </div>
+
+  <footer class="site-footer site-footer--narrow">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
+      <a href="/manual/">Manual</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('click', (e) => {
+      const cta = e.target.closest('[data-cta]');
+      if (cta && window.gtag) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'schedules', leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const j = await r.json();
+          if (msg) msg.textContent = j.ok ? (j.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.') : (j.error || 'Something went wrong.');
+          if (j.ok && input) input.value = '';
+        } catch {
+          if (msg) msg.textContent = 'Could not reach the server. Try again in a minute.';
+        }
+        if (btn) btn.disabled = false;
+      });
+    });
+  </script>
+
+</body>
+</html>

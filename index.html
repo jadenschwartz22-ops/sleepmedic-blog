@@ -19,6 +19,17 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="alternate" type="application/rss+xml" title="SleepMedic Blog" href="/blog/feed.xml" />
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "SleepMedic",
+    "url": "https://sleepmedic.co/",
+    "description": "Evidence-based sleep science for shift workers.",
+    "publisher": { "@type": "Organization", "name": "SleepMedic", "url": "https://sleepmedic.co", "parentOrganization": { "@type": "Organization", "name": "TeachMeToLive LLC" } }
+  }
+  </script>
+
   <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
   <script>
@@ -119,6 +130,11 @@
       transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
     }
     .audience-chip:hover { border-color: var(--accent-line); color: var(--text); }
+    .chip-group-label {
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      color: var(--text-3); margin: 22px 0 10px;
+    }
 
     .closing { padding: var(--space-section) 0 0; }
   </style>
@@ -129,6 +145,8 @@
     <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
       <a href="/manual/">Manual</a>
       <a href="/about/">About</a>
       <a href="/plan/" class="nav-cta" data-cta="nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
@@ -209,9 +227,18 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">Start with your schedule</h2>
-          <p class="section-desc">Each guide is written for one kind of week.</p>
+          <p class="section-desc">A worked example per rotation: light window, caffeine cutoff, wind-down and sleep target, computed from a wake anchor.</p>
         </div>
+        <a href="/schedules/" class="link-more">All nine schedules &rarr;</a>
       </div>
+      <div class="audiences">
+        <a href="/schedules/24-48/" class="audience-chip">24/48</a>
+        <a href="/schedules/48-96/" class="audience-chip">48/96</a>
+        <a href="/schedules/nights-3x12/" class="audience-chip">Nights, three 12s</a>
+        <a href="/schedules/rotating/" class="audience-chip">Rotating or irregular</a>
+        <a href="/schedule/" class="audience-chip" style="border-color:var(--accent-line);color:var(--text);">Track yours: Schedule Manager</a>
+      </div>
+      <p class="chip-group-label">Or by the job</p>
       <div class="audiences">
         <a href="/blog/paramedics/" class="audience-chip">Paramedics and EMTs</a>
         <a href="/blog/nurses/" class="audience-chip">Nurses</a>
@@ -235,6 +262,8 @@
     <p>&copy; 2026 TeachMeToLive LLC</p>
     <div class="footer-links">
       <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
       <a href="/manual/">Manual</a>
       <a href="/about/">About</a>
       <a href="/privacy/">Privacy</a>

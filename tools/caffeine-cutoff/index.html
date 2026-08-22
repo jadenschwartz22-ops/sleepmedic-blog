@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>When Should My Last Coffee Be? - SleepMedic</title>
+  <meta name="description" content="Enter when you plan to sleep next and get your last-coffee cutoff, computed from caffeine's half-life. Free, instant, no signup." />
+
+  <link rel="canonical" href="https://sleepmedic.co/tools/caffeine-cutoff/" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="When Should My Last Coffee Be?" />
+  <meta property="og:description" content="Enter when you plan to sleep next and get your last-coffee cutoff, computed from caffeine's half-life." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sleepmedic.co/tools/caffeine-cutoff/" />
+  <meta property="og:site_name" content="SleepMedic" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-717M9L2RTM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-717M9L2RTM');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
+
+  <style>
+    .tool { max-width: var(--measure); margin: 0 auto; padding: clamp(36px, 6vw, 56px) 24px 0; }
+    .tool-head { margin-bottom: 30px; }
+    .tool-head h1 { font-size: clamp(1.9rem, 4.5vw, 2.5rem); letter-spacing: -0.035em; line-height: 1.12; margin-bottom: 10px; }
+    .tool-head p { color: var(--text-3); font-size: 1rem; max-width: 52ch; }
+    .stamp { font-size: 0.78rem; color: var(--text-3); margin-top: 10px; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(22px, 4vw, 30px); margin-bottom: 24px; }
+
+    .field label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    input[type="time"] {
+      width: 100%; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border-hover);
+      border-radius: var(--radius-md); color: var(--text); font-family: inherit; font-size: 1.05rem;
+      color-scheme: dark; transition: border-color 0.2s var(--ease);
+    }
+    input[type="time"]:focus { outline: none; border-color: var(--accent); }
+
+    .toggle-row { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+    .toggle-row input { width: 17px; height: 17px; accent-color: var(--accent); cursor: pointer; }
+    .toggle-row label { font-size: 0.9rem; color: var(--text-2); cursor: pointer; }
+
+    .result { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border); }
+    .result .placeholder { font-size: 0.94rem; color: var(--text-3); }
+
+    .answer-time { font-size: clamp(2rem, 6vw, 2.6rem); font-weight: 800; color: var(--accent); letter-spacing: -0.03em; margin-bottom: 6px; }
+    .answer-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-3); font-weight: 600; margin-bottom: 4px; }
+    .answer-explain { font-size: 0.95rem; color: var(--text-2); line-height: 1.6; margin-top: 12px; max-width: 56ch; }
+
+    .secondary { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; padding: 14px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); }
+    .secondary .dot { flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); margin-top: 7px; }
+    .secondary p { font-size: 0.88rem; color: var(--text-3); line-height: 1.55; }
+    .secondary strong { color: var(--text-2); font-weight: 600; }
+
+    .cta {
+      background: var(--accent-dim); border: 1px solid var(--accent-line); border-radius: var(--radius-lg);
+      padding: clamp(22px, 4vw, 28px); margin-bottom: 24px;
+    }
+    .cta h2 { font-size: 1.1rem; margin-bottom: 8px; }
+    .cta p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; margin-bottom: 16px; max-width: 50ch; }
+
+    .links-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .faq { margin: 40px 0; }
+    .faq h2 { font-size: 1.2rem; margin-bottom: 16px; }
+    .faq-item { padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 0.98rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .faq-item p { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a href="/" class="nav-brand"><svg viewBox="0 0 64 64" width="21" height="21" aria-hidden="true" style="vertical-align:-5px;margin-right:7px"><path d="M32 5 L55 13 V31 C55 45.5 44.5 54.5 32 59 C19.5 54.5 9 45.5 9 31 V13 Z" fill="#1c1c1f" stroke="#a78bfa" stroke-width="2.8" stroke-linejoin="round"/><g transform="translate(3.95,8.26) scale(0.6842)"><path d="M 40 8 A 14.5 14.5 0 1 0 55 25 A 11.5 11.5 0 1 1 40 8 Z" fill="#f2ead9"/></g><path d="M15 43 H23 L26.5 36 L31 49 L34.5 43 H49" fill="none" stroke="#60a5fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>SleepMedic</a>
+    <div class="nav-links">
+      <a href="/blog/">Blog</a>
+      <a href="/schedules/">Schedules</a>
+      <a href="/tools/">Tools</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/plan/" class="nav-cta" data-cta="nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
+    </div>
+  </nav>
+
+  <main class="tool">
+    <div class="tool-head">
+      <h1>When should my last coffee be?</h1>
+      <p>Say when you plan to sleep next. The cutoff is worked backward from caffeine's half-life.</p>
+      <p class="stamp">Updated August 2026</p>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <label for="sleepTime">When do you plan to sleep next?</label>
+        <input type="time" id="sleepTime" name="sleepTime" />
+      </div>
+      <div class="toggle-row">
+        <input type="checkbox" id="nightsToggle" />
+        <label for="nightsToggle">I work nights (sleeping during the day)</label>
+      </div>
+
+      <div class="result" id="result">
+        <p class="placeholder" id="placeholder">Enter a sleep time above to see your cutoff.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <h2>This is one number. The full plan is the whole day.</h2>
+      <p>The free plan computes this cutoff plus light exposure, meal timing, wind-down, and naps around your actual shifts, not just one input.</p>
+      <div class="links-row">
+        <a href="/plan/" class="btn btn-primary" data-cta="tool-body">Build my free sleep plan</a>
+        <a href="/manual/" class="btn btn-ghost">Read the field manual</a>
+      </div>
+    </div>
+
+    <div class="capture">
+      <p class="capture-eyebrow">Free, no account</p>
+      <h2>The weekly brief</h2>
+      <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+      <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" data-sm-source="tools">
+        <label class="visually-hidden" for="tool-email">Email address</label>
+        <input type="email" id="tool-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+      <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
+    </div>
+
+    <section class="faq">
+      <h2>Common questions</h2>
+      <div class="faq-item">
+        <h3>Why 8 hours before bed?</h3>
+        <p>Caffeine has a half-life of roughly five hours, meaning half of it is still in your system five hours after you drink it. Cutting it off eight hours before your target sleep time leaves only a small fraction on board when you lie down, low enough for most people to fall asleep without a fight.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does working nights change the math?</h3>
+        <p>No. The cutoff is always eight hours before whenever you actually plan to sleep, whether that's 11 PM or 9 AM after a night shift. Working nights changes what the clock says, not the rule.</p>
+      </div>
+      <div class="faq-item">
+        <h3>When should my first cup be?</h3>
+        <p>Wait 60 to 90 minutes after waking. Cortisol is already elevated right when you wake up, so an immediate cup does less for you than one taken after that window, once your natural alertness has started to dip.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/manual/">Manual</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why 8 hours before bed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Caffeine has a half-life of roughly five hours, meaning half of it is still in your system five hours after you drink it. Cutting it off eight hours before your target sleep time leaves only a small fraction on board when you lie down, low enough for most people to fall asleep without a fight."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does working nights change the math?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The cutoff is always eight hours before whenever you actually plan to sleep, whether that's 11 PM or 9 AM after a night shift. Working nights changes what the clock says, not the rule."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When should my first cup be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wait 60 to 90 minutes after waking. Cortisol is already elevated right when you wake up, so an immediate cup does less for you than one taken after that window, once your natural alertness has started to dip."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="module">
+    import { RULES, parseTime, wrap } from '/plan/engine.mjs';
+
+    const $ = (id) => document.getElementById(id);
+    const sleepInput = $('sleepTime');
+    const nightsToggle = $('nightsToggle');
+    const result = $('result');
+
+    function render() {
+      const mins = parseTime(sleepInput.value);
+      const nights = nightsToggle.checked;
+
+      if (mins === null) {
+        result.innerHTML = '<p class="placeholder" id="placeholder">Enter a sleep time above to see your cutoff.</p>';
+        return;
+      }
+
+      // Cutoff is RULES.caffeineCutoffH hours before the target sleep time.
+      const cutoffMins = wrap(mins - RULES.caffeineCutoffH * 60);
+      const cutoffDate = new Date();
+      cutoffDate.setHours(Math.floor(cutoffMins / 60), cutoffMins % 60, 0, 0);
+      const cutoffStr = cutoffDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+      const sleepDate = new Date();
+      sleepDate.setHours(Math.floor(mins / 60), mins % 60, 0, 0);
+      const sleepStr = sleepDate.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+      const [lo, hi] = RULES.caffeineFirstCupMin;
+      const wakeContext = nights
+        ? 'after you wake up for your shift, whatever time that lands at'
+        : 'after you wake up in the morning';
+
+      result.innerHTML = `
+        <p class="answer-label">Last coffee by</p>
+        <div class="answer-time">${cutoffStr}</div>
+        <p class="answer-explain">Caffeine's half-life is around five hours, so a cup at the cutoff still has a small amount active when you lie down at ${sleepStr}. That's ${RULES.caffeineCutoffH} hours of buffer before your target sleep time.</p>
+        <div class="secondary">
+          <span class="dot"></span>
+          <p><strong>First cup:</strong> hold it ${lo}&ndash;${hi} minutes ${wakeContext}. An immediate cup does less, since your body's own alertness is already elevated right when you wake.</p>
+        </div>
+      `;
+    }
+
+    sleepInput.addEventListener('input', render);
+    nightsToggle.addEventListener('change', render);
+    render();
+  </script>
+
+  <script>
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source: f.dataset.smSource || 'tools', leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const d = await r.json();
+          if (d.ok) {
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            input.value = '';
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', {
+              email_domain: (email.split('@')[1] || '').toLowerCase(),
+              source: f.dataset.smSource || 'tools'
+            });
+          } else if (msg) {
+            msg.textContent = d.error || 'Subscription failed.';
+          }
+        } catch {
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!window.gtag) return;
+      const cta = e.target.closest('[data-cta]');
+      if (cta) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
+    });
+  </script>
+</body>
+</html>
