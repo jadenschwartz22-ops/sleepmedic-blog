@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SleepMedic - Evidence-Based Sleep Science for Shift Workers</title>
-  <meta name="description" content="Weekly evidence-based sleep science for shift workers, first responders, and anyone who struggles with sleep. Read the blog or get notified about the iOS app." />
+  <title>SleepMedic - Sleep Science for People Who Work While Everyone Sleeps</title>
+  <meta name="description" content="Evidence-based sleep science for shift workers, paramedics, nurses, and first responders. Build a free personalized sleep plan around the schedule you actually work." />
 
   <link rel="canonical" href="https://sleepmedic.co/" />
   <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="SleepMedic Blog" />
-  <meta property="og:description" content="Evidence-based sleep science for shift workers and busy humans." />
+  <meta property="og:title" content="SleepMedic" />
+  <meta property="og:description" content="Sleep science for people who work while everyone sleeps. Build your free sleep plan." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sleepmedic.co/" />
+  <meta property="og:site_name" content="SleepMedic" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
@@ -25,223 +26,308 @@
     gtag('js', new Date());
     gtag('config', 'G-717M9L2RTM');
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/blog/_shared-styles.css">
 
   <style>
-    :root {
-      --bg: #0a0a0c;
-      --surface: #141416;
-      --surface-2: #1c1c1f;
-      --border: rgba(255,255,255,0.07);
-      --border-hover: rgba(255,255,255,0.14);
-      --text: #f5f5f5;
-      --text-2: #b0b0b8;
-      --text-3: #6b6b76;
-      --accent: #a78bfa;
-      --accent-2: #60a5fa;
-      --accent-dim: rgba(167,139,250,0.10);
-      --green: #34d399;
-      --radius: 12px;
-      --radius-lg: 16px;
+    /* ── Hero: left-aligned, asymmetric. Capture sits beside the pitch,
+       not below the fold. ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+      padding: var(--space-hero) 0 var(--space-section);
     }
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-2); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; }
+    .hero h1 {
+      font-size: clamp(2.3rem, 5.2vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin: 22px 0 20px;
+    }
+    .hero h1 .serif { font-weight: 400; letter-spacing: -0.02em; }
+    .hero-sub {
+      font-size: 1.06rem;
+      color: var(--text-3);
+      line-height: 1.65;
+      max-width: 46ch;
+      margin-bottom: 28px;
+    }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; max-width: 1080px; margin: 0 auto; border-bottom: 1px solid var(--border); }
-    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
-    .nav-links { display: flex; gap: 16px; align-items: center; }
-    .nav-links a { font-size: 0.85rem; color: var(--text-3); font-weight: 500; text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta { padding: 7px 14px; background: var(--accent-dim); border: 1px solid rgba(167,139,250,0.25); border-radius: 8px; color: var(--accent) !important; font-size: 0.8rem !important; font-weight: 600 !important; cursor: pointer; font-family: inherit; }
-    .nav-cta:hover { background: rgba(167,139,250,0.18); color: var(--text) !important; }
-    .nav-cta-short { display: none; }
-    .nav-cta-full { display: inline; }
-    @media (max-width: 480px) {
-      nav { padding: 14px 16px; }
-      .nav-links { gap: 10px; }
-      .nav-links a { font-size: 0.8rem; }
-      .nav-cta { padding: 6px 10px; font-size: 0.75rem !important; }
-      .nav-cta-full { display: none; }
-      .nav-cta-short { display: inline; }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; gap: 36px; }
     }
 
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-
-    .hero { text-align: center; padding: 72px 0 48px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; font-size: 0.78rem; color: var(--text-2); margin-bottom: 24px; }
-    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.4 } }
-    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 18px; color: var(--text); }
-    .hero h1 .grad { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero-sub { font-size: 1.05rem; color: var(--text-3); max-width: 520px; margin: 0 auto 28px; line-height: 1.6; }
-    .hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .btn { padding: 11px 22px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.15s; border: none; cursor: pointer; font-family: inherit; }
-    .btn-primary { background: var(--accent); color: var(--bg); }
-    .btn-primary:hover { opacity: 0.85; }
-    .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-2); }
-    .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
-
-    .section-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 10px; }
-    .section-title { font-size: 1.6rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; margin-bottom: 10px; }
-    .section-desc { color: var(--text-3); max-width: 520px; font-size: 0.95rem; line-height: 1.6; margin-bottom: 32px; }
-
-    .featured-section { margin-bottom: 56px; }
-    .featured {
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 0;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; color: inherit;
-      transition: border-color 0.2s, transform 0.15s;
+    /* ── Proof strip: honest counts only. Not a hero-metric template:
+       these are inline facts on one line, not big-number tiles. ── */
+    .proof {
+      display: flex; align-items: center; gap: 28px;
+      flex-wrap: wrap;
+      padding: 22px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: var(--space-section);
+      font-size: 0.88rem;
+      color: var(--text-3);
     }
-    .featured:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .featured-img { min-height: 280px; background-size: cover; background-position: center; background-color: var(--surface-2); }
-    .featured-body { padding: 36px 32px; display: flex; flex-direction: column; justify-content: center; }
-    .featured-tag { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-2); margin-bottom: 10px; }
-    .featured-cat { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 10px; }
-    .featured-body h2 { font-size: 1.4rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 10px; letter-spacing: -0.02em; }
-    .featured-body .excerpt { font-size: 0.9rem; color: var(--text-3); line-height: 1.6; margin-bottom: 16px; }
-    .featured-body .meta { font-size: 0.78rem; color: var(--text-3); }
-    @media (max-width: 720px) { .featured { grid-template-columns: 1fr; } .featured-img { min-height: 200px; } .featured-body { padding: 24px 20px; } }
+    .proof b { color: var(--text); font-weight: 600; }
+    .proof-claim { color: var(--text-2); }
 
-    .blog-section { margin-bottom: 56px; }
-    .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
-    @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
-    .blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; color: inherit; transition: border-color 0.2s, transform 0.15s; display: flex; flex-direction: column; }
-    .blog-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
-    .blog-card-img { width: 100%; height: 160px; background-size: cover; background-position: center; background-color: var(--surface-2); }
-    .blog-card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
-    .blog-card-cat { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 6px; }
-    .blog-card-body h3 { font-size: 0.98rem; font-weight: 600; color: var(--text); line-height: 1.35; margin-bottom: 8px; }
-    .blog-card-meta { font-size: 0.75rem; color: var(--text-3); margin-top: auto; padding-top: 10px; }
-    .view-all { font-size: 0.9rem; color: var(--accent); text-decoration: none; font-weight: 500; }
-    .view-all:hover { color: var(--accent-2); }
+    /* ── Sections ── */
+    .section { margin-bottom: var(--space-section); }
+    .section-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
 
-    .subscribe-strip { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 28px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 48px; flex-wrap: wrap; }
-    .subscribe-strip h3 { color: var(--text); font-size: 1rem; font-weight: 600; margin-bottom: 2px; }
-    .subscribe-strip p { font-size: 0.85rem; color: var(--text-3); }
-    .subscribe-links { display: flex; gap: 18px; font-size: 0.85rem; }
-    .subscribe-links a { color: var(--accent); text-decoration: none; font-weight: 500; }
-    .subscribe-links a:hover { color: var(--accent-2); }
+    /* ── What you get: deliberately unequal, not three identical cards. ── */
+    .promise {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .promise > div { background: var(--surface); padding: 26px 24px; }
+    .promise h3 {
+      font-size: 0.95rem; font-weight: 600; margin-bottom: 8px;
+      color: var(--text);
+    }
+    .promise p { font-size: 0.87rem; color: var(--text-3); line-height: 1.6; }
+    .promise > div:first-child h3 { font-size: 1.1rem; }
+    @media (max-width: 780px) { .promise { grid-template-columns: 1fr; } }
 
-    footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); color: var(--text-3); font-size: 0.78rem; }
-    footer a { color: var(--text-3); text-decoration: none; }
-    footer a:hover { color: var(--text); }
-    .footer-links { margin-top: 8px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    /* ── Audience router ── */
+    .audiences { display: flex; gap: 10px; flex-wrap: wrap; }
+    .audience-chip {
+      padding: 9px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      color: var(--text-2);
+      font-size: 0.86rem; font-weight: 500;
+      transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+    }
+    .audience-chip:hover { border-color: var(--accent-line); color: var(--text); }
+
+    .closing { padding: var(--space-section) 0 0; }
   </style>
 </head>
 <body>
 
-  <nav>
+  <nav class="site-nav">
     <a href="/" class="nav-brand">SleepMedic</a>
     <div class="nav-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
-      <button type="button" class="nav-cta" data-app-interest="nav"><span class="nav-cta-full">Download App</span><span class="nav-cta-short">App</span></button>
+      <a href="/plan/" class="nav-cta" data-cta="nav"><span class="nav-cta-full">Build my free sleep plan</span><span class="nav-cta-short">Free plan</span></a>
     </div>
   </nav>
 
-  <div class="container">
+  <div class="page">
 
-    <div class="hero">
-      <div class="hero-badge">
-        <span class="dot"></span>
-        New post every Monday
-      </div>
-      <h1>Evidence-based<br><span class="grad">sleep science.</span></h1>
-      <p class="hero-sub">Weekly, research-backed sleep writing for shift workers, first responders, and anyone whose schedule doesn't fit a 9-to-5.</p>
-      <div class="hero-actions">
-        <a href="/blog/" class="btn btn-primary">Read the blog</a>
-        <a href="/blog/feed.xml" class="btn btn-ghost">Subscribe via RSS</a>
-      </div>
-    </div>
-
-    <div class="featured-section" id="featured-section" style="display:none;">
-      <p class="section-label">Latest post</p>
-      <div id="featured-slot"></div>
-    </div>
-
-    <div class="blog-section">
-      <p class="section-label">Recent posts</p>
-      <h2 class="section-title">From the blog</h2>
-      <p class="section-desc">We break down the research so you can actually use it. No jargon, no filler.</p>
-      <div class="blog-grid" id="blog-grid"></div>
-      <a href="/blog/" class="view-all">View all posts &rarr;</a>
-    </div>
-
-    <div class="subscribe-strip">
+    <header class="hero">
       <div>
-        <h3>Never miss a post</h3>
-        <p>Weekly sleep science in your inbox. No spam, one click to leave.</p>
+        <span class="badge"><span class="dot"></span> New post every Monday</span>
+        <h1>Sleep science for people who work <span class="serif">while everyone sleeps</span>.</h1>
+        <p class="hero-sub">Most sleep advice assumes you choose your bedtime. This is written for 24s, 48s, rotating nights, and the first night back.</p>
+        <div class="hero-actions">
+          <a href="/plan/" class="btn btn-primary" data-cta="hero">Build my free sleep plan</a>
+          <a href="/blog/" class="btn btn-ghost">Read the blog</a>
+        </div>
       </div>
-      <div class="subscribe-links">
-        <a href="/blog/#newsletter">Email newsletter</a>
-        <a href="/blog/feed.xml">RSS feed</a>
+
+      <!-- Inline capture, above the fold. The plan is the primary path;
+           this is for readers who want the writing without the quiz. -->
+      <div class="capture">
+        <p class="capture-eyebrow">Free, no account</p>
+        <h2>The weekly brief</h2>
+        <p class="capture-copy">One short email a week: what the research actually says, and what to do with it on your schedule.</p>
+        <form class="capture-form" data-sm-newsletter data-sm-lead-magnet="shift-worker-toolkit" data-sm-source="home-hero">
+          <label class="visually-hidden" for="home-email">Email address</label>
+          <input type="email" id="home-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="capture-msg" role="status" data-sm-newsletter-msg></p>
+        <p class="capture-fine">One email a week. Unsubscribe anytime.</p>
       </div>
+    </header>
+
+    <div class="proof">
+      <span><b id="proof-count">50+</b> articles</span>
+      <span><b>Every Monday</b> since 2025</span>
+      <span class="proof-claim">Every claim cited. No affiliate padding, no pseudoscience.</span>
     </div>
+
+    <section class="section" id="featured-section" hidden>
+      <p class="section-eyebrow">Latest</p>
+      <div id="featured-slot"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Recent writing</h2>
+          <p class="section-desc">The research, broken down to what you can act on before your next shift.</p>
+        </div>
+        <a href="/blog/" class="link-more">All posts &rarr;</a>
+      </div>
+      <div class="cards" id="blog-grid"></div>
+    </section>
+
+    <section class="section">
+      <p class="section-eyebrow">What the plan actually does</p>
+      <h2 class="section-title">Built around your schedule, not a theoretical ideal</h2>
+      <div class="promise" style="margin-top:24px;">
+        <div>
+          <h3>Answer six questions</h3>
+          <p>Your pattern, your wake anchors, your last cup of coffee. Takes about two minutes, and the numbers in your plan are computed from your answers, not generated prose.</p>
+        </div>
+        <div>
+          <h3>Get real timings</h3>
+          <p>Light, caffeine cutoff, wind-down, and a planned nap placed against the shift you actually work.</p>
+        </div>
+        <div>
+          <h3>Keep it</h3>
+          <p>Emailed and printable. Free, with no account and no app to install.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Start with your schedule</h2>
+          <p class="section-desc">Each guide is written for one kind of week.</p>
+        </div>
+      </div>
+      <div class="audiences">
+        <a href="/blog/paramedics/" class="audience-chip">Paramedics and EMTs</a>
+        <a href="/blog/nurses/" class="audience-chip">Nurses</a>
+        <a href="/blog/shift-workers/" class="audience-chip">Rotating shifts</a>
+        <a href="/blog/new-parents/" class="audience-chip">New parents</a>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="capture">
+        <p class="capture-eyebrow">Two minutes</p>
+        <h2>Your schedule isn't general. Your plan shouldn't be.</h2>
+        <p class="capture-copy">Answer six questions and get a sleep plan built around the shift you actually work, with the timings computed for your rotation.</p>
+        <a href="/plan/" class="btn btn-primary" data-cta="closing">Build my free sleep plan</a>
+      </div>
+    </section>
 
   </div>
 
-  <footer>
-    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
+  <footer class="site-footer">
+    <p>&copy; 2026 TeachMeToLive LLC</p>
     <div class="footer-links">
       <a href="/blog/">Blog</a>
-      <a href="/blog/feed.xml">RSS</a>
-      <a href="#" data-app-interest="footer">Download App</a>
+      <a href="/about/">About</a>
       <a href="/privacy/">Privacy</a>
+      <a href="/blog/feed.xml">RSS</a>
     </div>
   </footer>
 
-  <script src="/assets/app-interest.js" data-pi="https://pi.sleepmedic.co/app-interest"></script>
-
   <script>
-    async function loadLatestPosts() {
+    // Email capture. Same fetch contract as every other page.
+    document.querySelectorAll('[data-sm-newsletter]').forEach((f) => {
+      const msg = f.parentElement.querySelector('[data-sm-newsletter-msg]');
+      f.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = f.querySelector('input[name="email"]');
+        const email = (input?.value || '').trim();
+        if (!email) return;
+        const btn = f.querySelector('button');
+        if (msg) msg.textContent = 'Subscribing...';
+        if (btn) btn.disabled = true;
+        try {
+          const r = await fetch('https://pi.sleepmedic.co/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, leadMagnet: f.dataset.smLeadMagnet })
+          });
+          const d = await r.json();
+          if (d.ok) {
+            if (msg) msg.textContent = d.already ? 'Already subscribed.' : 'Subscribed. Check your inbox.';
+            input.value = '';
+            if (window.gtag) window.gtag('event', 'newsletter_subscribe', {
+              email_domain: (email.split('@')[1] || '').toLowerCase(),
+              source: f.dataset.smSource || 'home'
+            });
+          } else if (msg) {
+            msg.textContent = d.error || 'Subscription failed.';
+          }
+        } catch {
+          if (msg) msg.textContent = 'Network error. Try again.';
+        } finally {
+          if (btn) btn.disabled = false;
+        }
+      });
+    });
+
+    const CAT_CLASS = {
+      science: 'cat-science', tools: 'cat-tools', timing: 'cat-timing',
+      trending: 'cat-trending', troubleshooting: 'cat-troubleshooting',
+      special: 'cat-special', philosophy: 'cat-philosophy',
+      'shift work': 'cat-shiftwork', 'life stages': 'cat-lifestages'
+    };
+    const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    (async function loadLatestPosts() {
       try {
         const res = await fetch('/blog/posts-index.json');
         const posts = await res.json();
         if (!posts.length) return;
 
+        document.getElementById('proof-count').textContent = posts.length;
+
         const [first, ...rest] = posts;
         const featWrap = document.getElementById('featured-section');
-        const featSlot = document.getElementById('featured-slot');
-        featWrap.style.display = 'block';
-        const featImg = first.coverImage ? `<div class="featured-img" style="background-image:url('/blog/${first.coverImage}')"></div>` : '<div class="featured-img"></div>';
-        featSlot.innerHTML = `
-          <a href="/blog/posts/${first.slug}.html" class="featured">
-            ${featImg}
+        featWrap.hidden = false;
+        document.getElementById('featured-slot').innerHTML = `
+          <a href="/blog/posts/${esc(first.slug)}.html" class="featured">
+            <div class="featured-img"${first.coverImage ? ` style="background-image:url('/blog/${esc(first.coverImage)}')"` : ''}></div>
             <div class="featured-body">
-              <div class="featured-cat">${first.categoryLabel || ''}</div>
-              <h2>${first.title}</h2>
-              <p class="excerpt">${first.excerpt || ''}</p>
-              <div class="meta">${first.dateFormatted} &middot; ${first.readTime} min read</div>
+              <p class="featured-label">${esc(first.categoryLabel || 'Latest post')}</p>
+              <h2>${esc(first.title)}</h2>
+              <p class="excerpt">${esc(first.excerpt || '')}</p>
+              <p class="meta">${esc(first.dateFormatted)} &middot; ${esc(first.readTime)} min read</p>
             </div>
-          </a>
-        `;
+          </a>`;
 
-        const grid = document.getElementById('blog-grid');
-        grid.innerHTML = rest.slice(0, 6).map(p => `
-          <a href="/blog/posts/${p.slug}.html" class="blog-card">
-            ${p.coverImage ? `<div class="blog-card-img" style="background-image:url('/blog/${p.coverImage}')"></div>` : ''}
-            <div class="blog-card-body">
-              <div class="blog-card-cat">${p.categoryLabel || ''}</div>
-              <h3>${p.title}</h3>
-              <div class="blog-card-meta">${p.dateFormatted} &middot; ${p.readTime} min read</div>
+        document.getElementById('blog-grid').innerHTML = rest.slice(0, 6).map((p) => `
+          <a href="/blog/posts/${esc(p.slug)}.html" class="card">
+            ${p.coverImage ? `<div class="card-img" style="background-image:url('/blog/${esc(p.coverImage)}')"></div>` : ''}
+            <div class="card-body">
+              <p class="card-cat ${CAT_CLASS[p.category] || 'cat-science'}">${esc(p.categoryLabel || '')}</p>
+              <h3>${esc(p.title)}</h3>
+              <p class="card-meta"><span>${esc(p.dateFormatted)}</span><span>${esc(p.readTime)} min read</span></p>
             </div>
-          </a>
-        `).join('');
+          </a>`).join('');
       } catch (e) { console.warn('posts index load failed', e); }
-    }
-    loadLatestPosts();
+    })();
 
-    // Track blog card clicks for funnel analysis in GA4
     document.addEventListener('click', (e) => {
-      const card = e.target.closest('a.blog-card, a.featured');
-      if (card && window.gtag) {
-        const href = card.getAttribute('href') || '';
-        window.gtag('event', 'blog_card_click', { link_url: href, location: 'landing' });
+      if (!window.gtag) return;
+      const card = e.target.closest('a.card, a.featured');
+      if (card) {
+        window.gtag('event', 'blog_card_click', { link_url: card.getAttribute('href') || '', location: 'landing' });
+        return;
       }
+      const cta = e.target.closest('[data-cta]');
+      if (cta) window.gtag('event', 'plan_cta_click', { location: cta.dataset.cta });
     });
   </script>
 </body>
