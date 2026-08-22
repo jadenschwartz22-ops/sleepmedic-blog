@@ -1,3 +1,198 @@
 {
-  "episodes": []
+  "episodes": [
+    {
+      "id": "huberman-walker-biology-of-sleep",
+      "title": "Dr. Matt Walker: The Biology of Sleep & Your Unique Sleep Needs",
+      "expert": "Matthew Walker, PhD",
+      "host": "Andrew Huberman",
+      "series": "Huberman Lab Guest Series, Episode 1",
+      "url": "https://www.youtube.com/watch?v=-OBCwiPPfEU",
+      "date": "2024-04-03",
+      "topics": [
+        "sleep biology",
+        "sleep needs",
+        "chronotype",
+        "hormones",
+        "caffeine",
+        "alcohol",
+        "naps"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "huberman-walker-protocols",
+      "title": "Dr. Matt Walker: Protocols to Improve Your Sleep",
+      "expert": "Matthew Walker, PhD",
+      "host": "Andrew Huberman",
+      "series": "Huberman Lab Guest Series, Episode 2",
+      "url": "https://www.youtube.com/watch?v=hvPGfcAgk9Y",
+      "date": "2024-04-10",
+      "topics": [
+        "sleep toolkit",
+        "temperature",
+        "light and dark",
+        "caffeine",
+        "meal timing",
+        "wind-down"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "huberman-walker-naps-caffeine",
+      "title": "Dr. Matt Walker: How to Structure Your Sleep, Use Naps & Time Caffeine",
+      "expert": "Matthew Walker, PhD",
+      "host": "Andrew Huberman",
+      "series": "Huberman Lab Guest Series, Episode 3",
+      "url": "https://www.youtube.com/watch?v=4F_RBc1akC8",
+      "date": "2024-04-17",
+      "topics": [
+        "naps",
+        "caffeine timing",
+        "sleep structure",
+        "shift work relevance"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "huberman-walker-learning-memory",
+      "title": "Dr. Matt Walker: Using Sleep to Improve Learning, Creativity & Memory",
+      "expert": "Matthew Walker, PhD",
+      "host": "Andrew Huberman",
+      "series": "Huberman Lab Guest Series, Episode 4",
+      "url": "https://www.youtube.com/watch?v=F9KrZd_-ge0",
+      "date": "2024-04-24",
+      "topics": [
+        "memory consolidation",
+        "learning",
+        "creativity",
+        "REM sleep"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "huberman-walker-mood-emotion",
+      "title": "Dr. Matt Walker: Improve Sleep to Boost Mood & Emotional Regulation",
+      "expert": "Matthew Walker, PhD",
+      "host": "Andrew Huberman",
+      "series": "Huberman Lab Guest Series",
+      "url": "https://www.youtube.com/watch?v=S_SrHS8FvMM",
+      "date": "2024-05-01",
+      "topics": [
+        "mood",
+        "emotional regulation",
+        "sleep deprivation effects",
+        "mental health"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "attia-walker-lifespan-healthspan",
+      "title": "The impact of sleep on lifespan & healthspan",
+      "expert": "Matthew Walker, PhD",
+      "host": "Peter Attia, MD",
+      "series": "The Drive (YouTube clip)",
+      "url": "https://www.youtube.com/watch?v=Iv_JLBw_WDA",
+      "date": "2022-07-16",
+      "topics": [
+        "longevity",
+        "healthspan",
+        "sleep deprivation risks"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "attia-walker-dieting-sleep-deprived",
+      "title": "Dieting while sleep deprived",
+      "expert": "Matthew Walker, PhD",
+      "host": "Peter Attia, MD",
+      "series": "The Drive (YouTube clip)",
+      "url": "https://www.youtube.com/watch?v=fokirQ1fkxc",
+      "date": "2022-05-31",
+      "topics": [
+        "metabolism",
+        "appetite",
+        "sleep debt",
+        "weight regulation"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "attia-walker-alzheimers",
+      "title": "The connection between sleep and Alzheimer's disease",
+      "expert": "Matthew Walker, PhD",
+      "host": "Peter Attia, MD",
+      "series": "The Drive (YouTube clip)",
+      "url": "https://www.youtube.com/watch?v=8P46_vMn1II",
+      "date": "2022-07-20",
+      "topics": [
+        "alzheimers",
+        "long-term sleep debt",
+        "cognitive decline"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "attia-walker-thc-cbd",
+      "title": "Do THC and CBD help you sleep?",
+      "expert": "Matthew Walker, PhD",
+      "host": "Peter Attia, MD",
+      "series": "The Drive (YouTube clip)",
+      "url": "https://www.youtube.com/watch?v=237TvVJQINA",
+      "date": "2022-03-29",
+      "topics": [
+        "sleep aids",
+        "THC",
+        "CBD",
+        "sleep architecture"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "attia-walker-fasting-sleep",
+      "title": "How fasting can impact sleep",
+      "expert": "Matthew Walker, PhD",
+      "host": "Peter Attia, MD",
+      "series": "The Drive (YouTube clip)",
+      "url": "https://www.youtube.com/watch?v=GDrKCK4UHBU",
+      "date": "2022-05-31",
+      "topics": [
+        "meal timing",
+        "fasting",
+        "sleep quality"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "jocko-parsley-wake-up-sleep",
+      "title": "Jocko Podcast 367: Wake Up And Get Some Some Sleep. Dr. Kirk Parsley",
+      "expert": "Kirk Parsley, MD",
+      "host": "Jocko Willink",
+      "series": "Jocko Podcast",
+      "url": "https://www.youtube.com/watch?v=OSjupL8e1JM",
+      "date": "2023-01-08",
+      "topics": [
+        "first responders",
+        "military sleep",
+        "sleep deprivation performance",
+        "testosterone"
+      ],
+      "source": "youtube"
+    },
+    {
+      "id": "readystate-parsley-sleep-impacts-everything",
+      "title": "Kirk Parsley: Why Sleep Impacts Every Aspect of Life and How You Can Improve and Protect Your Sleep",
+      "expert": "Kirk Parsley, MD",
+      "host": "Kelly Starrett",
+      "series": "The Ready State Podcast",
+      "url": "https://www.youtube.com/watch?v=2urgViAk9-E",
+      "date": "2024-04-08",
+      "topics": [
+        "first responders",
+        "high performers",
+        "sleep remedy",
+        "sleep protocols"
+      ],
+      "source": "youtube"
+    }
+  ]
 }
