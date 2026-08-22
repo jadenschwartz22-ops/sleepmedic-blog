@@ -1,0 +1,154 @@
+# SleepMedic research corpus - curated expert episode list
+#
+# Every url below was verified real via WebSearch cross-checks against
+# multiple independent sources (podcast pages, IMDb episode records,
+# publisher show notes) on 2026-08-22, before being added here. No video
+# ID was invented. Re-verify with:
+#   yt-dlp --skip-download --print "%(title)s | %(upload_date)s" <url>
+#
+# source: youtube (yt-dlp pulls auto-captions) | buzzsprout (audio host,
+#   yt-dlp generic extractor support varies - fetch-transcripts.mjs
+#   reports clearly and skips if extraction fails).
+#
+# topics: free-text tags used to match corpus passages to blog topics.yaml
+# buckets during the (future, unwired) research-grounding pipeline stage.
+
+- id: huberman-walker-biology-of-sleep
+  expert: "Matthew Walker, PhD"
+  host: "Andrew Huberman"
+  title: "Dr. Matt Walker: The Biology of Sleep & Your Unique Sleep Needs"
+  series: "Huberman Lab Guest Series, Episode 1"
+  url: https://www.youtube.com/watch?v=-OBCwiPPfEU
+  source: youtube
+  date: 2024-04-03
+  topics: [sleep biology, sleep needs, chronotype, hormones, caffeine, alcohol, naps]
+
+- id: huberman-walker-protocols
+  expert: "Matthew Walker, PhD"
+  host: "Andrew Huberman"
+  title: "Dr. Matt Walker: Protocols to Improve Your Sleep"
+  series: "Huberman Lab Guest Series, Episode 2"
+  url: https://www.youtube.com/watch?v=hvPGfcAgk9Y
+  source: youtube
+  date: 2024-04-10
+  topics: [sleep toolkit, temperature, light and dark, caffeine, meal timing, wind-down]
+
+- id: huberman-walker-naps-caffeine
+  expert: "Matthew Walker, PhD"
+  host: "Andrew Huberman"
+  title: "Dr. Matt Walker: How to Structure Your Sleep, Use Naps & Time Caffeine"
+  series: "Huberman Lab Guest Series, Episode 3"
+  url: https://www.youtube.com/watch?v=4F_RBc1akC8
+  source: youtube
+  date: 2024-04-17
+  topics: [naps, caffeine timing, sleep structure, shift work relevance]
+
+- id: huberman-walker-learning-memory
+  expert: "Matthew Walker, PhD"
+  host: "Andrew Huberman"
+  title: "Dr. Matt Walker: Using Sleep to Improve Learning, Creativity & Memory"
+  series: "Huberman Lab Guest Series, Episode 4"
+  url: https://www.youtube.com/watch?v=F9KrZd_-ge0
+  source: youtube
+  date: 2024-04-24
+  topics: [memory consolidation, learning, creativity, REM sleep]
+
+- id: huberman-walker-mood-emotion
+  expert: "Matthew Walker, PhD"
+  host: "Andrew Huberman"
+  title: "Dr. Matt Walker: Improve Sleep to Boost Mood & Emotional Regulation"
+  series: "Huberman Lab Guest Series"
+  url: https://www.youtube.com/watch?v=S_SrHS8FvMM
+  source: youtube
+  date: 2024-05-01
+  topics: [mood, emotional regulation, sleep deprivation effects, mental health]
+
+- id: attia-walker-lifespan-healthspan
+  expert: "Matthew Walker, PhD"
+  host: "Peter Attia, MD"
+  title: "The impact of sleep on lifespan & healthspan"
+  series: "The Drive (YouTube clip)"
+  url: https://www.youtube.com/watch?v=Iv_JLBw_WDA
+  source: youtube
+  date: 2022-07-16
+  topics: [longevity, healthspan, sleep deprivation risks]
+
+- id: attia-walker-dieting-sleep-deprived
+  expert: "Matthew Walker, PhD"
+  host: "Peter Attia, MD"
+  title: "Dieting while sleep deprived"
+  series: "The Drive (YouTube clip)"
+  url: https://www.youtube.com/watch?v=fokirQ1fkxc
+  source: youtube
+  date: 2022-05-31
+  topics: [metabolism, appetite, sleep debt, weight regulation]
+
+- id: attia-walker-alzheimers
+  expert: "Matthew Walker, PhD"
+  host: "Peter Attia, MD"
+  title: "The connection between sleep and Alzheimer's disease"
+  series: "The Drive (YouTube clip)"
+  url: https://www.youtube.com/watch?v=8P46_vMn1II
+  source: youtube
+  date: 2022-07-20
+  topics: [alzheimers, long-term sleep debt, cognitive decline]
+
+- id: attia-walker-thc-cbd
+  expert: "Matthew Walker, PhD"
+  host: "Peter Attia, MD"
+  title: "Do THC and CBD help you sleep?"
+  series: "The Drive (YouTube clip)"
+  url: https://www.youtube.com/watch?v=237TvVJQINA
+  source: youtube
+  date: 2022-03-29
+  topics: [sleep aids, THC, CBD, sleep architecture]
+
+- id: attia-walker-fasting-sleep
+  expert: "Matthew Walker, PhD"
+  host: "Peter Attia, MD"
+  title: "How fasting can impact sleep"
+  series: "The Drive (YouTube clip)"
+  url: https://www.youtube.com/watch?v=GDrKCK4UHBU
+  source: youtube
+  date: 2022-05-31
+  topics: [meal timing, fasting, sleep quality]
+
+- id: matt-walker-podcast-ama3-shift-work
+  expert: "Matthew Walker, PhD"
+  host: "Matt Walker / Dr. Eti Ben Simon"
+  title: "Ask Me Anything Part 3 - Alzheimer's, Shift Work, Sleep Optimization"
+  series: "The Matt Walker Podcast"
+  url: https://themattwalkerpodcast.buzzsprout.com/1821163/episodes/14439795-ask-me-anything-part-3-alzheimer-s-shift-work-sleep-optimization
+  source: buzzsprout
+  date: 2024-02-05
+  topics: [shift work, circadian disruption, night shift insomnia, alzheimers risk]
+
+- id: matt-walker-podcast-caffeine-nap
+  expert: "Matthew Walker, PhD"
+  host: "Matt Walker"
+  title: "#58 - Caffeine Nap"
+  series: "The Matt Walker Podcast"
+  url: https://themattwalkerpodcast.buzzsprout.com/1821163/episodes/13739873-58-caffeine-nap
+  source: buzzsprout
+  date: 2023-10-09
+  topics: [caffeine nap, naps, sleep inertia, cognitive performance]
+
+- id: jocko-parsley-wake-up-sleep
+  expert: "Kirk Parsley, MD"
+  host: "Jocko Willink"
+  title: "Jocko Podcast 367: Wake Up And Get Some Some Sleep. Dr. Kirk Parsley"
+  series: "Jocko Podcast"
+  url: https://www.youtube.com/watch?v=OSjupL8e1JM
+  source: youtube
+  date: 2023-01-08
+  topics: [first responders, military sleep, sleep deprivation performance, testosterone]
+
+- id: readystate-parsley-sleep-impacts-everything
+  expert: "Kirk Parsley, MD"
+  host: "Kelly Starrett"
+  title: "Kirk Parsley: Why Sleep Impacts Every Aspect of Life and How You Can Improve and Protect Your Sleep"
+  series: "The Ready State Podcast"
+  url: https://www.youtube.com/watch?v=2urgViAk9-E
+  source: youtube
+  date: 2024-04-08
+  topics: [first responders, high performers, sleep remedy, sleep protocols]
