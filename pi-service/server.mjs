@@ -13,7 +13,9 @@
  *
  * Endpoints:
  *   POST /subscribe         { email }
+ *   POST /plan-lead         { email, answers }  quiz -> free personalized plan
  *   POST /unsubscribe       { email }
+ *   GET  /plan-leads        (admin, requires ?key=ADMIN_KEY)
  *   GET  /subscribers       (admin, requires ?key=ADMIN_KEY)
  *   POST /trigger-send      (webhook from GitHub Actions, requires ?key=ADMIN_KEY)
  *   GET  /health
@@ -24,6 +26,7 @@ import fs from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { buildPlan } from '../plan/engine.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -35,6 +38,7 @@ const ADMIN_KEY = process.env.ADMIN_KEY || 'change-me';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'SleepMedic <blog@sleepmedic.co>';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || ''; // receives daily subscriber-list backups
 const PUBLIC_BASE = 'https://pi.sleepmedic.co';
+const PLAN_URL = 'https://www.sleepmedic.co/plan/';
 const RSS_URL = 'https://sleepmedic.co/blog/feed.xml';
 const POLL_INTERVAL = 30 * 60 * 1000; // 30 minutes
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
@@ -42,6 +46,10 @@ const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || '';
 const SUBS_PATH = path.join(__dirname, 'subscribers.json');
 const LAST_POST_PATH = path.join(__dirname, '.last-post-guid.txt');
 const APP_INTEREST_PATH = path.join(__dirname, 'app-interest.json');
+const PLAN_LEADS_PATH = path.join(__dirname, 'plan-leads.json');
+
+// Plan copy is engine-generated, but it lands in an HTML email — escape anyway.
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // ── Subscribers Store ────────────────────────────────
 
@@ -54,16 +62,20 @@ async function saveSubscribers(subs) {
   await fs.writeFile(SUBS_PATH, JSON.stringify(subs, null, 2));
 }
 
-async function addSubscriber(email) {
+// opts.skipWelcome: caller sends its own asset email instead (e.g. plan leads,
+// who get the plan itself rather than the generic welcome).
+async function addSubscriber(email, opts = {}) {
   email = email.toLowerCase().trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { ok: false, error: 'invalid email' };
   const subs = await loadSubscribers();
   if (subs.find(s => s.email === email)) return { ok: true, already: true };
-  subs.push({ email, subscribedAt: new Date().toISOString() });
+  subs.push({ email, subscribedAt: new Date().toISOString(), source: opts.source || 'newsletter' });
   await saveSubscribers(subs);
   console.log(`+ subscriber: ${email} (total: ${subs.length})`);
   notifyDiscord(`**[NEWSLETTER] New subscriber** \`${email}\` \u2014 **total: ${subs.length}**`);
-  sendWelcomeEmail(email).catch(err => console.error(`Welcome email failed for ${email}: ${err.message}`));
+  if (!opts.skipWelcome) {
+    sendWelcomeEmail(email).catch(err => console.error(`Welcome email failed for ${email}: ${err.message}`));
+  }
   return { ok: true };
 }
 
@@ -167,6 +179,102 @@ async function sendWelcomeEmail(email) {
   `;
   await sendEmail(email, 'Welcome to SleepMedic', html);
   console.log(`Welcome email sent to ${email}`);
+}
+
+// ── Plan Leads (quiz -> free personalized plan) ──────
+
+async function loadPlanLeads() {
+  try { return JSON.parse(await fs.readFile(PLAN_LEADS_PATH, 'utf8')); }
+  catch { return []; }
+}
+
+// Append, dedupe by email keeping the latest answers.
+async function savePlanLead(email, answers) {
+  const leads = await loadPlanLeads();
+  const existing = leads.findIndex(l => l.email === email);
+  const entry = { email, answers, updatedAt: new Date().toISOString() };
+  if (existing >= 0) {
+    entry.firstSeen = leads[existing].firstSeen;
+    leads[existing] = entry;
+  } else {
+    entry.firstSeen = entry.updatedAt;
+    leads.push(entry);
+  }
+  await fs.writeFile(PLAN_LEADS_PATH, JSON.stringify(leads, null, 2));
+  return { count: leads.length, returning: existing >= 0 };
+}
+
+// Compact email version of the plan. Same computed numbers as the web page —
+// the engine runs again here rather than trusting anything from the client.
+function planEmailHtml(plan, email) {
+  const p = 'font-size:15px;line-height:1.6;margin:0 0 10px;';
+  const muted = 'font-size:13px;line-height:1.55;color:#666;margin:0 0 4px;';
+
+  const dayHtml = plan.days.map(d => `
+    <h3 style="font-size:16px;margin:26px 0 2px;color:#111;">${esc(d.name)}</h3>
+    <p style="${muted}">${esc(d.when)}</p>
+    <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;margin-top:10px;">
+      ${d.blocks.map(b => `
+      <tr>
+        <td style="padding:8px 12px 8px 0;vertical-align:top;white-space:nowrap;font-size:14px;font-weight:600;color:#6d4bd8;">${esc(b.time)}</td>
+        <td style="padding:8px 0;vertical-align:top;">
+          <div style="font-size:14px;font-weight:600;color:#111;">${esc(b.title)}</div>
+          <div style="font-size:14px;line-height:1.55;color:#333;">${esc(b.detail)}</div>
+        </td>
+      </tr>`).join('')}
+    </table>`).join('');
+
+  const struggleHtml = plan.struggleSections.map(s => `
+    <h3 style="font-size:16px;margin:26px 0 6px;color:#111;">${esc(s.title)}</h3>
+    <p style="${p}">${esc(s.body)}</p>
+    <ul style="margin:0 0 10px;padding-left:20px;">
+      ${s.steps.map(x => `<li style="font-size:14px;line-height:1.6;color:#333;margin-bottom:4px;">${esc(x)}</li>`).join('')}
+    </ul>`).join('');
+
+  return `
+    <div style="max-width:600px;margin:0 auto;font-family:system-ui,-apple-system,sans-serif;color:#333;">
+      <h2 style="margin-bottom:6px;color:#111;">${esc(plan.headline)}</h2>
+      <p style="${muted}">${esc(plan.subhead)}</p>
+
+      <table cellpadding="0" cellspacing="0" style="margin:20px 0;border-collapse:collapse;">
+        <tr>
+          <td style="padding-right:32px;">
+            <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888;font-weight:600;">Work day anchor</div>
+            <div style="font-size:24px;font-weight:700;color:#6d4bd8;">${esc(plan.anchors.work)}</div>
+          </td>
+          <td>
+            <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888;font-weight:600;">Rest day anchor</div>
+            <div style="font-size:24px;font-weight:700;color:#6d4bd8;">${esc(plan.anchors.rest)}</div>
+          </td>
+        </tr>
+      </table>
+      <p style="${muted}">${esc(plan.anchors.note)}</p>
+
+      ${dayHtml}
+
+      <h3 style="font-size:16px;margin:26px 0 6px;color:#111;">${esc(plan.patternNote.title)}</h3>
+      <p style="${p}">${esc(plan.patternNote.body)}</p>
+
+      ${struggleHtml}
+      ${plan.caffeineNote ? `<p style="${p}padding:12px;background:#f5f3ff;border-radius:8px;">${esc(plan.caffeineNote.text)}</p>` : ''}
+
+      <h3 style="font-size:16px;margin:26px 0 6px;color:#111;">${esc(plan.consistency.title)}</h3>
+      <p style="${p}">${esc(plan.consistency.body)}</p>
+
+      <p style="margin:28px 0;">
+        <a href="${PLAN_URL}" style="display:inline-block;padding:12px 24px;background:#a78bfa;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;">View or reprint your plan</a>
+      </p>
+      <p style="${muted}">Every time above is calculated from the two wake times you gave us. This is general guidance for healthy adults, not medical advice.</p>
+
+      <hr style="margin:32px 0;border:none;border-top:1px solid #eee;">
+      ${unsubFooter(email)}
+    </div>
+  `;
+}
+
+async function sendPlanEmail(email, plan) {
+  await sendEmail(email, 'Your SleepMedic sleep plan', planEmailHtml(plan, email));
+  console.log(`Plan email sent to ${email}`);
 }
 
 // Daily off-card backup: email the subscriber list to ADMIN_EMAIL when it changes.
@@ -319,6 +427,33 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Plan lead: quiz completion -> store, subscribe, email the plan
+  if (url.pathname === '/plan-lead' && req.method === 'POST') {
+    const body = await parseBody(req);
+    const email = String(body.email || '').toLowerCase().trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { json(res, 400, { error: 'invalid email' }); return; }
+
+    // The answers must produce a real plan before we accept the lead.
+    const plan = buildPlan(body.answers || {});
+    if (!plan.ok) { json(res, 400, { error: 'invalid answers', fields: plan.errors }); return; }
+
+    const { count, returning } = await savePlanLead(email, plan.answers);
+    // skipWelcome: plan leads get the plan, not the generic welcome.
+    await addSubscriber(email, { skipWelcome: true, source: 'plan' });
+
+    json(res, 200, { ok: true, emailed: true });
+    notifyDiscord(`**[PLAN] Quiz completed** \`${email}\` — pattern: \`${plan.answers.pattern}\`, struggle: \`${plan.answers.struggle}\`${returning ? ' (repeat)' : ''} — **total plan leads: ${count}**`);
+    sendPlanEmail(email, plan).catch(err => console.error(`Plan email failed for ${email}: ${err.message}`));
+    return;
+  }
+
+  // Admin: plan leads
+  if (url.pathname === '/plan-leads' && url.searchParams.get('key') === ADMIN_KEY) {
+    const leads = await loadPlanLeads();
+    json(res, 200, { count: leads.length, leads });
+    return;
+  }
+
   // Unsubscribe
   if (url.pathname === '/unsubscribe') {
     const email = url.searchParams.get('email');
@@ -406,6 +541,7 @@ server.listen(PORT, () => {
   console.log(`SleepMedic Distribution Service running on :${PORT}`);
   console.log(`  Health:       http://localhost:${PORT}/health`);
   console.log(`  Subscribe:    POST http://localhost:${PORT}/subscribe`);
+  console.log(`  Plan lead:    POST http://localhost:${PORT}/plan-lead`);
   console.log(`  App interest: POST http://localhost:${PORT}/app-interest`);
   console.log(`  Stats:        GET http://localhost:${PORT}/stats?key=...`);
   console.log(`  RSS poll:     every ${POLL_INTERVAL / 60000} minutes`);

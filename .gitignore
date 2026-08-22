@@ -26,6 +26,7 @@ Thumbs.db
 # Pi runtime data (never commit subscriber / interest data)
 pi-service/subscribers.json
 pi-service/app-interest.json
+pi-service/plan-leads.json
 pi-service/.last-post-guid.txt
 
 # Research corpus (copyright: transcripts stay local/runner-only, never

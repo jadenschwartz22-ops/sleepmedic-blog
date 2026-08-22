@@ -1,5 +1,5 @@
 /**
- * SleepMedic plan engine — deterministic, dependency-free, no DOM.
+ * SleepMedic plan engine - deterministic, dependency-free, no DOM.
  *
  * Imported unchanged by the browser (plan/index.html, <script type="module">)
  * and by Node (pi-service/server.mjs, tests). Every clock time in a plan is
@@ -17,7 +17,7 @@
  *     restWake:     "HH:MM"  wake anchor on a rest day
  *     lastCaffeine: "HH:MM"  optional
  *   }
- * Output: see buildPlan() — a plain object, safe to JSON round-trip.
+ * Output: see buildPlan() - a plain object, safe to JSON round-trip.
  */
 
 // ── Rule constants (WS3) ─────────────────────────────
@@ -142,7 +142,7 @@ function blocksForAnchor(wake, { sleepH = RULES.sleepNeedH, nap = false, labelWa
     },
     {
       key: 'caffeine', title: 'Caffeine window', time: `${range(firstCup[0], firstCup[1])} (first cup), stop by ${fmt(caffeineCutoff)}`,
-      detail: `Hold the first cup 60 to 90 minutes after waking. Last caffeine of any kind by ${fmt(caffeineCutoff)} — that is eight hours before your ${fmt(targetSleep)} sleep target.`,
+      detail: `Hold the first cup 60 to 90 minutes after waking. Last caffeine of any kind by ${fmt(caffeineCutoff)} - that is eight hours before your ${fmt(targetSleep)} sleep target.`,
       why: 'Caffeine clears slowly enough that a late cup is still working against you when you lie down, even when you fall asleep fine.',
       cite: CITATIONS.caffeine
     },
@@ -246,7 +246,7 @@ const PATTERN_NOTES = {
   },
   s24_48: {
     title: 'The two days off are not the same day',
-    body: 'The day you come off the truck is a recovery day: a shorter sleep aligned to your shift-day anchor, one deliberate nap, and an early night. Do not chase eight hours in the morning — it steals the night. The second day is the reset day: this is where the rest-day anchor lives, and where a full night has room. Going into the next 24 rested is decided on that second day, not the first.',
+    body: 'The day you come off the truck is a recovery day: a shorter sleep aligned to your shift-day anchor, one deliberate nap, and an early night. Do not chase eight hours in the morning - it steals the night. The second day is the reset day: this is where the rest-day anchor lives, and where a full night has room. Going into the next 24 rested is decided on that second day, not the first.',
     cite: CITATIONS.protocol
   },
   s24_72: {
@@ -256,7 +256,7 @@ const PATTERN_NOTES = {
   },
   s48_96: {
     title: 'Two days on, then a real reset',
-    body: 'Sleep on a 48 is interrupted sleep by definition, so the plan is damage control: take every horizontal opportunity, keep caffeine on the cutoff even when the second night feels impossible, and treat the first day off as recovery rather than the start of the break. Once you are past that day, the 96 is long enough to genuinely reset — hold the rest-day anchor rather than drifting later across four days.',
+    body: 'Sleep on a 48 is interrupted sleep by definition, so the plan is damage control: take every horizontal opportunity, keep caffeine on the cutoff even when the second night feels impossible, and treat the first day off as recovery rather than the start of the break. Once you are past that day, the 96 is long enough to genuinely reset - hold the rest-day anchor rather than drifting later across four days.',
     cite: CITATIONS.protocol
   },
   kelly: {
@@ -284,7 +284,7 @@ const PATTERN_NOTES = {
 const STRUGGLE_MODULES = {
   fallingAsleep: (ctx) => ({
     title: 'You cannot fall asleep after shift',
-    body: `Lying awake after a shift is an arousal problem, not a tiredness problem. Your wind-down starts at ${ctx.windDown} on a work day — treat that as the real end of the shift, not the drive home. If you are still awake twenty minutes after lying down, get up, keep the lights low, do something dull, and come back when you feel sleepy. Staying in bed awake teaches the bed to mean awake.`,
+    body: `Lying awake after a shift is an arousal problem, not a tiredness problem. Your wind-down starts at ${ctx.windDown} on a work day - treat that as the real end of the shift, not the drive home. If you are still awake twenty minutes after lying down, get up, keep the lights low, do something dull, and come back when you feel sleepy. Staying in bed awake teaches the bed to mean awake.`,
     steps: [
       `Stop caffeine at ${ctx.caffeineCutoff} on work days, without exceptions on the hard days`,
       'End the shift mentally before you get home: the drive is the debrief, the door is the line',
@@ -295,7 +295,7 @@ const STRUGGLE_MODULES = {
   }),
   stayingAsleep: (ctx) => ({
     title: 'You fall asleep fine and wake up at hour four',
-    body: `Broken sleep on a shift schedule is usually environmental or circadian, not psychological. Daytime sleep is fragile: noise and light that would not touch you at night will surface you at 10 AM. Your sleep opportunity runs to ${ctx.wake} — defend the back half of it, because that is where the sleep you actually feel lives.`,
+    body: `Broken sleep on a shift schedule is usually environmental or circadian, not psychological. Daytime sleep is fragile: noise and light that would not touch you at night will surface you at 10 AM. Your sleep opportunity runs to ${ctx.wake} - defend the back half of it, because that is where the sleep you actually feel lives.`,
     steps: [
       'Blackout the room properly; tape the edges if light leaks around the blind',
       'Run continuous sound loud enough to mask the house and the street, all the way through',
@@ -308,7 +308,7 @@ const STRUGGLE_MODULES = {
     title: 'You sleep and still wake up wrecked',
     body: `The first twenty to thirty minutes after waking feel bad for everyone; on a shift schedule they feel much worse and last longer. That is sleep inertia, and it responds to light and movement far better than to caffeine. Hit your light window at ${ctx.light} before you touch the first cup at ${ctx.firstCup}.`,
     steps: [
-      `Bright light within 90 minutes of waking — outside if at all possible (${ctx.light})`,
+      `Bright light within 90 minutes of waking - outside if at all possible (${ctx.light})`,
       `First caffeine ${ctx.firstCup}, not before`,
       'Move for five minutes before you judge how you feel',
       'If this holds every day for two weeks, the problem is sleep quantity or a medical cause, not your routine'
@@ -360,7 +360,7 @@ export function buildPlan(answers = {}) {
     caffeineNote = late
       ? {
           status: 'late',
-          text: `Your last cup lands around ${fmt(lastCaffeine)}. On a work day the cutoff is ${fmt(cutoff)} — you are about ${Math.round(over / 60 * 10) / 10} hours past it. Move it earlier by an hour a week rather than all at once; the headache is what makes people quit.`
+          text: `Your last cup lands around ${fmt(lastCaffeine)}. On a work day the cutoff is ${fmt(cutoff)} - you are about ${Math.round(over / 60 * 10) / 10} hours past it. Move it earlier by an hour a week rather than all at once; the headache is what makes people quit.`
         }
       : {
           status: 'ok',
@@ -381,7 +381,7 @@ export function buildPlan(answers = {}) {
       work: fmt(workWake),
       rest: fmt(restWake),
       graceMin: RULES.anchorGraceMin,
-      note: `Every time below is computed from those two numbers. Full credit within ${RULES.anchorGraceMin} minutes either side — protect the 30-minute window. Two hours off and the day does not count as anchored.`
+      note: `Every time below is computed from those two numbers. Full credit within ${RULES.anchorGraceMin} minutes either side - protect the 30-minute window. Two hours off and the day does not count as anchored.`
     },
     days,
     patternNote: PATTERN_NOTES[pattern],
