@@ -35,7 +35,6 @@ const STATIC_PAGES = [
   { loc: '/tools/',                 priority: '0.6', changefreq: 'monthly' },
   { loc: '/tools/caffeine-cutoff/', priority: '0.6', changefreq: 'monthly' },
   { loc: '/tools/nap/',             priority: '0.6', changefreq: 'monthly' },
-  { loc: '/app/',                   priority: '0.5', changefreq: 'monthly' },
   { loc: '/privacy/',               priority: '0.3', changefreq: 'yearly' },
 ];
 

@@ -1,124 +1,100 @@
-# SleepMedic Operations Runbook
+# SleepMedic Operations
 
-## Stack at a glance
+The single runbook. North star and strategy: `docs/2026-08-22-north-star-free-value-engine.md`.
 
-| Layer | What | Where | How it runs |
-|---|---|---|---|
-| Blog site | Static HTML + GA4 | `sleepmedic.co` via GitHub Pages | Push to `main` deploys |
-| Weekly pipeline | 12-stage Gemini blog generator | GitHub Actions | `weekly-blog-draft-auto.yml` cron Mon 9am MT |
-| Pi service | Newsletter + app-interest + RSS watcher + Discord | `raspberrypi.local:3847` | pm2 + systemd |
-| Public API | Cloudflare Tunnel | `pi.sleepmedic.co` | cloudflared systemd service |
-| Email | Resend | `blog@sleepmedic.co` | API, domain verified |
-| Analytics | GA4 | Property `sleepmedic-90416`, ID `G-717M9L2RTM` | gtag.js in all pages |
+## Runs automatically
 
-## Pi: common operations
-
-SSH: `ssh pi@raspberrypi.local` (password: `rasberry`).
-
-```bash
-pm2 list                                # show status
-pm2 logs sleepmedic --lines 50          # tail logs
-pm2 restart sleepmedic                  # restart after config change
-pm2 save                                # persist restart list across reboot
-systemctl status cloudflared            # tunnel status
-sudo systemctl restart cloudflared      # restart tunnel
-```
-
-Config lives in `~/sleepmedic-blog/pi-service/.env` (mode 600). Keys: `RESEND_API_KEY`, `FROM_EMAIL`, `ADMIN_KEY`, `DISCORD_WEBHOOK_URL`, `PORT=3847`.
-
-To pull latest changes and restart:
-
-```bash
-cd ~/sleepmedic-blog && git pull && pm2 restart sleepmedic
-```
-
-## Pi: admin endpoints
-
-Replace `<KEY>` with `ADMIN_KEY` from `.env`.
-
-```bash
-curl https://pi.sleepmedic.co/health
-curl "https://pi.sleepmedic.co/subscribers?key=<KEY>"
-curl "https://pi.sleepmedic.co/app-interest/stats?key=<KEY>"
-curl "https://pi.sleepmedic.co/stats?key=<KEY>"
-```
-
-## Blog pipeline: common operations
-
-Trigger a run manually:
-
-```bash
-gh workflow run weekly-blog-draft-auto.yml -R jadenschwartz22-ops/sleepmedic-blog
-```
-
-Tail the latest run:
-
-```bash
-gh run list -R jadenschwartz22-ops/sleepmedic-blog --workflow=weekly-blog-draft-auto.yml --limit 1
-gh run watch <run-id> -R jadenschwartz22-ops/sleepmedic-blog
-```
-
-Failure path: pipeline opens a GitHub issue titled `Blog FAILED - <date>` which emails you. Check the workflow run link in the issue body.
-
-## Secrets inventory
-
-| Secret | Location | What it does |
+| What | Where | When |
 |---|---|---|
-| `GEMINI_API_KEY` | GH repo secret | Blog generation + image gen |
-| `RESEND_API_KEY` | Pi `.env` | Outbound email |
-| `ADMIN_KEY` | Pi `.env` | Auth for `/subscribers`, `/stats`, `/app-interest/stats` |
-| `DISCORD_WEBHOOK_URL` | Pi `.env` | Notifications for new posts + subscribers + app interest |
-| Cloudflare tunnel creds | `/home/pi/.cloudflared/*.json` | Tunnel identity |
+| Blog post generated + published | `.github/workflows/weekly-blog-draft-auto.yml` | Mondays 16:00 UTC |
+| Site deploy | GitHub Pages | every push to `main` |
+| RSS poll -> new-post newsletter | Pi | every 30 min |
+| Subscriber-list backup email | Pi -> `ADMIN_EMAIL` | daily |
+| Discord notifications (subs, plan leads, new posts, briefs) | Pi | on event |
 
-## Routine checks (weekly)
+The pipeline is 12 stages (Gemini). It **hard-fails** on grounding failure and on any paragraph
+with a numeric/research claim and no inline citation — a failed run publishes nothing and opens
+a GitHub issue.
 
-1. `pm2 list` on Pi -- sleepmedic `online`, uptime > 0.
-2. `curl https://pi.sleepmedic.co/health` -- `{"status":"ok"}`.
-3. Last GitHub Actions run on weekly pipeline is green.
-4. GA4 Realtime shows hits on any recent blog post.
-5. Discord channel has a "New post detected" message within the last 7 days.
+## Weekly human rhythm
 
-## SEO: pillar posts, category pages, and the generator
+1. **Monday** — pipeline post lands on its own. Confirm the run was green.
+2. **Weekly brief** — draft it, propose it, tap approve in Discord (see below).
+3. **Every ~2 weeks** — one pillar guide (`/guides/`, `/schedules/`).
+4. **Ongoing** — log practitioner tips into `docs/field-tips.md` as Jaden hands them over.
 
-### Adding a new pillar post
+## Deploy
 
-1. Write or generate the post and save it to `blog/posts/<slug>.html`.
-2. In `blog/posts-index.json`, find the entry for that slug (or add one manually) and set `"pillar": true` and `"audience": "<category-slug>"`.
-3. `generate-posts-index.mjs` preserves these fields across regenerations -- they will not be overwritten on the next pipeline run.
-4. Link to the pillar from the relevant category page's `.pillar-card` `href`.
+**Site** (any HTML, script, or doc change):
+```bash
+git push origin main          # GitHub Pages picks it up
+```
 
-### Adding a new category page
+**Pi service** (anything under `pi-service/`):
+```bash
+ssh pi@raspberrypi.local 'cd ~/sleepmedic-blog && git pull && pm2 restart sleepmedic'
+```
 
-1. Copy an existing page, e.g. `cp blog/shift-workers/index.html blog/firefighters/index.html`.
-2. Update: directory name, `<title>`, `<meta name="description">`, `<h1>`, hero `<p>`, JSON-LD `name`/`description`/`url`, pillar card copy, app banner copy, newsletter source string in `gtag` call, and the audience filter value in `loadPosts()` (`p.audience === 'firefighters'`).
-3. Add `blog/firefighters/` to the sitemap by editing `scripts/generate-sitemap.mjs` if it doesn't auto-pick up new dirs.
+## The weekly brief
 
-### How the generator preserves pillar/audience on regen
+Never send blind — Discord's link crawler fetches URLs, so the service **never sends on GET**.
 
-`scripts/generate-posts-index.mjs` loads the existing `posts-index.json` before scanning HTML files. It builds a slug-keyed lookup and copies `pillar` and `audience` from the old entry onto the freshly-extracted metadata. It also preserves entries with no matching HTML file (e.g., pillar post placeholders not yet generated). Manual edits to these fields in `posts-index.json` are therefore safe and persist through pipeline runs.
+```bash
+curl -X POST "https://pi.sleepmedic.co/brief-propose?key=$ADMIN_KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"subject":"...","html":"<p>...</p>"}'
+```
 
-### FAQ/HowTo schema
+Drops an approval card in Discord -> tap the link -> confirm page with a **Send it** / **Reject**
+button (POST only). Drafts live in `docs/briefs/`.
 
-The pipeline auto-injects these; no manual steps needed. See ANALYTICS.md for how to verify.
+Direct send, no approval: `POST /send-brief?key=$ADMIN_KEY` with the same body.
 
-### Citation enforcement
+## Where things live
 
-The generator (stage 1 system prompt) treats citations as non-negotiable: every numeric claim or research-framed statement must be followed by an inline `<a href>` link, and the only allowed URLs are the deep links passed in via the `RESEARCH TO WEAVE IN` block. Domain homepages are rejected.
+| Path | What |
+|---|---|
+| `index.html`, `blog/`, `manual/`, `plan/`, `schedule/`, `schedules/`, `tools/`, `guides/`, `about/`, `privacy/` | the site |
+| `pi-service/server.mjs` | subscribe, plan-lead, unsubscribe, briefs, RSS poll, backups, Discord |
+| `scripts/generate-blog-post.mjs` | the 12-stage pipeline |
+| `scripts/editorial/topics.yaml` | topic buckets (shift-worker only) |
+| `VOICE.md` + `scripts/editorial/style_guidelines.md` | how it's written |
+| `scripts/generate-sitemap.mjs` | sitemap — **static page list is inside the script** |
+| `scripts/covers/make-cover.mjs` | deterministic SVG cover -> JPG (qlmanage + sips) |
+| `scripts/research/` | transcript fetcher; output lands in `research/` (**gitignored, never commit or republish**) |
+| `docs/briefs/`, `docs/field-tips.md` | brief drafts, tip inventory |
 
-Stage 8.5 (`stage8_5_validateLinks` in `generate-blog-post.mjs`) is the post-generation enforcement pass:
+## SEO
 
-- HEAD-checks every external URL and strips anchors returning 404/410/5xx.
-- Warns on homepage-only citations (bare domain roots).
-- Warns on paragraphs that contain numeric or research-framed claims but no inline link.
+- **New page? Add it to `STATIC_PAGES` in `scripts/generate-sitemap.mjs`** — it does not autodiscover.
+  Then `node scripts/generate-sitemap.mjs`.
+- Google Search Console: domain property, verified by Cloudflare DNS TXT.
+- IndexNow key file: `c19c753ee9ad44ea99bf10b202e9f242.txt` at repo root. After a big content push,
+  ping it with **curl** (this Mac's system Python has no CA bundle — urllib will fail).
+- `llms.txt` at root for LLM crawlers.
 
-Warnings surface in the pipeline log; the final HTML is the authoritative output. If an older post flags a warning during a regen, fix by replacing the bare homepage with a deep link or removing the uncited claim.
+## Emergency
 
-## Disaster recovery
+```bash
+curl https://pi.sleepmedic.co/health                      # {"status":"ok","subscribers":N}
+ssh pi@raspberrypi.local 'pm2 restart sleepmedic'         # service wedged
+ssh pi@raspberrypi.local 'pm2 logs sleepmedic --lines 50' # why
+sudo systemctl restart cloudflared                        # pi.sleepmedic.co unreachable
+```
 
-**Pi dies / SD card corrupts.** New Pi: install Node 20+, pm2, cloudflared. Clone `sleepmedic-blog`. Copy `.env` from 1Password (or rebuild: new Resend key, new Cloudflare tunnel). `pm2 start ecosystem.config.cjs && pm2 save && pm2 startup`. Transfer tunnel creds from old Pi or create fresh tunnel and re-route DNS.
+**Lost subscribers?** The daily backup email to `ADMIN_EMAIL` is the off-device copy — search the
+inbox for `[backup] SleepMedic subscribers`. `pi-service/subscribers.json` is gitignored and exists
+only on the Pi.
 
-**Cloudflare tunnel drops.** `sudo systemctl restart cloudflared`. If DNS route lost: `cloudflared tunnel route dns sleepmedic-pi pi.sleepmedic.co`.
+**Pipeline failed?** It opens a GitHub issue with the run link. Grounding and citation failures are
+by design — fix the source, rerun:
+```bash
+gh workflow run weekly-blog-draft-auto.yml
+```
 
-**Resend domain unverified.** Log into Resend, re-run verify. Until fixed, newsletter sends queue silently.
+## Config
 
-**GA4 not tracking.** Confirm `G-717M9L2RTM` is live at `view-source:sleepmedic.co`. Check property sleepmedic-90416 > Data streams > SleepMedic Blog is receiving hits in DebugView.
+Pi `.env` (mode 600, never committed): `RESEND_API_KEY`, `FROM_EMAIL`, `ADMIN_KEY`, `ADMIN_EMAIL`,
+`DISCORD_WEBHOOK_URL`, `PORT=3847`.
+GitHub repo secret: `GEMINI_API_KEY`.
+Analytics: GA4 `G-717M9L2RTM` (see ANALYTICS.md).
