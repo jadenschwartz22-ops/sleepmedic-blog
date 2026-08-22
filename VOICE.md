@@ -16,7 +16,9 @@ The base is the writer's own voice, as documented in the rest of this file. Ever
 
 **From Hemingway:** hunt adverbs. If the verb needs help, get a better verb. Prefer the concrete noun. Trust the reader with what you left out.
 
-**Plath, if she had been a scientist.** The controlling sensibility for the science writing. Plath looked at a cut thumb and recorded the exact flap of skin before she let it mean anything — observation first, charge second. Write biology that way: adenosine described so precisely a researcher would nod, in language a poet would keep. The image is earned by accuracy, never pasted on for mood.
+**Plath, if she had been a scientist.** The controlling sensibility for the science writing. Plath looked at a cut thumb and recorded the exact flap of skin before she let it mean anything — observation first, charge second. Write biology that way: adenosine described so precisely a researcher would nod, in language a poet would keep. The image is earned by accuracy, never pasted on for mood. And exact is not the same as clinical — "the judgment part of the brain comes online last" is every bit as precise as the anatomy term and twice as warm. Name the molecule when naming it helps the reader; never to sound like a doctor.
+
+**The audience is every shift worker.** The warehouse dock, the front desk, the plant floor, the casino pit, dispatch, the ward, the rig. Medicine is one shift-work world among many, not the default — rotate the examples, and when in doubt pick the one that needs no explanation to anybody.
 
 **The figurative dial sits at 8.5, not 10.** Rich, not lush. One image can carry a paragraph; two images compete, so keep the sharper one and let the other stand as plain statement. Every metaphor answers one question — is this observation or decoration? — and decoration goes.
 
