@@ -479,8 +479,12 @@ const server = http.createServer(async (req, res) => {
 
   // ── The weekly brief: propose -> Jaden taps Approve in Discord -> it sends ──
 
-  async function deliverBrief(subject, html) {
-    const subs = await loadSubscribers();
+  async function deliverBrief(subject, html, { test = false } = {}) {
+    // Test mode: deliver ONLY to ADMIN_EMAIL, never the list.
+    const subs = test
+      ? (ADMIN_EMAIL ? [{ email: ADMIN_EMAIL }] : [])
+      : await loadSubscribers();
+    if (test) subject = `[TEST] ${subject.replace(/^\[TEST\]\s*/i, '')}`;
     let sent = 0, failed = 0;
     for (const sub of subs) {
       try {
@@ -499,7 +503,8 @@ const server = http.createServer(async (req, res) => {
     if (url.searchParams.get('key') !== ADMIN_KEY) { json(res, 403, { error: 'forbidden' }); return; }
     const body = await parseBody(req);
     if (!body.subject || !body.html) { json(res, 400, { error: 'subject and html required' }); return; }
-    json(res, 200, { ok: true, ...(await deliverBrief(body.subject, body.html)) });
+    const test = url.searchParams.get('test') === '1';
+    json(res, 200, { ok: true, test, ...(await deliverBrief(body.subject, body.html, { test })) });
     return;
   }
 

@@ -49,6 +49,7 @@ Drops an approval card in Discord -> tap the link -> confirm page with a **Send 
 button (POST only). Drafts live in `docs/briefs/`.
 
 Direct send, no approval: `POST /send-brief?key=$ADMIN_KEY` with the same body.
+Test a brief: add `&test=1` — delivers ONLY to ADMIN_EMAIL with a [TEST] subject prefix, never the list.
 
 ## Where things live
 
