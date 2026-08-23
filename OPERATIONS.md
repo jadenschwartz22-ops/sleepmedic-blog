@@ -61,7 +61,8 @@ Test a brief: add `&test=1` — delivers ONLY to ADMIN_EMAIL with a [TEST] subje
 | `scripts/editorial/topics.yaml` | topic buckets (shift-worker only) |
 | `VOICE.md` + `scripts/editorial/style_guidelines.md` | how it's written |
 | `scripts/generate-sitemap.mjs` | sitemap — **static page list is inside the script** |
-| `scripts/covers/make-cover.mjs` | deterministic SVG cover -> JPG (qlmanage + sips) |
+| `scripts/covers/make-cover.mjs` | deterministic SVG cover art; slug picks a **motif** (settle, split, menu, guard, horizon, descend, orbit) so covers differ at card size |
+| `scripts/covers/render-cover.mjs` | renders a cover to `blog/posts/images/<slug>-cover.jpg` at 1200x630 (qlmanage + sips). Pass `--motif=<name>` to choose deliberately |
 | `scripts/research/` | transcript fetcher; output lands in `research/` (**gitignored, never commit or republish**) |
 | `docs/briefs/`, `docs/field-tips.md` | brief drafts, tip inventory |
 

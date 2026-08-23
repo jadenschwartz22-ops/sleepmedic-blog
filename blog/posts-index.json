@@ -1,5 +1,16 @@
 [
   {
+    "title": "What This Site Is Now",
+    "slug": "2026-08-23-what-this-site-is-now",
+    "excerpt": "SleepMedic spent a year as an automated sleep magazine and reached almost nobody. One page carried half the traffic: the one written for people who work nights. Here is the new direction, and what I got wrong.",
+    "date": "2026-08-23",
+    "dateFormatted": "August 23, 2026",
+    "readTime": 5,
+    "category": "special",
+    "categoryLabel": "Shift Work",
+    "coverImage": "posts/images/2026-08-23-what-this-site-is-now-cover.jpg"
+  },
+  {
     "title": "Eat on Day Hours, Even When You Work Nights",
     "slug": "2026-08-22-eat-on-day-hours-even-when-you-work-nights",
     "excerpt": "A 2025 randomized trial fed two groups identical food and changed only the hour. The daytime eaters avoided circadian misalignment entirely. Here is what a night worker does with that.",

@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Aug 2026 20:48:37 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 21:15:27 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>What This Site Is Now</title>
+      <link>https://sleepmedic.co/blog/posts/2026-08-23-what-this-site-is-now.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-08-23-what-this-site-is-now.html</guid>
+      <description>SleepMedic spent a year as an automated sleep magazine and reached almost nobody. One page carried half the traffic: the one written for people who work nights. Here is the new direction, and what I got wrong.</description>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 GMT</pubDate>
+      <category>Shift Work</category>
+    </item>
+  
     <item>
       <title>Eat on Day Hours, Even When You Work Nights</title>
       <link>https://sleepmedic.co/blog/posts/2026-08-22-eat-on-day-hours-even-when-you-work-nights.html</link>
@@ -183,15 +192,6 @@
       <description>The dread of a sleepless Sunday night, fueled by work anxiety, can sabotage your entire week. Uncover the psychological triggers and implement a proactive wind-down routine to reclaim your sleep and Monday.</description>
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
       <category>Troubleshooting</category>
-    </item>
-  
-    <item>
-      <title>Why Does My Gut Wake Me Up at 3 AM? The Microbiome-Sleep Link</title>
-      <link>https://sleepmedic.co/blog/posts/2026-06-22-why-does-my-gut-wake-me-up-at-3-am-the-microbiome-sleep-link.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-22-why-does-my-gut-wake-me-up-at-3-am-the-microbiome-sleep-link.html</guid>
-      <description>Persistent 3 AM wake-ups and restless nights might point to your gut. Discover how your microbiome dictates sleep quality and what specific steps can bring lasting rest.</description>
-      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
-      <category>circadian</category>
     </item>
   
   </channel>
