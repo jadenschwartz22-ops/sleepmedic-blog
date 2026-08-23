@@ -31,6 +31,15 @@ import { buildPlan } from '../plan/engine.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Load .env ourselves so pm2 restarts always pick up changes (pm2 caches env from first start).
+try {
+  const envFile = await fs.readFile(path.join(__dirname, '.env'), 'utf8');
+  for (const line of envFile.split('\n')) {
+    const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
+    if (m && process.env[m[1]] === undefined) process.env[m[1]] = m[2].trim();
+  }
+} catch {}
+
 // ── Config ───────────────────────────────────────────
 
 const PORT = process.env.PORT || 3847;
