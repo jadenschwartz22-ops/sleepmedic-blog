@@ -36,7 +36,7 @@ try {
   const envFile = await fs.readFile(path.join(__dirname, '.env'), 'utf8');
   for (const line of envFile.split('\n')) {
     const m = line.match(/^([A-Z_][A-Z0-9_]*)=(.*)$/);
-    if (m && process.env[m[1]] === undefined) process.env[m[1]] = m[2].trim();
+    if (m) process.env[m[1]] = m[2].trim(); // .env is authoritative over pm2's cached env
   }
 } catch {}
 
