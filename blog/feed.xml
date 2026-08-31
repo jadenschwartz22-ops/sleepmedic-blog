@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 24 Aug 2026 16:46:15 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2026 21:26:33 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Stopping Nightmares After a Tough Shift: First Responder Strategies</title>
+      <link>https://sleepmedic.co/blog/posts/2026-08-24-stopping-nightmares-after-a-tough-shift-first-responder-stra.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-08-24-stopping-nightmares-after-a-tough-shift-first-responder-stra.html</guid>
+      <description>For first responders, the echoes of a tough shift can invade sleep as nightmares and flashbacks. Discover immediate, trauma-informed strategies to decompress and reclaim restorative rest.</description>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 GMT</pubDate>
+      <category>life-on-shift</category>
+    </item>
+  
     <item>
       <title>What This Site Is Now</title>
       <link>https://sleepmedic.co/blog/posts/2026-08-23-what-this-site-is-now.html</link>
@@ -183,15 +192,6 @@
       <description>Tired of white noise failing your anxious mind? Discover how scientifically engineered soundscapes actively guide your brain into truly restorative deep sleep.</description>
       <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
       <category>tools</category>
-    </item>
-  
-    <item>
-      <title>Why Sunday Night Insomnia Steals Your Week, And How To Beat It</title>
-      <link>https://sleepmedic.co/blog/posts/2026-06-25-why-sunday-night-insomnia-steals-your-week-and-how-to-beat-i.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-25-why-sunday-night-insomnia-steals-your-week-and-how-to-beat-i.html</guid>
-      <description>The dread of a sleepless Sunday night, fueled by work anxiety, can sabotage your entire week. Uncover the psychological triggers and implement a proactive wind-down routine to reclaim your sleep and Monday.</description>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-      <category>Troubleshooting</category>
     </item>
   
   </channel>
