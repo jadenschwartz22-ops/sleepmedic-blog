@@ -2829,6 +2829,56 @@
         }
       ],
       "wordCount": 1015
+    },
+    {
+      "id": "59b8b660fc89c717",
+      "date": "2026-08-31",
+      "title": "How to Sleep Deeply While On Call: Strategies for Unpredictable Schedules",
+      "titleFingerprint": "de5851a80b0bf584",
+      "excerpt": "The pager's silent threat can steal your rest. Learn how to quiet on-call anxiety, build sleep resilience, and recover faster from unexpected wake-ups.",
+      "keywords": {
+        "sleep": 2,
+        "deeply": 1,
+        "while": 1,
+        "call": 1,
+        "strategies": 1,
+        "unpredictable": 1,
+        "schedules": 1,
+        "pagers": 1,
+        "silent": 1,
+        "threat": 1,
+        "steal": 1,
+        "rest": 1,
+        "learn": 1,
+        "quiet": 1,
+        "oncall": 1,
+        "anxiety": 1,
+        "build": 1,
+        "resilience": 1,
+        "recover": 1,
+        "faster": 1,
+        "unexpected": 1,
+        "wakeups": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 5
+        },
+        {
+          "theme": "lifestyle",
+          "strength": 4
+        },
+        {
+          "theme": "medical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        }
+      ],
+      "wordCount": 1081
     }
   ],
   "images": [
@@ -3238,6 +3288,11 @@
       "topic": "Nightmares and Flashbacks: Trauma-Informed Sleep for First Responders",
       "usedIn": "2c4f77b989e13cb6",
       "date": "2026-08-24"
+    },
+    {
+      "topic": "On-Call Sleep Strategies: Thriving with Unpredictable Schedules",
+      "usedIn": "59b8b660fc89c717",
+      "date": "2026-08-31"
     }
   ],
   "phrases": [
@@ -4198,7 +4253,31 @@
     "nightmares after a tough shift",
     "after a tough shift first",
     "a tough shift first responder",
-    "tough shift first responder strategies"
+    "tough shift first responder strategies",
+    "how to sleep",
+    "to sleep deeply",
+    "sleep deeply while",
+    "deeply while on",
+    "while on call",
+    "on call strategies",
+    "call strategies for",
+    "strategies for unpredictable",
+    "for unpredictable schedules",
+    "how to sleep deeply",
+    "to sleep deeply while",
+    "sleep deeply while on",
+    "deeply while on call",
+    "while on call strategies",
+    "on call strategies for",
+    "call strategies for unpredictable",
+    "strategies for unpredictable schedules",
+    "how to sleep deeply while",
+    "to sleep deeply while on",
+    "sleep deeply while on call",
+    "deeply while on call strategies",
+    "while on call strategies for",
+    "on call strategies for unpredictable",
+    "call strategies for unpredictable schedules"
   ],
   "titlePatterns": [
     {
@@ -4490,8 +4569,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Stopping Nightmares After a Tough Shift: First Responder Strategies",
       "date": "2026-08-24"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "How to Sleep Deeply While On Call: Strategies for Unpredictable Schedules",
+      "date": "2026-08-31"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-08-24T16:46:15.147Z"
+  "lastUpdated": "2026-08-31T21:26:33.095Z"
 }
