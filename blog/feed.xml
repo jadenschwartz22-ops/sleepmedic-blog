@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 31 Aug 2026 21:26:33 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2026 19:45:08 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>How to Sleep Deeply While On Call: Strategies for Unpredictable Schedules</title>
+      <link>https://sleepmedic.co/blog/posts/2026-08-31-how-to-sleep-deeply-while-on-call-strategies-for-unpredictab.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-08-31-how-to-sleep-deeply-while-on-call-strategies-for-unpredictab.html</guid>
+      <description>The pager&apos;s silent threat can steal your rest. Learn how to quiet on-call anxiety, build sleep resilience, and recover faster from unexpected wake-ups.</description>
+      <pubDate>Mon, 31 Aug 2026 00:00:00 GMT</pubDate>
+      <category>shift-patterns</category>
+    </item>
+  
     <item>
       <title>Stopping Nightmares After a Tough Shift: First Responder Strategies</title>
       <link>https://sleepmedic.co/blog/posts/2026-08-24-stopping-nightmares-after-a-tough-shift-first-responder-stra.html</link>
@@ -183,15 +192,6 @@
       <description>That 2 AM buzz? Discover why your ADHD brain resists sleep and learn counter-intuitive strategies to quiet the mental chatter for restful nights.</description>
       <pubDate>Thu, 02 Jul 2026 00:00:00 GMT</pubDate>
       <category>Life Stages</category>
-    </item>
-  
-    <item>
-      <title>Beyond White Noise: Actively Guiding Your Brain to Deeper Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-06-29-beyond-white-noise-actively-guiding-your-brain-to-deeper-sle.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-06-29-beyond-white-noise-actively-guiding-your-brain-to-deeper-sle.html</guid>
-      <description>Tired of white noise failing your anxious mind? Discover how scientifically engineered soundscapes actively guide your brain into truly restorative deep sleep.</description>
-      <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
-      <category>tools</category>
     </item>
   
   </channel>
