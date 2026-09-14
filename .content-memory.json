@@ -2937,6 +2937,54 @@
         }
       ],
       "wordCount": 1130
+    },
+    {
+      "id": "8ddf6d9862dbe0b6",
+      "date": "2026-09-14",
+      "title": "Reclaim Your Weekend: Beat Social Jet Lag Without the Crash",
+      "titleFingerprint": "194fa8578741d043",
+      "excerpt": "Shift work isolates you. Learn the counter-intuitive strategy to sync your social life and health on weekends, avoiding the Monday crash and chronic exhaustion.",
+      "keywords": {
+        "reclaim": 1,
+        "weekend": 1,
+        "beat": 1,
+        "social": 2,
+        "without": 1,
+        "crash": 2,
+        "shift": 1,
+        "work": 1,
+        "isolates": 1,
+        "learn": 1,
+        "counterintuitive": 1,
+        "strategy": 1,
+        "sync": 1,
+        "life": 1,
+        "health": 1,
+        "weekends": 1,
+        "avoiding": 1,
+        "monday": 1,
+        "chronic": 1,
+        "exhaustion": 1
+      },
+      "contentThemes": [
+        {
+          "theme": "practical",
+          "strength": 2
+        },
+        {
+          "theme": "warning",
+          "strength": 2
+        },
+        {
+          "theme": "scientific",
+          "strength": 1
+        },
+        {
+          "theme": "medical",
+          "strength": 1
+        }
+      ],
+      "wordCount": 1443
     }
   ],
   "images": [
@@ -3356,6 +3404,11 @@
       "topic": "Preventing Micro-Sleeps and Staying Critically Alert on Night Shifts",
       "usedIn": "e46e1a8c44914c6b",
       "date": "2026-09-07"
+    },
+    {
+      "topic": "Conquering Weekend Social Jet Lag for Shift Workers",
+      "usedIn": "8ddf6d9862dbe0b6",
+      "date": "2026-09-14"
     }
   ],
   "phrases": [
@@ -4355,7 +4408,28 @@
     "instant alertness stopping microsleep on",
     "alertness stopping microsleep on critical",
     "stopping microsleep on critical night",
-    "microsleep on critical night shifts"
+    "microsleep on critical night shifts",
+    "reclaim your weekend",
+    "your weekend beat",
+    "weekend beat social",
+    "beat social jet",
+    "social jet lag",
+    "jet lag without",
+    "lag without the",
+    "without the crash",
+    "reclaim your weekend beat",
+    "your weekend beat social",
+    "weekend beat social jet",
+    "beat social jet lag",
+    "social jet lag without",
+    "jet lag without the",
+    "lag without the crash",
+    "reclaim your weekend beat social",
+    "your weekend beat social jet",
+    "weekend beat social jet lag",
+    "beat social jet lag without",
+    "social jet lag without the",
+    "jet lag without the crash"
   ],
   "titlePatterns": [
     {
@@ -4657,8 +4731,13 @@
       "pattern": "[MAIN]: [SUBTITLE]",
       "example": "Instant Alertness: Stopping Micro-Sleep on Critical Night Shifts",
       "date": "2026-09-07"
+    },
+    {
+      "pattern": "[MAIN]: [SUBTITLE]",
+      "example": "Reclaim Your Weekend: Beat Social Jet Lag Without the Crash",
+      "date": "2026-09-14"
     }
   ],
   "contentThemes": [],
-  "lastUpdated": "2026-09-07T19:45:08.235Z"
+  "lastUpdated": "2026-09-14T20:19:14.309Z"
 }
