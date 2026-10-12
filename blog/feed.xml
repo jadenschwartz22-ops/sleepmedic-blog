@@ -6,7 +6,7 @@
     <link>https://sleepmedic.co/blog/</link>
     <description>Evidence-based sleep science for shift workers, first responders, and busy humans. Weekly posts on circadian health, recovery, and rest.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Sep 2026 20:19:14 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 12 Oct 2026 22:52:18 GMT</lastBuildDate>
     <atom:link href="https://sleepmedic.co/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://sleepmedic.co/logo-256.png</url>
@@ -14,6 +14,15 @@
       <link>https://sleepmedic.co/blog/</link>
     </image>
 
+    <item>
+      <title>Reclaim Your Weekend: Beat Social Jet Lag Without the Crash</title>
+      <link>https://sleepmedic.co/blog/posts/2026-09-14-reclaim-your-weekend-beat-social-jet-lag-without-the-crash.html</link>
+      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-09-14-reclaim-your-weekend-beat-social-jet-lag-without-the-crash.html</guid>
+      <description>Shift work isolates you. Learn the counter-intuitive strategy to sync your social life and health on weekends, avoiding the Monday crash and chronic exhaustion.</description>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <category>hard-transitions</category>
+    </item>
+  
     <item>
       <title>Instant Alertness: Stopping Micro-Sleep on Critical Night Shifts</title>
       <link>https://sleepmedic.co/blog/posts/2026-09-07-instant-alertness-stopping-micro-sleep-on-critical-night-shi.html</link>
@@ -183,15 +192,6 @@
       <description>Trapped in the relentless loop where pain prevents sleep and sleeplessness intensifies pain? Discover specific sleep strategies that reprogram your brain&apos;s pain response.</description>
       <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
       <category>conditions</category>
-    </item>
-  
-    <item>
-      <title>Woke Up Drained? Damage Control for Athletes After Poor Sleep</title>
-      <link>https://sleepmedic.co/blog/posts/2026-07-06-woke-up-drained-damage-control-for-athletes-after-poor-sleep.html</link>
-      <guid isPermaLink="true">https://sleepmedic.co/blog/posts/2026-07-06-woke-up-drained-damage-control-for-athletes-after-poor-sleep.html</guid>
-      <description>Woke up exhausted before a crucial event? Learn immediate protocols and tactical adjustments athletes can implement to prevent injury, salvage performance, and optimize recovery after one night of inadequate sleep.</description>
-      <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Life Stages</category>
     </item>
   
   </channel>
