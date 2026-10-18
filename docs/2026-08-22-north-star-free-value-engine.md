@@ -154,7 +154,7 @@ distilling the pillars; the general-purpose magnet for non-quiz capture points.
   dump — does not exist in writing anywhere; blocked on him.]**
 - **[DECISION FOR JADEN: real name on the site? Recommended yes.]**
 - Author box on every post; Person JSON-LD with credential; footer entity
-  TeachMeToLive LLC.
+  ProtoQuiz LLC.
 
 ## WS5 — Named concepts (the Clear move)
 

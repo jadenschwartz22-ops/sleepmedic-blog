@@ -265,7 +265,7 @@ function nav(ctaTag) {
 }
 
 const FOOTER = `  <footer class="site-footer site-footer--narrow">
-    <p>&copy; 2026 TeachMeToLive LLC</p>
+    <p>&copy; 2026 ProtoQuiz LLC</p>
     <div class="footer-links">
       <a href="/">Home</a>
       <a href="/blog/">Blog</a>

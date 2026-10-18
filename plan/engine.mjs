@@ -55,7 +55,9 @@ export const PATTERNS = [
   { id: 'dupont',      label: 'DuPont' },
   { id: 'panama223',   label: 'Panama 2-2-3' },
   { id: 's24_72',      label: '24 on, 72 off' },
-  { id: 'rotating',    label: 'Rotating or irregular' }
+  { id: 's12_322',     label: '12s, 3-2-2' },
+  { id: 'rotating',    label: 'Rotating or irregular' },
+  { id: 'other',       label: 'Something else (type it)' }
 ];
 
 export const STRUGGLES = [
@@ -300,12 +302,19 @@ const PATTERN_DAYS = {
     day('transition', 'Two-day break inside the cycle', 'The short breaks between runs', w, { sleepH: 7, labelWake: 'Wake anchor (short break)' }),
     day('rest', 'Three-day break', 'The long break in the cycle', r)
   ],
+  s12_322: (w, r) => [
+    day('work', 'Work day', 'The three- and two-day runs of 12s', w, { nap: true, labelWake: 'Wake anchor (work run)', shift: shiftAfterWake('On shift (12h)', 2, 12, w) }),
+    day('transition', 'Two-day break', 'The short breaks between runs', w, { sleepH: 7, labelWake: 'Wake anchor (short break)' }),
+    day('rest', 'Longer break', 'The longest break in the cycle', r)
+  ],
   rotating: (w, r) => [
     day('work', 'Work day (any rotation)', 'Every day inside a work block, whichever shift it is', w, { nap: true, labelWake: 'Wake anchor (work block)', shift: shiftAfterWake('On shift (12h)', 3, 12, w) }),
     day('transition', 'Rotation change', 'The day the shift type changes', w, { sleepH: 6, nap: true, labelWake: 'Wake anchor on the changeover' }),
     day('rest', 'Rest day', 'Days outside any work block', r)
   ]
 };
+
+PATTERN_DAYS.other = PATTERN_DAYS.rotating;
 
 const PATTERN_NOTES = {
   nights3x12: {
@@ -346,6 +355,16 @@ const PATTERN_NOTES = {
   panama223: {
     title: 'Short cycles reward one anchor, not two',
     body: 'Panama 2-2-3 never leaves a block long enough to fully adapt to. That is an argument for keeping your work-day and rest-day anchors close together rather than swinging between them. Use the two-day breaks to hold steady and the three-day break to catch up, not to reinvent your schedule.',
+    cite: CITATIONS.anchor
+  },
+  s12_322: {
+    title: 'Two breaks, one anchor',
+    body: 'A 3-2-2 never gives you a long enough run to drift far, and never a long enough break to fully reset. Keep your work-day and rest-day anchors close. Use the two-day breaks to hold steady, not to sleep in, and save any catch-up sleep for the longest break so the first shift of the next run does not feel like jet lag.',
+    cite: CITATIONS.anchor
+  },
+  other: {
+    title: 'Anchor to the block, not to the calendar',
+    body: 'Whatever the rotation, the rules are the same: one wake anchor for every day inside a work block, a second for real days off, and the switch between them only on the changeover day. On the changeover, take a shorter sleep aligned to the new block and get bright light right after waking. Tell us your schedule and we will build a dedicated version of this plan for it.',
     cite: CITATIONS.anchor
   },
   rotating: {
@@ -401,8 +420,9 @@ export function buildPlan(answers = {}) {
   const workWake = parseTime(answers.workWake);
   const restWake = parseTime(answers.restWake);
   const lastCaffeine = answers.lastCaffeine ? parseTime(answers.lastCaffeine) : null;
+  const patternOther = pattern === 'other' ? String(answers.patternOther || '').trim().slice(0, 80) : '';
 
-  if (!pattern) errors.push('pattern');
+  if (!pattern || (pattern === 'other' && !patternOther)) errors.push('pattern');
   if (!occupation) errors.push('occupation');
   if (!struggle) errors.push('struggle');
   if (workWake === null) errors.push('workWake');
@@ -443,12 +463,12 @@ export function buildPlan(answers = {}) {
   }
 
   const occLabel = OCCUPATIONS.find(o => o.id === occupation).label;
-  const patLabel = PATTERNS.find(p => p.id === pattern).label;
+  const patLabel = patternOther || PATTERNS.find(p => p.id === pattern).label;
 
   return {
     ok: true,
     generatedAt: new Date().toISOString(),
-    answers: { occupation, pattern, struggle, workWake: answers.workWake, restWake: answers.restWake, lastCaffeine: answers.lastCaffeine || null },
+    answers: { occupation, pattern, patternOther: patternOther || null, struggle, workWake: answers.workWake, restWake: answers.restWake, lastCaffeine: answers.lastCaffeine || null },
     headline: `Your sleep plan: ${patLabel}`,
     subhead: `Built around a ${fmt(workWake)} wake anchor on work days and ${fmt(restWake)} on rest days. ${occLabel}.`,
     anchors: {

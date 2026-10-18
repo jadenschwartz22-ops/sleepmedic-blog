@@ -101,12 +101,15 @@
     .field { margin-bottom: 20px; }
     .field label { display: block; font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
     .field .sub { font-size: 0.85rem; color: var(--text-3); margin-bottom: 10px; }
-    input[type="time"], input[type="email"] {
+    select, input[type="text"], input[type="email"] {
       width: 100%; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); color: var(--text); font-family: inherit; font-size: 1rem;
       color-scheme: dark; transition: border-color 0.16s;
     }
-    input:focus { outline: none; border-color: var(--accent); }
+    select { cursor: pointer; }
+    #patternOtherField { display: none; margin-top: 16px; }
+    #patternOtherField.show { display: block; }
+    input:focus, select:focus { outline: none; border-color: var(--accent); }
 
     .actions { display: flex; gap: 10px; align-items: center; margin-top: 26px; }
     .btn { padding: 13px 22px; border-radius: var(--radius); font-family: inherit; font-size: 0.95rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; transition: opacity 0.16s, background 0.16s, border-color 0.16s; }
@@ -339,6 +342,11 @@
           <h2>What schedule do you work?</h2>
           <p class="hint">Pick the closest match. If yours changes constantly, that is rotating or irregular.</p>
           <div class="options" data-q="pattern"></div>
+          <div class="field" id="patternOtherField">
+            <label for="patternOther">Describe your schedule</label>
+            <p class="sub">For example: 12s, 4 on 4 off. We use it to add your schedule to the list.</p>
+            <input type="text" id="patternOther" name="patternOther" maxlength="80" placeholder="12s, 4 on 4 off" />
+          </div>
         </div>
 
         <!-- 3. Struggle -->
@@ -355,12 +363,12 @@
           <div class="field">
             <label for="workWake">On a work day</label>
             <p class="sub">The wake time on the days you are on shift.</p>
-            <input type="time" id="workWake" name="workWake" required />
+            <select id="workWake" name="workWake" required><option value="">Pick a time</option></select>
           </div>
           <div class="field">
             <label for="restWake">On a rest day</label>
             <p class="sub">The wake time on your days off, honestly.</p>
-            <input type="time" id="restWake" name="restWake" required />
+            <select id="restWake" name="restWake" required><option value="">Pick a time</option></select>
           </div>
         </div>
 
@@ -370,7 +378,7 @@
           <p class="hint">Coffee, energy drink, pre-workout, soda. Roughly is fine. Skip it if you do not drink caffeine.</p>
           <div class="field">
             <label for="lastCaffeine">Last caffeine of the day</label>
-            <input type="time" id="lastCaffeine" name="lastCaffeine" />
+            <select id="lastCaffeine" name="lastCaffeine"><option value="">No caffeine</option></select>
           </div>
         </div>
 
@@ -399,7 +407,7 @@
   </div>
 
   <footer class="no-print">
-    <p>&copy; 2026 TeachMeToLive LLC. All rights reserved.</p>
+    <p>&copy; 2026 ProtoQuiz LLC. All rights reserved.</p>
     <div class="footer-links">
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
@@ -416,10 +424,19 @@
 
     const $ = (id) => document.getElementById(id);
     const steps = [...document.querySelectorAll('.step')];
-    const answers = { occupation: '', pattern: '', struggle: '', workWake: '', restWake: '', lastCaffeine: '' };
+    const answers = { occupation: '', pattern: '', patternOther: '', struggle: '', workWake: '', restWake: '', lastCaffeine: '' };
     let current = 0;
 
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    // Time pickers: selects, not <input type="time">. Safari reads a time input
+    // as empty until every segment is typed, which blocked the wake step.
+    const timeOpts = Array.from({ length: 96 }, (_, i) => {
+      const h = Math.floor(i / 4), m = (i % 4) * 15;
+      const v = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      return `<option value="${v}">${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}</option>`;
+    }).join('');
+    ['workWake', 'restWake', 'lastCaffeine'].forEach(id => $(id).insertAdjacentHTML('beforeend', timeOpts));
 
     // ── Render option buttons ──────────────
     const OPTS = { occupation: OCCUPATIONS, pattern: PATTERNS, struggle: STRUGGLES };
@@ -434,6 +451,10 @@
         answers[q] = btn.dataset.val;
         host.querySelectorAll('.opt').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
         $('err').textContent = '';
+        if (q === 'pattern') {
+          $('patternOtherField').classList.toggle('show', answers.pattern === 'other');
+          if (answers.pattern === 'other') { $('patternOther').focus(); return; }
+        }
         setTimeout(() => go(current + 1), 130); // one question per screen: advance on choice
       });
     }
@@ -453,7 +474,12 @@
 
     function valid(step) {
       if (step === 0) return answers.occupation ? true : 'Pick the closest match.';
-      if (step === 1) return answers.pattern ? true : 'Pick the closest match.';
+      if (step === 1) {
+        if (!answers.pattern) return 'Pick the closest match.';
+        answers.patternOther = answers.pattern === 'other' ? $('patternOther').value.trim() : '';
+        if (answers.pattern === 'other' && !answers.patternOther) return 'Type your schedule.';
+        return true;
+      }
       if (step === 2) return answers.struggle ? true : 'Pick one.';
       if (step === 3) {
         answers.workWake = $('workWake').value;
@@ -493,7 +519,7 @@
 
     // Number keys pick options on choice steps.
     document.addEventListener('keydown', (e) => {
-      if (document.activeElement && ['INPUT'].includes(document.activeElement.tagName)) return;
+      if (document.activeElement && ['INPUT', 'SELECT'].includes(document.activeElement.tagName)) return;
       const opts = steps[current].querySelectorAll('.opt');
       if (!opts.length) return;
       const n = parseInt(e.key, 10);

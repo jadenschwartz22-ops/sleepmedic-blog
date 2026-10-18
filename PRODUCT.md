@@ -85,6 +85,6 @@ Things the site must never be mistaken for:
   `data-sm-newsletter-msg`, the `posts-index.json` fetch, `views.json` fetch,
   JSON-LD blocks, giscus.
 - Email capture POSTs `{ email, leadMagnet }` to `https://pi.sleepmedic.co/subscribe`.
-- Legal entity in the footer: TeachMeToLive LLC.
+- Legal entity in the footer: ProtoQuiz LLC.
 - The founder's story does not exist in writing yet. Placeholders, never
   fabrication.

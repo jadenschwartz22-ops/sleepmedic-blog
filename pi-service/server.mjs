@@ -474,7 +474,7 @@ const server = http.createServer(async (req, res) => {
     await addSubscriber(email, { skipWelcome: true, source: 'plan' });
 
     json(res, 200, { ok: true, emailed: true });
-    notifyDiscord(`**[PLAN] Quiz completed** \`${email}\` — pattern: \`${plan.answers.pattern}\`, struggle: \`${plan.answers.struggle}\`${returning ? ' (repeat)' : ''} — **total plan leads: ${count}**`);
+    notifyDiscord(`**[PLAN] Quiz completed** \`${email}\` — pattern: \`${plan.answers.pattern}\`${plan.answers.patternOther ? ` (typed: "${plan.answers.patternOther.replace(/[`*_]/g, '')}" - add it?)` : ''}, struggle: \`${plan.answers.struggle}\`${returning ? ' (repeat)' : ''} — **total plan leads: ${count}**`);
     sendPlanEmail(email, plan).catch(err => console.error(`Plan email failed for ${email}: ${err.message}`));
     return;
   }
